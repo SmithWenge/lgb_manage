@@ -1,5 +1,6 @@
-package com.lgb.arc;
+package com.lgb.function.support.utils;
 
+import com.lgb.arc.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -68,7 +69,7 @@ public class RepositoryUtils<T extends Entry> {
     }
 
     private int queryMaxCount(String sql, Object[] args) {
-        // TODO replace queryForInt
-        return jdbcTemplate.queryForInt(sql, args);
+        Number number =(Number) jdbcTemplate.queryForObject(sql, args, Integer.class);
+        return number != null ? number.intValue() : 0;
     }
 }

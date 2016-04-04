@@ -35,4 +35,9 @@ public class ConstantFields {
     public static final String ADMIN_LOGIN_ROUTER_LOCATION = "/adminLogin?method=routeLogin";
     /* 管理员激活状态数字 */
     public static final int ADMIN_ACTIVE_STATE_CODE = 1;
+
+    /* 分页中每页数据数 */
+    public static final int DEFAULT_PAGE_SIZE = 20;
+    /* ajax分页中数据的KEY */
+    public static final String AJAX_PAGE_KEY = "page";
 }
