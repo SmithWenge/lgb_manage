@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd ">
+
+	<!-- Type Convert and Data Format -->
+	<!-- <annotation-driven conversion-service="conversionService"></annotation-driven> -->
+    <!--
+	<beans:bean id="conversionService"
+                class="org.springframework.format.support.FormattingConversionServiceFactoryBean"></beans:bean>
+    -->
+    <beans:bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean" />
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+
+    <beans:bean class="org.springframework.data.repository.support.DomainClassConverter">
+        <beans:constructor-arg ref="conversionService" />
+    </beans:bean>
+
+    <context:component-scan base-package="com.lgb.function" />
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven conversion-service="conversionService">
+        <!-- 设置分页功能的参数解析器 -->
+        <argument-resolvers>
+            <beans:bean id="sortResolver" class="org.springframework.data.web.SortHandlerMethodArgumentResolver" />
+            <beans:bean id="pageableResolver" class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" >
+                <beans:constructor-arg ref="sortResolver" />
+            </beans:bean>
+        </argument-resolvers>
+        <!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+        <message-converters register-defaults="true">
+            <beans:bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <beans:constructor-arg value="UTF-8" />
+            </beans:bean>
+        </message-converters>
+    </annotation-driven>
+
+    <beans:bean class="org.springframework.data.web.config.SpringDataWebConfiguration" />
+    <!-- <beans:bean class="org.springframework.data.web.config.HateoasAwareSpringDataWebConfiguration" /> -->
+
+    <resources location="/static/" mapping="/static/**"/>
+
+    <!-- error -->
+    <beans:bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <beans:property name="exceptionMappings">
+            <beans:props>
+                <beans:prop key="com.team.group.join.exception.ViewNotFoundException">error/404</beans:prop>
+                <beans:prop key="java.lang.Exception">error/error</beans:prop>
+                <beans:prop key="java.lang.RuntimeException">error/error</beans:prop>
+            </beans:props>
+        </beans:property>
+        <beans:property name="statusCodes">
+            <beans:props>
+                <beans:prop key="error/404">404</beans:prop>
+                <beans:prop key="error/error">500</beans:prop>
+            </beans:props>
+        </beans:property>
+        <!-- 设置日志输出级别,不定义则默认不输出警告等错误日志信息 -->
+        <beans:property name="warnLogCategory" value="WARN"></beans:property>
+        <!-- 默认错误页面,当找不到上面mappings中指定的异常对应视图时,使用本默认配置 -->
+        <beans:property name="defaultErrorView" value="errors/error"></beans:property>
+        <!-- 默认HTTP状态码 -->
+        <beans:property name="defaultStatusCode" value="500"></beans:property>
+    </beans:bean>
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	<!-- 配置扫描注解的base package -->
+	<!--<context:component-scan base-package="com.team.group.join" />-->
+    <tx:annotation-driven />
+
+    <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+    <beans:bean id="mappingJacksonHttpMessageConverter"
+                class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <beans:property name="supportedMediaTypes">
+            <beans:list>
+                <beans:value>application/json;charset=UTF-8</beans:value>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <!-- 启动Spring MVC 的注解功能,完成请求和注解POJO的映射 -->
+    <!--
+    <beans:bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    -->
+    <beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <beans:property name="messageConverters">
+            <beans:list>
+                <beans:ref bean="mappingJacksonHttpMessageConverter" />  <!-- json转换器 -->
+            </beans:list>
+        </beans:property>
+        <beans:property name="customArgumentResolvers">
+            <beans:list>
+                <beans:bean class="org.springframework.data.web.PageableHandlerMethodArgumentResolver" />
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <!-- Init the Dictionary -->
+    <beans:bean id="dictionaryManager" class="com.lgb.function.support.dictionary.impl.DefaultDictionaryManager" />
+
+    <beans:bean class="com.lgb.arc.web.tag.DictionaryTag" init-method="init" lazy-init="false">
+        <beans:property name="manager" ref="dictionaryManager" />
+    </beans:bean>
+
+    <!-- File upload -->
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="maxUploadSize" value="104857600" />
+        <beans:property name="maxInMemorySize" value="40960" />
+    </beans:bean>
+    <!-- init transaction -->
+    <beans:bean id="transactionManager"
+                class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <beans:property name="dataSource" ref="dataSource" />
+    </beans:bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans:beans>
