@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xmlns:tx="http://www.springframework.org/schema/tx"
+             xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd
 	http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -57,6 +58,7 @@
                 <beans:prop key="com.team.group.join.exception.ViewNotFoundException">error/404</beans:prop>
                 <beans:prop key="java.lang.Exception">error/error</beans:prop>
                 <beans:prop key="java.lang.RuntimeException">error/error</beans:prop>
+                <!--<beans:prop key="com.lgb.arc.exception.LoginException">redirect:/admin/routeLogin.action</beans:prop>-->
             </beans:props>
         </beans:property>
         <beans:property name="statusCodes">
@@ -127,4 +129,19 @@
         <beans:property name="dataSource" ref="dataSource" />
     </beans:bean>
     <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    <!-- Login interceptor -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/admin/**" />
+            <beans:bean class="com.lgb.arc.interceptor.AdminLoginInterceptor">
+                <beans:property name="excludedUris">
+                    <beans:list>
+                        <beans:value>/admin/routeLogin.action</beans:value>
+                        <beans:value>/admin/login.action</beans:value>
+                    </beans:list>
+                </beans:property>
+            </beans:bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans:beans>

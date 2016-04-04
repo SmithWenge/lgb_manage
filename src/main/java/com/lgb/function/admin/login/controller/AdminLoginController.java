@@ -1,6 +1,7 @@
 package com.lgb.function.admin.login.controller;
 
 import com.google.common.base.Optional;
+import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.login.service.AdminLoginServiceI;
 import org.joda.time.DateTime;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminLoginController {
@@ -21,7 +24,7 @@ public class AdminLoginController {
     private AdminLoginServiceI adminLoginService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(AdminUser adminUser) {
+    public ModelAndView login(AdminUser adminUser, HttpSession session) {
         AdminUser loginUser = adminLoginService.login(adminUser);
         ModelAndView mav = new ModelAndView();
 
@@ -29,6 +32,7 @@ public class AdminLoginController {
         if (optional.isPresent()) {
             mav.addObject("loginUser", loginUser);
             mav.setViewName("index");
+            session.setAttribute(ConstantFields.SESSION_ADMIN_KEY, loginUser);
 
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] {} login system at {} .", loginUser.getAdminLoginName(), DateTime.now());
