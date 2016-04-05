@@ -11,6 +11,16 @@ public class AdminUser extends Entry {
     private int adminIsLock;
     private int adminRole;
     private int deleteFlag;
+    private String adminEmail;
+
+    public void setAdminEmail(String adminEmail) {
+        this.adminEmail = adminEmail;
+    }
+
+    public String getAdminEmail() {
+
+        return adminEmail;
+    }
 
     public void setAdminId(int adminId) {
         this.adminId = adminId;

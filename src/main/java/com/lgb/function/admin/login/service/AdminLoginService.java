@@ -22,10 +22,28 @@ public class AdminLoginService implements AdminLoginServiceI {
         Optional<AdminUser> optional = Optional.fromNullable(loginUser);
 
         if (optional.isPresent()) {
-            LogContent logContent = new LogContent(adminUser.getAdminLoginName(), "登陆系统", 1, 4);
+            LogContent logContent = new LogContent(adminUser.getAdminLoginName(), "登陆系统", 1, 5);
             logRepository.insertLog(logContent);
         }
 
         return loginUser;
+    }
+
+    @Override
+    public AdminUser isExistAdminUser(AdminUser adminUser) {
+        AdminUser mailUser = adminLoginRepository.selectUniqueEmail(adminUser);
+        Optional<AdminUser> optional = Optional.fromNullable(mailUser);
+
+        if (optional.isPresent()) {
+            LogContent logContent = new LogContent(adminUser.getAdminLoginName(), "更改密码", 1, 4);
+            logRepository.insertLog(logContent);
+        }
+
+        return mailUser;
+    }
+
+    @Override
+    public boolean newPassword(AdminUser mailUser) {
+        return adminLoginRepository.updatePassword(mailUser);
     }
 }

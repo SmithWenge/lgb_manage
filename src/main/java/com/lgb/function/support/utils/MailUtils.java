@@ -1,27 +1,23 @@
-package com.lgb.arc.utils;
+package com.lgb.function.support.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+@Service
 public class MailUtils {
-    @Value("${mail.smtp.host}")
-    private static String maillHost;
-    @Value("${mail.smtp.port}")
-    private static String mailPort;
-    @Value("${mail.smtp.starttls.enable}")
-    private static boolean mailStarttlsEnable;
-    @Value("${mail.smtp.auth}")
-    private static String mailAuth;
-    @Value("${mail.smtp.user}")
-    private static String mailUser;
-    @Value("${mail.smtp.pass}")
-    private static String mailPass;
+    @Value("${mail.host}")
+    public String mailHost;
+    @Value("${mail.user}")
+    public String mailUser;
+    @Value("${mail.pass}")
+    public String mailPass;
 
     private final static Logger LOG = LoggerFactory.getLogger(MailUtils.class);
 
@@ -34,7 +30,7 @@ public class MailUtils {
      * @param subject 邮件标题
      * @param content 邮件包含的内容
      */
-    public static void mailTo(String toEmail, String subject, String content) {
+    public void mailTo(String toEmail, String subject, String content) {
         Session session = Session.getDefaultInstance(PROPERTIES, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -44,7 +40,7 @@ public class MailUtils {
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(mailPass));
+            message.setFrom(new InternetAddress(mailHost));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject(subject);
             message.setText(content);

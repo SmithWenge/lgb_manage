@@ -43,7 +43,7 @@ public class LogRepository implements LogRepositoryI {
 
         Optional<LogContent> optional = Optional.fromNullable(logContent);
         if (optional.isPresent()) {
-            if (logContent.getLogUser() != null) {
+            if (logContent.getLogUser() != null && logContent.getLogUser().length() > 0) {
                 sql.append(" AND logUser = ?");
                 list.add(logContent.getLogUser());
             }
@@ -53,7 +53,7 @@ public class LogRepository implements LogRepositoryI {
                 list.add(logContent.getLogLevel());
             }
 
-            if (logContent.getLogAction() >= 0) {
+            if (logContent.getLogAction() > 0) {
                 sql.append(" AND logAction = ?");
                 list.add(logContent.getLogAction());
             }
@@ -72,6 +72,7 @@ public class LogRepository implements LogRepositoryI {
         Object[] args = list.toArray();
 
         sql.append(" ORDER BY logTime DESC");
+
 
         return repositoryUtils.select4Page(sql.toString(), pageable, args, new Select4PageRowMapper());
     }
@@ -94,21 +95,23 @@ public class LogRepository implements LogRepositoryI {
     }
 
     private String logActionConvert(int logAction) {
-        if (logAction ==4) {
-            return "4:其他";
-        } else if (logAction == 0) {
-            return "0:检索";
+        if (logAction == 5) {
+            return "5:其他";
         } else if (logAction == 1) {
-            return "1:添加";
+            return "1:检索";
         } else if (logAction == 2) {
-            return "2:删除";
+            return "2:添加";
+        } else if (logAction == 3) {
+            return "3:删除";
+        } else if (logAction == 4) {
+            return "4:修改";
         } else {
             return "不合法操作";
         }
     }
 
     private String logLevelConvert(int logLevel) {
-        if (logLevel == 0) {
+        if (logLevel == 1) {
             return "1:提示";
         } else {
             return "其他信息";

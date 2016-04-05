@@ -139,6 +139,7 @@
                     <beans:list>
                         <beans:value>/admin/routeLogin.action</beans:value>
                         <beans:value>/admin/login.action</beans:value>
+                        <beans:value>/admin/resetPass.action</beans:value>
                     </beans:list>
                 </beans:property>
             </beans:bean>

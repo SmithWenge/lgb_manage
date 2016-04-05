@@ -10,7 +10,6 @@
 </style>
 
 <form class="form-horizontal col-sm-offset-3" action="${contextPath}/admin/login.action" method="post" id="adminLoginForm">
-    <input type="hidden" name="method" value="login">
     <div class="form-group">
         <label for="inputAdminLoginName" class="col-sm-2 control-label">管理员用户</label>
         <div class="col-sm-5">
@@ -40,8 +39,7 @@
                 <h4 class="modal-title" id="myModalLabel">重置密码</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" action="${contextPath}/admin/login" method="post">
-                    <input type="hidden" name="method" value="mailPassRest">
+                <form class="form-horizontal" action="${contextPath}/admin/resetPass.action" method="post">
                     <div class="form-group">
                         <label for="adminLoginName" class="col-sm-3 control-label">管理员登陆名</label>
                         <div class="col-sm-9">
@@ -49,9 +47,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="managerEmail" class="col-sm-3 control-label">管理员邮箱</label>
+                        <label for="adminEmail" class="col-sm-3 control-label">管理员邮箱</label>
                         <div class="col-sm-9">
-                            <input type="email" class="form-control" id="managerEmail" placeholder="admin@example.com" name="managerEmail">
+                            <input type="email" class="form-control" id="adminEmail" placeholder="admin@example.com" name="adminEmail">
                         </div>
                     </div>
                     <div class="form-group">

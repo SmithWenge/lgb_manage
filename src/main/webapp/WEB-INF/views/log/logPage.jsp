@@ -2,81 +2,99 @@
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/include/header.jsp"%>
 
-<table class="table" id="paginationTable">
-    <tr>
-        <td></td>
-        <td>日志编号</td>
-        <td>操作</td>
-        <td>级别</td>
-        <td>内容</td>
-        <td>操作者</td>
-        <td>时间</td>
-    </tr>
-    <c:forEach items="${page.content}" var="log">
-        <tr>
-            <td></td>
-            <td>${log.logId}</td>
-            <td>${log.logActionContent}</td>
-            <td>${log.logLevelContent}</td>
-            <td>${log.logContent}</td>
-            <td>${log.logUser}</td>
-            <td>${log.logTime}</td>
-        </tr>
-    </c:forEach>
-</table>
-<nav>
-    <ul class="pagination">
-        <li>
-            <a aria-label="Previous" onclick="previousPage();">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li><a>总页数: ${page.totalPages}</a></li>
-        <li><a>本页记录数: ${page.totalElements}</a></li>
-        <li><a>当前页: ${page.number + 1}</a></li>
-        <li><input id="pageNum" type="hidden" value="${page.number}"></li>
-        <li>
-            <a aria-label="Next" onclick="nextPage();">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-<script type="text/javascript">
-    var $num = parseInt($("#pageNum").val());
+<%@include file="/WEB-INF/include/navs.jsp"%>
 
-    function nextPage() {
-        var $nextNum = $num + 1;
-        $.ajax({
-            url : "${reqBaseURL}/admin/log/page.action?page=" + $nextNum,
-            type : "get",
-            dataType : "text",
-            contentType : "application/json; charset=utf-8",
-            success : function(result) {
-                var data = JSON.parse(result);
-                var $paginationTable = $("#paginationTable");
+<div class="row"  style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
+    <div class="col-md-12">
+        <form class="form-inline" action="${contextPath}/admin/log/pageSearch.action" method="post">
+            <div class="form-group">
+                <label for="selectLogAciton">操作</label>
+                <select class="form-control" name="logAction" id="selectLogAciton">
+                    <option value="-1">--请选择--</option>
+                    <option value="1">1:检索</option>
+                    <option value="2">2:添加</option>
+                    <option value="3">3:删除</option>
+                    <option value="4">4:修改</option>
+                    <option value="5">5:其他</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="selectLogLevel">日志级别</label>
+                <select class="form-control" name="logLevel" id="selectLogLevel">
+                    <option value="-1">--请选择--</option>
+                    <option value="1">1:提示</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="inputStartTime">开始时间</label>
+                <input type="date" class="form-control" id="inputStartTime" name="startTime">
+            </div>
+            <div class="form-group">
+                <label for="inputEndTime">截止时间</label>
+                <input type="date" class="form-control" id="inputEndTime" name="endTime">
+            </div>
+            <div class="form-group">
+                <label for="inputLogUser">操作者</label>
+                <input type="text" class="form-control" id="inputLogUser" name="logUser" placeholder="admin">
+            </div>
+            <button type="submit" class="btn btn-default">检索</button>
+        </form>
+    </div>
+</div>
 
-                $("#pageNum").val(data.page.number);
-                if ($paginationTable.size() > 0) {
-                    $paginationTable.find("tr:not(:first)").remove();
-                }
+<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
+    <div class="col-md-12">
+        <table class="table" id="paginationTable">
+            <tr style="background-color: #2aabd2;">
+                <th>日志编号</th>
+                <th>操作</th>
+                <th>级别</th>
+                <th>内容</th>
+                <th>操作者</th>
+                <th>时间</th>
+            </tr>
+            <c:forEach items="${page.content}" var="log">
+                <tr>
+                    <td>${log.logId}</td>
+                    <td>${log.logActionContent}</td>
+                    <td>${log.logLevelContent}</td>
+                    <td>${log.logContent}</td>
+                    <td>${log.logUser}</td>
+                    <td>${log.logTime}</td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+</div>
 
-                var pageContent = "";
-                console.log(data.page.content);
-                $.each(data.page.content, function(i, item) {
-                    pageContent += "<tr><td>" + item.name + "</td><td>"
-                            + item.age + "</td><td>" + item.gender + "</td><td>"
-                            + item.college + "</td><td>" + item.grade + "</td><td>"
-                            + item.phone + "</td><td>" + item.email + "</td><td>"
-                            + item.qq + "</td><td>" + item.dormitory + "</td></tr>";
-                });
-
-                $("#paginationTable").append(pageContent);
-                console.log(data);
-            }
-        });
-    }
-
+<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
+    <div class="col-md-12">
+        <nav>
+            <ul class="pager">
+                <c:if test="${page.number > 0 }">
+                    <li class="previous">
+                        <a href="${contextPath}/admin/log/page.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
+                    </li>
+                </c:if>
+                <c:if test="${page.number <= 0 }">
+                    <li class="previous disabled">
+                        <a href="#"><span aria-hidden="true">&larr;</span>上一页</a>
+                    </li>
+                </c:if>
+                <c:if test="${page.number + 1 < page.totalPages }">
+                    <li class="next">
+                        <a href="${contextPath}/admin/log/page.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
+                    </li>
+                </c:if>
+                <c:if test="${page.number + 1 >= page.totalPages }">
+                    <li class="next disabled">
+                        <a href="#">下一页 <span aria-hidden="true">&rarr;</span></a>
+                    </li>
+                </c:if>
+            </ul>
+        </nav>
+    </div>
+</div>
 <%@include file="/WEB-INF/include/javascript.jsp"%>
 
 <%@include file="/WEB-INF/include/footer.jsp"%>
