@@ -30,14 +30,13 @@ public class AdminLoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(AdminUser adminUser, HttpSession session) {
-        adminUser.setAdminLoginPass(PasswordUtils.encrypt(adminUser.getAdminLoginPass()));
         AdminUser loginUser = adminLoginService.login(adminUser);
         ModelAndView mav = new ModelAndView();
 
         Optional<AdminUser> optional = Optional.fromNullable(loginUser);
         if (optional.isPresent()) {
             mav.addObject("loginUser", loginUser);
-            mav.setViewName("index");
+            mav.setViewName("admin/home/index");
             session.setAttribute(ConstantFields.SESSION_ADMIN_KEY, loginUser);
 
             if (LOG.isInfoEnabled())
@@ -69,6 +68,36 @@ public class AdminLoginController {
                     LOG.info("[LGB MANAGE] {} reset password with mail {}.", mailUser.getAdminName(), mailUser.getAdminEmail());
             }
         }
+
+        return "redirect:/admin/routeLogin.action";
+    }
+
+    @RequestMapping(value = "/routePass", method = RequestMethod.GET)
+    public String routePassword() {
+        return "admin/login/adminPassword";
+    }
+
+    @RequestMapping(value = "/password", method = RequestMethod.POST)
+    public ModelAndView password(AdminUser adminUser, HttpSession session) {
+        ModelAndView mav = new ModelAndView("redirect:/admin/routeLogin.action");
+
+        AdminUser newUser = adminLoginService.resetPassword(adminUser);
+        Optional<AdminUser> optional = Optional.fromNullable(newUser);
+
+        if (optional.isPresent()) {
+            session.removeAttribute(ConstantFields.SESSION_ADMIN_KEY);
+            if (LOG.isInfoEnabled())
+                LOG.info("[LGB MANAGE] {} reset password.", newUser.getAdminName());
+
+            return mav;
+        }
+
+        return new ModelAndView("redirect:/admin/routePass.action");
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        session.removeAttribute(ConstantFields.SESSION_ADMIN_KEY);
 
         return "redirect:/admin/routeLogin.action";
     }

@@ -12,6 +12,25 @@ public class AdminUser extends Entry {
     private int adminRole;
     private int deleteFlag;
     private String adminEmail;
+    private String adminLoginPassNew;
+    private String adminLoginPassNewRe;
+
+    public void setAdminLoginPassNew(String adminLoginPassNew) {
+        this.adminLoginPassNew = adminLoginPassNew;
+    }
+
+    public void setAdminLoginPassNewRe(String adminLoginPassNewRe) {
+        this.adminLoginPassNewRe = adminLoginPassNewRe;
+    }
+
+    public String getAdminLoginPassNew() {
+
+        return adminLoginPassNew;
+    }
+
+    public String getAdminLoginPassNewRe() {
+        return adminLoginPassNewRe;
+    }
 
     public void setAdminEmail(String adminEmail) {
         this.adminEmail = adminEmail;

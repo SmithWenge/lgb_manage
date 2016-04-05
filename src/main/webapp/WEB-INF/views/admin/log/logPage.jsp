@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/include/header.jsp"%>
-
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
 <div class="row"  style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">

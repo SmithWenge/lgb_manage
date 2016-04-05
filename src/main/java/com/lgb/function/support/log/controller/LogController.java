@@ -38,7 +38,7 @@ public class LogController {
             logContent = searchLog;
         }
 
-        ModelAndView mav = new ModelAndView("log/logPage");
+        ModelAndView mav = new ModelAndView("admin/log/logPage");
         Page<LogContent> page = logService.query4Page(logContent, pageable);
 
         mav.addObject(ConstantFields.PAGE_KEY, page);
@@ -65,7 +65,7 @@ public class LogController {
 
         session.setAttribute(ConstantFields.SESSION_LOG_SEARCH_KEY, logContent);
 
-        ModelAndView mav = new ModelAndView("log/logPage");
+        ModelAndView mav = new ModelAndView("admin/log/logPage");
         Page<LogContent> page = logService.query4Page(logContent, pageable);
 
         mav.addObject(ConstantFields.PAGE_KEY, page);
@@ -77,7 +77,7 @@ public class LogController {
     public ModelAndView showFirstPage(HttpSession session) {
         session.removeAttribute(ConstantFields.SESSION_LOG_SEARCH_KEY);
 
-        ModelAndView mav = new ModelAndView("log/logPage");
+        ModelAndView mav = new ModelAndView("admin/log/logPage");
 
         Page<LogContent> contents = logService.query4Page(new LogContent(-1), new PageRequest(0, ConstantFields.DEFAULT_PAGE_SIZE));
         mav.addObject(ConstantFields.PAGE_KEY, contents);

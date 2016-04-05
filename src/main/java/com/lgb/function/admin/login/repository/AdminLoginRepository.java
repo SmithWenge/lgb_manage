@@ -15,7 +15,7 @@ public class AdminLoginRepository implements AdminLoginRepositoryI {
     private JdbcTemplate jdbcTemplate;
 
     public AdminUser selectUnique(AdminUser adminUser) {
-        String sql = "SELECT adminName, adminLoginName, adminRole FROM lgb_adminUser WHERE deleteFlag = 0 AND adminRole = 1 AND adminIsLock = 0 AND adminLoginName = ? AND adminLoginPass = ?";
+        String sql = "SELECT adminName, adminLoginName, adminRole, adminLoginPass FROM lgb_adminUser WHERE deleteFlag = 0 AND adminRole = 1 AND adminIsLock = 0 AND adminLoginName = ? AND adminLoginPass = ?";
         Object[] args = {
                 adminUser.getAdminLoginName(),
                 adminUser.getAdminLoginPass()
@@ -63,6 +63,17 @@ public class AdminLoginRepository implements AdminLoginRepositoryI {
         return jdbcTemplate.update(sql, args) == 1 ? true : false;
     }
 
+    public boolean resetPassword(AdminUser adminUser) {
+        String sql = "UPDATE lgb_adminUser SET adminLoginPass = ? WHERE adminLoginName = ? AND adminLoginPass = ? AND adminIsLock = 0 AND deleteFlag = 0";
+        Object[] args = {
+                adminUser.getAdminLoginPassNew(),
+                adminUser.getAdminLoginName(),
+                adminUser.getAdminLoginPass()
+        };
+
+        return jdbcTemplate.update(sql, args) == 1 ? true : false;
+    }
+
     private class SelectUniqueRowMapper implements RowMapper<AdminUser> {
 
         @Override
@@ -72,6 +83,7 @@ public class AdminLoginRepository implements AdminLoginRepositoryI {
             adminUser.setAdminLoginName(resultSet.getString("adminLoginName"));
             adminUser.setAdminName(resultSet.getString("adminName"));
             adminUser.setAdminRole(resultSet.getInt("adminRole"));
+            adminUser.setAdminLoginPass(resultSet.getString("adminLoginPass"));
 
             return adminUser;
         }
