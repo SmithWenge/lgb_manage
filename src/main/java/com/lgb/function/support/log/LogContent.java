@@ -14,8 +14,6 @@ public class LogContent extends Entry {
     private int deleteFlag;
     private Timestamp queryStartTime;
     private Timestamp queryEndTime;
-    private String logActionContent;
-    private String logLevelContent;
 
     public LogContent(int logAction) {
         this.logAction = logAction;
@@ -29,25 +27,9 @@ public class LogContent extends Entry {
         this.queryEndTime = queryEndTime;
     }
 
-    public void setLogActionContent(String logActionContent) {
-        this.logActionContent = logActionContent;
-    }
-
-    public void setLogLevelContent(String logLevelContent) {
-        this.logLevelContent = logLevelContent;
-    }
-
     public Timestamp getQueryEndTime() {
 
         return queryEndTime;
-    }
-
-    public String getLogActionContent() {
-        return logActionContent;
-    }
-
-    public String getLogLevelContent() {
-        return logLevelContent;
     }
 
     public Timestamp getQueryStartTime() {

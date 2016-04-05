@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8"%>
-<%@ taglib prefix="dict" uri="http://www.team.org/tags/dic" %>
+<%@ taglib prefix="dict" uri="http://www.lgb.com/tags/dic" %>
 <%@ attribute name="id" type="java.lang.String" required="false"%>
 <%@ attribute name="name" type="java.lang.String" required="true"%>
 <%@ attribute name="key" type="java.lang.String" required="true"%>
@@ -28,17 +28,17 @@
 			       	</c:when>
 			       	<c:otherwise>
 			       		<option value="${dict.itemKey}">${dict.itemValue}</option>
-			       	</c:otherwise>	
+			       	</c:otherwise>
 	       		</c:choose>
 			</c:when>
-	       	<c:otherwise>	
+	       	<c:otherwise>
 		       	<c:choose>
 			       	<c:when test="${dict.itemKey eq value}">
 						<option selected="selected" value="${dict.itemKey}" >${dict.itemValue}</option>
 			       	</c:when>
-			       	<c:otherwise>	
+			       	<c:otherwise>
 			       		<option value="${dict.itemKey}" >${dict.itemValue}</option>
-			       	</c:otherwise>	
+			       	</c:otherwise>
 	       		</c:choose>
 	       	</c:otherwise>
 		</c:choose>

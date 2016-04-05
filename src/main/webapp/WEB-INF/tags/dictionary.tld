@@ -7,7 +7,7 @@
 
     <tlib-version>1.0</tlib-version>
     <short-name>DictionaryTag</short-name>
-    <uri>http://www.team.org/tags/dic</uri>
+    <uri>http://www.lgb.com/tags/dic</uri>
 
     <function>
         <name>list</name>
@@ -18,6 +18,6 @@
     <function>
         <name>show</name>
         <function-class>com.lgb.arc.web.tag.DictionaryTag</function-class>
-        <function-signature>java.lang.String show(java.lang.String, java.lang.String)</function-signature>
+        <function-signature>java.lang.String show(java.lang.String, int)</function-signature>
     </function>
 </taglib>

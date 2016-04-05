@@ -24,17 +24,17 @@ public class DictionaryTag {
 
     /**
      * The Taglib function's method must be static
-     * @param groupKey the groupKey field at table;
+     * @param groupValue the groupValue field at table;
      * @return The List of value in CACHE {@link com.lgb.function.support.dictionary.impl.DefaultDictionaryManager}
      */
-    public static List<Dictionary> list(String groupKey) {
-        List<Dictionary> list = tag.manager.dictionaries(groupKey);
+    public static List<Dictionary> list(String groupValue) {
+        List<Dictionary> list = tag.manager.dictionaries(groupValue);
 
         return list;
     }
 
-    public static String show(String groupKey, String itemKey) {
-        Dictionary dictionary = tag.manager.dictionary(itemKey, groupKey);
+    public static String show(String groupValue, int itemKey) {
+        Dictionary dictionary = tag.manager.dictionary(itemKey, groupValue);
 
         return dictionary.getItemValue();
     }

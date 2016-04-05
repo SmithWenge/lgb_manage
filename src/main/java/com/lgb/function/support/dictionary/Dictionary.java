@@ -4,9 +4,9 @@ import com.lgb.arc.Entry;
 
 public class Dictionary extends Entry {
     private int id;
-    private String groupKey;
+    private int groupKey;
     private String groupValue;
-    private String itemKey;
+    private int itemKey;
     private String itemValue;
     private int status;
     private int sort;
@@ -15,7 +15,7 @@ public class Dictionary extends Entry {
         this.id = id;
     }
 
-    public void setGroupKey(String groupKey) {
+    public void setGroupKey(int groupKey) {
         this.groupKey = groupKey;
     }
 
@@ -23,7 +23,7 @@ public class Dictionary extends Entry {
         this.groupValue = groupValue;
     }
 
-    public void setItemKey(String itemKey) {
+    public void setItemKey(int itemKey) {
         this.itemKey = itemKey;
     }
 
@@ -43,7 +43,7 @@ public class Dictionary extends Entry {
         return id;
     }
 
-    public String getGroupKey() {
+    public int getGroupKey() {
         return groupKey;
     }
 
@@ -51,7 +51,7 @@ public class Dictionary extends Entry {
         return groupValue;
     }
 
-    public String getItemKey() {
+    public int getItemKey() {
         return itemKey;
     }
 

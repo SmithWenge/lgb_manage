@@ -3,7 +3,7 @@ package com.lgb.function.support.dictionary;
 import java.util.List;
 
 public interface IDictionaryManager {
-    List<Dictionary> dictionaries(String groupKey);
+    List<Dictionary> dictionaries(String groupValue);
     void addDataToMemory();
-    Dictionary dictionary(String itemKey, String groupKey);
+    Dictionary dictionary(int itemKey, String groupValue);
 }

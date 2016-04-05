@@ -19,4 +19,30 @@ public class ConstantFields {
     public static final String MAIL_DEFAULT_USER_KEY = "mail.smtp.user";
     public static final String MAIL_DEFAULT_USER_PASS_KEY = "mail.smtp.pass";
     public static final String MAIL_DEFAULT_STARTTLS_ENABLE_KEY = "mail.smtp.starttls.enable";
+    /* 添加成功消息Key */
+    public static final String ADD_SUCCESS_KEY = "addMessage";
+    /* 添加成功消息 */
+    public static final String ADD_SUCCESS_MESSAGE = "添加成功";
+    /* 添加失败消息Key */
+    public static final String ADD_FAILURE_KEY = "addFailureMessage";
+    /* 添加失败消息 */
+    public static final String ADD_FAILURE_MESSAGE = "添加失败";
+    /* 编辑Key */
+    public static final String EDIT_OBJECT_KEY = "edit";
+    /* 编辑成功消息Key */
+    public static final String EDIT_SUCCESS_KEY = "editMessage";
+    /* 编辑成功消息 */
+    public static final String EDIT_SUCCESS_MESSAGE = "编辑成功";
+    /* 编辑失败消息Key */
+    public static final String EDIT_FAILURE_KEY = "editFailureMessage";
+    /* 编辑失败消息 */
+    public static final String EDIT_FAILURE_MESSAGE = "编辑失败";
+    /* 删除成功消息Key */
+    public static final String DELETE_SUCCESS_KEY = "deleteMessage";
+    /* 删除成功消息 */
+    public static final String DELETE_SUCCESS_MESSAGE = "删除成功";
+    /* 删除失败消息Key */
+    public static final String DELETE_FAILURE_KEY = "deleteFailureMessage";
+    /* 删除失败消息 */
+    public static final String DELETE_FAILURE_MESSAGE = "删除失败";
 }

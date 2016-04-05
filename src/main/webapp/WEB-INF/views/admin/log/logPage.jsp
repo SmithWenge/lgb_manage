@@ -7,21 +7,23 @@
         <form class="form-inline" action="${contextPath}/admin/log/pageSearch.action" method="post">
             <div class="form-group">
                 <label for="selectLogAciton">操作</label>
-                <select class="form-control" name="logAction" id="selectLogAciton">
-                    <option value="-1">--请选择--</option>
-                    <option value="1">1:检索</option>
-                    <option value="2">2:添加</option>
-                    <option value="3">3:删除</option>
-                    <option value="4">4:修改</option>
-                    <option value="5">5:其他</option>
-                </select>
+                <tags:dicselect name="logAction" key="logAction" value="-1" id="selectLogAciton" />
+                <%--<select class="form-control" name="logAction" id="selectLogAciton">--%>
+                    <%--<option value="-1">--请选择--</option>--%>
+                    <%--<option value="1">1:检索</option>--%>
+                    <%--<option value="2">2:添加</option>--%>
+                    <%--<option value="3">3:删除</option>--%>
+                    <%--<option value="4">4:修改</option>--%>
+                    <%--<option value="5">5:其他</option>--%>
+                <%--</select>--%>
             </div>
             <div class="form-group">
                 <label for="selectLogLevel">日志级别</label>
-                <select class="form-control" name="logLevel" id="selectLogLevel">
-                    <option value="-1">--请选择--</option>
-                    <option value="1">1:提示</option>
-                </select>
+                <tags:dicselect name="logLevel" key="logLevel" value="-1" id="selectLogLevel" />
+                <%--<select class="form-control" name="logLevel" id="selectLogLevel">--%>
+                    <%--<option value="-1">--请选择--</option>--%>
+                    <%--<option value="1">1:提示</option>--%>
+                <%--</select>--%>
             </div>
             <div class="form-group">
                 <label for="inputStartTime">开始时间</label>
@@ -54,8 +56,8 @@
             <c:forEach items="${page.content}" var="log">
                 <tr>
                     <td>${log.logId}</td>
-                    <td>${log.logActionContent}</td>
-                    <td>${log.logLevelContent}</td>
+                    <tags:dictd groupValue="logAction" itemKey="${log.logAction}" />
+                    <tags:dictd groupValue="logLevel" itemKey="${log.logLevel}" />
                     <td>${log.logContent}</td>
                     <td>${log.logUser}</td>
                     <td>${log.logTime}</td>

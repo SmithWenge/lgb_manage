@@ -29,7 +29,7 @@ public class DictionaryRepository implements IDictionaryRepository {
     }
 
     public List<Dictionary> selectAll() {
-        String sql = "SELECT id, groupKey, groupValue, itemKey, itemValue, status, sort FROM join_dictionary";
+        String sql = "SELECT id, groupKey, groupValue, itemKey, itemValue, status, sort FROM lgb_dictionary";
         Object[] args = {};
 
         //TODO Don't using query replace with other api or other JdbcTemplate
@@ -50,8 +50,8 @@ public class DictionaryRepository implements IDictionaryRepository {
             Dictionary dictionary = new Dictionary();
 
             dictionary.setId(rs.getInt(DICTIONARY_FIELD_ID));
-            dictionary.setGroupKey(rs.getString(DICTIONARY_FIELD_GROUPKEY));
-            dictionary.setItemKey(rs.getString(DICTIONARY_FIELD_ITEMKEY));
+            dictionary.setGroupKey(rs.getInt(DICTIONARY_FIELD_GROUPKEY));
+            dictionary.setItemKey(rs.getInt(DICTIONARY_FIELD_ITEMKEY));
             dictionary.setGroupValue(rs.getString(DICTIONARY_FIELD_GROUPVALUE));
             dictionary.setItemValue(rs.getString(DICTIONARY_FIELD_ITEMVALUE));
             dictionary.setStatus(rs.getInt(DICTIONARY_FIELD_STATUS));

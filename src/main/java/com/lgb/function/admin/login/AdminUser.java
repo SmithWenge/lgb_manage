@@ -14,6 +14,25 @@ public class AdminUser extends Entry {
     private String adminEmail;
     private String adminLoginPassNew;
     private String adminLoginPassNewRe;
+    private int adminIsChanged;
+    private int adminIsReturn;
+
+    public void setAdminIsChanged(int adminIsChanged) {
+        this.adminIsChanged = adminIsChanged;
+    }
+
+    public void setAdminIsReturn(int adminIsReturn) {
+        this.adminIsReturn = adminIsReturn;
+    }
+
+    public int getAdminIsChanged() {
+
+        return adminIsChanged;
+    }
+
+    public int getAdminIsReturn() {
+        return adminIsReturn;
+    }
 
     public void setAdminLoginPassNew(String adminLoginPassNew) {
         this.adminLoginPassNew = adminLoginPassNew;

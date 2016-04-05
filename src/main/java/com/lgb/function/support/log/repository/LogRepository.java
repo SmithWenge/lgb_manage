@@ -84,37 +84,13 @@ public class LogRepository implements LogRepositoryI {
             LogContent logContent = new LogContent();
 
             logContent.setLogId(resultSet.getInt("logId"));
-            logContent.setLogActionContent(logActionConvert(resultSet.getInt("logAction")));
-            logContent.setLogLevelContent(logLevelConvert(resultSet.getInt("logLevel")));
+            logContent.setLogAction(resultSet.getInt("logAction"));
+            logContent.setLogLevel(resultSet.getInt("logLevel"));
             logContent.setLogContent(resultSet.getString("logContent"));
             logContent.setLogUser(resultSet.getString("logUser"));
             logContent.setLogTime(resultSet.getTimestamp("logTime"));
 
             return logContent;
-        }
-    }
-
-    private String logActionConvert(int logAction) {
-        if (logAction == 5) {
-            return "5:其他";
-        } else if (logAction == 1) {
-            return "1:检索";
-        } else if (logAction == 2) {
-            return "2:添加";
-        } else if (logAction == 3) {
-            return "3:删除";
-        } else if (logAction == 4) {
-            return "4:修改";
-        } else {
-            return "不合法操作";
-        }
-    }
-
-    private String logLevelConvert(int logLevel) {
-        if (logLevel == 1) {
-            return "1:提示";
-        } else {
-            return "其他信息";
         }
     }
 }

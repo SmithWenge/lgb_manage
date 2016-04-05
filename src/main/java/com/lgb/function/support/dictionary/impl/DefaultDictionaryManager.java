@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -47,6 +48,7 @@ public class DefaultDictionaryManager implements IDictionaryManager {
         return manager;
     }
 
+    @PostConstruct
     public void initCache() {
         dictionaries = repository.selectAll();
         addDataToMemory();
@@ -71,8 +73,8 @@ public class DefaultDictionaryManager implements IDictionaryManager {
 
     public void addDataToMemory() {
         for (Dictionary dictionary : dictionaries) {
-            String groupKey =dictionary.getGroupKey();
-            List<Dictionary> groupDic = CACHE.get(groupKey);
+            String groupValue = dictionary.getGroupValue();
+            List<Dictionary> groupDic = CACHE.get(groupValue);
 
             Optional<List<Dictionary>> optional = Optional.fromNullable(groupDic);
             if (!optional.isPresent()) {
@@ -80,15 +82,15 @@ public class DefaultDictionaryManager implements IDictionaryManager {
             }
 
             groupDic.add(dictionary);
-            CACHE.put(groupKey, groupDic);
+            CACHE.put(groupValue, groupDic);
         }
     }
 
-    public Dictionary dictionary(String itemKey, String groupKey) {
-        List<Dictionary> dictionaries = CACHE.get(groupKey);
+    public Dictionary dictionary(int itemKey, String groupValue) {
+        List<Dictionary> dictionaries = CACHE.get(groupValue);
 
         for (Dictionary dictionary : dictionaries) {
-            if (dictionary.getItemKey().equals(itemKey)) {
+            if (dictionary.getItemKey() == itemKey) {
                 return dictionary;
             }
         }
