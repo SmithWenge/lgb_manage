@@ -40,7 +40,13 @@ public class AdminLoginRepository implements AdminLoginRepositoryI {
                 adminUser.getAdminEmail()
         };
 
-        AdminUser emailUser = jdbcTemplate.queryForObject(sql, args, new SelectUniqueEmailRowMapper());
+        AdminUser emailUser = null;
+
+        try {
+            emailUser = jdbcTemplate.queryForObject(sql, args, new SelectUniqueEmailRowMapper());
+        } catch (Exception e) {
+            return null;
+        }
 
         return emailUser != null ? emailUser : null;
     }

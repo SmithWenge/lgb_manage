@@ -30,6 +30,7 @@ public class AdminLoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(AdminUser adminUser, HttpSession session) {
+        adminUser.setAdminLoginPass(PasswordUtils.encrypt(adminUser.getAdminLoginPass()));
         AdminUser loginUser = adminLoginService.login(adminUser);
         ModelAndView mav = new ModelAndView();
 

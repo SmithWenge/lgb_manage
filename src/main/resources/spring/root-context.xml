@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:property-placeholder location="classpath:db/db.properties,classpath:mail/mail.properties"/>
+	<context:property-placeholder ignore-unresolvable="true" location="classpath:db/db.properties"/>
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}"></property>

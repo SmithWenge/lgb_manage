@@ -35,7 +35,7 @@ public class AdminUser extends Entry {
     }
 
     public void setAdminLoginPass(String adminLoginPass) {
-        this.adminLoginPass = PasswordUtils.encrypt(adminLoginPass);
+        this.adminLoginPass = adminLoginPass;
     }
 
     public void setAdminIsLock(int adminIsLock) {
