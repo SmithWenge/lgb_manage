@@ -19,9 +19,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by Samuel on 16/4/6.
- */
 @Controller
 @RequestMapping("/admin/student")
 public class StudentController {
