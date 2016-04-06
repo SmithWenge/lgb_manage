@@ -4,27 +4,27 @@
 
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
     <c:if test="${not empty addMessage}">
-        <div class="col-md-12" id="addMessage">
-            <p class="bg-success">${addMessage}</p>
-        </div>
+    <div class="col-md-12" id="addMessage">
+        <p class="bg-success">${addMessage}</p>
+    </div>
     </c:if>
     <c:if test="${not empty editMessage}">
-        <div class="col-md-12" id="editMessage">
-            <p class="bg-success">${editMessage}</p>
-        </div>
+    <div class="col-md-12" id="editMessage">
+        <p class="bg-success">${editMessage}</p>
+    </div>
     </c:if>
     <c:if test="${not empty deleteMessage}">
-        <div class="col-md-12" id="deleteMessage">
-            <p class="bg-success">${deleteMessage}</p>
-        </div>
+    <div class="col-md-12" id="deleteMessage">
+        <p class="bg-success">${deleteMessage}</p>
+    </div>
     </c:if>
     <c:if test="${not empty deleteFailureMessage}">
-        <div class="col-md-12" id="deleteFailureMessage">
-            <p class="bg-danger">${deleteFailureMessage}</p>
-        </div>
+    <div class="col-md-12" id="deleteFailureMessage">
+        <p class="bg-danger">${deleteFailureMessage}</p>
+    </div>
     </c:if>
     <div class="col-md-12">
-        <a href="${contextPath}/admin/user/routeAdd.action" style="text-decoration: none;">
+        <a href="${contextPath}/admin/department/routeAdd.action" style="text-decoration: none;">
             <button type="button" class="btn btn-info" style="float: right;">添加</button>
         </a>
     </div>
@@ -34,27 +34,23 @@
     <div class="col-md-12">
         <table class="table" id="paginationTable" align="center">
             <tr style="background-color: #2aabd2;">
-                <th>用户名</th>
-                <th>登录名</th>
-                <th>权限</th>
-                <th>能否调班</th>
-                <th>能否退班</th>
-                <th>是否锁定</th>
+                <th>序号</th>
+                <th>系名</th>
+                <th>报名开始时间</th>
+                <th>报名截止时间</th>
                 <th>操作</th>
             </tr>
-            <c:forEach items="${page.content}" var="user">
+            <c:forEach items="${page.content}" var="department" varStatus="status">
                 <tr>
-                    <td>${user.adminName}</td>
-                    <td>${user.adminLoginName}</td>
-                    <tags:dictd groupValue="adminRole" itemKey="${user.adminRole}" />
-                    <tags:dictd groupValue="adminIsChanged" itemKey="${user.adminIsChanged}" />
-                    <tags:dictd groupValue="adminIsReturn" itemKey="${user.adminIsReturn}" />
-                    <tags:dictd groupValue="adminIsLock" itemKey="${user.adminIsLock}" />
+                    <td>${status.index + 1}</td>
+                    <td>${department.departmentName}</td>
+                    <td>${department.departmentStartDate}</td>
+                    <td>${department.departmentStopDate}</td>
                     <td>
-                        <a href="${contextPath}/admin/user/routeEdit/${user.adminId}.action" style="text-decoration: none;">
+                        <a href="${contextPath}/admin/department/routeEdit/${department.departmentId}.action" style="text-decoration: none;">
                             <button type="button" class="btn btn-warning">编辑</button>
                         </a>
-                        <a href="${contextPath}/admin/user/delete/${user.adminId}.action" style="text-decoration: none;" >
+                        <a href="${contextPath}/admin/department/delete/${department.departmentId}.action" style="text-decoration: none;" >
                             <button type="button" class="btn btn-danger">删除</button>
                         </a>
                     </td>

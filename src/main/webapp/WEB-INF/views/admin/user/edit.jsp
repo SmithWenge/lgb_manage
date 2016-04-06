@@ -3,13 +3,11 @@
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 5px;">
+    <c:if test="${not empty editFailureMessage}">
     <div class="col-md-12" id="message">
-        <p class="bg-danger">
-            <c:if test="${not empty editFailureMessage}">
-                ${editFailureMessage}
-            </c:if>
-        </p>
+        <p class="bg-danger">${editFailureMessage}</p>
     </div>
+    </c:if>
     <div class="col-md-12">
         <form class="form-horizontal" action="${contextPath}/admin/user/edit.action" method="post" id="userAddForm">
             <input type="hidden" name="adminId" value="${edit.adminId}">
