@@ -1,6 +1,7 @@
 package com.lgb.function.admin.student;
 
 import com.lgb.arc.Entry;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -21,6 +22,7 @@ public class StudentUser extends Entry{
     private String stuOldWorkPlaceName;
     private String stuPolitical;
     private String stuOldWorkType;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date stuBirthday;
     private String stuLastEightNum;
     private String stuCheck;
@@ -35,6 +37,7 @@ public class StudentUser extends Entry{
     private String stuRemarkOne;
     private String stuRemarkTwo;
     private String stuNationality;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date studentStartDate;
 
     public Date getStuBirthday() {
