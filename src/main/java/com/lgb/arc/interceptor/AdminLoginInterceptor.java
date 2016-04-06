@@ -16,6 +16,7 @@ public class AdminLoginInterceptor implements HandlerInterceptor {
     private List<String> excludedUris;
 
     public void setExcludedUris(List<String> excludedUris) {
+
         this.excludedUris = excludedUris;
     }
 
