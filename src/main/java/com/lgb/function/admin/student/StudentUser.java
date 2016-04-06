@@ -1,9 +1,13 @@
 package com.lgb.function.admin.student;
 
+import com.lgb.arc.Entry;
+
+import java.util.Date;
+
 /**
  * Created by Samuel on 16/4/6.
  */
-public class StudentUser {
+public class StudentUser extends Entry{
     private int stuID;
     private String stuCardNum;
     private String stuName;
@@ -17,7 +21,7 @@ public class StudentUser {
     private String stuOldWorkPlaceName;
     private String stuPolitical;
     private String stuOldWorkType;
-    private String stuBirthday;
+    private Date stuBirthday;
     private String stuLastEightNum;
     private String stuCheck;
     private String stuHealth;
@@ -30,6 +34,32 @@ public class StudentUser {
     private String stuDependentsDesc;
     private String stuRemarkOne;
     private String stuRemarkTwo;
+    private String stuNationality;
+    private Date studentStartDate;
+
+    public Date getStuBirthday() {
+        return stuBirthday;
+    }
+
+    public void setStuBirthday(Date stuBirthday) {
+        this.stuBirthday = stuBirthday;
+    }
+
+    public String getStuNationality() {
+        return stuNationality;
+    }
+
+    public void setStuNationality(String stuNationality) {
+        this.stuNationality = stuNationality;
+    }
+
+    public Date getStudentStartDate() {
+        return studentStartDate;
+    }
+
+    public void setStudentStartDate(Date studentStartDate) {
+        this.studentStartDate = studentStartDate;
+    }
 
     public int getStuID() {
         return stuID;
@@ -133,14 +163,6 @@ public class StudentUser {
 
     public void setStuOldWorkType(String stuOldWorkType) {
         this.stuOldWorkType = stuOldWorkType;
-    }
-
-    public String getStuBirthday() {
-        return stuBirthday;
-    }
-
-    public void setStuBirthday(String stuBirthday) {
-        this.stuBirthday = stuBirthday;
     }
 
     public String getStuLastEightNum() {
