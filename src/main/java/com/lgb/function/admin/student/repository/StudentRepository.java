@@ -13,9 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- * Created by Samuel on 16/4/6.
- */
+
 @Repository
 public class StudentRepository implements StudentRepositoryI {
     @Autowired

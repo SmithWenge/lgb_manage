@@ -14,9 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by Samuel on 16/4/6.
- */
+
 @Service
 @Transactional
 public class StudentService implements StudentServiceI{

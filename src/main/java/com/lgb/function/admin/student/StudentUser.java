@@ -5,9 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-/**
- * Created by Samuel on 16/4/6.
- */
+
 public class StudentUser extends Entry{
     private int stuID;
     private String stuCardNum;
