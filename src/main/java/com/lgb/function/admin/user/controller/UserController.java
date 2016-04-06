@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private UserServiceI userService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ModelAndView listUser(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable) {
         Page<AdminUser> page = userService.list(pageable);
 
@@ -48,7 +48,7 @@ public class UserController {
 
             return mav;
         }
-        return new ModelAndView("redirect:/admin/user/list.action");
+        return new ModelAndView("redirect:/admin/user/page.action");
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -62,7 +62,7 @@ public class UserController {
 
             redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
-            return "redirect:/admin/user/list.action";
+            return "redirect:/admin/user/page.action";
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
@@ -80,12 +80,12 @@ public class UserController {
 
             redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
-            return "redirect:/admin/user/list.action";
+            return "redirect:/admin/user/page.action";
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
 
-        return "redirect:/admin/user/list.action";
+        return "redirect:/admin/user/page.action";
     }
 
     @RequestMapping(value = "/routeAdd", method = RequestMethod.GET)
@@ -103,7 +103,7 @@ public class UserController {
                 LOG.info("[LGB MANAGE] [OK] {} add new admin user {}.", logUser, adminUser.getAdminLoginName());
 
             redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
-            return "redirect:/admin/user/list.action";
+            return "redirect:/admin/user/page.action";
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);

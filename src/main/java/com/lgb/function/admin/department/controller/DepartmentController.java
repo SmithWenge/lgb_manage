@@ -29,7 +29,7 @@ public class DepartmentController {
     @Autowired
     private DepartmentServiceI departmentService;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ModelAndView listDepartment(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable) {
         Page<Department> page = departmentService.list(pageable);
 
@@ -66,7 +66,7 @@ public class DepartmentController {
                 LOG.info("[LGB MANAGE] [OK] {} add new department {}.", logUser, department.getDepartmentName());
 
             redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
-            return "redirect:/admin/department/list.action";
+            return "redirect:/admin/department/page.action";
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
@@ -85,7 +85,7 @@ public class DepartmentController {
 
             return mav;
         }
-        return new ModelAndView("redirect:/admin/department/list.action");
+        return new ModelAndView("redirect:/admin/department/page.action");
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -99,7 +99,7 @@ public class DepartmentController {
 
             redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
-            return "redirect:/admin/department/list.action";
+            return "redirect:/admin/department/page.action";
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
@@ -117,11 +117,11 @@ public class DepartmentController {
 
             redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
-            return "redirect:/admin/department/list.action";
+            return "redirect:/admin/department/page.action";
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
 
-        return "redirect:/admin/department/list.action";
+        return "redirect:/admin/department/page.action";
     }
 }

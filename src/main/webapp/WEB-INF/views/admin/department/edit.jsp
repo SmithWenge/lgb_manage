@@ -9,7 +9,7 @@
     </div>
     </c:if>
     <div class="col-md-12">
-        <form class="form-horizontal" action="${contextPath}/admin/department/edit.action" method="post" id="departmentAddForm">
+        <form class="form-horizontal" action="${contextPath}/admin/department/edit.action" method="post" id="departmentEditForm">
             <input type="hidden" name="departmentId" value="${edit.departmentId}">
             <div class="form-group">
                 <label for="inputDepartmentName" class="col-sm-2 control-label">系名</label>
@@ -58,7 +58,7 @@
 
 <script type="text/javascript">
     $(function () {
-        $('#departmentAddForm').validate({
+        $('#departmentEditForm').validate({
             rules: {
                 departmentName: {
                     required: true,

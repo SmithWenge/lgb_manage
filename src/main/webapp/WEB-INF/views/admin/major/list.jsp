@@ -24,7 +24,7 @@
     </div>
     </c:if>
     <div class="col-md-12">
-        <a href="${contextPath}/admin/department/routeAdd.action" style="text-decoration: none;">
+        <a href="${contextPath}/admin/major/routeAdd.action" style="text-decoration: none;">
             <button type="button" class="btn btn-info" style="float: right;">添加</button>
         </a>
     </div>
@@ -36,21 +36,19 @@
             <tr style="background-color: #2aabd2;">
                 <th>序号</th>
                 <th>系名</th>
-                <th>报名开始时间</th>
-                <th>报名截止时间</th>
+                <th>专业名</th>
                 <th>操作</th>
             </tr>
-            <c:forEach items="${page.content}" var="department" varStatus="status">
+            <c:forEach items="${page.content}" var="major" varStatus="status">
                 <tr>
                     <td>${status.index + 1}</td>
-                    <td>${department.departmentName}</td>
-                    <td>${department.departmentStartDate}</td>
-                    <td>${department.departmentStopDate}</td>
+                    <td>${major.departmentName}</td>
+                    <td>${major.majorName}</td>
                     <td>
-                        <a href="${contextPath}/admin/department/routeEdit/${department.departmentId}.action" style="text-decoration: none;">
+                        <a href="${contextPath}/admin/major/routeEdit/${major.majorId}.action" style="text-decoration: none;">
                             <button type="button" class="btn btn-warning">编辑</button>
                         </a>
-                        <a href="${contextPath}/admin/department/delete/${department.departmentId}.action" style="text-decoration: none;" >
+                        <a href="${contextPath}/admin/major/delete/${major.majorId}.action" style="text-decoration: none;" >
                             <button type="button" class="btn btn-danger">删除</button>
                         </a>
                     </td>
@@ -66,7 +64,7 @@
             <ul class="pager">
                 <c:if test="${page.number > 0 }">
                     <li class="previous">
-                        <a href="${contextPath}/admin/department/page.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
+                        <a href="${contextPath}/admin/major/page.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
                     </li>
                 </c:if>
                 <c:if test="${page.number <= 0 }">
@@ -76,7 +74,7 @@
                 </c:if>
                 <c:if test="${page.number + 1 < page.totalPages }">
                     <li class="next">
-                        <a href="${contextPath}/admin/department/page.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
+                        <a href="${contextPath}/admin/major/page.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
                     </li>
                 </c:if>
                 <c:if test="${page.number + 1 >= page.totalPages }">

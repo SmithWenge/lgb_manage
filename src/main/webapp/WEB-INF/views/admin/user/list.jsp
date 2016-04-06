@@ -70,7 +70,7 @@
             <ul class="pager">
                 <c:if test="${page.number > 0 }">
                     <li class="previous">
-                        <a href="${contextPath}/admin/log/page.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
+                        <a href="${contextPath}/admin/user/page.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
                     </li>
                 </c:if>
                 <c:if test="${page.number <= 0 }">
@@ -80,7 +80,7 @@
                 </c:if>
                 <c:if test="${page.number + 1 < page.totalPages }">
                     <li class="next">
-                        <a href="${contextPath}/admin/log/page.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
+                        <a href="${contextPath}/admin/user/page.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
                     </li>
                 </c:if>
                 <c:if test="${page.number + 1 >= page.totalPages }">
