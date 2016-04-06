@@ -1,9 +1,5 @@
 package com.lgb.function.admin.student;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date;
-
 /**
  * Created by Samuel on 16/4/6.
  */
@@ -21,8 +17,7 @@ public class StudentUser {
     private String stuOldWorkPlaceName;
     private String stuPolitical;
     private String stuOldWorkType;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date stuBirthday;
+    private String stuBirthday;
     private String stuLastEightNum;
     private String stuCheck;
     private String stuHealth;
@@ -35,19 +30,6 @@ public class StudentUser {
     private String stuDependentsDesc;
     private String stuRemarkOne;
     private String stuRemarkTwo;
-    private String stuNationality;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date studentStartDate;
-
-
-
-    public String getStuNationality() {
-        return stuNationality;
-    }
-
-    public void setStuNationality(String stuNationality) {
-        this.stuNationality = stuNationality;
-    }
 
     public int getStuID() {
         return stuID;
@@ -153,19 +135,11 @@ public class StudentUser {
         this.stuOldWorkType = stuOldWorkType;
     }
 
-    public Date getStudentStartDate() {
-        return studentStartDate;
-    }
-
-    public void setStudentStartDate(Date studentStartDate) {
-        this.studentStartDate = studentStartDate;
-    }
-
-    public Date getStuBirthday() {
+    public String getStuBirthday() {
         return stuBirthday;
     }
 
-    public void setStuBirthday(Date stuBirthday) {
+    public void setStuBirthday(String stuBirthday) {
         this.stuBirthday = stuBirthday;
     }
 
