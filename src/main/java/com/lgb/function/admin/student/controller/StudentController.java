@@ -29,8 +29,8 @@ public class StudentController {
     private StudentServiceI studentService;
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
-    public ModelAndView ListUser(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable){
-        Page<StudentUser> page = studentService.list(pageable);
+    public ModelAndView ListUser(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)StudentUser studentUser, Pageable pageable){
+        Page<StudentUser> page = studentService.list(studentUser,pageable);
 
         ModelAndView mav = new ModelAndView("admin/student/list");
         mav.addObject(ConstantFields.PAGE_KEY, page);

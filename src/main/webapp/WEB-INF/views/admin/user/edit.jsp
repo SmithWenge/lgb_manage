@@ -2,63 +2,68 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 5px;">
-    <c:if test="${not empty editFailureMessage}">
-    <div class="col-md-12" id="message">
-        <p class="bg-danger">${editFailureMessage}</p>
-    </div>
-    </c:if>
-    <div class="col-md-12">
-        <form class="form-horizontal" action="${contextPath}/admin/user/edit.action" method="post" id="userAddForm">
-            <input type="hidden" name="adminId" value="${edit.adminId}">
-            <div class="form-group">
-                <label for="inputAdminName" class="col-sm-2 control-label">姓名</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputAdminName" placeholder="姓名" name="adminName" value="${edit.adminName}">
+<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
+    <div class="panel-heading">编辑用户</div>
+    <div class="panel-body">
+        <div class="row" style="margin-top: 5px;">
+            <c:if test="${not empty editFailureMessage}">
+                <div class="col-md-12" id="message">
+                    <p class="bg-danger">${editFailureMessage}</p>
                 </div>
+            </c:if>
+            <div class="col-md-12">
+                <form class="form-horizontal" action="${contextPath}/admin/user/edit.action" method="post" id="userAddForm">
+                    <input type="hidden" name="adminId" value="${edit.adminId}">
+                    <div class="form-group">
+                        <label for="inputAdminName" class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAdminName" placeholder="姓名" name="adminName" value="${edit.adminName}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAdminLoginName" class="col-sm-2 control-label">登陆名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAdminLoginName" placeholder="登录名" name="adminLoginName" value="${edit.adminLoginName}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAdminRole" class="col-sm-2 control-label">权限</label>
+                        <div class="col-sm-10">
+                            <tags:dicselect name="adminRole" key="adminRole" value="${edit.adminRole}" id="inputAdminRole" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAdminIsChanged" class="col-sm-2 control-label">能否调班</label>
+                        <div class="col-sm-10">
+                            <tags:dicselect name="adminIsChanged" key="adminIsChanged" value="${edit.adminIsChanged}" id="inputAdminIsChanged" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAdminIsReturn" class="col-sm-2 control-label">能否退班</label>
+                        <div class="col-sm-10">
+                            <tags:dicselect name="adminIsReturn" key="adminIsReturn" value="${edit.adminIsReturn}" id="inputAdminIsReturn" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAdminIsReturn" class="col-sm-2 control-label">是否锁定</label>
+                        <div class="col-sm-10">
+                            <tags:dicselect name="adminIsLock" key="adminIsLock" value="${edit.adminIsLock}" id="inputAdminIsLock" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAdminEmail" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="inputAdminEmail" placeholder="admin@example.com" name="adminEmail" value="${edit.adminEmail}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">编辑人员</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="inputAdminLoginName" class="col-sm-2 control-label">登陆名</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputAdminLoginName" placeholder="登录名" name="adminLoginName" value="${edit.adminLoginName}">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAdminRole" class="col-sm-2 control-label">权限</label>
-                <div class="col-sm-10">
-                    <tags:dicselect name="adminRole" key="adminRole" value="${edit.adminRole}" id="inputAdminRole" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAdminIsChanged" class="col-sm-2 control-label">能否调班</label>
-                <div class="col-sm-10">
-                    <tags:dicselect name="adminIsChanged" key="adminIsChanged" value="${edit.adminIsChanged}" id="inputAdminIsChanged" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAdminIsReturn" class="col-sm-2 control-label">能否退班</label>
-                <div class="col-sm-10">
-                    <tags:dicselect name="adminIsReturn" key="adminIsReturn" value="${edit.adminIsReturn}" id="inputAdminIsReturn" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAdminIsReturn" class="col-sm-2 control-label">是否锁定</label>
-                <div class="col-sm-10">
-                    <tags:dicselect name="adminIsLock" key="adminIsLock" value="${edit.adminIsLock}" id="inputAdminIsLock" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAdminEmail" class="col-sm-2 control-label">邮箱</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputAdminEmail" placeholder="admin@example.com" name="adminEmail" value="${edit.adminEmail}">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">编辑人员</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 

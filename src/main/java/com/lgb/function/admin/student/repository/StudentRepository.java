@@ -1,5 +1,6 @@
 package com.lgb.function.admin.student.repository;
 
+import com.google.common.base.Optional;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.support.dictionary.impl.DefaultDictionaryManager;
 import com.lgb.function.support.utils.RepositoryUtils;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Repository
@@ -22,10 +25,70 @@ public class StudentRepository implements StudentRepositoryI {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Page<StudentUser> query4Page(Pageable pageable) {
-        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 ORDER BY stuId";
+    public Page<StudentUser> query4Page(StudentUser studentUser,Pageable pageable) {
+        StringBuilder sql = new StringBuilder("SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0");
+        List<Object> list = new ArrayList<Object>();
 
-        return repositoryUtils.select4Page(sql, pageable, null, new Query4PageRowMapper());
+        Optional<StudentUser> optional = Optional.fromNullable(studentUser);
+        if (optional.isPresent()) {
+            if (studentUser.getStuName() != null && studentUser.getStuName().length() > 0) {
+                sql.append(" AND stuName = ?");
+                list.add(studentUser.getStuName());
+            }
+
+            if (studentUser.getStuCardNum() != null&& studentUser.getStuCardNum().length() > 0) {
+                sql.append(" AND stuCardNum = ?");
+                list.add(studentUser.getStuCardNum());
+            }
+
+            if (studentUser.getStuGender() != null) {
+                sql.append(" AND stuGender = ?");
+                list.add(studentUser.getStuGender());
+            }
+
+            if (studentUser.getStuBirthday() != null) {
+                sql.append(" AND stuBirthday = ?");
+                list.add(studentUser.getStuBirthday());
+            }
+
+            if (studentUser.getStuOldWorkPlaceType() != null) {
+                sql.append(" AND stuOldWorkPlaceType = ?");
+                list.add(studentUser.getStuOldWorkPlaceType());
+            }
+
+            if (studentUser.getStuType() != null) {
+                sql.append(" AND stuType = ?");
+                list.add(studentUser.getStuType());
+            }
+
+            if (studentUser.getStuOldWorkType() != null) {
+                sql.append(" AND stuOldWorkType = ?");
+                list.add(studentUser.getStuOldWorkType());
+            }
+
+            if (studentUser.getStuEducational() != null) {
+                sql.append(" AND stuEducational = ?");
+                list.add(studentUser.getStuEducational());
+            }
+
+            if (studentUser.getStuIdentifiedNum() != null && studentUser.getStuIdentifiedNum().length() > 0) {
+                sql.append(" AND stuIdentifiedNum = ?");
+                list.add(studentUser.getStuIdentifiedNum());
+            }
+
+            if (studentUser.getStudentStartDate() != null) {
+                sql.append(" AND studentStartDate = ?");
+                list.add(studentUser.getStudentStartDate());
+            }
+
+
+        }
+
+        Object[] args = list.toArray();
+
+        sql.append(" ORDER BY stuId DESC");
+
+        return repositoryUtils.select4Page(sql.toString(), pageable, args, new Query4PageRowMapper());
     }
     @Override
     public boolean insert(StudentUser studentUser) {
