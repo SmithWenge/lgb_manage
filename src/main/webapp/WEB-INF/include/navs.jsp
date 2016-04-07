@@ -7,6 +7,7 @@
         <ul class="nav nav-pills">
             <li role="presentation" class="active"><a href="#">首页</a></li>
             <li role="presentation"><a href="${contextPath}/admin/user/page.action">用户管理</a></li>
+            <li role="presentation"><a href="${contextPath}/admin/student/page.action">学员管理</a></li>
             <li role="presentation"><a href="${contextPath}/admin/department/page.action">系管理</a></li>
             <li role="presentation"><a href="${contextPath}/admin/major/page.action">专业管理</a></li>
             <li role="presentation"><a href="${contextPath}/admin/teacher/routePage.action">教师管理</a></li>

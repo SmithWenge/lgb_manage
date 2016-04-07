@@ -1,10 +1,13 @@
 package com.lgb.function.admin.student;
 
-/**
- * Created by Samuel on 16/4/6.
- */
-public class StudentUser {
-    private int stuID;
+import com.lgb.arc.Entry;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
+
+public class StudentUser extends Entry{
+    private int stuId;
     private String stuCardNum;
     private String stuName;
     private String stuGender;
@@ -17,7 +20,8 @@ public class StudentUser {
     private String stuOldWorkPlaceName;
     private String stuPolitical;
     private String stuOldWorkType;
-    private String stuBirthday;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date stuBirthday;
     private String stuLastEightNum;
     private String stuCheck;
     private String stuHealth;
@@ -30,13 +34,49 @@ public class StudentUser {
     private String stuDependentsDesc;
     private String stuRemarkOne;
     private String stuRemarkTwo;
+    private String stuNationality;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date studentStartDate;
+    private int deleteFlag;
 
-    public int getStuID() {
-        return stuID;
+    public int getDeleteFlag() {
+        return deleteFlag;
     }
 
-    public void setStuID(int stuID) {
-        this.stuID = stuID;
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getStuBirthday() {
+        return stuBirthday;
+    }
+
+    public void setStuBirthday(Date stuBirthday) {
+        this.stuBirthday = stuBirthday;
+    }
+
+    public String getStuNationality() {
+        return stuNationality;
+    }
+
+    public void setStuNationality(String stuNationality) {
+        this.stuNationality = stuNationality;
+    }
+
+    public Date getStudentStartDate() {
+        return studentStartDate;
+    }
+
+    public void setStudentStartDate(Date studentStartDate) {
+        this.studentStartDate = studentStartDate;
+    }
+
+    public int getStuId() {
+        return stuId;
+    }
+
+    public void setStuId(int stuId) {
+        this.stuId = stuId;
     }
 
     public String getStuCardNum() {
@@ -133,14 +173,6 @@ public class StudentUser {
 
     public void setStuOldWorkType(String stuOldWorkType) {
         this.stuOldWorkType = stuOldWorkType;
-    }
-
-    public String getStuBirthday() {
-        return stuBirthday;
-    }
-
-    public void setStuBirthday(String stuBirthday) {
-        this.stuBirthday = stuBirthday;
     }
 
     public String getStuLastEightNum() {
