@@ -23,13 +23,13 @@ public class StudentRepository implements StudentRepositoryI {
 
     @Override
     public Page<StudentUser> query4Page(Pageable pageable) {
-        String sql = "SELECT stuID, stuCardNum,stuName,stuGender,stuTelOne,stuTelTwo FROM lgb_adminUser WHERE deleteFlag = 0 ORDER BY stuID";
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuTelOne,stuTelTwo FROM lgb_student ORDER BY stuId";
 
         return repositoryUtils.select4Page(sql, pageable, null, new Query4PageRowMapper());
     }
     @Override
     public boolean insert(StudentUser studentUser) {
-        String sql = "INSERT INTO lgb_student (stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo   ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO lgb_student (stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] args = {
                 studentUser.getStuID(),
                 studentUser.getStuCardNum(),
@@ -57,17 +57,18 @@ public class StudentRepository implements StudentRepositoryI {
                 studentUser.getStuDependentsTel(),
                 studentUser.getStuDependentsDesc(),
                 studentUser.getStuRemarkOne(),
-                studentUser.getStuRemarkTwo()
+                studentUser.getStuRemarkTwo(),
+                studentUser.getStudentStartDate()
         };
 
         return jdbcTemplate.update(sql, args) == 1 ? true : false;
     }
 
     @Override
-    public StudentUser select(int stuID) {
-        String sql = "SELECT stuId, stuName, stuGender, stuCardNum, stuOldWorkPlaceType, stuType, stuBirthday, stuOldWorkType, stuEducational, stuIdentifiedNum, FROM lgb_student WHERE deleteFlag = 0 AND stuId = ?";
+    public StudentUser select(int stuId) {
+        String sql = "SELECT stuId, stuName, stuGender, stuCardNum, stuOldWorkPlaceType, stuType, stuBirthday, stuOldWorkType, stuEducational, stuIdentifiedNum, studentStartDate FROM lgb_student WHERE deleteFlag = 0 AND stuId = ?";
         Object[] args = {
-                stuID
+                stuId
         };
 
         try {
@@ -80,7 +81,7 @@ public class StudentRepository implements StudentRepositoryI {
     @Override
     public boolean update(StudentUser studentUser) {
         String sql = "UPDATE lgb_adminUser SET stuId =  ?, stuCardNum =  ?, stuName =  ?, stuGender =  ?, stuTelOne =  ?, stuTelTwo =  ?, stuType =  ?, stuIdentifiedType =  ?, stuIdentifiedNum =  ?, stuOldWorkPlaceType =  ?,stuOldWorkPlaceName =  ?, stuPolitical =  ?, stuOldWorkType =  ?, stuNationality =  ?, stuBirthday =  ?, stuLastEightNum =  ?, stuCheck =  ?, stuHealth =  ?, stuLocation =  ?, stuEducational =  ?, stuLevel =  ?, stuSpeciality =  ?, stuPreferential =  ?, stuDependentsTel =  ?, stuDependentsDesc =  ?, stuRemarkOne =  ?, stuRemarkTwo =  ?\n" +
-                "\n WHERE stuId = ?";
+                "\n ,studentStartDate = ? WHERE stuId = ?";
         Object[] args = {
                 studentUser.getStuID(),
                 studentUser.getStuCardNum(),
@@ -108,7 +109,9 @@ public class StudentRepository implements StudentRepositoryI {
                 studentUser.getStuDependentsTel(),
                 studentUser.getStuDependentsDesc(),
                 studentUser.getStuRemarkOne(),
-                studentUser.getStuRemarkTwo()
+                studentUser.getStuRemarkTwo(),
+                studentUser.getStudentStartDate()
+
         };
 
         return jdbcTemplate.update(sql, args) == 1 ? true : false;

@@ -2,6 +2,7 @@ package com.lgb.function.admin.student.controller;
 
 import com.google.common.base.Optional;
 import com.lgb.arc.utils.ConstantFields;
+import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.student.service.StudentServiceI;
 import org.slf4j.Logger;
@@ -37,8 +38,8 @@ public class StudentController {
         return mav;
     }
 
-    @RequestMapping(value = "/routeEdit/{adminId}", method = RequestMethod.GET)
-    public ModelAndView routeEditUser(@PathVariable("adminId") int stuId) {
+    @RequestMapping(value = "/routeEdit/{stuId}", method = RequestMethod.GET)
+    public ModelAndView routeEditUser(@PathVariable("stuId") int stuId) {
         StudentUser studentUser = studentService.select(stuId);
 
         Optional<StudentUser> optional = Optional.fromNullable(studentUser);
@@ -52,8 +53,8 @@ public class StudentController {
     }
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editStudent(StudentUser studentUser, HttpSession session, RedirectAttributes redirectAttributes) {
-        StudentUser user = (StudentUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
-        String logUser = user.getStuName();
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminName();
 
         if (studentService.edit(studentUser, logUser)) {
             if (LOG.isInfoEnabled())
@@ -70,8 +71,8 @@ public class StudentController {
 
     @RequestMapping(value = "/delete/{stuId}", method = RequestMethod.GET)
     public String deleteStudnet(@PathVariable("stuId") int stuId, HttpSession session, RedirectAttributes redirectAttributes) {
-        StudentUser user = (StudentUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
-        String logUser = user.getStuName();
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminName();
 
         if (studentService.delete(stuId, logUser)) {
             if (LOG.isInfoEnabled())
@@ -94,12 +95,12 @@ public class StudentController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addStudent(StudentUser studentUser, HttpSession session, RedirectAttributes redirectAttributes) {
-        StudentUser user = (StudentUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
-        String logUser = user.getStuName();
+        AdminUser user = (AdminUser)session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminName();
 
         if (studentService.add(studentUser,  logUser)) {
             if (LOG.isInfoEnabled())
-                LOG.info("[LGB MANAGE] [OK] {} add new admin user {}.", logUser, studentUser.getStuName());
+                LOG.info("[LGB MANAGE] [OK] {} add new student user {}.", logUser, studentUser.getStuName());
 
             redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
             return "redirect:/admin/student/page.action";

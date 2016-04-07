@@ -185,7 +185,7 @@
                 <div class="col-md-4 form-group">
                     <label for="stuEducational" class="col-md-3 control-label">文化程度</label>
                     <div class="col-md-9">
-                        <tags:dicselect name="stuEducational" key="Educational" value="2" id="stuEducational" />
+                        <tags:dicselect name="stuEducational" key="educational" value="2" id="stuEducational" />
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
