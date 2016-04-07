@@ -18,9 +18,15 @@
     <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/add.action" method="post" id="stuAddForm">
         <div class="row">
             <div class="col-md-4 form-group">
-                <label for="stuCardNum" class="col-md-3 control-label">卡号</label>
+                <label for="stuCardNumTwo" class="col-md-3 control-label">卡号</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="stuCardNum" placeholder="111111" name="stuCardNum">
+                    <input type="text" class="form-control" id="stuCardNumTwo" name="stuCardNumTwo">
+                </div>
+            </div>
+            <div class="col-md-4 form-group">
+                <label for="stuCardNum" class="col-md-3 control-label">请刷卡</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" id="stuCardNum" name="stuCardNum">
                 </div>
             </div>
             <div class="col-md-4 form-group">
@@ -29,14 +35,14 @@
                     <input type="text" class="form-control" id="stuName" name="stuName">
                 </div>
             </div>
-            <div class="col-md-4 form-group">
-                <label for="stuGender" class="col-md-3 control-label">性别</label>
-                <div class="col-md-9">
-                    <tags:dicselect name="stuGender" key="gender" value="1" id="stuGender" />
-                </div>
-            </div>
         </div>
             <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuGender" class="col-md-3 control-label">性别</label>
+                    <div class="col-md-9">
+                        <tags:dicselect name="stuGender" key="gender" value="1" id="stuGender" />
+                    </div>
+                </div>
                 <div class="col-md-4 form-group">
                     <label for="stuTelOne" class="col-md-3 control-label">联系电话1</label>
                     <div class="col-md-9">
@@ -47,12 +53,6 @@
                     <label for="stuTelTwo" class="col-md-3 control-label">联系电话2</label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="stuTelTwo" name="stuTelTwo">
-                    </div>
-                </div>
-                <div class="col-md-4 form-group">
-                    <label for="studentStartDate" class="col-md-3 control-label">入学时间</label>
-                    <div class="col-sm-9">
-                        <input type="date" class="form-control" id="studentStartDate" name="studentStartDate">
                     </div>
                 </div>
             </div>
@@ -124,9 +124,9 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="stuCheck" class="col-md-3 control-label">审验情况</label>
-                    <div class="col-md-9">
-                        <textarea class="form-control" id="stuCheck" name="stuCheck"></textarea>
+                    <label for="studentStartDate" class="col-md-3 control-label">入学时间</label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" id="studentStartDate" name="studentStartDate">
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
@@ -196,8 +196,16 @@
                     </div>
                 </div>
             </div>
+        <div class="row">
+            <div class="col-md-4 form-group">
+                <label for="stuCheck" class="col-md-3 control-label">审验情况</label>
+                <div class="col-md-9">
+                    <textarea class="form-control" id="stuCheck" name="stuCheck"></textarea>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-8 col-sm-4">
                 <button type="submit" class="btn btn-default" >添加学生</button>
             </div>
         </div>
@@ -213,6 +221,22 @@
     $(function () {
         $('#stuAddForm').validate({
             rules: {
+                stuCardNum: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 50,
+                    remote: {
+                        url : "${contextPath}/admin/student/cardNum.action",
+                        type : "post",
+                        dataType : "json",
+                        data : {
+                            name : function() {
+                                return $("#stuCardNum").val();
+                            }
+                        }
+                    },
+                    equalTo: '#stuCardNumTwo'
+                },
                 stuTelOne: {
                     required: true,
                     minlength: 6,
@@ -255,6 +279,13 @@
                 }
             },
             messages: {
+                stuCardNum: {
+                    required: "请填写卡号.",
+                    minlength: "卡号的长度为2到50.",
+                    maxlength: "卡号的长度为2到50.",
+                    remote: "请确定卡号或者该卡学生已经添加.",
+                    equalTo: "请保证输入的卡号是正确的."
+                },
                 stuTelOne: {
                     required: "请填写座机号码或手机号码",
                     minlength: "请填写正确格式的号码",
