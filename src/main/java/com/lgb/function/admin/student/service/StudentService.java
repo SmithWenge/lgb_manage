@@ -24,8 +24,8 @@ public class StudentService implements StudentServiceI{
     private LogRepositoryI logRepository;
 
     @Override
-    public Page<StudentUser> list(Pageable pageable) {
-        return studentRepository.query4Page(pageable);
+    public Page<StudentUser> list(StudentUser studentUser,Pageable pageable) {
+        return studentRepository.query4Page(studentUser,pageable);
     }
 
     @Override

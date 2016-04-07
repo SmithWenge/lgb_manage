@@ -18,8 +18,8 @@
     <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/add.action" method="post" id="stuAddForm">
         <div class="row">
             <div class="col-md-4 form-group">
-                <label for="stuCardNum" class="col-md-2 control-label">卡号</label>
-                <div class="col-md-10">
+                <label for="stuCardNum" class="col-md-3 control-label">卡号</label>
+                <div class="col-md-9">
                     <input type="text" class="form-control" id="stuCardNum" placeholder="111111" name="stuCardNum">
                 </div>
             </div>
@@ -35,6 +35,7 @@
                     <tags:dicselect name="stuGender" key="gender" value="1" id="stuGender" />
                 </div>
             </div>
+        </div>
             <div class="row">
                 <div class="col-md-4 form-group">
                     <label for="stuTelOne" class="col-md-3 control-label">联系电话1</label>
@@ -195,8 +196,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default" >添加学生</button>

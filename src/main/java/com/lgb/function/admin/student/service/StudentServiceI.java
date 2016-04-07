@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface StudentServiceI {
-    Page<StudentUser> list(Pageable pageable);
+    Page<StudentUser> list(StudentUser studentUser,Pageable pageable);
     boolean add(StudentUser studentUser, String logUser);
     StudentUser select(int stuId);
     boolean edit(StudentUser studentUser, String logUser);

@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 
 public interface StudentRepositoryI {
-    Page<StudentUser> query4Page(Pageable pageable);
+    Page<StudentUser> query4Page(StudentUser studentUser,Pageable pageable);
     boolean insert(StudentUser studentUser);
     StudentUser select(int stuID);
     boolean update(StudentUser studentUser);
