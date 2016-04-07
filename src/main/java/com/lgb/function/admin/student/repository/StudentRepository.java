@@ -23,7 +23,7 @@ public class StudentRepository implements StudentRepositoryI {
 
     @Override
     public Page<StudentUser> query4Page(Pageable pageable) {
-        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuTelOne,stuTelTwo FROM lgb_student ORDER BY stuId";
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 ORDER BY stuId";
 
         return repositoryUtils.select4Page(sql, pageable, null, new Query4PageRowMapper());
     }
@@ -31,7 +31,7 @@ public class StudentRepository implements StudentRepositoryI {
     public boolean insert(StudentUser studentUser) {
         String sql = "INSERT INTO lgb_student (stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] args = {
-                studentUser.getStuID(),
+                studentUser.getStuId(),
                 studentUser.getStuCardNum(),
                 studentUser.getStuName(),
                 studentUser.getStuGender(),
@@ -72,7 +72,7 @@ public class StudentRepository implements StudentRepositoryI {
         };
 
         try {
-            return jdbcTemplate.queryForObject(sql, args, new Query4PageRowMapper());
+            return jdbcTemplate.queryForObject(sql, args, new Query4RowMapper());
         } catch (Exception e) {
             return null;
         }
@@ -83,7 +83,7 @@ public class StudentRepository implements StudentRepositoryI {
         String sql = "UPDATE lgb_adminUser SET stuId =  ?, stuCardNum =  ?, stuName =  ?, stuGender =  ?, stuTelOne =  ?, stuTelTwo =  ?, stuType =  ?, stuIdentifiedType =  ?, stuIdentifiedNum =  ?, stuOldWorkPlaceType =  ?,stuOldWorkPlaceName =  ?, stuPolitical =  ?, stuOldWorkType =  ?, stuNationality =  ?, stuBirthday =  ?, stuLastEightNum =  ?, stuCheck =  ?, stuHealth =  ?, stuLocation =  ?, stuEducational =  ?, stuLevel =  ?, stuSpeciality =  ?, stuPreferential =  ?, stuDependentsTel =  ?, stuDependentsDesc =  ?, stuRemarkOne =  ?, stuRemarkTwo =  ?\n" +
                 "\n ,studentStartDate = ? WHERE stuId = ?";
         Object[] args = {
-                studentUser.getStuID(),
+                studentUser.getStuId(),
                 studentUser.getStuCardNum(),
                 studentUser.getStuName(),
                 studentUser.getStuGender(),
@@ -135,14 +135,37 @@ public class StudentRepository implements StudentRepositoryI {
         public StudentUser mapRow(ResultSet resultSet, int i) throws SQLException {
             StudentUser studentUser = new StudentUser();
 
-            studentUser.setStuID(resultSet.getInt("stuID"));
-            studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
+            studentUser.setStuId(resultSet.getInt("stuId"));
             studentUser.setStuName(resultSet.getString("stuName"));
             studentUser.setStuGender(resultSet.getString("stuGender"));
+            studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
+            studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
             studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
             studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
 
 
+
+            return studentUser;
+        }
+    }
+
+    private class Query4RowMapper implements RowMapper<StudentUser> {
+
+        @Override
+        public StudentUser mapRow(ResultSet resultSet, int i) throws SQLException {
+            StudentUser studentUser = new StudentUser();
+
+            studentUser.setStuId(resultSet.getInt("stuId"));
+            studentUser.setStuName(resultSet.getString("stuName"));
+            studentUser.setStuGender(resultSet.getString("stuGender"));
+            studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
+            studentUser.setStuOldWorkPlaceType(resultSet.getString("stuOldWorkPlaceType"));
+            studentUser.setStuType(resultSet.getString("stuType"));
+            studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
+            studentUser.setStuOldWorkType(resultSet.getString("stuOldWorkType"));
+            studentUser.setStuEducational(resultSet.getString("stuEducational"));
+            studentUser.setStuIdentifiedNum(resultSet.getString("stuIdentifiedNum"));
+            studentUser.setStudentStartDate(resultSet.getDate("studentStartDate"));
 
             return studentUser;
         }

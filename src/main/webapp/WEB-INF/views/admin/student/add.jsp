@@ -18,9 +18,9 @@
     <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/add.action" method="post" id="stuAddForm">
         <div class="row">
             <div class="col-md-4 form-group">
-                <label for="stuID" class="col-md-2 control-label">卡号</label>
+                <label for="stuCardNum" class="col-md-2 control-label">卡号</label>
                 <div class="col-md-10">
-                    <input type="text" class="form-control" id="stuID" placeholder="111111" name="stuID">
+                    <input type="text" class="form-control" id="stuCardNum" placeholder="111111" name="stuCardNum">
                 </div>
             </div>
             <div class="col-md-4 form-group">
@@ -199,7 +199,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">添加学生</button>
+                <button type="submit" class="btn btn-default" >添加学生</button>
             </div>
         </div>
     </form>

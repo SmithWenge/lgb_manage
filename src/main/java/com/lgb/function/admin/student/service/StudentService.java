@@ -46,7 +46,7 @@ public class StudentService implements StudentServiceI{
 
     @Override
     public boolean edit(StudentUser studentUser, String logUser) {
-        StudentUser user = studentRepository.select(studentUser.getStuID());
+        StudentUser user = studentRepository.select(studentUser.getStuId());
 
         Optional<StudentUser> optional = Optional.fromNullable(user);
 
