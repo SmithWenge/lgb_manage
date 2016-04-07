@@ -181,7 +181,7 @@
 </div>
 <%@include file="/WEB-INF/include/javascript.jsp"%>
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
     $(function () {
         $('#stuAddForm').validate({
             rules: {
@@ -235,5 +235,5 @@
             $("#message").hide();
         }, 2000);
     });
-</script>
+</script>-->
 <%@include file="/WEB-INF/include/footer.jsp"%>
