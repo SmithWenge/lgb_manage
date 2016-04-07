@@ -66,17 +66,17 @@ public class StudentController {
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
-        return "redirect:/admin/student/routeEdit/" + studentUser.getStuID() + ".action";
+        return "redirect:/admin/student/routeEdit/" + studentUser.getStuId() + ".action";
     }
 
     @RequestMapping(value = "/delete/{stuId}", method = RequestMethod.GET)
-    public String deleteStudnet(@PathVariable("stuId") int stuId, HttpSession session, RedirectAttributes redirectAttributes) {
+    public String deleteStudent(@PathVariable("stuId") int stuId, HttpSession session, RedirectAttributes redirectAttributes) {
         AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
         String logUser = user.getAdminName();
 
         if (studentService.delete(stuId, logUser)) {
             if (LOG.isInfoEnabled())
-                LOG.info("[LGB MANAGE] [OK] {} delete admin student's ID {}.", logUser, stuId);
+                LOG.info("[LGB MANAGE] [OK] {} delete student's ID {}.", logUser, stuId);
 
             redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
@@ -85,7 +85,7 @@ public class StudentController {
 
         redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
 
-        return "redirect:/admin/user/page.action";
+        return "redirect:/admin/student/page.action";
     }
 
     @RequestMapping(value = "/routeAdd", method = RequestMethod.GET)

@@ -7,7 +7,7 @@ import java.util.Date;
 
 
 public class StudentUser extends Entry{
-    private int stuID;
+    private int stuId;
     private String stuCardNum;
     private String stuName;
     private String stuGender;
@@ -37,6 +37,15 @@ public class StudentUser extends Entry{
     private String stuNationality;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date studentStartDate;
+    private int deleteFlag;
+
+    public int getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 
     public Date getStuBirthday() {
         return stuBirthday;
@@ -62,12 +71,12 @@ public class StudentUser extends Entry{
         this.studentStartDate = studentStartDate;
     }
 
-    public int getStuID() {
-        return stuID;
+    public int getStuId() {
+        return stuId;
     }
 
-    public void setStuID(int stuID) {
-        this.stuID = stuID;
+    public void setStuId(int stuId) {
+        this.stuId = stuId;
     }
 
     public String getStuCardNum() {
