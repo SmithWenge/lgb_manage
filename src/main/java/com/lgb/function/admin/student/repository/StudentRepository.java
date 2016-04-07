@@ -66,7 +66,7 @@ public class StudentRepository implements StudentRepositoryI {
 
     @Override
     public StudentUser select(int stuId) {
-        String sql = "SELECT stuId, stuName, stuGender, stuCardNum, stuOldWorkPlaceType, stuType, stuBirthday, stuOldWorkType, stuEducational, stuIdentifiedNum, studentStartDate FROM lgb_student WHERE deleteFlag = 0 AND stuId = ?";
+        String sql = "SELECT stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate FROM lgb_student WHERE deleteFlag = 0 AND stuId = ?";
         Object[] args = {
                 stuId
         };
@@ -154,14 +154,30 @@ public class StudentRepository implements StudentRepositoryI {
         @Override
         public StudentUser mapRow(ResultSet resultSet, int i) throws SQLException {
             StudentUser studentUser = new StudentUser();
-
             studentUser.setStuId(resultSet.getInt("stuId"));
             studentUser.setStuName(resultSet.getString("stuName"));
             studentUser.setStuGender(resultSet.getString("stuGender"));
+            studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
+            studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
+            studentUser.setStuIdentifiedType(resultSet.getInt("stuIdentifiedType"));
             studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
             studentUser.setStuOldWorkPlaceType(resultSet.getString("stuOldWorkPlaceType"));
             studentUser.setStuType(resultSet.getString("stuType"));
+            studentUser.setStuHealth(resultSet.getString("stuHealth"));
+            studentUser.setStuLevel(resultSet.getString("stuLevel"));
+            studentUser.setStuSpeciality(resultSet.getString("stuSpeciality"));
+            studentUser.setStuPreferential(resultSet.getString("stuPreferential"));
+            studentUser.setStuDependentsTel(resultSet.getString("stuDependentsTel"));
+            studentUser.setStuDependentsDesc(resultSet.getString("stuDependentsDesc"));
+            studentUser.setStuRemarkOne(resultSet.getString("stuRemarkOne"));
+            studentUser.setStuRemarkTwo(resultSet.getString("stuRemarkTwo"));
+            studentUser.setStuLocation(resultSet.getString("stuLocation"));
+            studentUser.setStuNationality(resultSet.getString("stuNationality"));
+            studentUser.setStuPolitical(resultSet.getString("stuPolitical"));
+            studentUser.setStuOldWorkPlaceName(resultSet.getString("stuOldWorkPlaceName"));
             studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
+            studentUser.setStuLastEightNum(resultSet.getString("stuLastEightNum"));
+            studentUser.setStuCheck(resultSet.getString("stuCheck"));
             studentUser.setStuOldWorkType(resultSet.getString("stuOldWorkType"));
             studentUser.setStuEducational(resultSet.getString("stuEducational"));
             studentUser.setStuIdentifiedNum(resultSet.getString("stuIdentifiedNum"));

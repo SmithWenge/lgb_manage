@@ -127,15 +127,15 @@
         <tr>
           <td>${user.stuCardNum}</td>
           <td>${user.stuName}</td>
-          <tags:dictd groupValue="adminRole" itemKey="${user.adminRole}" />
-          <tags:dictd groupValue="adminIsChanged" itemKey="${user.adminIsChanged}" />
-          <tags:dictd groupValue="adminIsReturn" itemKey="${user.adminIsReturn}" />
-          <tags:dictd groupValue="adminIsLock" itemKey="${user.adminIsLock}" />
+          <tags:dictd groupValue="gender" itemKey="${user.stuGender}" />
+          <td>${user.stuBirthday}</td>
+          <td>${user.stuTelOne}</td>
+          <td>${user.stuTelTwo}</td>
           <td>
-            <a href="${contextPath}/admin/user/routeEdit/${user.adminId}.action" style="text-decoration: none;">
+            <a href="${contextPath}/admin/student/routeEdit/${user.stuId}.action" style="text-decoration: none;">
               <button type="button" class="btn btn-warning">编辑</button>
             </a>
-            <a href="${contextPath}/admin/user/delete/${user.adminId}.action" style="text-decoration: none;" >
+            <a href="${contextPath}/admin/student/delete/${user.stuId}.action" style="text-decoration: none;" >
               <button type="button" class="btn btn-danger">删除</button>
             </a>
             <a href="${contextPath}/admin/student/baoming/${user.stuId}.action" style="text-decoration: none;" >
@@ -152,54 +152,88 @@
 </div>
 
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-  <div class="col-md-12">
-    <nav>
-      <ul class="pager">
-        <c:if test="${page.number > 0 }">
-          <li class="previous">
-            <a href="${contextPath}/admin/user/page.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
-          </li>
-        </c:if>
-        <c:if test="${page.number <= 0 }">
-          <li class="previous disabled">
-            <a href="#"><span aria-hidden="true">&larr;</span>上一页</a>
-          </li>
-        </c:if>
-        <c:if test="${page.number + 1 < page.totalPages }">
-          <li class="next">
-            <a href="${contextPath}/admin/user/page.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
-          </li>
-        </c:if>
-        <c:if test="${page.number + 1 >= page.totalPages }">
-          <li class="next disabled">
-            <a href="#">下一页 <span aria-hidden="true">&rarr;</span></a>
-          </li>
-        </c:if>
-      </ul>
-    </nav>
+    <div class="col-md-12">
+        <nav>
+            <ul class="pager">
+                <c:if test="${page.number > 0 }">
+                    <li class="previous">
+                      <a href="${contextPath}/admin/student/page.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
+                    </li>
+                </c:if>
+                <c:if test="${page.number <= 0 }">
+                    <li class="previous disabled">
+                      <a href="#"><span aria-hidden="true">&larr;</span>上一页</a>
+                    </li>
+                </c:if>
+                <c:if test="${page.number + 1 < page.totalPages }">
+                    <li class="next">
+                      <a href="${contextPath}/admin/student/page.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
+                    </li>
+                </c:if>
+                <c:if test="${page.number + 1 >= page.totalPages }">
+                    <li class="next disabled">
+                      <a href="#">下一页 <span aria-hidden="true">&rarr;</span></a>
+                    </li>
+                </c:if>
+            </ul>
+        </nav>
   </div>
 </div>
 <%@include file="/WEB-INF/include/javascript.jsp"%>
 
-<script type="text/javascript">
-  $(function() {
-    // 设置table表格中的行高
-    var $height = $('#paginationTable td').height() + 'px';
-    $('#paginationTable td').css('line-height', $height);
+<!--<script type="text/javascript">
+    $(function () {
+        $('#stuAddForm').validate({
+            rules: {
+                stuID: {
+                    required: true
+                },
+                stuBirthday: {
+                    required: true
+                },
+                stuIdentifiedNum: {
+                    required: true
+                },
+                stuOldWorkPlaceType: {
+                    required: true
+                },
+                stuPolitical: {
+                    required: true
+                },
+                stuEducational: {
+                    required: true
+                }
+            },
+            messages: {
+                stuID: {
+                    required: "请输入卡号"
+                },
+                stuBirthday: {
+                    required: "请填写出生日期"
+                },
+                stuIdentifiedNum: {
+                    required: "请填写证件号码"
+                },
+                stuLastEightNum: {
+                    required: "请填写身份证号最后8位",
+                    minlength: "请填写正确的格式",
+                    maxlength: "请填写正确的格式"
+                },
+                stuOldWorkPlaceType: {
+                    required: "请填写原单位类别"
+                },
+                stuPolitical: {
+                    required: "请填写政治面貌"
+                },
+                stuEducational: {
+                    required: "请填写文化程度"
+                }
+            }
+        });
 
-    setTimeout(function() {
-      $("#addMessage").hide();
-    }, 2000);
-    setTimeout(function() {
-      $("#editMessage").hide();
-    }, 2000);
-    setTimeout(function() {
-      $("#deleteMessage").hide();
-    }, 2000);
-    setTimeout(function() {
-      $("#deleteFailureMessage").hide();
-    }, 2000);
-  });
-</script>
-
+        setTimeout(function() {
+            $("#message").hide();
+        }, 2000);
+    });
+</script>-->
 <%@include file="/WEB-INF/include/footer.jsp"%>
