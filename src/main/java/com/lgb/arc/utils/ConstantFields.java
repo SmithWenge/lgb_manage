@@ -29,6 +29,8 @@ public class ConstantFields {
     public static final String ADD_FAILURE_MESSAGE = "添加失败";
     /* 编辑Key */
     public static final String EDIT_OBJECT_KEY = "edit";
+    /* 删除Key */
+    public static final String DELETE_OBJECT_KEY = "delete";
     /* 编辑成功消息Key */
     public static final String EDIT_SUCCESS_KEY = "editMessage";
     /* 编辑成功消息 */
@@ -45,4 +47,14 @@ public class ConstantFields {
     public static final String DELETE_FAILURE_KEY = "deleteFailureMessage";
     /* 删除失败消息 */
     public static final String DELETE_FAILURE_MESSAGE = "删除失败";
+    /* 教师查询Key */
+    public static final String SESSION_TEACHER_SEARCH_KEY = "teacherSearch";
+    /* 换卡成功消息key */
+    public static final String TURN_CARD_SUCCESS_KEY = "turnCardMessage";
+    /* 换卡成功消息 */
+    public static final String TURN_CARD_SUCCESS_MESSAGE = "换卡成功";
+    /* 换卡失败消息key */
+    public static final String TURN_CARD_FAILURE_KEY = "turnCardFailureMessage";
+    /* 换卡失败消息 */
+    public static final String TURN_CARD_FAILURE_MESSAGE = "换卡失败";
 }

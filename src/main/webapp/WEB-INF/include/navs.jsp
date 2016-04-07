@@ -9,6 +9,7 @@
             <li role="presentation"><a href="${contextPath}/admin/user/page.action">用户管理</a></li>
             <li role="presentation"><a href="${contextPath}/admin/department/page.action">系管理</a></li>
             <li role="presentation"><a href="${contextPath}/admin/major/page.action">专业管理</a></li>
+            <li role="presentation"><a href="${contextPath}/admin/teacher/routePage.action">教师管理</a></li>
             <li role="presentation"><a href="${contextPath}/admin/log/routePage.action">查看日志</a></li>
             <li class="dropdown" style="float: right;">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${adminLogin.adminLoginName} <span class="caret"></span></a>
