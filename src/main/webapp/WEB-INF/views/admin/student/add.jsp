@@ -214,9 +214,6 @@
     $(function () {
         $('#stuAddForm').validate({
             rules: {
-                stuID: {
-                    required: true
-                },
                 stuTelOne: {
                     required: true,
                     minlength: 6,
@@ -259,9 +256,6 @@
                 }
             },
             messages: {
-                stuID: {
-                    required: "请输入卡号"
-                },
                 stuTelOne: {
                     required: "请填写座机号码或手机号码",
                     minlength: "请填写正确格式的号码",

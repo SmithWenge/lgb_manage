@@ -24,7 +24,7 @@
     </div>
   </c:if>
   <div class="col-md-12">
-    <a href="${contextPath}/admin/user/routeAdd.action" style="text-decoration: none;">
+    <a href="${contextPath}/admin/student/routeAdd.action" style="text-decoration: none;">
       <button type="button" class="btn btn-info" style="float: right;">添加</button>
     </a>
   </div>
