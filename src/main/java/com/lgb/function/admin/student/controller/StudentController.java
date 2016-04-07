@@ -5,6 +5,7 @@ import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.student.service.StudentServiceI;
+import com.lgb.function.admin.teacher.Teacher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -108,5 +110,46 @@ public class StudentController {
 
         redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
         return "redirect:/admin/student/routeAdd.action";
+    }
+
+    @RequestMapping(value = "/routeTurnCard/{stuId}")
+    public ModelAndView routeTurnCard(@PathVariable("stuId") int stuId) {
+        StudentUser studentUser = studentService.selectCard(stuId);
+
+        Optional<StudentUser> optional = Optional.fromNullable(studentUser);
+        if (optional.isPresent()) {
+            ModelAndView mav = new ModelAndView("admin/student/turnCard");
+
+            mav.addObject("studentUser", studentUser);
+
+            return mav;
+        }
+
+        return new ModelAndView("redirect:/admin/student/routePage.action");
+    }
+
+    @RequestMapping(value = "/turnCard", method = RequestMethod.POST)
+    public String turnCard(StudentUser studentUser, HttpSession session, RedirectAttributes redirectAttributes) {
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminLoginName();
+
+        if (studentService.turnCard(studentUser, logUser)) {
+            if (LOG.isInfoEnabled())
+                LOG.info("[LGB MANAGE] [OK] {} turn {}'s card.", logUser, studentUser.getStuName());
+
+            redirectAttributes.addFlashAttribute(ConstantFields.TURN_CARD_SUCCESS_KEY, ConstantFields.TURN_CARD_SUCCESS_MESSAGE + studentUser.getStuName());
+
+            return "redirect:/admin/student/page.action";
+        }
+
+        redirectAttributes.addFlashAttribute(ConstantFields.TURN_CARD_FAILURE_KEY, ConstantFields.TURN_CARD_FAILURE_MESSAGE + studentUser.getStuName());
+        return "redirect:/admin/student/routeTurnCard/" + studentUser.getStuId() + ".action";
+    }
+
+    @RequestMapping(value = "/cardNum", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean nameExist(StudentUser studentUser) {
+        if (studentService.existCardNum(studentUser)) return true;
+        else return false;
     }
 }

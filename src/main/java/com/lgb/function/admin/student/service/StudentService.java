@@ -3,6 +3,7 @@ package com.lgb.function.admin.student.service;
 import com.google.common.base.Optional;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.student.repository.StudentRepositoryI;
+import com.lgb.function.admin.teacher.Teacher;
 import com.lgb.function.admin.user.repository.UserRepositoryI;
 import com.lgb.function.support.log.LogContent;
 import com.lgb.function.support.log.repository.LogRepositoryI;
@@ -82,5 +83,25 @@ public class StudentService implements StudentServiceI{
         }
 
         return false;
+    }
+
+    @Override
+    public StudentUser selectCard(int stuID) {
+        return studentRepository.selectCard(stuID);
+    }
+
+    @Override
+    public boolean turnCard(StudentUser studentUser, String logUser) {
+        boolean exist = studentRepository.selectIdAndCard(studentUser);
+        if (exist) {
+            return studentRepository.updateCard(studentUser);
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean existCardNum(StudentUser studentUser) {
+        return studentRepository.selectCardNum(studentUser) == 0 ? true : false;
     }
 }

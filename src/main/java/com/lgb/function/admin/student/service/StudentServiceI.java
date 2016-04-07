@@ -2,6 +2,7 @@ package com.lgb.function.admin.student.service;
 
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.student.StudentUser;
+import com.lgb.function.admin.teacher.Teacher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -11,4 +12,7 @@ public interface StudentServiceI {
     StudentUser select(int stuId);
     boolean edit(StudentUser studentUser, String logUser);
     boolean delete(int stuId, String logUser);
+    StudentUser selectCard(int stuID);
+    boolean turnCard(StudentUser studentUser, String logUser);
+    boolean existCardNum(StudentUser studentUser);
 }

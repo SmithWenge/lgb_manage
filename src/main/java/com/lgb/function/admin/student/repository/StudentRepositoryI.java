@@ -11,4 +11,8 @@ public interface StudentRepositoryI {
     StudentUser select(int stuID);
     boolean update(StudentUser studentUser);
     boolean delete(int stuId);
+    StudentUser selectCard(int stuID);
+    boolean selectIdAndCard(StudentUser studentUser);
+    boolean updateCard(StudentUser studentUser);
+    int selectCardNum(StudentUser studentUser);
 }

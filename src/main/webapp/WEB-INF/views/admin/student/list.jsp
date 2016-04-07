@@ -147,7 +147,7 @@
                                 <a href="${contextPath}/admin/student/baoming/${user.stuId}.action" style="text-decoration: none;" >
                                     <button type="button" class="btn btn-success">报名</button>
                                 </a>
-                                <a href="${contextPath}/admin/student/huanka/${user.stuId}.action" style="text-decoration: none;" >
+                                <a href="${contextPath}/admin/student/routeTurnCard/${user.stuId}.action" style="text-decoration: none;" >
                                     <button type="button" class="btn btn-success">换卡</button>
                                 </a>
                             </td>

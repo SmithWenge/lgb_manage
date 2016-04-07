@@ -2,6 +2,7 @@ package com.lgb.function.admin.student.repository;
 
 import com.google.common.base.Optional;
 import com.lgb.function.admin.student.StudentUser;
+import com.lgb.function.admin.teacher.Teacher;
 import com.lgb.function.support.dictionary.impl.DefaultDictionaryManager;
 import com.lgb.function.support.utils.RepositoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -247,6 +248,74 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStudentStartDate(resultSet.getDate("studentStartDate"));
 
             return studentUser;
+        }
+    }
+
+    @Override
+    public StudentUser selectCard(int stuId) {
+        String sql = "SELECT stuId, stuName FROM lgb_student WHERE deleteFlag = 0 AND stuId = ?";
+        Object[] args = {
+                stuId
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, new SelectCardRowMapper());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private class SelectCardRowMapper implements RowMapper<StudentUser> {
+
+        @Override
+        public StudentUser mapRow(ResultSet rs, int rowNum) throws SQLException {
+            StudentUser studentUser = new StudentUser();
+
+            studentUser.setStuId(rs.getInt("stuId"));
+            studentUser.setStuName(rs.getString("stuName"));
+
+            return studentUser;
+        }
+    }
+
+    @Override
+    public boolean selectIdAndCard(StudentUser studentUser) {
+        String sql = "SELECT COUNT(stuId) as NUM FROM lgb_student WHERE deleteFlag = 0 AND stuId = ? AND stuCardNum = ?";
+        Object[] args = {
+                studentUser.getStuId(),
+                studentUser.getStuCardNum()
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, Integer.class) == 1 ? true : false;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateCard(StudentUser studentUser) {
+        String sql = "UPDATE lgb_student SET stuCardNum = ? WHERE stuId = ?";
+        Object[] args = {
+                studentUser.getStuCardNumNew(),
+                studentUser.getStuId()
+        };
+
+
+        return jdbcTemplate.update(sql, args) == 1 ? true : false;
+    }
+
+    @Override
+    public int selectCardNum(StudentUser studentUser) {
+        String sql = "SELECT COUNT(stuId) as num FROM lgb_student WHERE deleteFlag = 0 AND stuCardNum = ?";
+        Object[] args = {
+                studentUser.getStuCardNum()
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, Integer.class, args);
+        } catch (Exception e) {
+            return 0;
         }
     }
 }
