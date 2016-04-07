@@ -15,7 +15,7 @@
     </style>
         <div class="panel panel-default">
             <div class="panel-body">
-    <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" id="stuAddForm" action="${contextPath}/admin/student/add.action" method="post">
+    <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/add.action" method="post" id="stuAddForm">
         <div class="row">
             <div class="col-md-4 form-group">
                 <label for="stuID" class="col-md-2 control-label">卡号</label>
@@ -185,7 +185,7 @@
                 <div class="col-md-4 form-group">
                     <label for="stuEducational" class="col-md-3 control-label">文化程度</label>
                     <div class="col-md-9">
-                        <tags:dicselect name="stuEducational" key="educational" value="2" id="stuEducational" />
+                        <tags:dicselect name="stuEducational" key="Educational" value="2" id="stuEducational" />
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
@@ -199,7 +199,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">添加人员</button>
+                <button type="submit" class="btn btn-default">添加学生</button>
             </div>
         </div>
     </form>
@@ -214,6 +214,9 @@
     $(function () {
         $('#stuAddForm').validate({
             rules: {
+                stuID: {
+                    required: true
+                },
                 stuTelOne: {
                     required: true,
                     minlength: 6,
@@ -256,6 +259,9 @@
                 }
             },
             messages: {
+                stuID: {
+                    required: "请输入卡号"
+                },
                 stuTelOne: {
                     required: "请填写座机号码或手机号码",
                     minlength: "请填写正确格式的号码",

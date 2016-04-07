@@ -57,7 +57,7 @@ public class StudentController {
 
         if (studentService.edit(studentUser, logUser)) {
             if (LOG.isInfoEnabled())
-                LOG.info("[LGB MANAGE] [OK] {} update admin user {}.", logUser, studentUser.getStuName());
+                LOG.info("[LGB MANAGE] [OK] {} update admin student {}.", logUser, studentUser.getStuName());
 
             redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
@@ -75,7 +75,7 @@ public class StudentController {
 
         if (studentService.delete(stuId, logUser)) {
             if (LOG.isInfoEnabled())
-                LOG.info("[LGB MANAGE] [OK] {} delete admin user's ID {}.", logUser, stuId);
+                LOG.info("[LGB MANAGE] [OK] {} delete admin student's ID {}.", logUser, stuId);
 
             redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
