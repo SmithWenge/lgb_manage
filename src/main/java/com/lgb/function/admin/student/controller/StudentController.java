@@ -10,17 +10,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/admin/student")
@@ -31,11 +34,57 @@ public class StudentController {
     private StudentServiceI studentService;
 
     @RequestMapping(value = "/page",method = RequestMethod.GET)
-    public ModelAndView ListUser(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)StudentUser studentUser, Pageable pageable){
-        Page<StudentUser> page = studentService.list(studentUser,pageable);
+    public ModelAndView showLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
+                                Pageable pageable, StudentUser studentUser, HttpSession session) {
+        StudentUser searchStudent = (StudentUser) session.getAttribute(ConstantFields.SESSION_STU_SEARCH_KEY);
+
+        Optional<StudentUser> optional = Optional.fromNullable(searchStudent);
+        if (optional.isPresent()) {
+            studentUser = searchStudent;
+        }
 
         ModelAndView mav = new ModelAndView("admin/student/list");
+        Page<StudentUser> page = studentService.list(studentUser, pageable);
+
         mav.addObject(ConstantFields.PAGE_KEY, page);
+
+        return mav;
+    }
+    @RequestMapping(value = "/pageSearch")
+    public ModelAndView searchLog(@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
+                                  @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date startTime,
+                                  @PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
+                                  StudentUser studentUser, HttpSession session) {
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        if (birthday !=null) {
+            String tmpBirthday = sdf.format(birthday);
+            studentUser.setStuBirthday(Timestamp.valueOf(tmpBirthday));
+        }
+
+        if (startTime !=null) {
+            String tmpStartTime = sdf.format(startTime);
+            studentUser.setStudentStartDate(Timestamp.valueOf(tmpStartTime));
+        }
+
+        session.setAttribute(ConstantFields.SESSION_STU_SEARCH_KEY, studentUser);
+
+        ModelAndView mav = new ModelAndView("admin/student/list");
+        Page<StudentUser> page = studentService.list(studentUser, pageable);
+
+        mav.addObject(ConstantFields.PAGE_KEY, page);
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/routePage", method = RequestMethod.GET)
+    public ModelAndView showFirstPage(HttpSession session) {
+        session.removeAttribute(ConstantFields.SESSION_STU_SEARCH_KEY);
+
+        ModelAndView mav = new ModelAndView("admin/student/list");
+
+        Page<StudentUser> users = studentService.list(new StudentUser(), new PageRequest(0, ConstantFields.DEFAULT_PAGE_SIZE));
+        mav.addObject(ConstantFields.PAGE_KEY, users);
 
         return mav;
     }

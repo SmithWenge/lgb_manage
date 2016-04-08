@@ -39,7 +39,7 @@
         </c:if>
     </div>
     <div class="panel-body">
-        <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/page.action" method="get" id="stuAddForm">
+        <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/pageSearch.action" method="get" id="stuAddForm">
             <div class="row">
                 <div class="col-md-4 form-group">
                     <label for="stuCardNum" class="col-md-3 control-label">卡号</label>
