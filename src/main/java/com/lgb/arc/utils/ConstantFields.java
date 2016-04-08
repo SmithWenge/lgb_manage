@@ -10,6 +10,9 @@ public class ConstantFields {
     public static final String PAGE_KEY = "page";
     /* 日志查询时存储LogContent条件的Session Key */
     public static final String SESSION_LOG_SEARCH_KEY = "logSearch";
+    /* 学员查询时存储StudentUser条件的Session Key */
+    public static final String SESSION_STU_SEARCH_KEY = "stuSearch";
+
     /**
      * 默认邮件配置项
      */

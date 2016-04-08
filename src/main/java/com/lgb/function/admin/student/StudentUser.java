@@ -9,6 +9,7 @@ import java.util.Date;
 public class StudentUser extends Entry{
     private int stuId;
     private String stuCardNum;
+    private String stuCardNumNew;
     private String stuName;
     private String stuGender;
     private String stuTelOne;
@@ -129,6 +130,14 @@ public class StudentUser extends Entry{
 
     public int getStuIdentifiedType() {
         return stuIdentifiedType;
+    }
+
+    public String getStuCardNumNew() {
+        return stuCardNumNew;
+    }
+
+    public void setStuCardNumNew(String stuCardNumNew) {
+        this.stuCardNumNew = stuCardNumNew;
     }
 
     public void setStuIdentifiedType(int stuIdentifiedType) {
