@@ -220,7 +220,7 @@ public class StudentController {
 
         try {
             WritableWorkbook workbook = factory.createExcel(new FileOutputStream(file),
-                    new Excel("学员卡", 0), Arrays.asList("姓名", "性别", "生日", "电话1", "电话2", "工作单位", "住址"), users, new StudentExcelMapper());
+                    new Excel("学员卡", 0), Arrays.asList("卡号", "姓名", "性别", "生日", "电话1", "电话2", "工作单位", "住址"), users, new StudentExcelMapper());
             workbook.write();
             workbook.close();
 

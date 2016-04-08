@@ -8,15 +8,17 @@ import jxl.write.WritableSheet;
 import jxl.write.WriteException;
 import jxl.write.biff.RowsExceededException;
 
-/**
- * Created by Samuel on 16/4/8.
- */
 public class StudentExcelMapper implements ExcelMapper<StudentUser> {
     public void mapToExcel(WritableSheet sheet, StudentUser studentUser, WritableCellFormat wcf, int rowNum) {
         try {
             sheet.addCell(new Label(0, rowNum, studentUser.getStuCardNum()));
             sheet.addCell(new Label(1, rowNum, studentUser.getStuName()));
-            sheet.addCell(new Label(2, rowNum, String.valueOf(studentUser.getStuGender())));
+            int gender = studentUser.getStuGender();
+            String genderStr = "男";
+            if (gender == 0) {
+                genderStr = "女";
+            }
+            sheet.addCell(new Label(2, rowNum, genderStr));
             sheet.addCell(new Label(3, rowNum, studentUser.getStuBirthday().toString()));
             sheet.addCell(new Label(4, rowNum, studentUser.getStuTelOne()));
             sheet.addCell(new Label(5, rowNum, studentUser.getStuTelTwo()));
