@@ -30,6 +30,14 @@ public class AdminLoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(AdminUser adminUser, HttpSession session) {
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+
+        Optional<AdminUser> optionalUser = Optional.fromNullable(user);
+
+        if (optionalUser.isPresent()) {
+            return new ModelAndView("admin/home/index");
+        }
+
         AdminUser loginUser = adminLoginService.login(adminUser);
         ModelAndView mav = new ModelAndView();
 
@@ -46,6 +54,19 @@ public class AdminLoginController {
         }
 
         return mav;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginGet(HttpSession session) {
+        AdminUser loginUser = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+
+        Optional<AdminUser> optional = Optional.fromNullable(loginUser);
+
+        if (optional.isPresent()) {
+            return "admin/home/index";
+        }
+
+        return "redirect:/admin/routeLogin.action";
     }
 
     @RequestMapping(value = "/routeLogin", method = RequestMethod.GET)

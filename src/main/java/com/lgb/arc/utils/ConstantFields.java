@@ -57,4 +57,6 @@ public class ConstantFields {
     public static final String TURN_CARD_FAILURE_KEY = "turnCardFailureMessage";
     /* 换卡失败消息 */
     public static final String TURN_CARD_FAILURE_MESSAGE = "换卡失败";
+    /* 课程查询Key */
+    public static final String SESSION_COURSE_SEARCH_KEY = "courseSeach";
 }
