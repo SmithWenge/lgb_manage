@@ -1,11 +1,17 @@
 package com.lgb.function.admin.student.controller;
 
 import com.google.common.base.Optional;
+import com.lgb.arc.excel.Excel;
+import com.lgb.arc.excel.ExcelFactory;
+import com.lgb.arc.excel.mapper.StudentExcelMapper;
 import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.student.service.StudentServiceI;
 import com.lgb.function.admin.teacher.Teacher;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+import jxl.write.biff.RowsExceededException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +25,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.*;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/student")
@@ -200,5 +210,45 @@ public class StudentController {
     public boolean nameExist(StudentUser studentUser) {
         if (studentService.existCardNum(studentUser)) return true;
         else return false;
+    }
+
+    @RequestMapping("/export")
+    public void adminExport(HttpServletResponse response) {
+        List<StudentUser> users = studentService.exportAllStu();
+        ExcelFactory<StudentUser> factory = new ExcelFactory<StudentUser>();
+        File file = new File("student.xls");
+
+        try {
+            WritableWorkbook workbook = factory.createExcel(new FileOutputStream(file),
+                    new Excel("学员卡", 0), Arrays.asList("姓名", "性别", "生日", "电话1", "电话2", "工作单位", "住址"), users, new StudentExcelMapper());
+            workbook.write();
+            workbook.close();
+
+            response.setContentType("application/x-excel");
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
+            response.setHeader("Content-Length", String.valueOf(file.length()));
+            int length = 0;
+            byte[] buffer = new byte[1024];
+            FileInputStream fis = new FileInputStream(file);
+            OutputStream os = response.getOutputStream();
+            while (-1 != (length = fis.read(buffer, 0, buffer.length))) {
+                os.write(buffer, 0, length);
+            }
+            fis.close();
+            os.flush();
+            os.close();
+        } catch (RowsExceededException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (WriteException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            file.delete();
+        }
     }
 }

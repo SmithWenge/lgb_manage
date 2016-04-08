@@ -141,7 +141,16 @@ public class StudentRepository implements StudentRepositoryI {
             return null;
         }
     }
+    @Override
+    public List<StudentUser> selectForExport() {
+        String sql = "SELECT stuCardNum, stuName, stuGender, stuBirthday, stuTelOne, stuTelTwo, stuOldWorkPlaceName, stuLocation FROM lgb_student WHERE deleteFlag = 0";
+        Object[] args = {};
 
+
+        return jdbcTemplate.query(sql, new exportRowMapper());
+
+
+    }
     @Override
     public boolean update(StudentUser studentUser) {
         String sql = "UPDATE lgb_adminUser SET stuId =  ?, stuCardNum =  ?, stuName =  ?, stuGender =  ?, stuTelOne =  ?, stuTelTwo =  ?, stuType =  ?, stuIdentifiedType =  ?, stuIdentifiedNum =  ?, stuOldWorkPlaceType =  ?,stuOldWorkPlaceName =  ?, stuPolitical =  ?, stuOldWorkType =  ?, stuNationality =  ?, stuBirthday =  ?, stuLastEightNum =  ?, stuCheck =  ?, stuHealth =  ?, stuLocation =  ?, stuEducational =  ?, stuLevel =  ?, stuSpeciality =  ?, stuPreferential =  ?, stuDependentsTel =  ?, stuDependentsDesc =  ?, stuRemarkOne =  ?, stuRemarkTwo =  ?\n" +
@@ -208,6 +217,25 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
 
 
+
+            return studentUser;
+        }
+    }
+
+    private class exportRowMapper implements RowMapper<StudentUser> {
+
+        @Override
+        public StudentUser mapRow(ResultSet resultSet, int i) throws SQLException {
+            StudentUser studentUser = new StudentUser();
+
+            studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
+            studentUser.setStuName(resultSet.getString("stuName"));
+            studentUser.setStuGender(resultSet.getString("stuGender"));
+            studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
+            studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
+            studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
+            studentUser.setStuOldWorkPlaceName(resultSet.getString("stuOldWorkPlaceName"));
+            studentUser.setStuLocation(resultSet.getString("stuLocation"));
 
             return studentUser;
         }
