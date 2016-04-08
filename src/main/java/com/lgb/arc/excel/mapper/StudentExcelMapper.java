@@ -16,7 +16,7 @@ public class StudentExcelMapper implements ExcelMapper<StudentUser> {
         try {
             sheet.addCell(new Label(0, rowNum, studentUser.getStuCardNum()));
             sheet.addCell(new Label(1, rowNum, studentUser.getStuName()));
-            sheet.addCell(new Label(2, rowNum, studentUser.getStuGender()));
+            sheet.addCell(new Label(2, rowNum, String.valueOf(studentUser.getStuGender())));
             sheet.addCell(new Label(3, rowNum, studentUser.getStuBirthday().toString()));
             sheet.addCell(new Label(4, rowNum, studentUser.getStuTelOne()));
             sheet.addCell(new Label(5, rowNum, studentUser.getStuTelTwo()));

@@ -11,23 +11,23 @@ public class StudentUser extends Entry{
     private String stuCardNum;
     private String stuCardNumNew;
     private String stuName;
-    private String stuGender;
+    private int stuGender;
     private String stuTelOne;
     private String stuTelTwo;
-    private String stuType;
+    private int stuType;
     private int stuIdentifiedType;
     private String stuIdentifiedNum;
-    private String stuOldWorkPlaceType;
+    private int stuOldWorkPlaceType;
     private String stuOldWorkPlaceName;
     private String stuPolitical;
-    private String stuOldWorkType;
+    private int stuOldWorkType;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date stuBirthday;
     private String stuLastEightNum;
     private String stuCheck;
     private String stuHealth;
     private String stuLocation;
-    private String stuEducational;
+    private int stuEducational;
     private String stuLevel;
     private String stuSpeciality;
     private String stuPreferential;
@@ -96,11 +96,11 @@ public class StudentUser extends Entry{
         this.stuName = stuName;
     }
 
-    public String getStuGender() {
+    public int getStuGender() {
         return stuGender;
     }
 
-    public void setStuGender(String stuGender) {
+    public void setStuGender(int stuGender) {
         this.stuGender = stuGender;
     }
 
@@ -120,11 +120,11 @@ public class StudentUser extends Entry{
         this.stuTelTwo = stuTelTwo;
     }
 
-    public String getStuType() {
+    public int getStuType() {
         return stuType;
     }
 
-    public void setStuType(String stuType) {
+    public void setStuType(int stuType) {
         this.stuType = stuType;
     }
 
@@ -152,11 +152,11 @@ public class StudentUser extends Entry{
         this.stuIdentifiedNum = stuIdentifiedNum;
     }
 
-    public String getStuOldWorkPlaceType() {
+    public int getStuOldWorkPlaceType() {
         return stuOldWorkPlaceType;
     }
 
-    public void setStuOldWorkPlaceType(String stuOldWorkPlaceType) {
+    public void setStuOldWorkPlaceType(int stuOldWorkPlaceType) {
         this.stuOldWorkPlaceType = stuOldWorkPlaceType;
     }
 
@@ -176,11 +176,11 @@ public class StudentUser extends Entry{
         this.stuPolitical = stuPolitical;
     }
 
-    public String getStuOldWorkType() {
+    public int getStuOldWorkType() {
         return stuOldWorkType;
     }
 
-    public void setStuOldWorkType(String stuOldWorkType) {
+    public void setStuOldWorkType(int stuOldWorkType) {
         this.stuOldWorkType = stuOldWorkType;
     }
 
@@ -216,11 +216,11 @@ public class StudentUser extends Entry{
         this.stuLocation = stuLocation;
     }
 
-    public String getStuEducational() {
+    public int getStuEducational() {
         return stuEducational;
     }
 
-    public void setStuEducational(String stuEducational) {
+    public void setStuEducational(int stuEducational) {
         this.stuEducational = stuEducational;
     }
 
