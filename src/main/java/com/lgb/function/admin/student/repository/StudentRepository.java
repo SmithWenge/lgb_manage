@@ -42,7 +42,7 @@ public class StudentRepository implements StudentRepositoryI {
                 list.add(studentUser.getStuCardNum());
             }
 
-            if (studentUser.getStuGender() != null) {
+            if (studentUser.getStuGender() > 0) {
                 sql.append(" AND stuGender = ?");
                 list.add(studentUser.getStuGender());
             }
@@ -52,22 +52,22 @@ public class StudentRepository implements StudentRepositoryI {
                 list.add(studentUser.getStuBirthday());
             }
 
-            if (studentUser.getStuOldWorkPlaceType() != null) {
+            if (studentUser.getStuOldWorkPlaceType() > 0) {
                 sql.append(" AND stuOldWorkPlaceType = ?");
                 list.add(studentUser.getStuOldWorkPlaceType());
             }
 
-            if (studentUser.getStuType() != null) {
+            if (studentUser.getStuType() > 0) {
                 sql.append(" AND stuType = ?");
                 list.add(studentUser.getStuType());
             }
 
-            if (studentUser.getStuOldWorkType() != null) {
+            if (studentUser.getStuOldWorkType() > 0) {
                 sql.append(" AND stuOldWorkType = ?");
                 list.add(studentUser.getStuOldWorkType());
             }
 
-            if (studentUser.getStuEducational() != null) {
+            if (studentUser.getStuEducational() > 0) {
                 sql.append(" AND stuEducational = ?");
                 list.add(studentUser.getStuEducational());
             }
@@ -141,11 +141,19 @@ public class StudentRepository implements StudentRepositoryI {
             return null;
         }
     }
+    @Override
+    public List<StudentUser> selectForExport() {
+        String sql = "SELECT stuCardNum, stuName, stuGender, stuBirthday, stuTelOne, stuTelTwo, stuOldWorkPlaceName, stuLocation FROM lgb_student WHERE deleteFlag = 0";
+        Object[] args = {};
 
+
+        return jdbcTemplate.query(sql, new exportRowMapper());
+
+
+    }
     @Override
     public boolean update(StudentUser studentUser) {
-        String sql = "UPDATE lgb_adminUser SET stuId =  ?, stuCardNum =  ?, stuName =  ?, stuGender =  ?, stuTelOne =  ?, stuTelTwo =  ?, stuType =  ?, stuIdentifiedType =  ?, stuIdentifiedNum =  ?, stuOldWorkPlaceType =  ?,stuOldWorkPlaceName =  ?, stuPolitical =  ?, stuOldWorkType =  ?, stuNationality =  ?, stuBirthday =  ?, stuLastEightNum =  ?, stuCheck =  ?, stuHealth =  ?, stuLocation =  ?, stuEducational =  ?, stuLevel =  ?, stuSpeciality =  ?, stuPreferential =  ?, stuDependentsTel =  ?, stuDependentsDesc =  ?, stuRemarkOne =  ?, stuRemarkTwo =  ?\n" +
-                "\n ,studentStartDate = ? WHERE stuId = ?";
+        String sql = "UPDATE lgb_student SET stuId = ?, stuCardNum = ?, stuName = ?, stuGender = ?, stuTelOne = ?, stuTelTwo = ?, stuType = ?, stuIdentifiedType = ?, stuIdentifiedNum = ?, stuOldWorkPlaceType = ?,stuOldWorkPlaceName = ?, stuPolitical = ?, stuOldWorkType = ?, stuNationality = ?, stuBirthday = ?, stuLastEightNum = ?, stuCheck = ?, stuHealth = ?, stuLocation = ?, stuEducational = ?, stuLevel = ?, stuSpeciality = ?, stuPreferential = ?, stuDependentsTel = ?, stuDependentsDesc = ?, stuRemarkOne = ?, stuRemarkTwo = ?, studentStartDate = ? WHERE deleteFlag = 0 AND stuId = ?";
         Object[] args = {
                 studentUser.getStuId(),
                 studentUser.getStuCardNum(),
@@ -174,8 +182,8 @@ public class StudentRepository implements StudentRepositoryI {
                 studentUser.getStuDependentsDesc(),
                 studentUser.getStuRemarkOne(),
                 studentUser.getStuRemarkTwo(),
-                studentUser.getStudentStartDate()
-
+                studentUser.getStudentStartDate(),
+                studentUser.getStuId()
         };
 
         return jdbcTemplate.update(sql, args) == 1 ? true : false;
@@ -201,13 +209,32 @@ public class StudentRepository implements StudentRepositoryI {
 
             studentUser.setStuId(resultSet.getInt("stuId"));
             studentUser.setStuName(resultSet.getString("stuName"));
-            studentUser.setStuGender(resultSet.getString("stuGender"));
+            studentUser.setStuGender(resultSet.getInt("stuGender"));
             studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
             studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
             studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
             studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
 
 
+
+            return studentUser;
+        }
+    }
+
+    private class exportRowMapper implements RowMapper<StudentUser> {
+
+        @Override
+        public StudentUser mapRow(ResultSet resultSet, int i) throws SQLException {
+            StudentUser studentUser = new StudentUser();
+
+            studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
+            studentUser.setStuName(resultSet.getString("stuName"));
+            studentUser.setStuGender(resultSet.getInt("stuGender"));
+            studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
+            studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
+            studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
+            studentUser.setStuOldWorkPlaceName(resultSet.getString("stuOldWorkPlaceName"));
+            studentUser.setStuLocation(resultSet.getString("stuLocation"));
 
             return studentUser;
         }
@@ -220,13 +247,13 @@ public class StudentRepository implements StudentRepositoryI {
             StudentUser studentUser = new StudentUser();
             studentUser.setStuId(resultSet.getInt("stuId"));
             studentUser.setStuName(resultSet.getString("stuName"));
-            studentUser.setStuGender(resultSet.getString("stuGender"));
+            studentUser.setStuGender(resultSet.getInt("stuGender"));
             studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
             studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
             studentUser.setStuIdentifiedType(resultSet.getInt("stuIdentifiedType"));
             studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
-            studentUser.setStuOldWorkPlaceType(resultSet.getString("stuOldWorkPlaceType"));
-            studentUser.setStuType(resultSet.getString("stuType"));
+            studentUser.setStuOldWorkPlaceType(resultSet.getInt("stuOldWorkPlaceType"));
+            studentUser.setStuType(resultSet.getInt("stuType"));
             studentUser.setStuHealth(resultSet.getString("stuHealth"));
             studentUser.setStuLevel(resultSet.getString("stuLevel"));
             studentUser.setStuSpeciality(resultSet.getString("stuSpeciality"));
@@ -242,8 +269,8 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
             studentUser.setStuLastEightNum(resultSet.getString("stuLastEightNum"));
             studentUser.setStuCheck(resultSet.getString("stuCheck"));
-            studentUser.setStuOldWorkType(resultSet.getString("stuOldWorkType"));
-            studentUser.setStuEducational(resultSet.getString("stuEducational"));
+            studentUser.setStuOldWorkType(resultSet.getInt("stuOldWorkType"));
+            studentUser.setStuEducational(resultSet.getInt("stuEducational"));
             studentUser.setStuIdentifiedNum(resultSet.getString("stuIdentifiedNum"));
             studentUser.setStudentStartDate(resultSet.getDate("studentStartDate"));
 

@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 @Service
 @Transactional
@@ -103,5 +105,10 @@ public class StudentService implements StudentServiceI{
     @Override
     public boolean existCardNum(StudentUser studentUser) {
         return studentRepository.selectCardNum(studentUser) == 0 ? true : false;
+    }
+
+    @Override
+    public List<StudentUser> exportAllStu() {
+        return studentRepository.selectForExport();
     }
 }
