@@ -207,7 +207,7 @@ public class CourseController {
     }
 
     @RequestMapping(value = "/route/make/leader/{courseId}")
-    public ModelAndView routeMakeLeader(@PathVariable("courseId") int courseId) {
+    public ModelAndView routeMakeLeader(@PathVariable("courseId") int courseId, RedirectAttributes redirectAttributes) {
         List<StudentUser> studentUsers = courseService.courseStudent(courseId);
         Course course = courseService.selectName(courseId);
 
@@ -217,8 +217,12 @@ public class CourseController {
             mav.addObject("studentUsers", studentUsers);
             mav.addObject("course", course);
 
+            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, "添加班长成功");
+
             return mav;
         }
+
+        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, "没有人员选择这个课程");
 
         return new ModelAndView("redirect:/admin/course/routePage.action");
     }

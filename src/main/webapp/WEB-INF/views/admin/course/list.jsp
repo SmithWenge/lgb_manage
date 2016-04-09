@@ -50,6 +50,11 @@
                     <p class="bg-danger">${deleteFailureMessage}</p>
                 </div>
             </c:if>
+            <c:if test="${not empty editFailureMessage}">
+                <div class="col-md-12" id="editFailureMessage">
+                    <p class="bg-danger">${editFailureMessage}</p>
+                </div>
+            </c:if>
 
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
@@ -156,6 +161,9 @@
         }, 2000);
         setTimeout(function() {
             $("#deleteFailureMessage").hide();
+        }, 2000);
+        setTimeout(function() {
+            $("#editFailureMessage").hide();
         }, 2000);
 
         $('#departmentId').on('change', function () {
