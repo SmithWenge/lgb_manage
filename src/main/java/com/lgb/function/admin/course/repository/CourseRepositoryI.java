@@ -19,7 +19,7 @@ public interface CourseRepositoryI {
     int selectCourseName(String courseName);
     List<Teacher> selectTeachers(int departmentId);
     int insert(Course course);
-    Page<Course> select4Page(int department, Pageable pageable);
+    Page<Course> select4Page(Course course, Pageable pageable);
     Course selectByCourseNum(String courseNum);
     void insertTeacherCourse(int courseId, int courseTeacherOne);
     Teacher selectTeacher(int teacherId);

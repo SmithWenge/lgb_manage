@@ -89,8 +89,8 @@ public class CourseService implements CourseServiceI {
     }
 
     @Override
-    public Page<Course> select4Page(int department, Pageable pageable) {
-        return courseRepository.select4Page(department, pageable);
+    public Page<Course> select4Page(Course course, Pageable pageable) {
+        return courseRepository.select4Page(course, pageable);
     }
 
     @Override

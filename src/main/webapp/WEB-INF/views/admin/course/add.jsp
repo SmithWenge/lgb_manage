@@ -108,13 +108,13 @@
                 <div class="col-md-4 form-group">
                     <label for="courseGraLimitNum" class="col-md-4 control-label">毕业报名限制</label>
                     <div class="col-md-8">
-                        <input type="number" class="form-control" id="courseGraLimitNum" placeholder="300" name="courseGraLimitNum">
+                        <input type="number" class="form-control" id="courseGraLimitNum" placeholder="50" name="courseGraLimitNum">
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
                     <label for="courseLimitNum" class="col-md-3 control-label">报名限制</label>
                     <div class="col-md-9">
-                        <input type="number" class="form-control" id="courseLimitNum" placeholder="300" name="courseLimitNum">
+                        <input type="number" class="form-control" id="courseLimitNum" placeholder="50" name="courseLimitNum">
                     </div>
                 </div>
             </div>

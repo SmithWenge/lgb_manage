@@ -1,6 +1,7 @@
 package com.lgb.function.admin.course;
 
 import com.lgb.arc.Entry;
+import com.lgb.function.admin.course.time.CourseTime;
 import com.lgb.function.admin.teacher.Teacher;
 
 import java.util.List;
@@ -28,6 +29,16 @@ public class Course extends Entry {
     private int courseStuNum;
     private String majorName;
     private int courseMaster;
+    private List<CourseTime> times;
+
+    public void setTimes(List<CourseTime> times) {
+        this.times = times;
+    }
+
+    public List<CourseTime> getTimes() {
+
+        return times;
+    }
 
     public void setCourseMaster(int courseMaster) {
         this.courseMaster = courseMaster;

@@ -36,8 +36,7 @@ public class CourseController {
     private CourseServiceI courseService;
 
     @RequestMapping("/routePage")
-    public ModelAndView listFirstCourse(@RequestParam(value = "departmentId", defaultValue = "0") int department,
-                                   @PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable, HttpSession session) {
+    public ModelAndView listFirstCourse(Course course, @PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable, HttpSession session) {
         session.removeAttribute(ConstantFields.SESSION_COURSE_SEARCH_KEY);
 
         ModelAndView mav = new ModelAndView("admin/course/list");
@@ -45,44 +44,44 @@ public class CourseController {
         List<Department> departments = courseService.departments();
         mav.addObject("departments", departments);
 
-        Page<Course> courses = courseService.select4Page(department, pageable);
+        Page<Course> courses = courseService.select4Page(course, pageable);
         mav.addObject(ConstantFields.PAGE_KEY, courses);
 
         return mav;
     }
 
     @RequestMapping("/page")
-    public ModelAndView listPage(@RequestParam(value = "departmentId", defaultValue = "0") int departmentId,
-                                 @PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable, HttpSession session) {
-        Object searchObj = session.getAttribute(ConstantFields.SESSION_COURSE_SEARCH_KEY);
-        Optional<Object> optional = Optional.fromNullable(searchObj);
+    public ModelAndView listPage(Course course, @PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable, HttpSession session) {
+        Course searchObj = (Course) session.getAttribute(ConstantFields.SESSION_COURSE_SEARCH_KEY);
+        Optional<Course> optional = Optional.fromNullable(searchObj);
 
         if (optional.isPresent()) {
-            departmentId = (int) searchObj;
+            course = searchObj;
         }
 
         ModelAndView mav = new ModelAndView("admin/course/list");
         List<Department> departments = courseService.departments();
         mav.addObject("departments", departments);
 
-        Page<Course> courses = courseService.select4Page(departmentId, pageable);
+        Page<Course> courses = courseService.select4Page(course, pageable);
         mav.addObject(ConstantFields.PAGE_KEY, courses);
 
         return mav;
     }
 
     @RequestMapping("/pageSearch")
-    public ModelAndView searchPage(@RequestParam(value = "departmentId", defaultValue = "0") int departmentId,
-                                 @PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable, HttpSession session) {
-        if (departmentId > 0) {
-            session.setAttribute(ConstantFields.SESSION_COURSE_SEARCH_KEY, departmentId);
+    public ModelAndView searchPage(Course course, @PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable, HttpSession session) {
+        Optional<Course> optional = Optional.fromNullable(course);
+
+        if (optional.isPresent()) {
+            session.setAttribute(ConstantFields.SESSION_COURSE_SEARCH_KEY, course);
         }
 
         ModelAndView mav = new ModelAndView("admin/course/list");
         List<Department> departments = courseService.departments();
         mav.addObject("departments", departments);
 
-        Page<Course> courses = courseService.select4Page(departmentId, pageable);
+        Page<Course> courses = courseService.select4Page(course, pageable);
         mav.addObject(ConstantFields.PAGE_KEY, courses);
 
         return mav;

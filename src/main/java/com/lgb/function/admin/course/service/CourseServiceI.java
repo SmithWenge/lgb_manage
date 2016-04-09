@@ -19,7 +19,7 @@ public interface CourseServiceI {
     boolean courseName(String courseName);
     List<Teacher> teachers(int departmentId);
     boolean add(Course course, String logUser);
-    Page<Course> select4Page(int department, Pageable pageable);
+    Page<Course> select4Page(Course course, Pageable pageable);
     Course select(int courseId);
     List<CourseTime> courseTimes(int courseId);
     boolean edit(Course course, String logUser);

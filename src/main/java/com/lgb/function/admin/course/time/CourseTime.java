@@ -8,6 +8,7 @@ public class CourseTime extends Entry{
     private String timeSpecific;
     private int courseRoom;
     private int courseId;
+    private int timeSpecificInt;
 
     public void setCourseId(int courseId) {
         this.courseId = courseId;
@@ -23,6 +24,15 @@ public class CourseTime extends Entry{
         this.timeSpecific = timeSpecific;
         this.courseRoom = courseRoom;
         this.courseId = courseId;
+    }
+
+    public void setTimeSpecificInt(int timeSpecificInt) {
+        this.timeSpecificInt = timeSpecificInt;
+    }
+
+    public int getTimeSpecificInt() {
+
+        return timeSpecificInt;
     }
 
     public CourseTime() {

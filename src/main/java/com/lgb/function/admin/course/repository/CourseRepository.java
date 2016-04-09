@@ -160,13 +160,18 @@ public class CourseRepository implements CourseRepositoryI {
     }
 
     @Override
-    public Page<Course> select4Page(int departmentId, Pageable pageable) {
+    public Page<Course> select4Page(Course course, Pageable pageable) {
         StringBuilder sql = new StringBuilder("SELECT courseId, majorName, courseTuition, courseNum, courseName, teacherOneName, teacherTwoName, courseRoom, courseEnrollmentNum, courseLimitNum FROM lgb_course C LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE C.deleteFlag = 0");
 
         List<Object> list = new ArrayList<>();
-        if (departmentId > 0) {
+        if (course.getDepartmentId() > 0) {
             sql.append(" AND C.departmentId = ?");
-            list.add(departmentId);
+            list.add(course.getDepartmentId());
+        }
+
+        if (course.getMajorId() > 0) {
+            sql.append(" AND C.majorId = ?");
+            list.add(course.getMajorId());
         }
 
         sql.append(" ORDER BY courseId DESC");
@@ -192,9 +197,54 @@ public class CourseRepository implements CourseRepositoryI {
             course.setCourseTuition(rs.getInt("courseTuition"));
             course.setCourseLimitNum(rs.getInt("courseLimitNum"));
             course.setCourseStuNum(courseStuNum(course.getCourseId()));
+            course.setTimes(selectTime(course.getCourseId()));
 
             return course;
         }
+    }
+
+    private List<CourseTime> selectTime(int courseId) {
+        String sql = "SELECT timeWeek, timeSpecific FROM lgb_courseTime WHERE courseId = ?";
+        Object[] args = {
+                courseId
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectTimeRowMapper());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<CourseTime>();
+        }
+    }
+
+    private class SelectTimeRowMapper implements RowMapper<CourseTime> {
+
+        @Override
+        public CourseTime mapRow(ResultSet rs, int rowNum) throws SQLException {
+            CourseTime time = new CourseTime();
+
+            time.setTimeWeek(rs.getInt("timeWeek"));
+            String specific = rs.getString("timeSpecific");
+            time.setTimeSpecificInt(convertTimeSpecific(specific));
+
+            return time;
+        }
+    }
+
+    private int convertTimeSpecific(String specific) {
+        if (specific.equals("a")) {
+            return 1;
+        } else if (specific.equals("b")) {
+            return 2;
+        } else if (specific.equals("c")) {
+            return 3;
+        } else if (specific.equals("d")) {
+            return 4;
+        } else if (specific.equals("e")) {
+            return 5;
+        }
+
+        return 0;
     }
 
     private int courseStuNum(int courseId) {

@@ -17,6 +17,12 @@
                             </c:forEach>
                         </select>
                     </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="majorId">专业</label>
+                        <select class="form-control" id="majorId" name="majorId">
+                            <option value="0">全部</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-default">查询</button>
                 </form>
             </li>
@@ -55,6 +61,7 @@
                         <th>课程名</th>
                         <th>任课教师</th>
                         <th>教室</th>
+                        <th>上课时间</th>
                         <th>计划人数</th>
                         <th>实际人数</th>
                         <th>学费</th>
@@ -69,6 +76,12 @@
                             <td>${course.courseName}</td>
                             <td>${course.teacherOneName} ${course.teacherTwoName}</td>
                             <tags:dictd groupValue="courseRoom" itemKey="${course.courseRoom}" />
+                            <td style="font-size: 5px;">
+                            <c:forEach items="${course.times}" var="time">
+                                <tags:diclabel groupValue="timeWeek" itemKey="${time.timeWeek}"/>
+                                 <tags:diclabel groupValue="timeSpecific" itemKey="${time.timeSpecificInt}"/>,
+                            </c:forEach>
+                            </td>
                             <td>${course.courseEnrollmentNum}</td>
                             <td>${course.courseStuNum}</td>
                             <td>${course.courseTuition}</td>
@@ -144,6 +157,23 @@
         setTimeout(function() {
             $("#deleteFailureMessage").hide();
         }, 2000);
+
+        $('#departmentId').on('change', function () {
+            var $departmentId = $('#departmentId').val();
+            var major = document.getElementById("majorId");
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json',
+                dataType: 'json',
+                url: '${contextPath}/admin/course/majors/' + $departmentId + '.action',
+                success: function (result) {
+                    major.options.length = 0;
+                    $.each(result.majors, function (i, item) {
+                        major.options.add(new Option(item.majorName, item.majorId));
+                    });
+                }
+            });
+        });
     });
 </script>
 
