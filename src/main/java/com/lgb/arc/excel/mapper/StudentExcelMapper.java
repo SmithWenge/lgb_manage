@@ -2,6 +2,7 @@ package com.lgb.arc.excel.mapper;
 
 import com.lgb.arc.excel.ExcelMapper;
 import com.lgb.function.admin.student.StudentUser;
+import com.lgb.function.support.dictionary.impl.DefaultDictionaryManager;
 import jxl.write.Label;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableSheet;
@@ -13,12 +14,8 @@ public class StudentExcelMapper implements ExcelMapper<StudentUser> {
         try {
             sheet.addCell(new Label(0, rowNum, studentUser.getStuCardNum()));
             sheet.addCell(new Label(1, rowNum, studentUser.getStuName()));
-            int gender = studentUser.getStuGender();
-            String genderStr = "男";
-            if (gender == 0) {
-                genderStr = "女";
-            }
-            sheet.addCell(new Label(2, rowNum, genderStr));
+            DefaultDictionaryManager manager = DefaultDictionaryManager.getInstance();
+            sheet.addCell(new Label(2, rowNum, manager.dictionary(studentUser.getStuGender(), "gender").getItemValue()));
             sheet.addCell(new Label(3, rowNum, studentUser.getStuBirthday().toString()));
             sheet.addCell(new Label(4, rowNum, studentUser.getStuTelOne()));
             sheet.addCell(new Label(5, rowNum, studentUser.getStuTelTwo()));
