@@ -1,0 +1,21 @@
+package com.lgb.function.admin.count.service;
+
+import com.lgb.function.admin.count.model.*;
+
+import java.util.List;
+
+public interface CountServiceI {
+
+    List<StuGender> queryNumOfGender();
+    List<StuEducational> queryNumOfEducational();
+    List<StuOldWorkPlaceType> queryNumOfOldPlaceType();
+    List<StuOldWorkType> queryNumOfOldWorkType();
+    List<StuPolitical> queryNumOfStuPolitical();
+    List<StuPreferential> queryNumOfStuPreferential();
+    List<StuType> queryNumOfStuType();
+    List<YearOfStuBirthday> queryNumOfStuBirthday();
+    InfoCount queryNumOfStudent();
+    InfoCount queryNumOfTeacher();
+    InfoCount queryNumOfCourse();
+    InfoCount querySumOfactualTuition();
+}
