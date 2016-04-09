@@ -3,11 +3,13 @@ package com.lgb.function.admin.course.controller;
 import com.google.common.base.Optional;
 import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.course.Course;
+import com.lgb.function.admin.course.CourseSite;
 import com.lgb.function.admin.course.service.CourseServiceI;
 import com.lgb.function.admin.course.time.CourseTime;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.teacher.Teacher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -193,5 +195,50 @@ public class CourseController {
         redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
 
         return "redirect:/admin/course/routePage.action";
+    }
+
+    @RequestMapping(value = "/siteNum/{courseId}")
+    public ModelAndView siteNum(@PathVariable("courseId") int courseId) {
+        List<CourseSite> courseSites = courseService.courseSiteNum(courseId);
+
+        ModelAndView mav = new ModelAndView("admin/course/site");
+        mav.addObject("courseSites", courseSites);
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/route/make/leader/{courseId}")
+    public ModelAndView routeMakeLeader(@PathVariable("courseId") int courseId) {
+        List<StudentUser> studentUsers = courseService.courseStudent(courseId);
+        Course course = courseService.selectName(courseId);
+
+        if (studentUsers.size() > 0) {
+            ModelAndView mav = new ModelAndView("admin/course/route/make/leader");
+
+            mav.addObject("studentUsers", studentUsers);
+            mav.addObject("course", course);
+
+            return mav;
+        }
+
+        return new ModelAndView("redirect:/admin/course/routePage.action");
+    }
+
+    @RequestMapping(value = "/make/leader", method = RequestMethod.POST)
+    public String makeLeader(Course course, HttpSession session, RedirectAttributes redirectAttributes) {
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminLoginName();
+
+        if (courseService.makeLeader(course, logUser)) {
+            if (LOG.isInfoEnabled())
+                LOG.info("[LGB MANAGE] [OK] {} edit Course's ID {} add leader's ID is  {}.", logUser, course.getCourseId(), course.getCourseMaster());
+
+            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+
+            return "redirect:/admin/course/routePage.action";
+        }
+
+        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        return "redirect:/admin/course/route/make/leader/" + course.getCourseId() + ".action";
     }
 }

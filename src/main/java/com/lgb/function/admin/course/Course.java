@@ -27,6 +27,16 @@ public class Course extends Entry {
     private String teacherTwoName;
     private int courseStuNum;
     private String majorName;
+    private int courseMaster;
+
+    public void setCourseMaster(int courseMaster) {
+        this.courseMaster = courseMaster;
+    }
+
+    public int getCourseMaster() {
+
+        return courseMaster;
+    }
 
     public void setMajorName(String majorName) {
         this.majorName = majorName;

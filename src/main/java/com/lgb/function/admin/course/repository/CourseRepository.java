@@ -1,9 +1,11 @@
 package com.lgb.function.admin.course.repository;
 
 import com.lgb.function.admin.course.Course;
+import com.lgb.function.admin.course.CourseSite;
 import com.lgb.function.admin.course.time.CourseTime;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.teacher.Teacher;
 import com.lgb.function.support.utils.RepositoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -411,6 +413,105 @@ public class CourseRepository implements CourseRepositoryI {
             course.setCourseNum(rs.getString("courseNum"));
 
             return course;
+        }
+    }
+
+    @Override
+    public List<CourseSite> selectSiteNum(int courseId) {
+        String sql = "SELECT S.stuName, C.courseRoom, D.departmentName, M.majorName, C.courseName, S.stuBirthday, S.stuId, STUSITE.siteNum FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON M.departmentId = D.departmentId LEFT JOIN (SELECT TMP.studentId, TMP.stuBirthday, TMP.courseId, (@num:=@num + 1) AS siteNum FROM (SELECT SC.studentId, S.stuBirthday, SC.courseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.courseId = ? ORDER BY S.stuBirthday ASC) AS TMP, (SELECT @num:=0) AS IT) AS STUSITE ON STUSITE.studentId = S.stuId";
+        Object[] args = {
+                courseId
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectSiteNumRowMapper());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<CourseSite>();
+        }
+    }
+
+    private class SelectSiteNumRowMapper implements RowMapper<CourseSite> {
+
+        @Override
+        public CourseSite mapRow(ResultSet rs, int rowNum) throws SQLException {
+            CourseSite site = new CourseSite();
+
+            site.setStuName(rs.getString("stuName"));
+            site.setCourseRoom(rs.getString("courseRoom"));
+            site.setDepartmentName(rs.getString("departmentName"));
+            site.setMajorName(rs.getString("majorName"));
+            site.setCourseRoom(rs.getString("courseName"));
+            site.setSiteNum(rs.getInt("siteNum"));
+            site.setStuBirthday(rs.getDate("stuBirthday"));
+            site.setCourseName(rs.getString("courseName"));
+
+            return site;
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStudents(int courseId) {
+        String sql = "SELECT S.stuId, S.stuName FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.courseId = ?";
+        Object[] args = {
+                courseId
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectStudentsRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<StudentUser>();
+        }
+    }
+
+    private class SelectStudentsRowMapper implements RowMapper<StudentUser> {
+
+        @Override
+        public StudentUser mapRow(ResultSet rs, int rowNum) throws SQLException {
+            StudentUser studentUser = new StudentUser();
+
+            studentUser.setStuId(rs.getInt("stuId"));
+            studentUser.setStuName(rs.getString("stuName"));
+
+            return studentUser;
+        }
+    }
+
+    @Override
+    public Course selectName(int courseId) {
+        String sql = "SELECT courseId, courseName FROM lgb_course WHERE courseId = ?";
+        Object[] args = {
+                courseId
+        };
+        return jdbcTemplate.queryForObject(sql, args, new SelectNameRowMaper());
+    }
+
+    private class SelectNameRowMaper implements RowMapper<Course> {
+
+        @Override
+        public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Course course = new Course();
+
+            course.setCourseId(rs.getInt("courseId"));
+            course.setCourseName(rs.getString("courseName"));
+
+            return course;
+        }
+    }
+
+    @Override
+    public boolean updateLeader(Course course) {
+        String sql = "UPDATE lgb_course SET courseMaster = ? WHERE deleteFlag = 0 AND courseId = ?";
+        Object[] args = {
+                course.getCourseMaster(),
+                course.getCourseId()
+        };
+
+        try {
+            return jdbcTemplate.update(sql, args) == 1 ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

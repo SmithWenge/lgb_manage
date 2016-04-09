@@ -80,6 +80,12 @@
                                 <a href="${contextPath}/admin/course/delete/${course.courseId}.action" style="text-decoration: none;" >
                                     <button type="button" class="btn btn-danger">毕业</button>
                                 </a>
+                                <a href="${contextPath}/admin/course/siteNum/${course.courseId}.action" style="text-decoration: none;" >
+                                    <button type="button" class="btn btn-info">排座</button>
+                                </a>
+                                <a href="${contextPath}/admin/course/route/make/leader/${course.courseId}.action" style="text-decoration: none;" >
+                                    <button type="button" class="btn btn-info">设置班长</button>
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

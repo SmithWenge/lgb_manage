@@ -2,11 +2,13 @@ package com.lgb.function.admin.course.service;
 
 import com.google.common.base.Optional;
 import com.lgb.function.admin.course.Course;
+import com.lgb.function.admin.course.CourseSite;
 import com.lgb.function.admin.course.time.CourseTime;
 import com.lgb.function.admin.course.repository.CourseRepositoryI;
 import com.lgb.function.admin.course.time.repository.CourseTimeRepositoryI;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.teacher.Teacher;
 import com.lgb.function.support.log.LogContent;
 import com.lgb.function.support.log.repository.LogRepositoryI;
@@ -145,6 +147,41 @@ public class CourseService implements CourseServiceI {
 
             if (tmp) {
                 LogContent logContent = new LogContent(logUser, "删除系ID为" + courseId, 1, 2);
+                logRepository.insertLog(logContent);
+            }
+
+            return tmp;
+        }
+
+        return false;
+    }
+
+    @Override
+    public List<CourseSite> courseSiteNum(int courseId) {
+        return courseRepository.selectSiteNum(courseId);
+    }
+
+    @Override
+    public List<StudentUser> courseStudent(int courseId) {
+        return courseRepository.selectStudents(courseId);
+    }
+
+    @Override
+    public Course selectName(int courseId) {
+        return courseRepository.selectName(courseId);
+    }
+
+    @Override
+    public boolean makeLeader(Course course, String logUser) {
+        Course existCourse = courseRepository.selectName(course.getCourseId());
+
+        Optional<Course> optional = Optional.fromNullable(existCourse);
+
+        if (optional.isPresent()) {
+            boolean tmp = courseRepository.updateLeader(course);
+
+            if (tmp) {
+                LogContent logContent = new LogContent(logUser, "修改班级班长,班级ID为" + course.getCourseId(), 1, 2);
                 logRepository.insertLog(logContent);
             }
 
