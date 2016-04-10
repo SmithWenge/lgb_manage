@@ -7,7 +7,7 @@
 <head>
     <title>老干部大学学籍管理</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
 <body>
