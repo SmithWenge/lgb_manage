@@ -12,42 +12,42 @@ public class CountService implements CountServiceI {
     @Autowired
     private CountRepositoryI countRepository;
     @Override
-    public List<StuGender> queryNumOfGender() {
+    public List<JsonModel> queryNumOfGender() {
         return countRepository.queryNumOfGender();
     }
 
     @Override
-    public List<StuEducational> queryNumOfEducational() {
+    public List<JsonModel> queryNumOfEducational() {
         return countRepository.queryNumOfEducational();
     }
 
     @Override
-    public List<StuOldWorkPlaceType> queryNumOfOldPlaceType() {
+    public List<JsonModel> queryNumOfOldPlaceType() {
         return countRepository.queryNumOfOldPlaceType();
     }
 
     @Override
-    public List<StuOldWorkType> queryNumOfOldWorkType() {
+    public List<JsonModel> queryNumOfOldWorkType() {
         return countRepository.queryNumOfOldWorkType();
     }
 
     @Override
-    public List<StuPolitical> queryNumOfStuPolitical() {
+    public List<JsonModel> queryNumOfStuPolitical() {
         return countRepository.queryNumOfStuPolitical();
     }
 
     @Override
-    public List<StuPreferential> queryNumOfStuPreferential() {
+    public List<JsonModel> queryNumOfStuPreferential() {
         return countRepository.queryNumOfStuPreferential();
     }
 
     @Override
-    public List<StuType> queryNumOfStuType() {
+    public List<JsonModel> queryNumOfStuType() {
         return countRepository.queryNumOfStuType();
     }
 
     @Override
-    public List<YearStuBirthday> queryNumOfStuBirthday() {
+    public List<JsonModel> queryNumOfStuBirthday() {
         return countRepository.queryNumOfStuBirthday();
     }
 
@@ -72,7 +72,7 @@ public class CountService implements CountServiceI {
     }
 
     @Override
-    public List<YearStuEduStart> queryNumOfStuEduStart() {
+    public List<JsonModel> queryNumOfStuEduStart() {
         return countRepository.queryNumOfStuEduStart();
     }
 }

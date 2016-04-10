@@ -1,6 +1,6 @@
 package com.lgb.function.admin.count.controller;
 
-import com.lgb.function.admin.count.model.YearStuEduStart;
+import com.lgb.function.admin.count.model.JsonModel;
 import com.lgb.function.admin.count.service.CountServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +24,17 @@ public class CountController {
 
     @ResponseBody
     @RequestMapping("/all")
-    public Map<String, List<YearStuEduStart>> yearStuEduStartMap() {
-        Map<String, List<YearStuEduStart>> map = new HashMap<>();
+    public Map<String, List<JsonModel>> yearStuEduStartMap() {
+        Map<String, List<JsonModel>> map = new HashMap<>();
         map.put("yearStuEduStart", countService.queryNumOfStuEduStart());
+        map.put("stuGender",countService.queryNumOfGender());
+        map.put("stuEducational",countService.queryNumOfEducational());
+        map.put("stuOldWorkPlaceType",countService.queryNumOfOldPlaceType());
+        map.put("stuOldWorkType",countService.queryNumOfOldWorkType());
+        map.put("stuPolitical",countService.queryNumOfStuPolitical());
+        map.put("stuPreferential",countService.queryNumOfStuPreferential());
+        map.put("stuType",countService.queryNumOfStuType());
+        map.put("yearOfStuBirthday",countService.queryNumOfStuBirthday());
 
         return map;
     }
