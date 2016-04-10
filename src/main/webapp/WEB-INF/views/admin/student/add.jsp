@@ -237,6 +237,9 @@
                     },
                     equalTo: '#stuCardNumTwo'
                 },
+                studentStartDate: {
+                    required: true
+                },
                 stuTelOne: {
                     required: true,
                     minlength: 6,
@@ -266,7 +269,9 @@
                     required: true
                 },
                 stuDependentsTel: {
-                    required: true
+                    required: true,
+                    minlength: 6,
+                    maxlength: 11
                 },
                 stuDependentsDesc: {
                     required: true
@@ -285,6 +290,9 @@
                     maxlength: "卡号的长度为2到50.",
                     remote: "请确定卡号或者该卡学生已经添加.",
                     equalTo: "请保证输入的卡号是正确的."
+                },
+                studentStartDate: {
+                    required: "请填写入学日期"
                 },
                 stuTelOne: {
                     required: "请填写座机号码或手机号码",
@@ -315,7 +323,9 @@
                     required: "请填写政治面貌"
                 },
                 stuDependentsTel: {
-                    required: "请填写家属电话"
+                    required: "请填写家属电话",
+                    minlength: "请填写正确格式的号码",
+                    maxlength: "请填写正确格式的号码"
                 },
                 stuDependentsDesc: {
                     required: "请填写家属关系"

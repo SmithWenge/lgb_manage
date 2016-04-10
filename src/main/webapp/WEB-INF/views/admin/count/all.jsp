@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>ECharts</title>
+    <title>学员信息统计</title>
     <!-- 引入 echarts.js -->
     <script src="${contextPath}/static/plugins/echarts/echarts.min.js"></script>
     <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
