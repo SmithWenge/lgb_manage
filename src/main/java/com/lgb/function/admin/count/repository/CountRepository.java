@@ -144,7 +144,7 @@ public class CountRepository implements CountRepositoryI {
         @Override
         public JsonModel mapRow(ResultSet resultSet, int i) throws SQLException {
             JsonModel yearStuBirthday = new JsonModel();
-            yearStuBirthday.setName(resultSet.getString("yearStuBirthday"));
+            yearStuBirthday.setName(resultSet.getString("yearOfStuBirthday"));
             yearStuBirthday.setValue(resultSet.getInt("num"));
             return yearStuBirthday;
         }
