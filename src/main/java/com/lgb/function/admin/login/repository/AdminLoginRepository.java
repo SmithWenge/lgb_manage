@@ -15,7 +15,7 @@ public class AdminLoginRepository implements AdminLoginRepositoryI {
     private JdbcTemplate jdbcTemplate;
 
     public AdminUser selectUnique(AdminUser adminUser) {
-        String sql = "SELECT adminName, adminLoginName, adminRole, adminLoginPass FROM lgb_adminUser WHERE deleteFlag = 0 AND adminRole = 1 AND adminIsLock = 0 AND adminLoginName = ? AND adminLoginPass = ?";
+        String sql = "SELECT adminName, adminLoginName, adminRole, adminLoginPass FROM lgb_adminUser WHERE deleteFlag = 0 AND adminIsLock = 0 AND adminLoginName = ? AND adminLoginPass = ?";
         Object[] args = {
                 adminUser.getAdminLoginName(),
                 adminUser.getAdminLoginPass()
