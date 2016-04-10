@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class CourseSite {
     private String courseName;
-    private String courseRoom;
+    private int courseRoom;
     private int siteNum;
     private String stuName;
     private Date stuBirthday;
@@ -31,7 +31,7 @@ public class CourseSite {
         this.courseName = courseName;
     }
 
-    public void setCourseRoom(String courseRoom) {
+    public void setCourseRoom(int courseRoom) {
         this.courseRoom = courseRoom;
     }
 
@@ -52,7 +52,7 @@ public class CourseSite {
         return courseName;
     }
 
-    public String getCourseRoom() {
+    public int getCourseRoom() {
         return courseRoom;
     }
 

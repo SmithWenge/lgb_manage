@@ -16,6 +16,26 @@ public class CourseLeader extends Entry {
     private String telOne;
     private String telTwo;
     private int siteNum;
+    private int courseId;
+    private int studentId;
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public int getStudentId() {
+
+        return studentId;
+    }
+
+    public void setCourseId(int courseId) {
+        this.courseId = courseId;
+    }
+
+    public int getCourseId() {
+
+        return courseId;
+    }
 
     public void setCardNum(String cardNum) {
         this.cardNum = cardNum;

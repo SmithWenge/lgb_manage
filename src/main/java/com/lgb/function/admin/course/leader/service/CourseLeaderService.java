@@ -4,6 +4,7 @@ import com.lgb.function.admin.course.leader.CourseLeader;
 import com.lgb.function.admin.course.leader.repository.CourseLeaderRepositoryI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +19,23 @@ public class CourseLeaderService implements CourseLeaderServiceI {
 
     @Override
     public Page<CourseLeader> select4Page(Pageable pageable) {
-        return courseLeaderRepository.select4Page(pageable);
+        Page<CourseLeader> courseLeaders = courseLeaderRepository.select4Page(pageable);
+        List<CourseLeader> courseLeaderList = courseLeaders.getContent();
+
+        for (CourseLeader courseLeader : courseLeaderList) {
+            courseLeader.setSiteNum(courseLeaderRepository.courseSiteNum(courseLeader.getCourseId(), courseLeader.getStudentId()));
+        }
+
+        return new PageImpl<CourseLeader>(courseLeaderList, pageable, courseLeaders.getTotalElements());
     }
 
     @Override
     public List<CourseLeader> listAll() {
-        return courseLeaderRepository.selectAll();
+        List<CourseLeader> courseLeaders = courseLeaderRepository.selectAll();
+        for (CourseLeader courseLeader : courseLeaders) {
+            courseLeader.setSiteNum(courseLeaderRepository.courseSiteNum(courseLeader.getCourseId(), courseLeader.getStudentId()));
+        }
+
+        return courseLeaders;
     }
 }

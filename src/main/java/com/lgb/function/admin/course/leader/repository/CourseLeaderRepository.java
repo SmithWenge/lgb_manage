@@ -23,7 +23,7 @@ public class CourseLeaderRepository implements CourseLeaderRepositoryI {
 
     @Override
     public Page<CourseLeader> select4Page(Pageable pageable) {
-        String sql = "SELECT S.stuName, S.stuCardNum, C.courseRoom, D.departmentName, M.majorName, C.courseName, S.stuGender, S.stuBirthday, S.stuTelOne, S.stuTelTwo, S.stuId, STUSITE.siteNum FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON M.departmentId = D.departmentId LEFT JOIN (SELECT TMP.studentId, TMP.stuBirthday, TMP.courseId, (@num:=@num + 1) AS siteNum FROM (SELECT SC.studentId, S.stuBirthday, SC.courseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.courseId IN (SELECT courseId FROM lgb_course C WHERE C.deleteFlag = 0) ORDER BY S.stuBirthday ASC) AS TMP, (SELECT @num:=0) AS IT) AS STUSITE ON STUSITE.studentId = S.stuId WHERE S.stuId = C.courseMaster AND C.deleteFlag = 0 ORDER BY S.stuId";
+        String sql = "SELECT SC.courseId, S.stuName, S.stuCardNum, C.courseRoom, D.departmentName, M.majorName, C.courseName, S.stuGender, S.stuBirthday, S.stuTelOne, S.stuTelTwo, S.stuId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON M.departmentId = D.departmentId WHERE S.stuId = C.courseMaster AND C.deleteFlag = 0 ORDER BY C.courseId";
         Object[] args = {};
 
         return repositoryUtils.select4Page(sql, pageable, args, new Select4PageRowMapper());
@@ -31,7 +31,7 @@ public class CourseLeaderRepository implements CourseLeaderRepositoryI {
 
     @Override
     public List<CourseLeader> selectAll() {
-        String sql = "SELECT S.stuName, S.stuCardNum, C.courseRoom, D.departmentName, M.majorName, C.courseName, S.stuGender, S.stuBirthday, S.stuTelOne, S.stuTelTwo, S.stuId, STUSITE.siteNum FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON M.departmentId = D.departmentId LEFT JOIN (SELECT TMP.studentId, TMP.stuBirthday, TMP.courseId, (@num:=@num + 1) AS siteNum FROM (SELECT SC.studentId, S.stuBirthday, SC.courseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.courseId IN (SELECT courseId FROM lgb_course C WHERE C.deleteFlag = 0) ORDER BY S.stuBirthday ASC) AS TMP, (SELECT @num:=0) AS IT) AS STUSITE ON STUSITE.studentId = S.stuId WHERE S.stuId = C.courseMaster AND C.deleteFlag = 0 ORDER BY S.stuId";
+        String sql = "SELECT SC.courseId, S.stuName, S.stuCardNum, C.courseRoom, D.departmentName, M.majorName, C.courseName, S.stuGender, S.stuBirthday, S.stuTelOne, S.stuTelTwo, S.stuId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON M.departmentId = D.departmentId WHERE S.stuId = C.courseMaster AND C.deleteFlag = 0";
         Object[] args = {};
 
         try {
@@ -42,13 +42,27 @@ public class CourseLeaderRepository implements CourseLeaderRepositoryI {
 
     }
 
+    public int courseSiteNum(int courseId, int studentId) {
+        String sql = "SELECT SO.siteNum FROM (SELECT CO.studentId, CO.stuBirthday, CO.stuName, (@num:=@num + 1) AS siteNum FROM (SELECT SC.studentId, S.stuBirthday, S.stuName FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE courseId = ? ORDER BY S.stuBirthday ASC) AS CO, (SELECT @num:=0) AS IT) SO WHERE SO.studentId = ?";
+        Object[] args = {
+                courseId,
+                studentId
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, Integer.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     private class Select4PageRowMapper implements RowMapper<CourseLeader> {
 
         @Override
         public CourseLeader mapRow(ResultSet rs, int rowNum) throws SQLException {
             CourseLeader leader = new CourseLeader();
 
-            leader.setSiteNum(rs.getInt("siteNum"));
             leader.setLeaderName(rs.getString("stuName"));
             leader.setCourseName(rs.getString("courseName"));
             leader.setClassRoom(rs.getInt("courseRoom"));
@@ -59,6 +73,8 @@ public class CourseLeaderRepository implements CourseLeaderRepositoryI {
             leader.setTelOne(rs.getString("stuTelOne"));
             leader.setTelTwo(rs.getString("stuTelTwo"));
             leader.setCardNum(rs.getString("stuCardNum"));
+            leader.setCourseId(rs.getInt("courseId"));
+            leader.setStudentId(rs.getInt("stuId"));
 
             return leader;
         }

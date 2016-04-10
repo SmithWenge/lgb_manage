@@ -9,4 +9,5 @@ import java.util.List;
 public interface CourseLeaderRepositoryI {
     Page<CourseLeader> select4Page(Pageable pageable);
     List<CourseLeader> selectAll();
+    int courseSiteNum(int courseId, int studentId);
 }

@@ -22,7 +22,7 @@
                             <td>${site.departmentName}</td>
                             <td>${site.majorName}</td>
                             <td>${site.courseName}</td>
-                            <td>${site.courseRoom}</td>
+                            <tags:dictd groupValue="courseRoom" itemKey="${site.courseRoom}" />
                             <td>${site.stuName}</td>
                             <td>${site.stuBirthday}</td>
                             <td>${site.siteNum}</td>
