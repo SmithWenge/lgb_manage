@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>wechat</title>
+    <title>老干部大学学籍管理</title>
     <meta charset="utf-8">
     <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>

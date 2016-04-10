@@ -13,9 +13,10 @@ public interface CountServiceI {
     List<StuPolitical> queryNumOfStuPolitical();
     List<StuPreferential> queryNumOfStuPreferential();
     List<StuType> queryNumOfStuType();
-    List<YearOfStuBirthday> queryNumOfStuBirthday();
+    List<YearStuBirthday> queryNumOfStuBirthday();
     InfoCount queryNumOfStudent();
     InfoCount queryNumOfTeacher();
     InfoCount queryNumOfCourse();
-    InfoCount querySumOfactualTuition();
+    InfoCount querySumOfActualTuition();
+    List<YearStuEduStart> queryNumOfStuEduStart();
 }

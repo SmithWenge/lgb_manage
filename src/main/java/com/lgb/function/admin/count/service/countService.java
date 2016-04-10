@@ -47,7 +47,7 @@ public class CountService implements CountServiceI {
     }
 
     @Override
-    public List<YearOfStuBirthday> queryNumOfStuBirthday() {
+    public List<YearStuBirthday> queryNumOfStuBirthday() {
         return countRepository.queryNumOfStuBirthday();
     }
 
@@ -67,7 +67,12 @@ public class CountService implements CountServiceI {
     }
 
     @Override
-    public InfoCount querySumOfactualTuition() {
-        return countRepository.querySumOfactualTuition();
+    public InfoCount querySumOfActualTuition() {
+        return countRepository.querySumOfActualTuition();
+    }
+
+    @Override
+    public List<YearStuEduStart> queryNumOfStuEduStart() {
+        return countRepository.queryNumOfStuEduStart();
     }
 }

@@ -2,6 +2,7 @@ package com.lgb.function.admin.count.repository;
 
 import com.lgb.function.admin.count.model.*;
 import com.lgb.function.support.dictionary.IDictionaryManager;
+import com.lgb.function.support.dictionary.impl.DefaultDictionaryManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -22,13 +23,13 @@ public class CountRepository implements CountRepositoryI {
     }
 
     private class StuGenderRowMapper implements RowMapper<StuGender> {
-        @Autowired
-        private IDictionaryManager iDictionaryManager;
+        private IDictionaryManager dictionaryManager = DefaultDictionaryManager.getInstance();
+
         @Override
         public StuGender mapRow(ResultSet resultSet, int i) throws SQLException {
 
             StuGender stuGender = new StuGender();
-            stuGender.setStuGender(iDictionaryManager.dictionary(resultSet.getInt("stuGender"), "gender").getItemValue());
+            stuGender.setStuGender(dictionaryManager.dictionary(resultSet.getInt("stuGender"), "gender").getItemValue());
             stuGender.setNum(resultSet.getInt("num"));
             return stuGender;
         }
@@ -41,12 +42,11 @@ public class CountRepository implements CountRepositoryI {
     }
 
     private class StuEducationalRowMapper implements RowMapper<StuEducational> {
-        @Autowired
-        private IDictionaryManager iDictionaryManager;
+        private IDictionaryManager dictionaryManager = DefaultDictionaryManager.getInstance();
         @Override
         public StuEducational mapRow(ResultSet resultSet, int i) throws SQLException {
             StuEducational stuEducational = new StuEducational();
-            stuEducational.setStuEduCational(iDictionaryManager.dictionary(resultSet.getInt("stuEducational"), "educational").getItemValue());
+            stuEducational.setStuEduCational(dictionaryManager.dictionary(resultSet.getInt("stuEducational"), "educational").getItemValue());
             stuEducational.setNum(resultSet.getInt("num"));
             return stuEducational;
         }
@@ -59,12 +59,11 @@ public class CountRepository implements CountRepositoryI {
     }
 
     private class StuOldWorkPlaceTypeRowMapper implements RowMapper<StuOldWorkPlaceType> {
-        @Autowired
-        private IDictionaryManager iDictionaryManager;
+        private IDictionaryManager dictionaryManager = DefaultDictionaryManager.getInstance();
         @Override
         public StuOldWorkPlaceType mapRow(ResultSet resultSet, int i) throws SQLException {
             StuOldWorkPlaceType stuOldWorkPlaceType = new StuOldWorkPlaceType();
-            stuOldWorkPlaceType.setStuOldWorkPlaceType(iDictionaryManager.dictionary(resultSet.getInt("stuOldWorkPlaceType"), "stuOldWorkPlaceType").getItemValue());
+            stuOldWorkPlaceType.setStuOldWorkPlaceType(dictionaryManager.dictionary(resultSet.getInt("stuOldWorkPlaceType"), "stuOldWorkPlaceType").getItemValue());
             stuOldWorkPlaceType.setNum(resultSet.getInt("num"));
             return stuOldWorkPlaceType;
         }
@@ -76,12 +75,11 @@ public class CountRepository implements CountRepositoryI {
         return jdbcTemplate.query(sql,new StuOldWorkTypeRowMapper());
     }
     private class StuOldWorkTypeRowMapper implements RowMapper<StuOldWorkType> {
-        @Autowired
-        private IDictionaryManager iDictionaryManager;
+        private IDictionaryManager dictionaryManager = DefaultDictionaryManager.getInstance();
         @Override
         public StuOldWorkType mapRow(ResultSet resultSet, int i) throws SQLException {
             StuOldWorkType stuOldWorkType = new StuOldWorkType();
-            stuOldWorkType.setStuOldWorkType(iDictionaryManager.dictionary(resultSet.getInt("stuOldWorkType"), "stuOldWorkType").getItemValue());
+            stuOldWorkType.setStuOldWorkType(dictionaryManager.dictionary(resultSet.getInt("stuOldWorkType"), "stuOldWorkType").getItemValue());
             stuOldWorkType.setNum(resultSet.getInt("num"));
             return  stuOldWorkType;
         }
@@ -93,12 +91,11 @@ public class CountRepository implements CountRepositoryI {
         return jdbcTemplate.query(sql, new StuPoliticalRowMapper());
     }
     private class StuPoliticalRowMapper implements RowMapper<StuPolitical> {
-        @Autowired
-        private IDictionaryManager iDictionaryManager;
+        private IDictionaryManager dictionaryManager = DefaultDictionaryManager.getInstance();
         @Override
         public StuPolitical mapRow(ResultSet resultSet, int i) throws SQLException {
             StuPolitical stuPolitical = new StuPolitical();
-            stuPolitical.setStuPolitical(iDictionaryManager.dictionary(resultSet.getInt("stuPolitical"), "stuPolitical").getItemValue());
+            stuPolitical.setStuPolitical(dictionaryManager.dictionary(resultSet.getInt("stuPolitical"), "stuPolitical").getItemValue());
             return stuPolitical;
         }
     }
@@ -109,12 +106,11 @@ public class CountRepository implements CountRepositoryI {
     }
 
     private class StuPreferentialRowMapper implements RowMapper<StuPreferential> {
-        @Autowired
-        private IDictionaryManager iDictionaryManager;
+        private IDictionaryManager dictionaryManager = DefaultDictionaryManager.getInstance();
         @Override
         public StuPreferential mapRow(ResultSet resultSet, int i) throws SQLException {
             StuPreferential stuPreferential = new StuPreferential();
-            stuPreferential.setStuPreferential(iDictionaryManager.dictionary(resultSet.getInt("stuPreferential"), "courseDiscount").getItemValue());
+            stuPreferential.setStuPreferential(dictionaryManager.dictionary(resultSet.getInt("stuPreferential"), "courseDiscount").getItemValue());
             return stuPreferential;
         }
     }
@@ -126,30 +122,29 @@ public class CountRepository implements CountRepositoryI {
     }
 
     private class StuTypeRowMapper implements RowMapper<StuType> {
-        @Autowired
-        private IDictionaryManager iDictionaryManager;
+        private IDictionaryManager dictionaryManager = DefaultDictionaryManager.getInstance();
         @Override
         public StuType mapRow(ResultSet resultSet, int i) throws SQLException {
             StuType stuType = new StuType();
-            stuType.setStuType(iDictionaryManager.dictionary(resultSet.getInt("stuType"), "stuType").getItemValue());
+            stuType.setStuType(dictionaryManager.dictionary(resultSet.getInt("stuType"), "stuType").getItemValue());
             stuType.setNum(resultSet.getInt("num"));
             return stuType;
         }
     }
 
     @Override
-    public List<YearOfStuBirthday> queryNumOfStuBirthday() {
+    public List<YearStuBirthday> queryNumOfStuBirthday() {
         String sql = "select YEAR(stuBirthday) AS yearOfStuBirthday,count(stuId) as num from lgb_student group by YEAR(stuBirthday)";
         return jdbcTemplate.query(sql, new YearOfStuBirthdayRowMapper());
     }
 
-    private class YearOfStuBirthdayRowMapper implements RowMapper<YearOfStuBirthday> {
+    private class YearOfStuBirthdayRowMapper implements RowMapper<YearStuBirthday> {
         @Override
-        public YearOfStuBirthday mapRow(ResultSet resultSet, int i) throws SQLException {
-            YearOfStuBirthday yearOfStuBirthday = new YearOfStuBirthday();
-            yearOfStuBirthday.setYearOfStuBirthday(resultSet.getString("yearOfStuBirthday"));
-            yearOfStuBirthday.setNum(resultSet.getInt("num"));
-            return yearOfStuBirthday;
+        public YearStuBirthday mapRow(ResultSet resultSet, int i) throws SQLException {
+            YearStuBirthday yearStuBirthday = new YearStuBirthday();
+            yearStuBirthday.setYearStuBirthday(resultSet.getString("yearStuBirthday"));
+            yearStuBirthday.setNum(resultSet.getInt("num"));
+            return yearStuBirthday;
         }
     }
 
@@ -200,7 +195,7 @@ public class CountRepository implements CountRepositoryI {
     }
 
     @Override
-    public InfoCount querySumOfactualTuition() {
+    public InfoCount querySumOfActualTuition() {
         String sql = "select sum(actualTuition) AS sumActualTuition from lgb_studentcourse group by studentCourseId,studentId";
         return jdbcTemplate.queryForObject(sql,new TuitionRowMapper());
     }
@@ -214,4 +209,22 @@ public class CountRepository implements CountRepositoryI {
         }
     }
 
+    @Override
+    public List<YearStuEduStart> queryNumOfStuEduStart() {
+        String sql = "SELECT YEAR(studentStartDate) AS yearStuEduStart, COUNT(stuId) AS num FROM lgb_student GROUP BY YEAR(studentStartDate)";
+        return jdbcTemplate.query(sql, new QueryNumOfStuEduStartRowMapper());
+    }
+
+    private class QueryNumOfStuEduStartRowMapper implements RowMapper<YearStuEduStart> {
+
+        @Override
+        public YearStuEduStart mapRow(ResultSet rs, int rowNum) throws SQLException {
+            YearStuEduStart yearStuEduStart = new YearStuEduStart();
+
+            yearStuEduStart.setName(rs.getString("yearStuEduStart"));
+            yearStuEduStart.setValue(rs.getInt("num"));
+
+            return yearStuEduStart;
+        }
+    }
 }

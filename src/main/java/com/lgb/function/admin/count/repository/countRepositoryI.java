@@ -5,7 +5,6 @@ import com.lgb.function.admin.count.model.*;
 import java.util.List;
 
 public interface CountRepositoryI {
-
     List<StuGender> queryNumOfGender();
     List<StuEducational> queryNumOfEducational();
     List<StuOldWorkPlaceType> queryNumOfOldPlaceType();
@@ -13,9 +12,10 @@ public interface CountRepositoryI {
     List<StuPolitical> queryNumOfStuPolitical();
     List<StuPreferential> queryNumOfStuPreferential();
     List<StuType> queryNumOfStuType();
-    List<YearOfStuBirthday> queryNumOfStuBirthday();
+    List<YearStuBirthday> queryNumOfStuBirthday();
     InfoCount queryNumOfStudent();
     InfoCount queryNumOfTeacher();
     InfoCount queryNumOfCourse();
-    InfoCount querySumOfactualTuition();
+    InfoCount querySumOfActualTuition();
+    List<YearStuEduStart> queryNumOfStuEduStart();
 }
