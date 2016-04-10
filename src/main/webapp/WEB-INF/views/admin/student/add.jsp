@@ -240,6 +240,9 @@
                 studentStartDate: {
                     required: true
                 },
+                stuName: {
+                    required: true
+                },
                 stuTelOne: {
                     required: true,
                     minlength: 6,
@@ -293,6 +296,9 @@
                 },
                 studentStartDate: {
                     required: "请填写入学日期"
+                },
+                stuName: {
+                    required: "请填写姓名"
                 },
                 stuTelOne: {
                     required: "请填写座机号码或手机号码",
