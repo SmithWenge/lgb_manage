@@ -135,7 +135,7 @@ public class FinanceController {
 
             redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
-            return "redirect:/admin/department/page.action";
+            return "redirect:/admin/finance/routePage.action";
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);

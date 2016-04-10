@@ -205,7 +205,7 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public List<Finance> selectFinanceCourse(int studentCourseId) {
-        String sql = "SELECT S.stuName, SC.actualTuition, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.financeTime FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 0 AND C.deleteFlag = 0 AND C.courseId IN (SELECT courseId FROM lgb_studentCourse WHERE studentId IN (SELECT studentId FROM lgb_studentCourse WHERE studentCourseId = ?))";
+        String sql = "SELECT S.stuName, SC.actualTuition, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.financeTime FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND C.deleteFlag = 0 AND C.courseId IN (SELECT courseId FROM lgb_studentCourse WHERE studentId IN (SELECT studentId FROM lgb_studentCourse WHERE studentCourseId = ?))";
         Object[] args = {
                 studentCourseId
         };
@@ -273,6 +273,7 @@ public class FinanceRepository implements FinanceRepositoryI {
         try {
             return jdbcTemplate.update(sql, args) == 1 ? true : false;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
