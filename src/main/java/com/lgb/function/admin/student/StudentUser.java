@@ -30,7 +30,7 @@ public class StudentUser extends Entry{
     private int stuEducational;
     private String stuLevel;
     private String stuSpeciality;
-    private String stuPreferential;
+    private int stuPreferential;
     private String stuDependentsTel;
     private String stuDependentsDesc;
     private String stuRemarkOne;
@@ -240,11 +240,11 @@ public class StudentUser extends Entry{
         this.stuSpeciality = stuSpeciality;
     }
 
-    public String getStuPreferential() {
+    public int getStuPreferential() {
         return stuPreferential;
     }
 
-    public void setStuPreferential(String stuPreferential) {
+    public void setStuPreferential(int stuPreferential) {
         this.stuPreferential = stuPreferential;
     }
 

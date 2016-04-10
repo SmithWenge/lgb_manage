@@ -257,7 +257,7 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuHealth(resultSet.getString("stuHealth"));
             studentUser.setStuLevel(resultSet.getString("stuLevel"));
             studentUser.setStuSpeciality(resultSet.getString("stuSpeciality"));
-            studentUser.setStuPreferential(resultSet.getString("stuPreferential"));
+            studentUser.setStuPreferential(resultSet.getInt("stuPreferential"));
             studentUser.setStuDependentsTel(resultSet.getString("stuDependentsTel"));
             studentUser.setStuDependentsDesc(resultSet.getString("stuDependentsDesc"));
             studentUser.setStuRemarkOne(resultSet.getString("stuRemarkOne"));
