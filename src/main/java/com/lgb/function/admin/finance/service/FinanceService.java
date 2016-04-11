@@ -64,7 +64,7 @@ public class FinanceService implements FinanceServiceI {
             boolean tmp = financeRepository.update(finance);
 
             if (tmp) {
-                LogContent logContent = new LogContent(logUser, "收费" + finance.getCourseName() + " : " + finance.getStudentCourseId(), 1, 4);
+                LogContent logContent = new LogContent(logUser, "收费" + finance.getStudentCourseId() + " : " + finance.getStudentCourseId(), 1, 4);
                 logRepository.insertLog(logContent);
             }
 

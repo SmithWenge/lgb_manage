@@ -468,7 +468,7 @@ public class CourseRepository implements CourseRepositoryI {
 
     @Override
     public List<CourseSite> selectSiteNum(int courseId) {
-        String sql = "SELECT S.stuName, C.courseRoom, D.departmentName, M.majorName, C.courseName, S.stuBirthday, S.stuId, STUSITE.siteNum FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON M.departmentId = D.departmentId LEFT JOIN (SELECT TMP.studentId, TMP.stuBirthday, TMP.courseId, (@num:=@num + 1) AS siteNum FROM (SELECT SC.studentId, S.stuBirthday, SC.courseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.courseId = ? ORDER BY S.stuBirthday ASC) AS TMP, (SELECT @num:=0) AS IT) AS STUSITE ON STUSITE.studentId = S.stuId";
+        String sql = "SELECT CO.studentId, CO.stuBirthday, CO.stuName, (@num:=@num + 1) AS siteNum, CO.courseRoom, CO.majorName, CO.departmentName, CO.courseName FROM (SELECT SC.studentId, S.stuBirthday, S.stuName, C.courseRoom, M.majorName, D.departmentName, C.courseName FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId WHERE SC.courseId = ? ORDER BY S.stuBirthday ASC) AS CO, (SELECT @num:=0) AS IT";
         Object[] args = {
                 courseId
         };
@@ -488,10 +488,10 @@ public class CourseRepository implements CourseRepositoryI {
             CourseSite site = new CourseSite();
 
             site.setStuName(rs.getString("stuName"));
-            site.setCourseRoom(rs.getString("courseRoom"));
+            site.setCourseRoom(rs.getInt("courseRoom"));
             site.setDepartmentName(rs.getString("departmentName"));
             site.setMajorName(rs.getString("majorName"));
-            site.setCourseRoom(rs.getString("courseName"));
+            site.setCourseName(rs.getString("courseName"));
             site.setSiteNum(rs.getInt("siteNum"));
             site.setStuBirthday(rs.getDate("stuBirthday"));
             site.setCourseName(rs.getString("courseName"));
