@@ -42,11 +42,11 @@
     </div>
 </div>
 <br>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp学员总数：${infoCount.numOfStudent}人</p>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp教师总数：${infoCount.numOfTeacher}人</p>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp课程总数：${infoCount.numOfCourse}门</p>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp累计总收入：${infoCount.sumActualTuition}元</p>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp今日累计总收入：${infoCount.daySumActualTuition}元</p>
+<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp学员总数：${infoCount.numOfStudent}人</p>
+<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp教师总数：${infoCount.numOfTeacher}人</p>
+<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp课程总数：${infoCount.numOfCourse}门</p>
+<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp累计总收入：${infoCount.sumActualTuition}元</p>
+<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp今日累计总收入：${infoCount.daySumActualTuition}元</p>
 
 <div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;">
     <div class="panel panel-default col-md-4">
