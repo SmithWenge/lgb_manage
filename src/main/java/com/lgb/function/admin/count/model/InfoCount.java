@@ -5,12 +5,21 @@ public class InfoCount {
     private int numOfTeacher;
     private int numOfCourse;
     private int sumActualTuition;
+    private int daySumActualTuition;
 
-    public int getActualTuition() {
+    public int getDaySumActualTuition() {
+        return daySumActualTuition;
+    }
+
+    public void setDaySumActualTuition(int daySumActualTuition) {
+        this.daySumActualTuition = daySumActualTuition;
+    }
+
+    public int getSumActualTuition() {
         return sumActualTuition;
     }
 
-    public void setActualTuition(int sumActualTuition) {
+    public void setSumActualTuition(int sumActualTuition) {
         this.sumActualTuition = sumActualTuition;
     }
 

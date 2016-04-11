@@ -19,4 +19,5 @@ public interface CountServiceI {
     InfoCount queryNumOfCourse();
     InfoCount querySumOfActualTuition();
     List<JsonModel> queryNumOfStuEduStart();
+    InfoCount queryDaySumActualTuition();
 }

@@ -198,21 +198,28 @@ public class CountRepository implements CountRepositoryI {
 
     @Override
     public InfoCount querySumOfActualTuition() {
-        String sql = "select sum(actualTuition) AS sumActualTuition from lgb_studentcourse group by studentCourseId,studentId";
-        return jdbcTemplate.queryForObject(sql,new TuitionRowMapper());
+        try {
+            String sql = "select sum(actualTuition) AS sumActualTuition from lgb_studentcourse group by studentCourseId,studentId";
+            return jdbcTemplate.queryForObject(sql,new TuitionRowMapper());
+        } catch (Exception e) {
+            InfoCount infoCount = new InfoCount();
+            infoCount.setSumActualTuition(0);
+            return infoCount;
+        }
     }
 
     private class TuitionRowMapper implements RowMapper<InfoCount> {
         @Override
         public InfoCount mapRow(ResultSet resultSet, int i) throws SQLException {
             InfoCount infoCount = new InfoCount();
-            infoCount.setActualTuition(resultSet.getInt("sumActualTuition"));
+            infoCount.setSumActualTuition(resultSet.getInt("sumActualTuition"));
             return infoCount;
         }
     }
 
     @Override
     public List<JsonModel> queryNumOfStuEduStart() {
+
         String sql = "SELECT YEAR(studentStartDate) AS yearStuEduStart, COUNT(stuId) AS num FROM lgb_student GROUP BY YEAR(studentStartDate)";
         return jdbcTemplate.query(sql, new QueryNumOfStuEduStartRowMapper());
     }
@@ -222,11 +229,32 @@ public class CountRepository implements CountRepositoryI {
         @Override
         public JsonModel mapRow(ResultSet rs, int rowNum) throws SQLException {
             JsonModel yearStuEduStart = new JsonModel();
-
             yearStuEduStart.setName(rs.getString("yearStuEduStart"));
             yearStuEduStart.setValue(rs.getInt("num"));
-
             return yearStuEduStart;
+        }
+    }
+
+    @Override
+    public InfoCount queryDaySumActualTuition() {
+        try {
+            String sql = "select SUM(actualTuition) AS daySumActualTuition from lgb_studentcourse WHERE DAY(NOW())=DAY(financeTime)";
+            return jdbcTemplate.queryForObject(sql,new QueryDaySumActualTuitionRowMapper());
+        } catch (Exception e) {
+            InfoCount infoCount = new InfoCount();
+            infoCount.setDaySumActualTuition(0);
+            return infoCount;
+        }
+
+    }
+
+    private class QueryDaySumActualTuitionRowMapper implements RowMapper<InfoCount> {
+
+        @Override
+        public InfoCount mapRow(ResultSet resultSet, int i) throws SQLException {
+            InfoCount infoCount = new InfoCount();
+            infoCount.setDaySumActualTuition(resultSet.getInt("yearStuEduStart"));
+            return  infoCount;
         }
     }
 }

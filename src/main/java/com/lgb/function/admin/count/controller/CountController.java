@@ -1,11 +1,13 @@
 package com.lgb.function.admin.count.controller;
 
+import com.lgb.function.admin.count.model.InfoCount;
 import com.lgb.function.admin.count.model.JsonModel;
 import com.lgb.function.admin.count.service.CountServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,11 +18,6 @@ import java.util.Map;
 public class CountController {
     @Autowired
     private CountServiceI countService;
-
-    @RequestMapping(value = "/index")
-    public String index() {
-        return "admin/count/all";
-    }
 
     @ResponseBody
     @RequestMapping("/all")
@@ -35,8 +32,21 @@ public class CountController {
         map.put("stuPreferential",countService.queryNumOfStuPreferential());
         map.put("stuType",countService.queryNumOfStuType());
         map.put("yearOfStuBirthday",countService.queryNumOfStuBirthday());
-
         return map;
+    }
+
+    @RequestMapping(value = "/index")
+    public ModelAndView numCount() {
+        InfoCount infoCount = new InfoCount();
+        infoCount.setNumOfStudent(countService.queryNumOfStudent().getNumOfStudent());
+        infoCount.setNumOfTeacher(countService.queryNumOfTeacher().getNumOfTeacher());
+        infoCount.setNumOfCourse(countService.queryNumOfCourse().getNumOfCourse());
+        infoCount.setSumActualTuition(countService.querySumOfActualTuition().getSumActualTuition());
+        infoCount.setDaySumActualTuition(countService.queryDaySumActualTuition().getDaySumActualTuition());
+
+        ModelAndView modelAndView = new ModelAndView("admin/count/all");
+        modelAndView.addObject("infoCount",infoCount);
+        return  modelAndView;
     }
 
 }

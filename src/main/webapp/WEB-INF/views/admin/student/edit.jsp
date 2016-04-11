@@ -21,7 +21,7 @@
                     <div class="col-md-4 form-group">
                         <label for="stuCardNum" class="col-md-4 control-label">卡号</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="stuCardNum" placeholder="111111" name="stuCardNum" value="${edit.stuCardNum}" readonly>
+                            <input type="text" class="form-control" id="stuCardNum" placeholder="111111" name="stuCardNum" value="${edit.stuCardNum}">
                         </div>
                     </div>
                     <div class="col-md-4 form-group">
