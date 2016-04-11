@@ -38,15 +38,23 @@ public class FinanceInterceptor implements HandlerInterceptor {
         AdminUser adminUser = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
         Optional<AdminUser> optional = Optional.fromNullable(adminUser);
 
-        if (!optional.isPresent() || adminUser.getAdminRole() != 4) {
-            String redirectLocation = httpServletRequest.getContextPath() + "/admin/routeLogin.action";
-            httpServletResponse.sendRedirect(redirectLocation);
-            return false;
+        if (optional.isPresent()) {
+            if (adminUser.getAdminRole() != 4) {
+                session.removeAttribute(ConstantFields.SESSION_ADMIN_KEY);
+
+                String redirectLocation = httpServletRequest.getContextPath() + "/admin/routeLogin.action";
+                httpServletResponse.sendRedirect(redirectLocation);
+                return false;
+            } else {
+                return true;
+            }
             /* 用exceptionMapping中确定重定向 */
 //            throw new LoginException("管理员没有登陆,请登录管理员.");
-        } else {
-            return true;
         }
+
+        String redirectLocation = httpServletRequest.getContextPath() + "/admin/routeLogin.action";
+        httpServletResponse.sendRedirect(redirectLocation);
+        return false;
     }
 
     @Override
