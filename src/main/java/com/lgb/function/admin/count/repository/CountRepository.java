@@ -198,16 +198,16 @@ public class CountRepository implements CountRepositoryI {
 
     @Override
     public InfoCount querySumOfActualTuition() {
-        try {
-            String sql = "select sum(actualTuition) AS sumActualTuition from lgb_studentcourse group by studentCourseId,studentId";
-            return jdbcTemplate.queryForObject(sql,new TuitionRowMapper());
-        } catch (Exception e) {
-            InfoCount infoCount = new InfoCount();
-            infoCount.setSumActualTuition(0);
-            return infoCount;
-        }
-    }
+            try{
+                String sql = "select SUM(actualTuition) AS sumActualTuition from lgb_studentCourse";
+                return jdbcTemplate.queryForObject(sql,new TuitionRowMapper());
+            } catch (Exception e) {
+                InfoCount infoCount = new InfoCount();
+                infoCount.setSumActualTuition(0);
+                return infoCount;
+            }
 
+    }
     private class TuitionRowMapper implements RowMapper<InfoCount> {
         @Override
         public InfoCount mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -238,14 +238,13 @@ public class CountRepository implements CountRepositoryI {
     @Override
     public InfoCount queryDaySumActualTuition() {
         try {
-            String sql = "select SUM(actualTuition) AS daySumActualTuition from lgb_studentcourse WHERE DAY(NOW())=DAY(financeTime)";
-            return jdbcTemplate.queryForObject(sql,new QueryDaySumActualTuitionRowMapper());
-        } catch (Exception e) {
+            String sql = "select SUM(actualTuition) AS daySumActualTuition from lgb_studentCourse WHERE DAY(NOW())=DAY(financeTime)";
+            return jdbcTemplate.queryForObject(sql, new QueryDaySumActualTuitionRowMapper());
+        }catch (Exception e){
             InfoCount infoCount = new InfoCount();
             infoCount.setDaySumActualTuition(0);
             return infoCount;
         }
-
     }
 
     private class QueryDaySumActualTuitionRowMapper implements RowMapper<InfoCount> {
@@ -253,7 +252,7 @@ public class CountRepository implements CountRepositoryI {
         @Override
         public InfoCount mapRow(ResultSet resultSet, int i) throws SQLException {
             InfoCount infoCount = new InfoCount();
-            infoCount.setDaySumActualTuition(resultSet.getInt("yearStuEduStart"));
+            infoCount.setDaySumActualTuition(resultSet.getInt("daySumActualTuition"));
             return  infoCount;
         }
     }
