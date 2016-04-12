@@ -3,15 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
 <!DOCTYPE html>
 <html>
 <head>
+    <title>老干部大学学籍管理</title>
     <meta charset="utf-8">
-    <title>学员信息统计</title>
-    <!-- 引入 echarts.js -->
-    <script src="${contextPath}/static/plugins/echarts/echarts.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="${contextPath}/static/support/html5shiv.min.js" />
+    <script type="text/javascript" src="${contextPath}/static/support/respond.min.js" />
 </head>
 <body>
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
@@ -481,6 +482,14 @@
             }
         });
     })
+</script>
+<script type="text/javascript" src="${contextPath}/static/plugins/bootstrap/js/bootstrap.js" ></script>
+<script type="text/javascript" src="${contextPath}/static/support/jquery.placeholder.js" ></script>
+<script type="text/javascript">
+    $(function () {
+        // Invoke the plugin
+        $('input, textarea').placeholder();
+    });
 </script>
 
 <%@include file="/WEB-INF/include/footer.jsp"%>

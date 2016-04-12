@@ -2,14 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/include/header.jsp"%>
 
-
-<style type="text/css">
-    #adminLoginForm {
-        margin-top: 2%;
-    }
-</style>
-
-<form class="form-horizontal col-sm-offset-3" action="${contextPath}/admin/login.action" method="post" id="adminLoginForm">
+<form class="form-horizontal col-sm-offset-3" action="${contextPath}/admin/login.action" method="post" id="adminLoginForm" style="margin-top: 2%;">
     <div class="form-group">
         <label for="inputAdminLoginName" class="col-sm-2 control-label">管理员用户</label>
         <div class="col-sm-5">

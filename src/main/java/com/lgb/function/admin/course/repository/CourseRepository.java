@@ -1,5 +1,6 @@
 package com.lgb.function.admin.course.repository;
 
+import com.lgb.arc.utils.CommonUtils;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.course.CourseSite;
 import com.lgb.function.admin.course.time.CourseTime;
@@ -225,26 +226,10 @@ public class CourseRepository implements CourseRepositoryI {
 
             time.setTimeWeek(rs.getInt("timeWeek"));
             String specific = rs.getString("timeSpecific");
-            time.setTimeSpecificInt(convertTimeSpecific(specific));
+            time.setTimeSpecificInt(CommonUtils.convertTimeSpecific(specific));
 
             return time;
         }
-    }
-
-    private int convertTimeSpecific(String specific) {
-        if (specific.equals("a")) {
-            return 1;
-        } else if (specific.equals("b")) {
-            return 2;
-        } else if (specific.equals("c")) {
-            return 3;
-        } else if (specific.equals("d")) {
-            return 4;
-        } else if (specific.equals("e")) {
-            return 5;
-        }
-
-        return 0;
     }
 
     private int courseStuNum(int courseId) {
