@@ -10,9 +10,9 @@ public class Department extends Entry {
     private String departmentName;
     private int departmentCourseNum;
     private int departmentStuNum;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date departmentStartDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date departmentStopDate;
     private int adminId;
     private String adminName;

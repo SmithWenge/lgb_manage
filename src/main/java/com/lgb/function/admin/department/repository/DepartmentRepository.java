@@ -145,8 +145,8 @@ public class DepartmentRepository implements DepartmentRepositoryI {
 
             department.setDepartmentId(rs.getInt("departmentId"));
             department.setDepartmentName(rs.getString("departmentName"));
-            department.setDepartmentStartDate(rs.getDate("departmentStartDate"));
-            department.setDepartmentStopDate(rs.getDate("departmentStopDate"));
+            department.setDepartmentStartDate(rs.getTimestamp("departmentStartDate"));
+            department.setDepartmentStopDate(rs.getTimestamp("departmentStopDate"));
             department.setAdminId(rs.getInt("adminId"));
 
             return department;

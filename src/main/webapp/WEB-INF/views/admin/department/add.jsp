@@ -1,7 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<link href="${contextPath}/static/plugins/jquery-datetimepicker/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
 
+<script type="text/javascript" src="${contextPath}/static/plugins/jquery-datetimepicker/jquery.js" ></script>
+<script type="text/javascript" src="${contextPath}/static/plugins/jquery-datetimepicker/jquery.datetimepicker.full.js" ></script>
+<script type="text/javascript">
+    $(function () {
+        $('#inputDepartmentStartDate').datetimepicker({
+            format:'Y-m-d H:i:s',
+            lang:'zh'
+        });
+        $('#inputDepartmentStopDate').datetimepicker({
+            format:'Y-m-d H:i:s',
+            lang:'zh'
+        });
+    });
+</script>
 <div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
     <div class="panel-heading">系添加</div>
     <div class="panel-body">
@@ -22,13 +37,13 @@
                     <div class="form-group">
                         <label for="inputDepartmentStartDate" class="col-sm-2 control-label">报名开始时间</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" id="inputDepartmentStartDate" name="departmentStartDate">
+                            <input type="text" class="form-control" id="inputDepartmentStartDate" name="departmentStartDate">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputDepartmentStopDate" class="col-sm-2 control-label">报名结束时间</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" id="inputDepartmentStopDate" name="departmentStopDate">
+                            <input type="text" class="form-control" id="inputDepartmentStopDate" name="departmentStopDate">
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,7 +68,8 @@
     </div>
 </div>
 
-<%@include file="/WEB-INF/include/javascript.jsp"%>
+<%--<%@include file="/WEB-INF/include/javascript.jsp"%>--%>
+<script type="text/javascript" src="${contextPath}/static/plugins/jquery-validate/jquery.validate.js" ></script>
 
 <script type="text/javascript">
     $(function () {

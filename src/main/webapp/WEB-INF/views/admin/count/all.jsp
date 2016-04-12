@@ -11,8 +11,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="${contextPath}/static/support/html5shiv.min.js" />
-    <script type="text/javascript" src="${contextPath}/static/support/respond.min.js" />
 </head>
 <body>
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
@@ -49,6 +47,7 @@
 <p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp累计总收入：${infoCount.sumActualTuition}元</p>
 <p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp今日累计总收入：${infoCount.daySumActualTuition}元</p>
 
+<script src="${contextPath}/static/plugins/echarts/echarts.min.js"></script>
 <div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;">
     <div class="panel panel-default col-md-4">
         <div class="panel-body" id="yearStuEduStart" style="height: 400px;">
@@ -491,5 +490,7 @@
         $('input, textarea').placeholder();
     });
 </script>
+<script type="text/javascript" src="${contextPath}/static/support/html5shiv.min.js" />
+<%--<script type="text/javascript" src="${contextPath}/static/support/respond.min.js" />--%>
 
 <%@include file="/WEB-INF/include/footer.jsp"%>
