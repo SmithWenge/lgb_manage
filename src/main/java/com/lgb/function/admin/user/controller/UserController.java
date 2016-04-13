@@ -27,6 +27,10 @@ public class UserController {
     @Autowired
     private UserServiceI userService;
 
+    @RequestMapping("/helpRouter")
+    public  String  routerHelp () {
+        return "admin/user/help";
+    }
     @RequestMapping(value = "/page", method = RequestMethod.GET)
     public ModelAndView listUser(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable) {
         Page<AdminUser> page = userService.list(pageable);
