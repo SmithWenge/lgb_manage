@@ -10,12 +10,20 @@
     </div>
 </form>
 
+<div id="informationTable" class="col-md-10 col-md-offset-1"></div>
+
 <%@include file="/WEB-INF/include/javascript.jsp"%>
 
 <script type="text/javascript">
     $(function () {
+        $('#myModal').css('display', 'block');
         $('#studentCardNum').on('input', function () {
             var $studentCardNum = $('#studentCardNum').val();
+
+            if ($studentCardNum.length == 0) {
+                $('#informationTable').empty();
+            }
+
             if ($studentCardNum.length < 6) return;
 
             var data = {};
@@ -27,8 +35,30 @@
                url: '${contextPath}/student/card/read.action',
                data: JSON.stringify(data),
                success: function (result) {
-                   console.log(result.infos);
-                   console.log(result.student);
+                   $('#informationTable').empty();
+                   if (result.student[0] == null) {
+                       $('#studentCardNum').val('');
+                       return;
+                   }
+                   var $studentName = result.student[0].studentName;
+                   var $studentCardNum = result.student[0].studentCardNum;
+
+                   var $table = $('<table class="table">');
+                   $table.appendTo($('#informationTable'));
+                   var $tableHeader = $('<tr><th>学员名</th><th>学员卡号</th><th>课程名</th><th>上课教室</th><th>上课时间</th><th>系名</th><th>专业名</th></tr>')
+                   $.each(result.infos, function (i, item) {
+                       var $courseName = item.courseName;
+                       var $courseRoom = item.courseRoom;
+                       var $courseTime = item.courseTime;
+                       var $departmentName = item.departmentName;
+                       var $majorName = item.majorName;
+
+                       var $tr = $('<tr><td>' + $studentName + '</td><td>' + $studentCardNum + '</td><td>' + $courseName + '</td><td>' + $courseRoom + '</td><td> ' + $courseTime + '</td><td>' + $departmentName + '</td><td>' + $majorName + '</td></tr>');
+                       $tr.appendTo($table);
+                   });
+                   $('#informationTable').append("</table");
+
+                   $('#studentCardNum').val('');
                }
            });
         });

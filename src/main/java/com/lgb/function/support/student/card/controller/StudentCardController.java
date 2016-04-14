@@ -28,7 +28,7 @@ public class StudentCardController {
     public Map<String, List<StudentNowCourseInfo>> testTwo(@RequestBody StudentNowCourseInfo studentNowCourseInfo) {
         String studentCardNum =studentNowCourseInfo.getStudentCardNum().trim();
         Map<String, List<StudentNowCourseInfo>> map = new HashMap<>();
-//        TODO 添加数据验证
+//        TODO 添加数据验证,学生卡号
         List<StudentNowCourseInfo> infos = studentCardService.nowDayCourseInfo(studentCardNum);
 
         map.put("infos", infos);
