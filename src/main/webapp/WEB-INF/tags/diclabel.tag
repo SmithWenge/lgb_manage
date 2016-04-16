@@ -4,4 +4,4 @@
 <%@ attribute name="itemKey" type="java.lang.Integer" required="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-${dict:show(groupVaule, itemKey)}
+${dict:show(groupValue, itemKey)}

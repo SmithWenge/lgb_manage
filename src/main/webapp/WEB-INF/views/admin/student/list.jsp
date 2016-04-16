@@ -12,8 +12,9 @@
     <div class="panel-heading">
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="${contextPath}/admin/student/page.action">学生管理</a></li>
-            <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/student/routeAdd.action">添加学员</a></li>
-            <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/student/export.action">导出Excel</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/routeAdd.action">添加学员</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/export.action">学员导出Excel</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/excel/routeImport.action">学员导入</a></li>
         </ul>
     </div>
     <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
