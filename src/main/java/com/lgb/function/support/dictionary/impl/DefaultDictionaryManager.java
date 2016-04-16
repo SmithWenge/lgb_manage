@@ -40,6 +40,7 @@ public class DefaultDictionaryManager implements IDictionaryManager {
     private DefaultDictionaryManager() {}
 
     public static DefaultDictionaryManager getInstance() {
+        //判断manager的实例是否为空，如果为空创建一个实例，部不为空返回实例。
         Optional<DefaultDictionaryManager> optional = Optional.fromNullable(manager);
         if (!optional.isPresent()) {
             return new DefaultDictionaryManager();
@@ -47,6 +48,7 @@ public class DefaultDictionaryManager implements IDictionaryManager {
 
         return manager;
     }
+
 
     @PostConstruct
     public void initCache() {
@@ -71,6 +73,7 @@ public class DefaultDictionaryManager implements IDictionaryManager {
         return dictionaries;
     }
 
+    //把封装到list里的每一组数据按groupvalue分类重新封装到不同的list中，然后封装到map里
     public void addDataToMemory() {
         for (Dictionary dictionary : dictionaries) {
             String groupValue = dictionary.getGroupValue();
