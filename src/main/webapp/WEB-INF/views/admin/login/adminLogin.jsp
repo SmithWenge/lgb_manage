@@ -1,24 +1,64 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/include/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap-theme.css" />
+    <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap-theme.min.css" />
+    <title>老干部大学学籍管理</title>
+    <style>
+        body{
+            background: url(${contextPath}/static/images/bg8.jpg);
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+        .content{
+            margin: 200px auto 0;
+            width: 420px;
+            background: #fff;
+            height: 255px;
+            opacity: 0.8;
+            padding:10px ;
+        }
 
-<form class="form-horizontal col-sm-offset-3" action="${contextPath}/admin/login.action" method="post" id="adminLoginForm" style="margin-top: 2%;">
-    <div class="form-group">
-        <label for="inputAdminLoginName" class="col-sm-2 control-label">管理员用户</label>
-        <div class="col-sm-5">
-            <input type="text" class="form-control" id="inputAdminLoginName" name="adminLoginName" placeholder="admin">
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="inputAdminLoginPass" class="col-sm-2 control-label">管理员密码</label>
-        <div class="col-sm-5">
-            <input type="password" class="form-control" id="inputAdminLoginPass" name="adminLoginPass" placeholder="密码">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-5">
-            <button type="submit" class="btn btn-primary">登陆</button>
-            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#resetPass">忘记密码?</button>
+        .right_div{
+            width: 400px;
+            padding: 16px 40px;
+            margin: 0 auto;
+        }
+        #inputAdminLoginName,#inputAdminLoginPass{
+            width: 270px;
+            height: 40px;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        #sub,#forget{
+            width: 270px;
+            height: 35px;
+            margin: 15px 20px 0;
+        }
+        #forget{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+
+<body>
+<form action="${contextPath}/admin/login.action" method="post" id="adminLoginForm">
+    <div class="content">
+        <div class="right_div">
+            <label for="inputAdminLoginName"><span class="glyphicon glyphicon-user"></span><span>&nbsp;</span><span>&nbsp;</span></label>
+            <input type="text" id="inputAdminLoginName" name="adminLoginName" placeholder="admin" /><br />
+            <label for="inputAdminLoginPass"><span class="glyphicon glyphicon-lock"></span><span>&nbsp;</span><span>&nbsp;</span></label>
+            <input type="password" id="inputAdminLoginPass" name="adminLoginPass" placeholder="密码" /><br />
+            <span>&nbsp;</span><button class="btn btn-info" type="submit" id="sub">登陆</button>
+            <span>&nbsp;</span><button class="btn btn-default" type="button" id="forget" data-toggle="modal" data-target="#resetPass">忘记密码</button>
         </div>
     </div>
 </form>
@@ -59,7 +99,6 @@
         </div>
     </div>
 </div>
-
 <%@include file="/WEB-INF/include/javascript.jsp"%>
 
 <%@include file="/WEB-INF/include/footer.jsp"%>

@@ -84,7 +84,7 @@
                             <td style="font-size: 5px;">
                             <c:forEach items="${course.times}" var="time">
                                 <tags:diclabel groupValue="timeWeek" itemKey="${time.timeWeek}"/>
-                                 <tags:diclabel groupValue="timeSpecific" itemKey="${time.timeSpecificInt}"/>
+                                 <tags:diclabel groupValue="timeSpecific" itemKey="${time.timeSpecificInt}"/>,
                             </c:forEach>
                             </td>
                             <td>${course.courseEnrollmentNum}</td>
