@@ -13,7 +13,7 @@
     <title>老干部大学学籍管理</title>
     <style>
         body{
-            background: url(${contextPath}/static/images/bg8.jpg);
+            background: url(${contextPath}/static/images/bg.jpg);
             background-position: center top;
             background-repeat: no-repeat;
         }
