@@ -69,7 +69,7 @@ public class TeacherController {
 
         Page<Teacher> contents = teacherService.query4Page(new Teacher(), new PageRequest(0, ConstantFields.DEFAULT_PAGE_SIZE));
         mav.addObject(ConstantFields.PAGE_KEY, contents);
-
+        mav.addObject("departments", teacherService.departments());
         return mav;
     }
 

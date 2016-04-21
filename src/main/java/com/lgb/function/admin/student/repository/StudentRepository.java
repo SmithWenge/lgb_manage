@@ -81,8 +81,42 @@ public class StudentRepository implements StudentRepositoryI {
                 sql.append(" AND studentStartDate = ?");
                 list.add(studentUser.getStudentStartDate());
             }
-
-
+            if (studentUser.getStudentStartDate() != null) {
+                sql.append(" AND studentStartDate = ?");
+                list.add(studentUser.getStudentStartDate());
+            }
+            if (studentUser.getStuTelOne() != null && studentUser.getStuTelOne().length() > 0) {
+                sql.append(" AND stuTelOne = ?");
+                list.add(studentUser.getStuTelOne());
+            }
+            if (studentUser.getStuNationality() != null) {
+                sql.append(" AND stuNationality = ?");
+                list.add(studentUser.getStuNationality());
+            }
+            if (studentUser.getStuLevel() != null) {
+                sql.append(" AND stuLevel = ?");
+                list.add(studentUser.getStuLevel());
+            }
+            if (studentUser.getStuPreferential() > 0) {
+                sql.append(" AND stuPreferential = ?");
+                list.add(studentUser.getStuPreferential());
+            }
+            if (studentUser.getStuDependentsTel() != null) {
+                sql.append(" AND stuDependentsTel = ?");
+                list.add(studentUser.getStuDependentsTel());
+            }
+            if (studentUser.getStuOldWorkPlaceName() != null) {
+                sql.append(" AND stuOldWorkPlaceName = ?");
+                list.add(studentUser.getStuOldWorkPlaceName());
+            }
+            if (studentUser.getStuHealth() != null) {
+                sql.append(" AND stuHealth = ?");
+                list.add(studentUser.getStuHealth());
+            }
+            if (studentUser.getStuDependentsDesc() != null) {
+                sql.append(" AND stuDependentsDesc = ?");
+                list.add(studentUser.getStuDependentsDesc());
+            }
         }
 
         Object[] args = list.toArray();

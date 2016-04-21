@@ -118,11 +118,51 @@ public class TeacherRepository implements TeacherRepositoryI {
             if (teacher.getTeacherGender() > 0 && teacher.getTeacherGender() < 3) {
                 sql.append(" AND teacherGender = ?");
                 list.add(teacher.getTeacherGender());
-            }
-            if (teacher.getTeacherWorkDate() != null) {
+            }if (teacher.getTeacherWorkDate() != null) {
                 sql.append(" AND teacherWorkDate = ?");
                 list.add(teacher.getTeacherWorkDate());
+            }if (teacher.getTeacherState() > 0) {
+                sql.append(" AND teacherState = ?");
+                list.add(teacher.getTeacherState());
+            } if (teacher.getTeacherBirthday() != null) {
+                sql.append(" AND teacherBirthday = ?");
+                list.add(teacher.getTeacherBirthday());
+            } if (teacher.getDepartmentId() > 0) {
+                sql.append(" AND departmentId = ?");
+                list.add(teacher.getDepartmentId());
+            } if (teacher.getTeacherIdentifiedCardNum() != null) {
+                sql.append(" AND teacherIdentifiedCardNum = ?");
+                list.add(teacher.getTeacherIdentifiedCardNum());
+            } if (teacher.getTeacherOldWorkplace() != null) {
+                sql.append(" AND teacherOldWorkplace = ?");
+                list.add(teacher.getTeacherOldWorkplace());
+            } if (teacher.getTeacherSchool() != null) {
+                sql.append(" AND teacherSchool = ?");
+                list.add(teacher.getTeacherSchool());
+            } if (teacher.getTeacherMajor() != null) {
+                sql.append(" AND teacherMajor = ?");
+                list.add(teacher.getTeacherMajor());
+            } if (teacher.getTeacherFamilyName() != null) {
+                sql.append(" AND teacherFamilyName = ?");
+                list.add(teacher.getTeacherFamilyName());
+            } if (teacher.getTeacherFamilyTel() != null) {
+                sql.append(" AND teacherFamilyTel = ?");
+                list.add(teacher.getTeacherFamilyTel());
+            } if (teacher.getTeacherSubject() != null) {
+                sql.append(" AND teacherSubject = ?");
+                list.add(teacher.getTeacherSubject());
+            } if (teacher.getTeacherTel() != null) {
+                sql.append(" AND teacherTel = ?");
+                list.add(teacher.getTeacherTel());
+            } if (teacher.getTeacherHealth() != null) {
+                sql.append(" AND teacherHealth = ?");
+                list.add(teacher.getTeacherHealth());
+            } if (teacher.getTeacherEducational() > 0) {
+                sql.append(" AND teacherEducational = ?");
+                list.add(teacher.getTeacherEducational());
             }
+
+
         }
 
         Object[] args = list.toArray();

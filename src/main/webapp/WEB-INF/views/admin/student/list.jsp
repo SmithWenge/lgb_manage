@@ -13,6 +13,7 @@
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="${contextPath}/admin/student/page.action">学生管理</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/routeAdd.action">添加学员</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/routeAdd.action">违纪学员</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/export.action">学员导出Excel</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/excel/routeImport.action">学员导入</a></li>
         </ul>
@@ -79,6 +80,24 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
+                    <label for="stuTelOne" class="col-md-4 control-label">联系电话1</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuTelOne" name="stuTelOne">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuNationality" class="col-md-4 control-label">民族</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuNationality" name="stuNationality" placeholder="汉族">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuLevel" class="col-md-4 control-label">级别</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuLevel" name="stuLevel">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
                     <label for="stuOldWorkType" class="col-md-4 control-label">原职务</label>
                     <div class="col-md-8">
                         <tags:dicselect name="stuOldWorkType" key="stuOldWorkType" value="-1" id="stuOldWorkType" />
@@ -106,6 +125,42 @@
                     <label for="stuOldWorkPlaceType" class="col-md-4 control-label">原单位类别</label>
                     <div class="col-md-8">
                         <tags:dicselect name="stuOldWorkPlaceType" key="stuOldWorkPlaceType" value="-1" id="stuOldWorkPlaceType" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuPreferential" class="col-md-4 control-label">优惠</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuPreferential" key="courseDiscount" value="10" id="stuPreferential" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuDependentsTel" class="col-md-4 control-label">家属电话</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuDependentsTel" name="stuDependentsTel">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuOldWorkPlaceName" class="col-md-4 control-label">原工作单位</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuOldWorkPlaceName" name="stuOldWorkPlaceName">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuHealth" class="col-md-4 control-label">身体状况</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuHealth" name="stuHealth">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuDependentsDesc" class="col-md-4 control-label">家属关系</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuDependentsDesc" name="stuDependentsDesc">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuLocation" class="col-md-4 control-label">现住址</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuLocation" name="stuLocation">
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
