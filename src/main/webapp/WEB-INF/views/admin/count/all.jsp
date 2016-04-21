@@ -470,6 +470,22 @@
                 });
 
                 myChart.setOption(optionYearStuEduStart);
+//                var ecConfig = require('echarts/config');
+                function eConsole(param) {
+                    var mes = '【' + param.type + '】';
+                    if (typeof param.seriesIndex != 'undefined') {
+                        mes += '  seriesIndex : ' + param.seriesIndex;
+                        mes += '  dataIndex : ' + param.dataIndex;
+                    }
+                    if (param.type == 'click') {
+//                        document.getElementById('hover-console').innerHTML = 'Event Console : ' + mes;
+                    }
+                    else {
+//                        document.getElementById('console').innerHTML = mes;
+                    }
+                    console.log(param);
+                }
+                myChart.on('click', eConsole);
                 myChart2.setOption(optionStuGender);
                 myChart3.setOption(optionStuEducational);
                 myChart4.setOption(optionStuOldWorkPlaceType);
