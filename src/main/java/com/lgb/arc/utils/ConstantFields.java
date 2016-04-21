@@ -64,4 +64,5 @@ public class ConstantFields {
     public static final String SESSION_COURSE_SEARCH_KEY = "courseSearch";
     /* 收费查询Key */
     public static final String SESSION_FINANCE_SEARCH_KEY = "financeSearch";
+
 }

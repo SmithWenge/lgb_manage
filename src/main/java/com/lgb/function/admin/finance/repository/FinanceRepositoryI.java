@@ -18,4 +18,5 @@ public interface FinanceRepositoryI {
     List<Finance> selectFinanceCourse(int studentCourseId);
     Finance selectById(int studentCourseId);
     boolean update(Finance finance);
+    Page<Finance> selectFinance4Page(Finance finance, Pageable pageable);
 }

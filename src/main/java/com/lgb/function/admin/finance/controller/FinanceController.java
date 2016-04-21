@@ -5,10 +5,12 @@ import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.finance.Finance;
+import com.lgb.function.admin.finance.financeCount.model.InfoCount;
+import com.lgb.function.admin.finance.financeCount.model.JsonModel;
+import com.lgb.function.admin.finance.financeCount.service.FCServiceI;
 import com.lgb.function.admin.finance.service.FinanceServiceI;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.major.Major;
-import com.lgb.function.support.log.LogContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +18,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/finance")
@@ -38,6 +33,8 @@ public class FinanceController {
 
     @Autowired
     private FinanceServiceI financeService;
+    @Autowired
+    private FCServiceI fcService;
 
     @RequestMapping(value = "/page")
     public ModelAndView showLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
@@ -141,4 +138,50 @@ public class FinanceController {
         redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/finance/routeEdit/" + finance.getStudentCourseId() + ".action";
     }
+
+    @RequestMapping(value = "/routeCount", method = RequestMethod.GET)
+    public ModelAndView showCountPage() {
+        ModelAndView mav = new ModelAndView("admin/finance/countList");
+
+        Page<Finance> contents = financeService.selectFinance4Page(new Finance(), new PageRequest(0, ConstantFields.DEFAULT_PAGE_SIZE));
+        mav.addObject(ConstantFields.PAGE_KEY, contents);
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/countPage")
+    public ModelAndView showCountLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
+                                Pageable pageable, Finance finance) {
+
+        ModelAndView mav = new ModelAndView("admin/finance/countList");
+        Page<Finance> page = financeService.selectFinance4Page(finance, pageable);
+        mav.addObject(ConstantFields.PAGE_KEY, page);
+
+        return mav;
+    }
+    @RequestMapping(value = "/routeDayCount",method = RequestMethod.POST)
+     public ModelAndView showDayCount(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
+                                      Finance finance) {
+        ModelAndView mav = new ModelAndView("admin/finance/countList");
+
+        Page<Finance> contents = financeService.selectFinance4Page(finance,pageable);
+        mav.addObject(ConstantFields.PAGE_KEY, contents);
+        return mav;
+     }
+
+    @ResponseBody
+    @RequestMapping(value = "/routeEcharsCount",method = RequestMethod.POST)
+    public ModelAndView showFinanceCount(Finance finance) {
+        InfoCount infoCount = new InfoCount();
+        ModelAndView mav = new ModelAndView("admin/finance/financeCount");
+        infoCount.setDaySumActualTuition(fcService.queryDaySumActualTuition().getDaySumActualTuition());
+        infoCount.setSumActualTuition(fcService.querySumOfActualTuition().getSumActualTuition());
+        mav.addObject("infoCount", infoCount);
+
+        Map<String,List<JsonModel>> map = new HashMap<>();
+        List<JsonModel> listModel = fcService.queryMonthSumFinance(finance);
+        map.put("map",listModel);
+        return mav;
+    }
+
 }

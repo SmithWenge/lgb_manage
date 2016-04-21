@@ -67,17 +67,7 @@ public class CountService implements CountServiceI {
     }
 
     @Override
-    public InfoCount querySumOfActualTuition() {
-        return countRepository.querySumOfActualTuition();
-    }
-
-    @Override
     public List<JsonModel> queryNumOfStuEduStart() {
         return countRepository.queryNumOfStuEduStart();
-    }
-
-    @Override
-    public InfoCount queryDaySumActualTuition() {
-        return countRepository.queryDaySumActualTuition();
     }
 }

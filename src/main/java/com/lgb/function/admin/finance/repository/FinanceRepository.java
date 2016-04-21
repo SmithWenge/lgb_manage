@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -84,6 +85,24 @@ public class FinanceRepository implements FinanceRepositoryI {
 
             return finance;
         }
+    }
+
+    @Override
+    public Page<Finance> selectFinance4Page(Finance finance, Pageable pageable) {
+        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.signUpUser, DATE_FORMAT(SC.signUpTime, '%Y-%m-%d') AS signUpDate  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1");
+
+        List<Object> list = new ArrayList<>();
+        Optional<Date> optional = Optional.fromNullable(finance.getQueryFinanceDate());
+
+        if (optional.isPresent()) {
+            sql.append(" AND DATE_FORMAT(SC.financeTime,'%Y-%m-%d') = DATE_FORMAT(?,'%Y-%m-%d')");
+            list.add(finance.getQueryFinanceDate());
+        }
+
+        Object[] args = list.toArray();
+        sql.append(" ORDER BY SC.studentCourseId");
+        return repositoryUtils.select4Page(sql.toString(), pageable, args, new SelectUnFinance4PageRowMapper());
+
     }
 
     @Override
@@ -277,4 +296,5 @@ public class FinanceRepository implements FinanceRepositoryI {
             return false;
         }
     }
+
 }
