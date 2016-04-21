@@ -1,9 +1,9 @@
-package com.lgb.function.admin.finance.financeCount.service;
+package com.lgb.function.admin.finance.count.service;
 
 import com.lgb.function.admin.finance.Finance;
-import com.lgb.function.admin.finance.financeCount.model.InfoCount;
-import com.lgb.function.admin.finance.financeCount.model.JsonModel;
-import com.lgb.function.admin.finance.financeCount.repository.FCRepositoryI;
+import com.lgb.function.admin.finance.count.model.InfoCount;
+import com.lgb.function.admin.finance.count.model.JsonModel;
+import com.lgb.function.admin.finance.count.repository.FCRepositoryI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

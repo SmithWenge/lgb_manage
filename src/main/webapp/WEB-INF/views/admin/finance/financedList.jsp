@@ -16,13 +16,13 @@
         </form>
       </li>
       <li role="presentation" style="float: right">
-        <form class="form-inline" action="${contextPath}/admin/finance/routeEcharsCount.action" method="post">
-          <div class="form-group">
-            <label for="countFinanceYear" class="control-label">操作时间</label>
-            <input type="text" class="form-control" id="countFinanceYear" name="countFinanceYear">
-          </div>
-          <button type="submit" class="btn btn-default">生成统计报表</button>
-        </form>
+        总收费: ${infoCount.sumActualTuition}
+      </li>
+      <li role="presentation" style="float: right">
+        今天收费: ${infoCount.daySumActualTuition}
+      </li>
+      <li role="presentation" style="float: right">
+        <a href="${contextPath}/admin/finance/routeEcharts.action">查看财务统计</a>
       </li>
     </ul>
   </div>
@@ -66,6 +66,7 @@
             <th>课程</th>
             <th>学费</th>
             <th>优惠</th>
+            <th>实际缴费</th>
             <th>操作用户</th>
             <th>操作时间</th>
           </tr>
@@ -80,8 +81,9 @@
               <td>${finance.courseName}</td>
               <td>${finance.courseTuition}</td>
               <tags:dictd groupValue="courseDiscount" itemKey="${finance.courseDiscount}" />
-              <td>${finance.signUpUser}</td>
-              <td>${finance.signUpDate}</td>
+              <td>${finance.actualTuition}</td>
+              <td>${finance.financeUser}</td>
+              <td>${finance.financeTime}</td>
             </tr>
           </c:forEach>
         </table>
@@ -94,7 +96,7 @@
           <ul class="pager">
             <c:if test="${page.number > 0 }">
               <li class="previous">
-                <a href="${contextPath}/admin/finance/page.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
+                <a href="${contextPath}/admin/finance/countPage.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
               </li>
             </c:if>
             <c:if test="${page.number <= 0 }">

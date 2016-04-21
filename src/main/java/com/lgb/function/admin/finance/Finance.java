@@ -33,6 +33,16 @@ public class Finance extends Entry {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date queryFinanceDate;
     private String countFinanceYear;
+    private String financeUser;
+
+    public void setFinanceUser(String financeUser) {
+        this.financeUser = financeUser;
+    }
+
+    public String getFinanceUser() {
+
+        return financeUser;
+    }
 
     public String getCountFinanceYear() {
         return countFinanceYear;

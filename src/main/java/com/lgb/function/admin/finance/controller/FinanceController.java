@@ -5,9 +5,9 @@ import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.finance.Finance;
-import com.lgb.function.admin.finance.financeCount.model.InfoCount;
-import com.lgb.function.admin.finance.financeCount.model.JsonModel;
-import com.lgb.function.admin.finance.financeCount.service.FCServiceI;
+import com.lgb.function.admin.finance.count.model.InfoCount;
+import com.lgb.function.admin.finance.count.model.JsonModel;
+import com.lgb.function.admin.finance.count.service.FCServiceI;
 import com.lgb.function.admin.finance.service.FinanceServiceI;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.major.Major;
@@ -141,10 +141,15 @@ public class FinanceController {
 
     @RequestMapping(value = "/routeCount", method = RequestMethod.GET)
     public ModelAndView showCountPage() {
-        ModelAndView mav = new ModelAndView("admin/finance/countList");
+        ModelAndView mav = new ModelAndView("admin/finance/financedList");
 
         Page<Finance> contents = financeService.selectFinance4Page(new Finance(), new PageRequest(0, ConstantFields.DEFAULT_PAGE_SIZE));
         mav.addObject(ConstantFields.PAGE_KEY, contents);
+
+        InfoCount infoCount = new InfoCount();
+        infoCount.setDaySumActualTuition(fcService.queryDaySumActualTuition().getDaySumActualTuition());
+        infoCount.setSumActualTuition(fcService.querySumOfActualTuition().getSumActualTuition());
+        mav.addObject("infoCount", infoCount);
 
         return mav;
     }
@@ -153,7 +158,7 @@ public class FinanceController {
     public ModelAndView showCountLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
                                 Pageable pageable, Finance finance) {
 
-        ModelAndView mav = new ModelAndView("admin/finance/countList");
+        ModelAndView mav = new ModelAndView("admin/finance/financedList");
         Page<Finance> page = financeService.selectFinance4Page(finance, pageable);
         mav.addObject(ConstantFields.PAGE_KEY, page);
 
@@ -162,26 +167,26 @@ public class FinanceController {
     @RequestMapping(value = "/routeDayCount",method = RequestMethod.POST)
      public ModelAndView showDayCount(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
                                       Finance finance) {
-        ModelAndView mav = new ModelAndView("admin/finance/countList");
+        ModelAndView mav = new ModelAndView("admin/finance/financedList");
 
         Page<Finance> contents = financeService.selectFinance4Page(finance,pageable);
         mav.addObject(ConstantFields.PAGE_KEY, contents);
+
         return mav;
      }
 
-    @ResponseBody
-    @RequestMapping(value = "/routeEcharsCount",method = RequestMethod.POST)
-    public ModelAndView showFinanceCount(Finance finance) {
-        InfoCount infoCount = new InfoCount();
-        ModelAndView mav = new ModelAndView("admin/finance/financeCount");
-        infoCount.setDaySumActualTuition(fcService.queryDaySumActualTuition().getDaySumActualTuition());
-        infoCount.setSumActualTuition(fcService.querySumOfActualTuition().getSumActualTuition());
-        mav.addObject("infoCount", infoCount);
-
-        Map<String,List<JsonModel>> map = new HashMap<>();
-        List<JsonModel> listModel = fcService.queryMonthSumFinance(finance);
-        map.put("map",listModel);
-        return mav;
+    @RequestMapping(value = "/routeEcharts",method = RequestMethod.GET)
+    public String showFinanceCount(Finance finance) {
+        return "admin/finance/financeCount";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/echarts", method = RequestMethod.POST)
+    public Map<String, List<JsonModel>> echarts(@RequestBody Finance finance) {
+        List<JsonModel> jsonModels = fcService.queryMonthSumFinance(finance);
+        Map<String, List<JsonModel>> map = new HashMap<>();
+        map.put("financeCount", jsonModels);
+
+        return map;
+    }
 }

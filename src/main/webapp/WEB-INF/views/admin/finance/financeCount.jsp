@@ -40,14 +40,27 @@
         </ul>
     </div>
 </div>
-<br>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp累计总收入：${infoCount.sumActualTuition}元</p>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp今日累计总收入：${infoCount.daySumActualTuition}元</p>
 <script src="${contextPath}/static/plugins/echarts/echarts.min.js"></script>
-<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;">
-    <div class="panel panel-default col-md-6">
-        <div class="panel-body" id="monthFinance" style="height: 500px;">
+
+<div class="row" style="margin-top: 5px; margin-right: 2%; margin-left: 2%;">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <ul class="nav nav-pills">
+                <li role="presentation" style="float: left;">
+                    按月统计
+                </li>
+                <li role="presentation">
+                    <select class="form-control" id="countYear">
+                        <option>2016</option>
+                        <option>2017</option>
+                        <option>2015</option>
+                        <option>2018</option>
+                        <option>2019</option>
+                    </select>
+                </li>
+            </ul>
         </div>
+        <div class="panel-body" id="monthFinance" style="height: 500px;"></div>
     </div>
 </div>
 <%@include file="/WEB-INF/include/javascript.jsp"%>
@@ -75,7 +88,7 @@
             xAxis : [
                 {
                     type : 'category',
-                    data : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月']
+                    data : []
                 }
             ],
             yAxis : [
@@ -88,17 +101,56 @@
                     name:'月收入额',
                     type:'bar',
                     barWidth : 8,
-                    stack: '搜索引擎',
+                    stack: '课程费用',
                     data:[]
                 }
             ]
         };
 
     $(function () {
-            $.each(${list},function (i, item) {
-                optionMonthFinance.series[0].data.push(item.value);
+        var seriesData = [];
+
+        $('#countYear').on('change', function () {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json',
+                dataType: 'json',
+                url: '${contextPath}/admin/finance/echarts.action',
+                data: JSON.stringify({
+                    'countFinanceYear': $('#countYear').val()
+                }),
+                success: function (result) {
+                    $.each(result.financeCount, function (i, item) {
+                        optionMonthFinance.xAxis[0].data.push(item.name);
+                        optionMonthFinance.series[0].data.push(item.value);
+                    });
+
+                    console.log(optionMonthFinance);
+
+                    myChart.setOption(optionMonthFinance);
+                }
             });
-            myChart.setOption(optionMonthFinance);
+        });
+
+        $.ajax({
+            type: 'post',
+            contentType: 'application/json',
+            dataType: 'json',
+            url: '${contextPath}/admin/finance/echarts.action',
+            data: JSON.stringify({
+            'countFinanceYear': new Date().getFullYear()
+            }),
+            success: function (result) {
+                $.each(result.financeCount, function (i, item) {
+                    optionMonthFinance.xAxis[0].data.push(item.name);
+                    optionMonthFinance.series[0].data.push(item.value);
+                });
+
+                console.log(optionMonthFinance);
+
+                myChart.setOption(optionMonthFinance);
+            }
+        });
     })
 </script>
 

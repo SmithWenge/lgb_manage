@@ -61,7 +61,7 @@ public class FinanceService implements FinanceServiceI {
         Optional<Finance> optional = Optional.fromNullable(existObj);
 
         if (optional.isPresent()) {
-            boolean tmp = financeRepository.update(finance);
+            boolean tmp = financeRepository.update(finance, logUser);
 
             if (tmp) {
                 LogContent logContent = new LogContent(logUser, "收费" + finance.getStudentCourseId() + " : " + finance.getStudentCourseId(), 1, 4);

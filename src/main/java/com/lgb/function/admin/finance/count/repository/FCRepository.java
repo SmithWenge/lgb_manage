@@ -1,8 +1,8 @@
-package com.lgb.function.admin.finance.financeCount.repository;
+package com.lgb.function.admin.finance.count.repository;
 
 import com.lgb.function.admin.finance.Finance;
-import com.lgb.function.admin.finance.financeCount.model.InfoCount;
-import com.lgb.function.admin.finance.financeCount.model.JsonModel;
+import com.lgb.function.admin.finance.count.model.InfoCount;
+import com.lgb.function.admin.finance.count.model.JsonModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -61,8 +61,11 @@ public class FCRepository implements FCRepositoryI{
 
     @Override
     public List<JsonModel> queryMonthSumFinance(Finance finance) {
-        String sql = "select m,sum(case when month(financeTime)=m then  1 else 0 end) as number from lgb_studentcourse lgb,(select 1 m union all select 2 union all select 3 union all select 4 union all select 5 union all select 6 union all select 7 union all select 8 union all select 9 union all select 10 union all select 11 union all select 12) mon where ? = year(financeTime) group by m ORDER BY m ASC";
-        Object[] args = {finance.getCountFinanceYear()};
+        String sql = "SELECT SUM(actualTuition) AS total, DATE_FORMAT(financeTime, '%Y-%m') AS groupMonth FROM lgb_studentCourse WHERE YEAR(financeTime) = ? GROUP BY groupMonth;";
+        Object[] args = {
+                finance.getCountFinanceYear()
+        };
+
         return jdbcTemplate.query(sql,args,new MonthSunFinanceRowMapper());
     }
 
@@ -71,8 +74,10 @@ public class FCRepository implements FCRepositoryI{
         @Override
         public JsonModel mapRow(ResultSet resultSet, int i) throws SQLException {
             JsonModel jsonModel = new JsonModel();
-            jsonModel.setValue(resultSet.getInt("number"));
-            jsonModel.setName(resultSet.getString("m"));
+
+            jsonModel.setValue(resultSet.getInt("total"));
+            jsonModel.setName(resultSet.getString("groupMonth"));
+
             return jsonModel;
         }
     }

@@ -1,4 +1,4 @@
-package com.lgb.function.admin.finance.financeCount.model;
+package com.lgb.function.admin.finance.count.model;
 
 public class InfoCount {
     private int sumActualTuition;
