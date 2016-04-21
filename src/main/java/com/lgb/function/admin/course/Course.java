@@ -31,6 +31,52 @@ public class Course extends Entry {
     private int courseMaster;
     private List<CourseTime> times;
 
+    private int deleteFlag;
+    private String departmentName;
+    private int timeWeek;
+    private String timeSpecific;
+    private int studentId;
+
+    public int getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public int getTimeWeek() {
+        return timeWeek;
+    }
+
+    public void setTimeWeek(int timeWeek) {
+        this.timeWeek = timeWeek;
+    }
+
+    public String getTimeSpecific() {
+        return timeSpecific;
+    }
+
+    public void setTimeSpecific(String timeSpecific) {
+        this.timeSpecific = timeSpecific;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
     public void setTimes(List<CourseTime> times) {
         this.times = times;
     }
