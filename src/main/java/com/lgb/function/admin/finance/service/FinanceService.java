@@ -73,4 +73,10 @@ public class FinanceService implements FinanceServiceI {
 
         return false;
     }
+
+    @Override
+    public Page<Finance> selectFinance4Page(Finance finance, Pageable pageable) {
+        return financeRepository.selectFinance4Page(finance, pageable);
+    }
+
 }

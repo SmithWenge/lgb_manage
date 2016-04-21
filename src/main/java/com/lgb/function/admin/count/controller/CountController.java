@@ -41,8 +41,6 @@ public class CountController {
         infoCount.setNumOfStudent(countService.queryNumOfStudent().getNumOfStudent());
         infoCount.setNumOfTeacher(countService.queryNumOfTeacher().getNumOfTeacher());
         infoCount.setNumOfCourse(countService.queryNumOfCourse().getNumOfCourse());
-        infoCount.setSumActualTuition(countService.querySumOfActualTuition().getSumActualTuition());
-        infoCount.setDaySumActualTuition(countService.queryDaySumActualTuition().getDaySumActualTuition());
 
         ModelAndView modelAndView = new ModelAndView("admin/count/all");
         modelAndView.addObject("infoCount",infoCount);

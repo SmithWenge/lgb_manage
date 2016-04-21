@@ -40,6 +40,7 @@
                     <button type="submit" class="btn btn-default">查询</button>
                 </form>
             </li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/finance/routeCount.action">财务分析</a></li>
         </ul>
     </div>
     <div class="panel-body">
