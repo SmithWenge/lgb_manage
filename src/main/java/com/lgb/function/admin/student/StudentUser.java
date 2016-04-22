@@ -12,6 +12,7 @@ public class StudentUser extends Entry{
     private String stuCardNumNew;
     private String stuName;
     private int stuGender;
+    private String stuGenderValue;
     private String stuTelOne;
     private String stuTelTwo;
     private int stuType;
@@ -40,6 +41,15 @@ public class StudentUser extends Entry{
     private Date studentStartDate;
     private int deleteFlag;
     private String pieStudentStartDate;
+
+    public void setStuGenderValue(String stuGenderValue) {
+        this.stuGenderValue = stuGenderValue;
+    }
+
+    public String getStuGenderValue() {
+
+        return stuGenderValue;
+    }
 
     public String getPieStudentStartDate() {
         return pieStudentStartDate;

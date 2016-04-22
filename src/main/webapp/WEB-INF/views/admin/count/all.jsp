@@ -41,12 +41,18 @@
     </div>
 </div>
 <br>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp学员总数：${infoCount.numOfStudent}人</p>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp教师总数：${infoCount.numOfTeacher}人</p>
-<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp课程总数：${infoCount.numOfCourse}门</p>
+<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;">
+    <div class="col-md-4 alert alert-success" role="alert">学员总数：${infoCount.numOfStudent}人</div>
+    <div class="col-md-4 alert alert-success" role="alert">教师总数：${infoCount.numOfTeacher}人</div>
+    <div class="col-md-4 alert alert-success" role="alert">课程总数：${infoCount.numOfCourse}门</div>
+</div>
+
+<%--<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp学员总数：${infoCount.numOfStudent}人</p>--%>
+<%--<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp教师总数：${infoCount.numOfTeacher}人</p>--%>
+<%--<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp课程总数：${infoCount.numOfCourse}门</p>--%>
 
 <script src="${contextPath}/static/plugins/echarts/echarts.min.js"></script>
-<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;">
+<div class="row" style="margin-top: 5px; margin-right: 2%; margin-left: 2%;" id="contentDetail">
     <div class="panel panel-default col-md-4">
         <div class="panel-body" id="yearStuEduStart" style="height: 400px;">
         </div>
@@ -60,7 +66,7 @@
         </div>
     </div>
 </div>
-<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;">
+<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;" id="removeOne">
     <div class="panel panel-default col-md-4">
         <div class="panel-body" id="stuOldWorkPlaceType" style="height: 400px;">
         </div>
@@ -74,7 +80,7 @@
         </div>
     </div>
 </div>
-<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;">
+<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;" id="removeTwo">
     <div class="panel panel-default col-md-4">
         <div class="panel-body" id="stuPreferential" style="height: 400px;">
         </div>
@@ -464,20 +470,31 @@
                 });
 
                 myChart.setOption(optionYearStuEduStart);
-//                var ecConfig = require('echarts/config');
                 function eConsole(param) {
                     if (typeof param.seriesIndex != 'undefined') {
                         $.ajax({
                             type: 'post',
                             contentType: 'application/json',
                             dataType: 'json',
-                            url: '${contextPath}/admin/count/selectPieStudentStartDate.action',
+                            url: '${contextPath}/admin/count/detail/yearStuEduStart.action',
                             data: JSON.stringify({
-                                'pieStudentStartDate': param.name
-                            })
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
                         })
                     }
-                    console.log(param);
                 }
                 myChart.on('click', eConsole);
                 myChart2.setOption(optionStuGender);

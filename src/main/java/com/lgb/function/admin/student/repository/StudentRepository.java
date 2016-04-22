@@ -199,8 +199,6 @@ public class StudentRepository implements StudentRepositoryI {
         return jdbcTemplate.update(sql, args) == 1 ? true : false;
     }
 
-
-
     private class Query4PageRowMapper implements RowMapper<StudentUser> {
 
         @Override
@@ -214,8 +212,6 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
             studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
             studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
-
-
 
             return studentUser;
         }

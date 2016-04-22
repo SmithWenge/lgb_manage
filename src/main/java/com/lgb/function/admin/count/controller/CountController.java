@@ -48,11 +48,4 @@ public class CountController {
         modelAndView.addObject("infoCount", infoCount);
         return  modelAndView;
     }
-
-    @RequestMapping(value = "/selectPieStudentStartDate")
-    public ModelAndView routerStudentStartDate(@RequestBody StudentUser studentUser) {
-        ModelAndView mav = new ModelAndView("admin/count/pieCountList");
-        return mav;
-    }
-
 }
