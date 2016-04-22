@@ -71,12 +71,4 @@ public class ConstantFields {
     public static final String SESSION_COURSE_SEARCH_KEY = "courseSearch";
     /* 收费查询Key */
     public static final String SESSION_FINANCE_SEARCH_KEY = "financeSearch";
-    /* 学员查询失败Key */
-    public static final String DELETE_STU_FAILURE_KEY = "selectStuFailMessage";
-    /* 学员查询失败消息 */
-    public static final String DELETE_STU_FAILURE_MESSAGE = "该学员不存在";
-    /* 课程信息key */
-    public static final String COURSE_INFO_KEY = "course";
-    /* 学员查询时存储RoomInfo条件的Session Key */
-    public static final String SESSION_ROOM_SEARCH_KEY = "roomSearch";
 }

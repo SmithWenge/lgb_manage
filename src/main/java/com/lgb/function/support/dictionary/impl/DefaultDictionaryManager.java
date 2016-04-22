@@ -97,7 +97,19 @@ public class DefaultDictionaryManager implements IDictionaryManager {
                 return dictionary;
             }
         }
-
         return new Dictionary();
     }
+
+    @Override
+    public Dictionary dictionaryChange(String groupValue, String itemValue) {
+        List<Dictionary> dictionaries = CACHE.get(groupValue);
+
+        for (Dictionary dictionary : dictionaries) {
+            if (dictionary.getItemValue().equals(itemValue)) {
+                return dictionary;
+            }
+        }
+        return new Dictionary();
+    }
+
 }

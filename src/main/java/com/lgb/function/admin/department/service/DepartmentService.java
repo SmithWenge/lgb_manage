@@ -1,6 +1,7 @@
 package com.lgb.function.admin.department.service;
 
 import com.google.common.base.Optional;
+import com.lgb.function.admin.course.leader.CourseLeader;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.department.repository.DepartmentRepositoryI;
 import com.lgb.function.admin.login.AdminUser;
@@ -8,6 +9,7 @@ import com.lgb.function.support.log.LogContent;
 import com.lgb.function.support.log.repository.LogRepositoryI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,7 +48,15 @@ public class DepartmentService implements DepartmentServiceI {
 
     @Override
     public Page<Department> list(Pageable pageable) {
-        return departmentRepository.select4Page(pageable);
+        Page<Department> departments = departmentRepository.select4Page(pageable);
+        List<Department> departmentList = departments.getContent();
+
+        for (Department department : departmentList) {
+            department.setCourseNum(departmentRepository.courseNum(department.getDepartmentId()));
+            department.setStudentNum(departmentRepository.studentNum(department.getDepartmentId()));
+        }
+
+        return new PageImpl<Department>(departmentList, pageable, departments.getTotalElements());
     }
 
     @Override

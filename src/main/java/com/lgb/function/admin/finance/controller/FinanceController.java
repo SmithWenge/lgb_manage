@@ -5,10 +5,12 @@ import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.finance.Finance;
+import com.lgb.function.admin.finance.count.model.InfoCount;
+import com.lgb.function.admin.finance.count.model.JsonModel;
+import com.lgb.function.admin.finance.count.service.FCServiceI;
 import com.lgb.function.admin.finance.service.FinanceServiceI;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.major.Major;
-import com.lgb.function.support.log.LogContent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +18,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/finance")
@@ -38,6 +33,8 @@ public class FinanceController {
 
     @Autowired
     private FinanceServiceI financeService;
+    @Autowired
+    private FCServiceI fcService;
 
     @RequestMapping(value = "/page")
     public ModelAndView showLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
@@ -140,5 +137,56 @@ public class FinanceController {
 
         redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/finance/routeEdit/" + finance.getStudentCourseId() + ".action";
+    }
+
+    @RequestMapping(value = "/routeCount", method = RequestMethod.GET)
+    public ModelAndView showCountPage() {
+        ModelAndView mav = new ModelAndView("admin/finance/financedList");
+
+        Page<Finance> contents = financeService.selectFinance4Page(new Finance(), new PageRequest(0, ConstantFields.DEFAULT_PAGE_SIZE));
+        mav.addObject(ConstantFields.PAGE_KEY, contents);
+
+        InfoCount infoCount = new InfoCount();
+        infoCount.setDaySumActualTuition(fcService.queryDaySumActualTuition().getDaySumActualTuition());
+        infoCount.setSumActualTuition(fcService.querySumOfActualTuition().getSumActualTuition());
+        mav.addObject("infoCount", infoCount);
+
+        return mav;
+    }
+
+    @RequestMapping(value = "/countPage")
+    public ModelAndView showCountLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
+                                Pageable pageable, Finance finance) {
+
+        ModelAndView mav = new ModelAndView("admin/finance/financedList");
+        Page<Finance> page = financeService.selectFinance4Page(finance, pageable);
+        mav.addObject(ConstantFields.PAGE_KEY, page);
+
+        return mav;
+    }
+    @RequestMapping(value = "/routeDayCount",method = RequestMethod.POST)
+     public ModelAndView showDayCount(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
+                                      Finance finance) {
+        ModelAndView mav = new ModelAndView("admin/finance/financedList");
+
+        Page<Finance> contents = financeService.selectFinance4Page(finance,pageable);
+        mav.addObject(ConstantFields.PAGE_KEY, contents);
+
+        return mav;
+     }
+
+    @RequestMapping(value = "/routeEcharts",method = RequestMethod.GET)
+    public String showFinanceCount(Finance finance) {
+        return "admin/finance/financeCount";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/echarts", method = RequestMethod.POST)
+    public Map<String, List<JsonModel>> echarts(@RequestBody Finance finance) {
+        List<JsonModel> jsonModels = fcService.queryMonthSumFinance(finance);
+        Map<String, List<JsonModel>> map = new HashMap<>();
+        map.put("financeCount", jsonModels);
+
+        return map;
     }
 }

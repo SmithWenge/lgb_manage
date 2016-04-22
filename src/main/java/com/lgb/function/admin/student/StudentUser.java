@@ -12,6 +12,7 @@ public class StudentUser extends Entry{
     private String stuCardNumNew;
     private String stuName;
     private int stuGender;
+    private String stuGenderValue;
     private String stuTelOne;
     private String stuTelTwo;
     private int stuType;
@@ -39,6 +40,33 @@ public class StudentUser extends Entry{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date studentStartDate;
     private int deleteFlag;
+    private String pieStudentStartDate;
+    private String yearStuBirthday;
+
+    public String getYearStuBirthday() {
+        return yearStuBirthday;
+    }
+
+    public void setYearStuBirthday(String yearStuBirthday) {
+        this.yearStuBirthday = yearStuBirthday;
+    }
+
+    public void setStuGenderValue(String stuGenderValue) {
+        this.stuGenderValue = stuGenderValue;
+    }
+
+    public String getStuGenderValue() {
+
+        return stuGenderValue;
+    }
+
+    public String getPieStudentStartDate() {
+        return pieStudentStartDate;
+    }
+
+    public void setPieStudentStartDate(String pieStudentStartDate) {
+        this.pieStudentStartDate = pieStudentStartDate;
+    }
 
     public int getDeleteFlag() {
         return deleteFlag;

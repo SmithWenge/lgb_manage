@@ -1,6 +1,7 @@
 package com.lgb.function.admin.finance;
 
 import com.lgb.arc.Entry;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -15,18 +16,50 @@ public class Finance extends Entry {
     private int courseDiscount;
     private String stuName;
     private int stuGender;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date stuBirthday;
     private String telOne;
     private String telTwo;
     private String cardNum;
     private int signUpComeFrom;
     private String signUpUser;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date signUpDate;
     private int studentCourseId;
     private int departmentId;
     private int majorId;
     private int courseId;
     private Timestamp financeTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date queryFinanceDate;
+    private String countFinanceYear;
+    private String financeUser;
+
+    public void setFinanceUser(String financeUser) {
+        this.financeUser = financeUser;
+    }
+
+    public String getFinanceUser() {
+
+        return financeUser;
+    }
+
+    public String getCountFinanceYear() {
+        return countFinanceYear;
+    }
+
+    public void setCountFinanceYear(String countFinanceYear) {
+        this.countFinanceYear = countFinanceYear;
+    }
+
+    public void setQueryFinanceDate(Date queryFinanceDate) {
+        this.queryFinanceDate = queryFinanceDate;
+    }
+
+    public Date getQueryFinanceDate() {
+
+        return queryFinanceDate;
+    }
 
     public void setFinanceTime(Timestamp financeTime) {
         this.financeTime = financeTime;

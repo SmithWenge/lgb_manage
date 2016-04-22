@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -81,6 +82,47 @@ public class FinanceRepository implements FinanceRepositoryI {
             finance.setCourseDiscount(rs.getInt("stuPreferential"));
             finance.setSignUpUser(rs.getString("signUpUser"));
             finance.setSignUpDate(rs.getDate("signUpDate"));
+
+            return finance;
+        }
+    }
+
+    @Override
+    public Page<Finance> selectFinance4Page(Finance finance, Pageable pageable) {
+        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1");
+
+        List<Object> list = new ArrayList<>();
+        Optional<Date> optional = Optional.fromNullable(finance.getQueryFinanceDate());
+
+        if (optional.isPresent()) {
+            sql.append(" AND DATE_FORMAT(SC.financeTime,'%Y-%m-%d') = DATE_FORMAT(?,'%Y-%m-%d')");
+            list.add(finance.getQueryFinanceDate());
+        }
+
+        Object[] args = list.toArray();
+        sql.append(" ORDER BY SC.studentCourseId");
+        return repositoryUtils.select4Page(sql.toString(), pageable, args, new SelectFinance4PageRowMapper());
+
+    }
+
+    private class SelectFinance4PageRowMapper implements RowMapper<Finance> {
+
+        @Override
+        public Finance mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Finance finance = new Finance();
+
+            finance.setStudentCourseId(rs.getInt("studentCourseId"));
+            finance.setCardNum(rs.getString("stuCardNum"));
+            finance.setStuName(rs.getString("stuName"));
+            finance.setSignUpComeFrom(rs.getInt("signUpComeFrom"));
+            finance.setDepartmentName(rs.getString("departmentName"));
+            finance.setMajorName(rs.getString("majorName"));
+            finance.setCourseName(rs.getString("courseName"));
+            finance.setCourseTuition(rs.getInt("courseTuition"));
+            finance.setCourseDiscount(rs.getInt("stuPreferential"));
+            finance.setFinanceUser(rs.getString("financeUser"));
+            finance.setFinanceTime(rs.getTimestamp("financeTime"));
+            finance.setActualTuition(rs.getInt("actualTuition"));
 
             return finance;
         }
@@ -263,10 +305,11 @@ public class FinanceRepository implements FinanceRepositoryI {
     }
 
     @Override
-    public boolean update(Finance finance) {
-        String sql = "UPDATE lgb_studentCourse SET actualTuition = ?, tuitionFlag = 1, financeTime = NOW() WHERE studentCourseId = ?";
+    public boolean update(Finance finance, String logUser) {
+        String sql = "UPDATE lgb_studentCourse SET actualTuition = ?, tuitionFlag = 1, financeTime = NOW(), financeUser = ? WHERE studentCourseId = ?";
         Object[] args = {
                 finance.getActualTuition(),
+                logUser,
                 finance.getStudentCourseId()
         };
 
@@ -277,4 +320,5 @@ public class FinanceRepository implements FinanceRepositoryI {
             return false;
         }
     }
+
 }
