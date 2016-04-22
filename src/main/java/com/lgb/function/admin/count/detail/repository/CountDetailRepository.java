@@ -131,7 +131,7 @@ public class CountDetailRepository implements CountDetailRepositoryI {
 
     @Override
     public List<StudentUser> selectStuBirthday(String value) {
-        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND YEAR(yearStuBirthday) = ?";
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND YEAR(StuBirthday) = ?";
         Object[] args = {
                 value
         };
