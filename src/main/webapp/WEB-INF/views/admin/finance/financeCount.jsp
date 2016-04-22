@@ -108,8 +108,8 @@
         };
 
     $(function () {
-        var seriesData = [];
 
+        /*页面选择的年份的数据传值*/
         $('#countYear').on('change', function () {
             $.ajax({
                 type: 'post',
@@ -132,6 +132,7 @@
             });
         });
 
+        /*页面默认当前年份的数据传值*/
         $.ajax({
             type: 'post',
             contentType: 'application/json',

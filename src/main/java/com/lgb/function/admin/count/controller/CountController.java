@@ -3,8 +3,10 @@ package com.lgb.function.admin.count.controller;
 import com.lgb.function.admin.count.model.InfoCount;
 import com.lgb.function.admin.count.model.JsonModel;
 import com.lgb.function.admin.count.service.CountServiceI;
+import com.lgb.function.admin.student.StudentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,8 +45,14 @@ public class CountController {
         infoCount.setNumOfCourse(countService.queryNumOfCourse().getNumOfCourse());
 
         ModelAndView modelAndView = new ModelAndView("admin/count/all");
-        modelAndView.addObject("infoCount",infoCount);
+        modelAndView.addObject("infoCount", infoCount);
         return  modelAndView;
+    }
+
+    @RequestMapping(value = "/selectPieStudentStartDate")
+    public ModelAndView routerStudentStartDate(@RequestBody StudentUser studentUser) {
+        ModelAndView mav = new ModelAndView("admin/count/pieCountList");
+        return mav;
     }
 
 }

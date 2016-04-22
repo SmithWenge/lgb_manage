@@ -39,6 +39,15 @@ public class StudentUser extends Entry{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date studentStartDate;
     private int deleteFlag;
+    private String pieStudentStartDate;
+
+    public String getPieStudentStartDate() {
+        return pieStudentStartDate;
+    }
+
+    public void setPieStudentStartDate(String pieStudentStartDate) {
+        this.pieStudentStartDate = pieStudentStartDate;
+    }
 
     public int getDeleteFlag() {
         return deleteFlag;
