@@ -89,7 +89,7 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public Page<Finance> selectFinance4Page(Finance finance, Pageable pageable) {
-        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1");
+        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1");
 
         List<Object> list = new ArrayList<>();
         Optional<Date> optional = Optional.fromNullable(finance.getQueryFinanceDate());
@@ -100,7 +100,7 @@ public class FinanceRepository implements FinanceRepositoryI {
         }
 
         Object[] args = list.toArray();
-        sql.append(" ORDER BY SC.studentCourseId");
+        sql.append(" ORDER BY SC.financeTime DESC");
         return repositoryUtils.select4Page(sql.toString(), pageable, args, new SelectFinance4PageRowMapper());
 
     }
@@ -119,7 +119,7 @@ public class FinanceRepository implements FinanceRepositoryI {
             finance.setMajorName(rs.getString("majorName"));
             finance.setCourseName(rs.getString("courseName"));
             finance.setCourseTuition(rs.getInt("courseTuition"));
-            finance.setCourseDiscount(rs.getInt("stuPreferential"));
+            finance.setCourseDiscount(rs.getInt("courseDiscount"));
             finance.setFinanceUser(rs.getString("financeUser"));
             finance.setFinanceTime(rs.getTimestamp("financeTime"));
             finance.setActualTuition(rs.getInt("actualTuition"));
@@ -247,7 +247,7 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public List<Finance> selectFinanceCourse(int studentCourseId) {
-        String sql = "SELECT S.stuName, SC.actualTuition, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.financeTime FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND C.deleteFlag = 0 AND C.courseId IN (SELECT courseId FROM lgb_studentCourse WHERE studentId IN (SELECT studentId FROM lgb_studentCourse WHERE studentCourseId = ?))";
+        String sql = "SELECT S.stuName, SC.actualTuition, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.financeTime FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND SC.studentId IN (SELECT studentId FROM lgb_studentCourse WHERE studentCourseId = ?)";
         Object[] args = {
                 studentCourseId
         };
@@ -271,7 +271,7 @@ public class FinanceRepository implements FinanceRepositoryI {
             finance.setMajorName(rs.getString("majorName"));
             finance.setCourseName(rs.getString("courseName"));
             finance.setCourseTuition(rs.getInt("courseTuition"));
-            finance.setCourseDiscount(rs.getInt("stuPreferential"));
+            finance.setCourseDiscount(rs.getInt("courseDiscount"));
             finance.setFinanceTime(rs.getTimestamp("financeTime"));
 
             return finance;
@@ -306,10 +306,11 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public boolean update(Finance finance, String logUser) {
-        String sql = "UPDATE lgb_studentCourse SET actualTuition = ?, tuitionFlag = 1, financeTime = NOW(), financeUser = ? WHERE studentCourseId = ?";
+        String sql = "UPDATE lgb_studentCourse SET actualTuition = ?, tuitionFlag = 1, financeTime = NOW(), financeUser = ?, courseDiscount = ? WHERE studentCourseId = ?";
         Object[] args = {
                 finance.getActualTuition(),
                 logUser,
+                finance.getCourseDiscount(),
                 finance.getStudentCourseId()
         };
 
