@@ -77,4 +77,6 @@ public class ConstantFields {
     public static final String DELETE_STU_FAILURE_MESSAGE = "该学员不存在";
     /* 课程信息key */
     public static final String COURSE_INFO_KEY = "course";
+    /* 学员查询时存储RoomInfo条件的Session Key */
+    public static final String SESSION_ROOM_SEARCH_KEY = "roomSearch";
 }

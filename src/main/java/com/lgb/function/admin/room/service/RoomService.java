@@ -1,5 +1,6 @@
 package com.lgb.function.admin.room.service;
 
+import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.room.Room;
 import com.lgb.function.admin.room.repository.RoomRepositoryI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,10 @@ public class RoomService implements RoomServiceI {
     @Override
     public List<Room> allTimes() {
         return roomRepository.selectAllTime();
+    }
+
+    @Override
+    public List<Course> roomCourse(Room room) {
+        return roomRepository.selectRoomCourse(room);
     }
 }

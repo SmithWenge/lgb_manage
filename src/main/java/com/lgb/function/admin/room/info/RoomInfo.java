@@ -1,6 +1,8 @@
 package com.lgb.function.admin.room.info;
 
-public class RoomInfo {
+import com.lgb.arc.Entry;
+
+public class RoomInfo extends Entry {
     private int roomId;
     private String roomName;
     private int roomFloor;

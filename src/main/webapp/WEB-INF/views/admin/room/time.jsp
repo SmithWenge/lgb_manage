@@ -1502,11 +1502,32 @@
                 $.each(result.times, function (i, item) {
                     var idValue = item.roomId + '' + item.timeWeek + item.timeSpecific;
                     $('#' + idValue).attr('class', 'is-visible');
-                    $('#' + idValue).html('占用');
+                    var hrefValue = '${contextPath}/admin/room/time/course/' + item.timeWeek + '/' + item.timeSpecific + '/' + item.roomId + '.action';
+                    var aTag = '<a target="_blank" href="' + hrefValue + '">占用</a>' ;
+                    $('#' + idValue).html(aTag);
                 });
             }
         });
     });
+
+    <%--function detailCourse(roomId, timeWeek, timeSpecific) {--%>
+        <%--var data = {--%>
+            <%--'roomId': roomId,--%>
+            <%--'timeWeek': timeWeek,--%>
+            <%--'timeSpecific': timeSpecific--%>
+        <%--};--%>
+
+        <%--$.ajax({--%>
+            <%--type: 'post',--%>
+            <%--contentType: 'application/json',--%>
+            <%--dataType: 'json',--%>
+            <%--url: '${contextPath}/admin/room/time/course.action',--%>
+            <%--data: JSON.stringify(data),--%>
+            <%--success: function (result) {--%>
+                <%--console.log(result);--%>
+            <%--}--%>
+        <%--});--%>
+    <%--}--%>
 </script>
 
 <%@include file="/WEB-INF/include/footer.jsp"%>

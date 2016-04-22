@@ -36,6 +36,16 @@ public class Course extends Entry {
     private int timeWeek;
     private String timeSpecific;
     private int studentId;
+    private String adminName;
+
+    public void setAdminName(String adminName) {
+        this.adminName = adminName;
+    }
+
+    public String getAdminName() {
+
+        return adminName;
+    }
 
     public int getDeleteFlag() {
         return deleteFlag;
