@@ -3,11 +3,6 @@ package com.lgb.arc.utils;
 public class ConstantFields {
     /* 管理员登陆的KEY */
     public static final String SESSION_ADMIN_KEY = "adminLogin";
-    /* 学员登陆的KEY */
-    public static final String SESSION_STU_KEY = "stuLogin";
-
-    /* 学员登陆的卡号 */
-    public static final String STU_CARD_NUM = "stuCardNum";
 
     /* 分页中每页数据数 */
     public static final int DEFAULT_PAGE_SIZE = 20;
@@ -17,8 +12,6 @@ public class ConstantFields {
     public static final String SESSION_LOG_SEARCH_KEY = "logSearch";
     /* 学员查询时存储StudentUser条件的Session Key */
     public static final String SESSION_STU_SEARCH_KEY = "stuSearch";
-    /* session学员key */
-    public static final String SESSION_STU_ID_KEY = "stuId";
 
     /**
      * 默认邮件配置项
@@ -71,4 +64,18 @@ public class ConstantFields {
     public static final String SESSION_COURSE_SEARCH_KEY = "courseSearch";
     /* 收费查询Key */
     public static final String SESSION_FINANCE_SEARCH_KEY = "financeSearch";
+    /* 教室查询的Key */
+    public static final String SESSION_ROOM_SEARCH_KEY = "roomSearch";
+    /* session学员key */
+    public static final String SESSION_STU_ID_KEY = "stuId";
+    /* 学员登陆的KEY */
+    public static final String SESSION_STU_KEY = "stuLogin";
+    /* 学员登陆的卡号 */
+    public static final String STU_CARD_NUM = "stuCardNum";
+    /* 课程信息key */
+    public static final String COURSE_INFO_KEY = "course";
+    /* 学员查询失败Key */
+    public static final String DELETE_STU_FAILURE_KEY = "selectStuFailMessage";
+    /* 学员查询失败消息 */
+    public static final String DELETE_STU_FAILURE_MESSAGE = "该学员不存在";
 }
