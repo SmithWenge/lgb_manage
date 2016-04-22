@@ -44,6 +44,8 @@
                     <tr style="background-color: #2aabd2;">
                         <th>序号</th>
                         <th>系名</th>
+                        <th>课程数</th>
+                        <th>学员数</th>
                         <th>报名开始时间</th>
                         <th>报名截止时间</th>
                         <th>操作</th>
@@ -52,6 +54,8 @@
                         <tr>
                             <td>${status.index + 1}</td>
                             <td>${department.departmentName}</td>
+                            <td>${department.courseNum} 门</td>
+                            <td>${department.studentNum} 人</td>
                             <td>${department.departmentStartDate}</td>
                             <td>${department.departmentStopDate}</td>
                             <td>

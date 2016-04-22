@@ -152,4 +152,34 @@ public class DepartmentRepository implements DepartmentRepositoryI {
             return department;
         }
     }
+
+    @Override
+    public int courseNum(int departmentId) {
+        String sql = "SELECT COUNT(courseId) AS num FROM lgb_course WHERE departmentId = ?";
+        Object[] args = {
+                departmentId
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, Integer.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    public int studentNum(int departmentId) {
+        String sql = "SELECT COUNT(studentCourseId) AS num FROM lgb_studentCourse WHERE courseId IN (SELECT courseId FROM lgb_course WHERE departmentId = ?)";
+        Object[] args = {
+                departmentId
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, Integer.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

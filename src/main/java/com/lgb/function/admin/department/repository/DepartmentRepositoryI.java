@@ -15,4 +15,6 @@ public interface DepartmentRepositoryI {
     Department select(int departmentId);
     boolean update(Department department);
     boolean delete(int departmentId);
+    int courseNum(int departmentId);
+    int studentNum(int departmentId);
 }

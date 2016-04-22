@@ -16,6 +16,25 @@ public class Department extends Entry {
     private Date departmentStopDate;
     private int adminId;
     private String adminName;
+    private int courseNum;
+    private int studentNum;
+
+    public void setCourseNum(int courseNum) {
+        this.courseNum = courseNum;
+    }
+
+    public void setStudentNum(int studentNum) {
+        this.studentNum = studentNum;
+    }
+
+    public int getCourseNum() {
+
+        return courseNum;
+    }
+
+    public int getStudentNum() {
+        return studentNum;
+    }
 
     public void setAdminId(int adminId) {
         this.adminId = adminId;
