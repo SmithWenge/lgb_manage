@@ -16,10 +16,10 @@
         </form>
       </li>
       <li role="presentation" style="float: right">
-        总收费: ${infoCount.sumActualTuition}
+        <a>总收费: ${infoCount.sumActualTuition}</a>
       </li>
       <li role="presentation" style="float: right">
-        今天收费: ${infoCount.daySumActualTuition}
+        <a>今天收费: ${infoCount.daySumActualTuition}</a>
       </li>
       <li role="presentation" style="float: right">
         <a href="${contextPath}/admin/finance/routeEcharts.action">查看财务统计</a>

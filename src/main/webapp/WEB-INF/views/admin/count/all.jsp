@@ -46,11 +46,6 @@
     <div class="col-md-4 alert alert-success" role="alert">教师总数：${infoCount.numOfTeacher}人</div>
     <div class="col-md-4 alert alert-success" role="alert">课程总数：${infoCount.numOfCourse}门</div>
 </div>
-
-<%--<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp学员总数：${infoCount.numOfStudent}人</p>--%>
-<%--<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp教师总数：${infoCount.numOfTeacher}人</p>--%>
-<%--<p class="panel panel-default col-md-12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp课程总数：${infoCount.numOfCourse}门</p>--%>
-
 <script src="${contextPath}/static/plugins/echarts/echarts.min.js"></script>
 <div class="row" style="margin-top: 5px; margin-right: 2%; margin-left: 2%;" id="contentDetail">
     <div class="panel panel-default col-md-4">
@@ -469,8 +464,7 @@
                     optionYearOfStuBirthday.series[0].data.push(item);
                 });
 
-                myChart.setOption(optionYearStuEduStart);
-                function eConsole(param) {
+                function eConsole1(param) {
                     if (typeof param.seriesIndex != 'undefined') {
                         $.ajax({
                             type: 'post',
@@ -496,15 +490,241 @@
                         })
                     }
                 }
-                myChart.on('click', eConsole);
+
+                function eConsole2(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/stuGender.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
+                function eConsole3(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/stuEducational.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
+                function eConsole4(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/stuOldWorkPlaceType.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
+                function eConsole5(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/stuOldWorkType.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
+                function eConsole6(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/stuPolitical.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
+                function eConsole7(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/stuPreferential.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
+                function eConsole8(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/stuType.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
+                function eConsole9(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/yearStuBirthday.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
+                myChart.setOption(optionYearStuEduStart);
+                myChart.on('click', eConsole1);
                 myChart2.setOption(optionStuGender);
+                myChart2.on('click', eConsole2);
                 myChart3.setOption(optionStuEducational);
+                myChart3.on('click', eConsole3);
                 myChart4.setOption(optionStuOldWorkPlaceType);
+                myChart4.on('click', eConsole4);
                 myChart5.setOption(optionStuOldWorkType);
+                myChart5.on('click', eConsole5);
                 myChart6.setOption(optionStuPolitical);
+                myChart6.on('click', eConsole6);
                 myChart7.setOption(optionStuPreferential);
+                myChart7.on('click', eConsole7);
                 myChart8.setOption(optionStuType);
+                myChart8.on('click', eConsole8);
                 myChart9.setOption(optionYearOfStuBirthday);
+                myChart9.on('click', eConsole9);
             }
         });
     })

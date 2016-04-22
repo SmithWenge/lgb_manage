@@ -18,10 +18,122 @@ public class CountDetailRepository implements CountDetailRepositoryI {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public List<StudentUser> selectStuYearStart(String year) {
+    public List<StudentUser> selectStuYearStart(String value) {
         String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND YEAR(studentStartDate) = ?";
         Object[] args = {
-                year
+                value
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStuGender(int value) {
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND stuGender = ?";
+        Object[] args = {
+                value
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStuEducational(int value) {
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND stuEducational = ?";
+        Object[] args = {
+                value
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStuOldWorkPlaceType(int value) {
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND stuOldWorkPlaceType = ?";
+        Object[] args = {
+                value
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStuOldWorkType(int value) {
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND stuOldWorkType = ?";
+        Object[] args = {
+                value
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStuPolitical(int value) {
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND stuPolitical = ?";
+        Object[] args = {
+                value
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStuPreferential(int value) {
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND stuPreferential = ?";
+        Object[] args = {
+                value
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStuType(int value) {
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND stuType = ?";
+        Object[] args = {
+                value
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<StudentUser> selectStuBirthday(String value) {
+        String sql = "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND YEAR(yearStuBirthday) = ?";
+        Object[] args = {
+                value
         };
 
         try {

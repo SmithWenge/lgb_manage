@@ -21,11 +21,107 @@ public class CountDetailController {
     private CountDetailServiceI countDetailService;
 
     @ResponseBody
-    @RequestMapping("/yearStuEduStart")
-    public Map<String, List<StudentUser>> detailCount(@RequestBody CountDetail countDetail) {
+     @RequestMapping("/yearStuEduStart")
+     public Map<String, List<StudentUser>> detailCountYearStuEduStart(@RequestBody CountDetail countDetail) {
         Map<String, List<StudentUser>> map = new HashMap<>();
 
         List<StudentUser> studentUsers = countDetailService.yearStuEduStart(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/stuGender")
+    public Map<String, List<StudentUser>> detailCountStuGender(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.stuGender(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/stuEducational")
+    public Map<String, List<StudentUser>> detailCountStuEducational(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.stuEducational(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/stuOldWorkPlaceType")
+    public Map<String, List<StudentUser>> detailCountStuOldWorkPlaceType(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.stuOldWorkPlaceType(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/stuOldWorkType")
+    public Map<String, List<StudentUser>> detailCountStuOldWorkType(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.stuOldWorkType(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/stuPolitical")
+    public Map<String, List<StudentUser>> detailCountStuPolitical(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.stuPolitical(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/stuPreferential")
+    public Map<String, List<StudentUser>> detailCountStuPreferential(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.stuPreferential(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/stuType")
+    public Map<String, List<StudentUser>> detailCountStuType(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.stuType(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
+
+    @ResponseBody
+    @RequestMapping("/yearStuBirthday")
+    public Map<String, List<StudentUser>> detailCountYearStuBirthday(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.yearStuBirthday(countDetail.getKey());
 
         map.put("students", studentUsers);
 

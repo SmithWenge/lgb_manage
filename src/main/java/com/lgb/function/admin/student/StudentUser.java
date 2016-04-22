@@ -41,6 +41,15 @@ public class StudentUser extends Entry{
     private Date studentStartDate;
     private int deleteFlag;
     private String pieStudentStartDate;
+    private String yearStuBirthday;
+
+    public String getYearStuBirthday() {
+        return yearStuBirthday;
+    }
+
+    public void setYearStuBirthday(String yearStuBirthday) {
+        this.yearStuBirthday = yearStuBirthday;
+    }
 
     public void setStuGenderValue(String stuGenderValue) {
         this.stuGenderValue = stuGenderValue;
