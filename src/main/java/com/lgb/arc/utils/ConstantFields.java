@@ -78,4 +78,7 @@ public class ConstantFields {
     public static final String DELETE_STU_FAILURE_KEY = "selectStuFailMessage";
     /* 学员查询失败消息 */
     public static final String DELETE_STU_FAILURE_MESSAGE = "该学员不存在";
+    /* 违纪信息key */
+    public static final String DISCIPLINARY_INFO_KEY = "disciplinary";
+
 }

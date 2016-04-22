@@ -118,51 +118,63 @@ public class TeacherRepository implements TeacherRepositoryI {
             if (teacher.getTeacherGender() > 0 && teacher.getTeacherGender() < 3) {
                 sql.append(" AND teacherGender = ?");
                 list.add(teacher.getTeacherGender());
-            }if (teacher.getTeacherWorkDate() != null) {
+            }
+            if (teacher.getTeacherWorkDate() != null) {
                 sql.append(" AND teacherWorkDate = ?");
                 list.add(teacher.getTeacherWorkDate());
-            }if (teacher.getTeacherState() > 0) {
+            }
+            if (teacher.getTeacherState() > 0) {
                 sql.append(" AND teacherState = ?");
                 list.add(teacher.getTeacherState());
-            } if (teacher.getTeacherBirthday() != null) {
+            }
+            if (teacher.getTeacherBirthday() != null) {
                 sql.append(" AND teacherBirthday = ?");
                 list.add(teacher.getTeacherBirthday());
-            } if (teacher.getDepartmentId() > 0) {
+            }
+            if (teacher.getDepartmentId() > 0) {
                 sql.append(" AND departmentId = ?");
                 list.add(teacher.getDepartmentId());
-            } if (teacher.getTeacherIdentifiedCardNum() != null) {
+            }
+            if (teacher.getTeacherIdentifiedCardNum() != null && teacher.getTeacherIdentifiedCardNum().trim().length() > 0) {
                 sql.append(" AND teacherIdentifiedCardNum = ?");
                 list.add(teacher.getTeacherIdentifiedCardNum());
-            } if (teacher.getTeacherOldWorkplace() != null) {
+            }
+            if (teacher.getTeacherOldWorkplace() != null && teacher.getTeacherOldWorkplace().trim().length() > 0) {
                 sql.append(" AND teacherOldWorkplace = ?");
                 list.add(teacher.getTeacherOldWorkplace());
-            } if (teacher.getTeacherSchool() != null) {
+            }
+            if (teacher.getTeacherSchool() != null && teacher.getTeacherSchool().trim().length() > 0) {
                 sql.append(" AND teacherSchool = ?");
                 list.add(teacher.getTeacherSchool());
-            } if (teacher.getTeacherMajor() != null) {
+            }
+            if (teacher.getTeacherMajor() != null && teacher.getTeacherMajor().trim().length() > 0) {
                 sql.append(" AND teacherMajor = ?");
                 list.add(teacher.getTeacherMajor());
-            } if (teacher.getTeacherFamilyName() != null) {
+            }
+            if (teacher.getTeacherFamilyName() != null && teacher.getTeacherFamilyName().trim().length() > 0) {
                 sql.append(" AND teacherFamilyName = ?");
                 list.add(teacher.getTeacherFamilyName());
-            } if (teacher.getTeacherFamilyTel() != null) {
+            }
+            if (teacher.getTeacherFamilyTel() != null && teacher.getTeacherFamilyTel().trim().length() > 0) {
                 sql.append(" AND teacherFamilyTel = ?");
                 list.add(teacher.getTeacherFamilyTel());
-            } if (teacher.getTeacherSubject() != null) {
+            }
+            if (teacher.getTeacherSubject() != null && teacher.getTeacherSubject().trim().length() > 0) {
                 sql.append(" AND teacherSubject = ?");
                 list.add(teacher.getTeacherSubject());
-            } if (teacher.getTeacherTel() != null) {
+            }
+            if (teacher.getTeacherTel() != null && teacher.getTeacherTel().trim().length() > 0) {
                 sql.append(" AND teacherTel = ?");
                 list.add(teacher.getTeacherTel());
-            } if (teacher.getTeacherHealth() != null) {
+            }
+            if (teacher.getTeacherHealth() != null && teacher.getTeacherHealth().trim().length() > 0) {
                 sql.append(" AND teacherHealth = ?");
                 list.add(teacher.getTeacherHealth());
-            } if (teacher.getTeacherEducational() > 0) {
+            }
+            if (teacher.getTeacherEducational() > 0) {
                 sql.append(" AND teacherEducational = ?");
                 list.add(teacher.getTeacherEducational());
             }
-
-
         }
 
         Object[] args = list.toArray();

@@ -37,38 +37,33 @@
                         <p class="bg-success">${turnCardMessage}</p>
                     </div>
                 </c:if>
-                <form class="form-inline" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/teacher/pageSearch.action" method="post">
+                <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/teacher/pageSearch.action" method="post">
 
                     <div class="row">
-
                         <div class="col-md-4 form-group">
                             <label for="teacherName" class="col-md-3 control-label">教师姓名</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherName" name="teacherName">
                             </div>
                         </div>
-
                         <div class="col-md-4 form-group">
                             <label for="teacherCardNum" class="col-md-3 control-label">卡号</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherCardNum" name="teacherCardNum">
                             </div>
                         </div>
-
                         <div class="col-md-4 form-group">
                             <label for="teacherGender" class="col-md-3 control-label">性别</label>
                             <div class="col-md-8">
                                 <tags:dicselect name="teacherGender" key="gender" value="-1" id="teacherGender" />
                             </div>
                         </div>
-
                         <div class="col-md-4 form-group">
                             <label for="teacherWorkDate" class="col-md-3 control-label">聘用时间</label>
                             <div class="col-md-8">
                                 <input type="date" class="form-control" id="teacherWorkDate" name="teacherWorkDate" placeholder="2016-04-05">
                             </div>
                         </div>
-
                         <div class="col-md-4 form-group">
                             <label for="teacherState" class="col-md-3 control-label">状态</label>
                             <div class="col-md-8">
@@ -135,7 +130,7 @@
                         </div>
                         <div class="col-md-4 form-group">
                             <label for="teacherFamilyTel" class="col-md-3 control-label">家属电话</label>
-                            <div class="col-md-9">
+                            <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherFamilyTel" placeholder="家属电话" name="teacherFamilyTel">
                             </div>
                         </div>
@@ -157,7 +152,13 @@
                                 <input type="text" class="form-control" id="teacherHealth" placeholder="健康" name="teacherHealth">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-default">检索</button>
+                        <div class="col-md-3 form-group">
+                            <div class="col-sm-offset-1 col-sm-20">
+                                <button type="reset" class="btn btn-danger" >重置</button>
+                                <button type="submit" class="btn btn-success" style="float: right">检索</button>
+
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
