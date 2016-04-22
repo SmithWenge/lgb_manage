@@ -13,34 +13,14 @@
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="${contextPath}/admin/student/page.action">学生管理</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/routeAdd.action">添加学员</a></li>
-            <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/routeAdd.action">违纪学员</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/disciplinary/page.action">违纪学员管理</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/export.action">学员导出Excel</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/excel/routeImport.action">学员导入</a></li>
         </ul>
     </div>
-    <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-        <c:if test="${not empty addMessage}">
-            <div class="col-md-12" id="addMessage">
-                <p class="bg-success">${addMessage}</p>
-            </div>
-        </c:if>
-        <c:if test="${not empty editMessage}">
-            <div class="col-md-12" id="editMessage">
-                <p class="bg-success">${editMessage}</p>
-            </div>
-        </c:if>
-        <c:if test="${not empty deleteMessage}">
-            <div class="col-md-12" id="deleteMessage">
-                <p class="bg-success">${deleteMessage}</p>
-            </div>
-        </c:if>
-        <c:if test="${not empty deleteFailureMessage}">
-            <div class="col-md-12" id="deleteFailureMessage">
-                <p class="bg-danger">${deleteFailureMessage}</p>
-            </div>
-        </c:if>
-    </div>
+
     <div class="panel-body">
+
         <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/pageSearch.action" method="post" id="stuAddForm">
             <div class="row">
                 <div class="col-md-4 form-group">
@@ -171,7 +151,6 @@
                     </div>
                 </div>
             </div>
-
         </form>
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">

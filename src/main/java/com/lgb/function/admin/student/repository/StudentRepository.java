@@ -89,11 +89,11 @@ public class StudentRepository implements StudentRepositoryI {
                 sql.append(" AND stuTelOne = ?");
                 list.add(studentUser.getStuTelOne());
             }
-            if (studentUser.getStuNationality() != null) {
+            if (studentUser.getStuNationality() != null && studentUser.getStuNationality().length() > 0) {
                 sql.append(" AND stuNationality = ?");
                 list.add(studentUser.getStuNationality());
             }
-            if (studentUser.getStuLevel() != null) {
+            if (studentUser.getStuLevel() != null && studentUser.getStuLevel().length() > 0) {
                 sql.append(" AND stuLevel = ?");
                 list.add(studentUser.getStuLevel());
             }
@@ -101,19 +101,19 @@ public class StudentRepository implements StudentRepositoryI {
                 sql.append(" AND stuPreferential = ?");
                 list.add(studentUser.getStuPreferential());
             }
-            if (studentUser.getStuDependentsTel() != null) {
+            if (studentUser.getStuDependentsTel() != null && studentUser.getStuDependentsTel().length() > 0) {
                 sql.append(" AND stuDependentsTel = ?");
                 list.add(studentUser.getStuDependentsTel());
             }
-            if (studentUser.getStuOldWorkPlaceName() != null) {
+            if (studentUser.getStuOldWorkPlaceName() != null && studentUser.getStuOldWorkPlaceName().length() > 0) {
                 sql.append(" AND stuOldWorkPlaceName = ?");
                 list.add(studentUser.getStuOldWorkPlaceName());
             }
-            if (studentUser.getStuHealth() != null) {
+            if (studentUser.getStuHealth() != null && studentUser.getStuHealth().length() > 0) {
                 sql.append(" AND stuHealth = ?");
                 list.add(studentUser.getStuHealth());
             }
-            if (studentUser.getStuDependentsDesc() != null) {
+            if (studentUser.getStuDependentsDesc() != null && studentUser.getStuDependentsDesc().length() > 0) {
                 sql.append(" AND stuDependentsDesc = ?");
                 list.add(studentUser.getStuDependentsDesc());
             }
@@ -122,8 +122,11 @@ public class StudentRepository implements StudentRepositoryI {
         Object[] args = list.toArray();
 
         sql.append(" ORDER BY stuId DESC");
-
-        return repositoryUtils.select4Page(sql.toString(), pageable, args, new Query4PageRowMapper());
+        try {
+            return repositoryUtils.select4Page(sql.toString(), pageable, args, new Query4PageRowMapper());
+        } catch (Exception e) {
+            return null;
+        }
     }
     @Override
     public boolean insert(StudentUser studentUser) {
