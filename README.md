@@ -12,3 +12,8 @@ GRANT ALL PRIVILEGES ON lgb_manage.* TO 'lgbmanager'@'localhost' WITH GRANT OPTI
 HOME: http://localhost:8080/lgbmanage/admin/routeLogin.action
 LOG: http://localhost:8080/lgbmanage/admin/log/routePage.action
 ```
+
+### COURSE NUMUBER
+```
+CCDDMMYYBB(课程2位系2位专业2位年级2位班级2位) 前六位座位判断是否可报名课程
+```
