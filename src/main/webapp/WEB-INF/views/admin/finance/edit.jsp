@@ -15,9 +15,9 @@
                         <th>课程</th>
                         <th>学费</th>
                         <th>来源</th>
-                        <th>优惠</th>
+                        <%--<th>优惠</th>--%>
                         <th>性别</th>
-                        <th>优惠</th>
+                        <%--<th>优惠</th>--%>
                         <th>生日</th>
                         <th>电话1</th>
                         <th>电话2</th>
@@ -29,9 +29,9 @@
                         <td>${edit.courseName}</td>
                         <td>${edit.courseTuition}</td>
                         <tags:dictd groupValue="signUpComeFrom" itemKey="${edit.signUpComeFrom}" />
-                        <tags:dictd groupValue="courseDiscount" itemKey="${edit.courseDiscount}" />
+                        <%--<tags:dictd groupValue="courseDiscount" itemKey="${edit.courseDiscount}" />--%>
                         <tags:dictd groupValue="gender" itemKey="${edit.stuGender}" />
-                        <tags:dictd groupValue="courseDiscount" itemKey="${edit.courseDiscount}" />
+                        <%--<tags:dictd groupValue="courseDiscount" itemKey="${edit.courseDiscount}" />--%>
                         <td>${edit.stuBirthday}</td>
                         <td>${edit.telOne}</td>
                         <td>${edit.telTwo}</td>
@@ -48,6 +48,12 @@
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/finance/edit.action" method="post" id="financeEditForm">
                     <input type="hidden" name="studentCourseId" value="${edit.studentCourseId}">
+                    <div class="form-group">
+                        <label for="courseDiscount" class="col-sm-2 control-label">优惠</label>
+                        <div class="col-sm-10">
+                            <tags:dicselect name="courseDiscount" key="courseDiscount" value="${edit.courseDiscount}" />
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="actualTuition" class="col-sm-2 control-label">收款</label>
                         <div class="col-sm-10">
@@ -78,6 +84,7 @@
                 <table class="table" id="paginationTable" align="center">
                     <tr style="background-color: #2aabd2;">
                         <th>说明</th>
+                        <th>学员名</th>
                         <th>系</th>
                         <th>专业</th>
                         <th>课程</th>
@@ -89,6 +96,7 @@
                     <c:forEach items="${finances}" var="finance">
                         <tr>
                             <td>已交款</td>
+                            <td>${finance.stuName}</td>
                             <td>${finance.departmentName}</td>
                             <td>${finance.majorName}</td>
                             <td>${finance.courseName}</td>
