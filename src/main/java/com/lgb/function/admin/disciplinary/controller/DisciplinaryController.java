@@ -2,6 +2,7 @@ package com.lgb.function.admin.disciplinary.controller;
 
 import com.google.common.base.Optional;
 import com.lgb.arc.utils.ConstantFields;
+import com.lgb.function.admin.disciplinary.DisciStudentInfo;
 import com.lgb.function.admin.disciplinary.Disciplinary;
 import com.lgb.function.admin.disciplinary.service.DisciplinaryServiceI;
 import com.lgb.function.admin.login.AdminUser;
@@ -12,15 +13,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("admin/disciplinary")
@@ -105,5 +106,20 @@ public class DisciplinaryController {
         if (disciplinaryService.existCardNum(disciplinary)) {
             return false;
         } else return true;
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/read", method = RequestMethod.POST)
+    public Map<String, DisciStudentInfo> testTwo(@RequestBody DisciStudentInfo disciStudentInfo) {
+        String studentCardNum =disciStudentInfo.getStuCardNum().trim();
+
+        Map<String, DisciStudentInfo> map = new HashMap<>();
+
+        DisciStudentInfo info = disciplinaryService.student(studentCardNum);
+
+        map.put("info", info);
+
+        return map;
     }
 }

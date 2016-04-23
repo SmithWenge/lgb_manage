@@ -16,7 +16,7 @@
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
     <div class="col-md-12">
         <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#">首页</a></li>
+            <li role="presentation" class="active"><a href="${contextPath}/admin/home/index.action">首页</a></li>
             <li role="presentation"><a href="${contextPath}/admin/user/page.action">用户管理</a></li>
             <li role="presentation"><a href="${contextPath}/admin/department/page.action">系管理</a></li>
             <li role="presentation"><a href="${contextPath}/admin/major/page.action">专业管理</a></li>

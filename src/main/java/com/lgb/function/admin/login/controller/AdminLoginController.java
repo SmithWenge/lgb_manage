@@ -35,7 +35,7 @@ public class AdminLoginController {
         Optional<AdminUser> optionalUser = Optional.fromNullable(user);
 
         if (optionalUser.isPresent()) {
-            return new ModelAndView("admin/home/index");
+            return new ModelAndView("redirect:/admin/home/index.action");
         }
 
         AdminUser loginUser = adminLoginService.login(adminUser);
@@ -43,8 +43,8 @@ public class AdminLoginController {
 
         Optional<AdminUser> optional = Optional.fromNullable(loginUser);
         if (optional.isPresent()) {
-            mav.addObject("loginUser", loginUser);
-            mav.setViewName("admin/home/index");
+//            mav.addObject("loginUser", loginUser);
+            mav.setViewName("redirect:/admin/home/index.action");
             session.setAttribute(ConstantFields.SESSION_ADMIN_KEY, loginUser);
 
             if (LOG.isInfoEnabled())
@@ -63,7 +63,7 @@ public class AdminLoginController {
         Optional<AdminUser> optional = Optional.fromNullable(loginUser);
 
         if (optional.isPresent()) {
-            return "admin/home/index";
+            return "redirect:/admin/home/index.action";
         }
 
         return "redirect:/admin/routeLogin.action";

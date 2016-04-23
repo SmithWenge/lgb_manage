@@ -1,5 +1,6 @@
 package com.lgb.function.admin.course.service;
 
+import com.lgb.arc.exception.BatchRollbackException;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.course.CourseSite;
 import com.lgb.function.admin.course.time.CourseTime;
@@ -28,4 +29,7 @@ public interface CourseServiceI {
     List<StudentUser> courseStudent(int courseId);
     Course selectName(int courseId);
     boolean makeLeader(Course course, String logUser);
+    boolean courseUpgrade(int courseId, String logUser);
+    boolean batchUpgrade(String batchIds, String logUser) throws BatchRollbackException;
+    boolean batchGraduate(String batchIds, String logUser) throws BatchRollbackException;
 }

@@ -416,7 +416,7 @@ public class CourseRepository implements CourseRepositoryI {
 
     @Override
     public boolean delete(int courseId) {
-        String sql = "UPDATE lgb_course SET deleteFlag = 1 WHERE courseId = ?";
+        String sql = "UPDATE lgb_course SET courseStatus = 1, deleteFlag = 1 WHERE deleteFlag = 0 AND courseStatus = 0 AND courseId = ?";
         Object[] args = {
                 courseId
         };
@@ -435,7 +435,11 @@ public class CourseRepository implements CourseRepositoryI {
                 courseId
         };
 
-        return jdbcTemplate.queryForObject(sql, args, new SelectByIdRowMapper());
+        try {
+            return jdbcTemplate.queryForObject(sql, args, new SelectByIdRowMapper());
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private class SelectByIdRowMapper implements RowMapper<Course> {
@@ -547,6 +551,51 @@ public class CourseRepository implements CourseRepositoryI {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    @Override
+    public boolean canUpdateCourseGrade(int courseId) {
+        String sql = "SELECT COUNT(courseId) AS num FROM lgb_course WHERE courseYears > courseGrade AND deleteFlag = 0 AND courseId = ?";
+        Object[] args = {
+                courseId
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, Integer.class) > 0 ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public int updateUpgradeCourse(int courseId) {
+        String sql = "UPDATE lgb_course SET courseGrade = courseGrade + 1 WHERE courseId = ? AND deleteFlag = 0";
+        Object[] args = {
+                courseId
+        };
+
+        try {
+            return jdbcTemplate.update(sql, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    @Override
+    public int deleteGraduateCourse(int courseId) {
+        String sql = "UPDATE lgb_course SET courseStatus = 1, deleteFlag = 1 WHERE deleteFlag = 0 AND courseStatus = 0 AND courseId = ?";
+        Object[] args = {
+                courseId
+        };
+
+        try {
+            return jdbcTemplate.update(sql, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }
