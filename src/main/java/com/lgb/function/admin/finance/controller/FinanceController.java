@@ -172,8 +172,26 @@ public class FinanceController {
         Page<Finance> contents = financeService.selectFinance4Page(finance,pageable);
         mav.addObject(ConstantFields.PAGE_KEY, contents);
 
+        InfoCount infoCount = new InfoCount();
+        infoCount.setDaySumActualTuition(fcService.queryDaySumActualTuition().getDaySumActualTuition());
+        infoCount.setSumActualTuition(fcService.querySumOfActualTuition().getSumActualTuition());
+        mav.addObject("infoCount", infoCount);
         return mav;
      }
+    @RequestMapping(value = "/routeTwoDayCount",method = RequestMethod.POST)
+    public ModelAndView showTwoDayCount(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
+                                     Finance finance) {
+        ModelAndView mav = new ModelAndView("admin/finance/financedList");
+
+        Page<Finance> contents = financeService.selectTwoDayFinance4Page(finance, pageable);
+        mav.addObject(ConstantFields.PAGE_KEY, contents);
+
+        InfoCount infoCount = new InfoCount();
+        infoCount.setDaySumActualTuition(fcService.queryDaySumActualTuition().getDaySumActualTuition());
+        infoCount.setSumActualTuition(fcService.querySumOfActualTuition().getSumActualTuition());
+        mav.addObject("infoCount", infoCount);
+        return mav;
+    }
 
     @RequestMapping(value = "/routeEcharts",method = RequestMethod.GET)
     public String showFinanceCount(Finance finance) {
@@ -189,4 +207,12 @@ public class FinanceController {
 
         return map;
     }
+
+    @RequestMapping(value = "/routeExcel",method = RequestMethod.GET)
+    public String showFinanceExcel() {
+        return "admin/finance/financeExcel";
+    }
+
+
+
 }
