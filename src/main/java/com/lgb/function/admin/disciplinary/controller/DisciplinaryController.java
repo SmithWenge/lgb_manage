@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,9 +29,11 @@ public class DisciplinaryController {
     @Autowired
     private DisciplinaryServiceI disciplinaryService;
 
-    @RequestMapping(value = "/page",method = RequestMethod.GET)
-    public ModelAndView query4Page (@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
-                                        Pageable pageable, Disciplinary disciplinary, HttpSession session) {
+    @RequestMapping(value = "/routePage",method = RequestMethod.GET)
+    public ModelAndView routePage(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
+                                            Pageable pageable, Disciplinary disciplinary, HttpSession session) {
+        session.removeAttribute(ConstantFields.SESSION_STU_SEARCH_KEY);
+
         ModelAndView mav = new ModelAndView("admin/disciplinary/list");
         Page<Disciplinary> page = disciplinaryService.query4page(disciplinary, pageable);
 
@@ -41,25 +42,50 @@ public class DisciplinaryController {
         return mav;
 
     }
+
+    @RequestMapping(value = "/page",method = RequestMethod.GET)
+    public ModelAndView query4Page(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
+                                        Pageable pageable, Disciplinary disciplinary, HttpSession session) {
+        Disciplinary disci = (Disciplinary) session.getAttribute(ConstantFields.SESSION_STU_SEARCH_KEY);
+        Optional<Disciplinary> optional = Optional.fromNullable(disci);
+
+        if (optional.isPresent()) {
+            disciplinary = disci;
+        }
+
+        ModelAndView mav = new ModelAndView("admin/disciplinary/list");
+        Page<Disciplinary> page = disciplinaryService.query4page(disciplinary, pageable);
+
+        mav.addObject(ConstantFields.PAGE_KEY, page);
+
+        return mav;
+
+    }
+
     @RequestMapping(value = "/pageSearch")
     public ModelAndView queryForCard(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
                                      Disciplinary disciplinary, HttpSession session) {
         session.setAttribute(ConstantFields.SESSION_STU_SEARCH_KEY, disciplinary);
+
         ModelAndView mav = new ModelAndView("admin/disciplinary/list");
         Page<Disciplinary> page = disciplinaryService.query4page(disciplinary, pageable);
 
         mav.addObject(ConstantFields.PAGE_KEY, page);
         return mav;
     }
+
     @RequestMapping(value = "/countSearch")
     public ModelAndView queryForCount(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
                                       Disciplinary disciplinary, HttpSession session) {
+        session.setAttribute(ConstantFields.SESSION_STU_SEARCH_KEY, disciplinary);
+
         ModelAndView mav = new ModelAndView("admin/disciplinary/list");
         Page<Disciplinary> page = disciplinaryService.query4Count(disciplinary, pageable);
 
         mav.addObject(ConstantFields.PAGE_KEY, page);
         return mav;
     }
+
     @RequestMapping(value = "/moreInfo/{stuId}", method = RequestMethod.GET)
     public ModelAndView queryMore(@PathVariable("stuId") int stuId) {
         List<Disciplinary> disciplinary = disciplinaryService.queryMore(stuId);
@@ -69,7 +95,7 @@ public class DisciplinaryController {
             return mav;
         }
 
-        return new ModelAndView("redirect:/admin/disciplinary/page.action");
+        return new ModelAndView("redirect:/admin/disciplinary/routePage.action");
     }
 
     @RequestMapping(value = "/routeAdd", method = RequestMethod.GET)
@@ -87,7 +113,7 @@ public class DisciplinaryController {
                 LOG.info("[LGB MANAGE] [OK] {} add new disciplinary user {}.", logUser, disciplinary.getStuName());
 
             redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
-            return "redirect:/admin/disciplinary/page.action";
+            return "redirect:/admin/disciplinary/routePage.action";
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);

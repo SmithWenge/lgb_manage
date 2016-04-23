@@ -38,34 +38,38 @@
     </c:if>
   </div>
   <div class="panel-body">
-    <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/disciplinary/pageSearch.action" method="post" id="queryDisciplinary">
-        <div class="col-md-3 form-group">
-          <label for="stuCardNum" class="col-md-4 control-label">学号</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="stuCardNum" placeholder="101010" name="stuCardNum">
+    <div class="row">
+      <div class="col-md-6">
+        <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/disciplinary/pageSearch.action" method="post" id="queryDisciplinary">
+          <div class="col-md-9 form-group">
+            <label for="stuCardNum" class="col-md-4 control-label">学号</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="stuCardNum" placeholder="101010" name="stuCardNum">
+            </div>
           </div>
-        </div>
-        <div class="col-md-3 form-group">
-          <div class="col-sm-offset-1 col-sm-4">
-            <button type="submit" class="btn btn-success" style="float: right">检索</button>
+          <div class="col-md-3 form-group">
+            <div class="col-sm-offset-1 col-sm-4">
+              <button type="submit" class="btn btn-success" style="float: right">检索</button>
+            </div>
           </div>
-        </div>
-    </form>
-    <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/disciplinary/countSearch.action" method="post" id="stuAddForm">
-      <div class="row">
-        <div class="col-md-3 form-group">
-          <label for="disciCount" class="col-md-4 control-label">违纪次数</label>
-          <div class="col-md-8">
-            <input type="text" class="form-control" id="disciCount" name="disciCount">
-          </div>
-        </div>
-        <div class="col-md-3 form-group">
-          <div class="col-sm-offset-1 col-sm-4">
-            <button type="submit" class="btn btn-success" style="float: right">检索</button>
-          </div>
-        </div>
+        </form>
       </div>
-    </form>
+      <div class="col-md-6">
+        <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/disciplinary/countSearch.action" method="post" id="stuAddForm">
+          <div class="col-md-9 form-group">
+            <label for="disciCount" class="col-md-4 control-label">违纪次数</label>
+            <div class="col-md-8">
+              <input type="text" class="form-control" id="disciCount" name="disciCount">
+            </div>
+          </div>
+          <div class="col-md-3 form-group">
+            <div class="col-sm-offset-1 col-sm-4">
+              <button type="submit" class="btn btn-success" style="float: right">检索</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <div class="row" style="margin-top: 5px;">
       <div class="col-md-12">
