@@ -32,7 +32,7 @@
           <div class="col-md-4 form-group">
             <label for="stuName" class="col-md-4 control-label">姓名</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="stuName" name="stuName">
+              <input type="text" class="form-control" id="stuName" name="stuName" value="${$studentName}">
             </div>
           </div>
           <div class="col-md-4 form-group">
@@ -54,12 +54,60 @@
           </div>
         </div>
       </form>
+
+      <%--<div id="informationTable" class="col-md-10 col-md-offset-1"></div>--%>
+
     </div>
   </div>
 
 </div>
 
 <%@include file="/WEB-INF/include/javascript.jsp"%>
+<script type="text/javascript">
+  $(function () {
+    $('#myModal').css('display');
+    $('#stuCardNumTwo').on('input', function () {
+      var $stuCardNum = $('#stuCardNumTwo').val();
+
+//      if ($stuCardNum.length == 0) {
+//        $('#informationTable').empty();
+//      }
+
+      if ($stuCardNum.length < 6) return;
+
+      var data = {};
+      data["stuCardNum"] = $stuCardNum;
+      $.ajax({
+        type: 'post',
+        contentType: 'application/json',
+        dataType: 'json',
+        url: '${contextPath}/admin/disciplinary/read.action',
+        data: JSON.stringify(data),
+        success: function (result) {
+          $("#stuName").val(result.info.stuName);
+
+//          $('#informationTable').empty();
+//          if (result.info == null) {
+//            $('#stuCardNum').val('');
+//            return;
+//          }
+//          var $studentName = result.info.stuName;
+//          var $stuCardNum = result.info.stuCardNum;
+//          var $table = $('<table class="table">');
+//          $table.appendTo($('#informationTable'));
+//          var $tableHeader = $('<tr><th>学员名</th><th>学员卡号</th></tr>')
+//
+//          var $tr = $('<tr><td>' + $studentName + '</td><td>' + $stuCardNum + '</td></tr>');
+//          $tr.appendTo($table);
+//
+//          $('#informationTable').append("</table");
+//
+//          $('#stuCardNum').val('');
+        }
+      });
+    });
+  })
+</script>
 
 <script type="text/javascript">
   $(function () {

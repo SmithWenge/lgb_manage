@@ -1,6 +1,7 @@
 package com.lgb.function.admin.disciplinary.repository;
 
 
+import com.lgb.function.admin.disciplinary.DisciStudentInfo;
 import com.lgb.function.admin.disciplinary.Disciplinary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,4 +15,5 @@ public interface DisciplinaryRepositoryI {
     int query(Disciplinary disciplinary);
     boolean update(Disciplinary disciplinary);
     List<Disciplinary> queryMore(int stuId);
+    DisciStudentInfo selectStudent(String studentCardNum);
 }
