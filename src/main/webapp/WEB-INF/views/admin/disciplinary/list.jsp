@@ -51,7 +51,7 @@
           </div>
         </div>
     </form>
-    <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/disciplinary/CountSearch.action" method="post" id="stuAddForm">
+    <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/disciplinary/countSearch.action" method="post" id="stuAddForm">
       <div class="row">
         <div class="col-md-3 form-group">
           <label for="disciCount" class="col-md-4 control-label">违纪次数</label>

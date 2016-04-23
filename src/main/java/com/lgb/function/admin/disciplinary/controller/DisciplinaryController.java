@@ -33,12 +33,6 @@ public class DisciplinaryController {
     @RequestMapping(value = "/page",method = RequestMethod.GET)
     public ModelAndView query4Page (@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
                                         Pageable pageable, Disciplinary disciplinary, HttpSession session) {
-//        Disciplinary searchDisciplinary = (Disciplinary) session.getAttribute(ConstantFields.SESSION_STU_SEARCH_KEY);
-//
-//        Optional<Disciplinary> optional = Optional.fromNullable(searchDisciplinary);
-//        if (optional.isPresent()) {
-//            disciplinary = searchDisciplinary;
-//        }
         ModelAndView mav = new ModelAndView("admin/disciplinary/list");
         Page<Disciplinary> page = disciplinaryService.query4page(disciplinary, pageable);
 
@@ -57,7 +51,7 @@ public class DisciplinaryController {
         mav.addObject(ConstantFields.PAGE_KEY, page);
         return mav;
     }
-    @RequestMapping(value = "/CountSearch")
+    @RequestMapping(value = "/countSearch")
     public ModelAndView queryForCount(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
                                       Disciplinary disciplinary, HttpSession session) {
         ModelAndView mav = new ModelAndView("admin/disciplinary/list");
@@ -104,8 +98,8 @@ public class DisciplinaryController {
     @ResponseBody
     public boolean nameExist(Disciplinary disciplinary) {
         if (disciplinaryService.existCardNum(disciplinary)) {
-            return false;
-        } else return true;
+            return true;
+        } else return false;
     }
 
 
