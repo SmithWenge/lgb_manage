@@ -30,48 +30,7 @@ public class StudentLoginRepository implements StudentLoginRepositoryI {
 
     @Override
     public Page<Course> query4Page(Course course, Pageable pageable) {
-        StringBuilder sql = new StringBuilder("SELECT \n" +
-                "    courseId,\n" +
-                "    C.departmentId,\n" +
-                "    C.majorId,\n" +
-                "    M.majorName,\n" +
-                "    D.departmentName,\n" +
-                "    courseNum,\n" +
-                "    courseName,\n" +
-                "    courseLimitNum\n" +
-                "FROM\n" +
-                "    lgb_course C\n" +
-                "        LEFT JOIN\n" +
-                "    lgb_department D ON C.departmentId = D.departmentId\n" +
-                "        LEFT JOIN\n" +
-                "    lgb_major M ON C.majorId = M.majorId\n" +
-                "WHERE\n" +
-                "    C.deleteFlag = 0\n" +
-                "        AND courseId IN (SELECT \n" +
-                "            courseId\n" +
-                "        FROM\n" +
-                "            lgb_course C\n" +
-                "        WHERE\n" +
-                "            C.courseId NOT IN (SELECT \n" +
-                "                    courseId\n" +
-                "                FROM\n" +
-                "                    lgb_studentCourse SC\n" +
-                "                WHERE\n" +
-                "                    SC.studentId = ?))\n" +
-                "        AND D.departmentStartDate < NOW()\n" +
-                "        AND D.departmentStopDate > NOW()\n" +
-                "        AND C.courseId IN (SELECT \n" +
-                "            C.courseId\n" +
-                "        FROM\n" +
-                "            lgb_course C\n" +
-                "                LEFT JOIN\n" +
-                "            (SELECT \n" +
-                "                SC.courseId, COUNT(SC.studentCourseId) AS NUM\n" +
-                "            FROM\n" +
-                "                lgb_studentCourse SC\n" +
-                "            GROUP BY SC.courseId) AS TMP ON TMP.courseId = C.courseId\n" +
-                "        WHERE\n" +
-                "            C.deleteFlag = 0 AND NUM < courseLimitNum)");
+        StringBuilder sql = new StringBuilder("SELECT courseId, C.departmentId, C.majorId, M.majorName, D.departmentName, courseNum, courseName, courseLimitNum FROM lgb_course C LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE C.deleteFlag = 0 AND courseId IN (SELECT courseId FROM lgb_course C WHERE C.courseId NOT IN (SELECT courseId FROM lgb_studentCourse SC WHERE SC.studentId = ?)) AND D.departmentStartDate < NOW() AND D.departmentStopDate > NOW() AND C.courseId IN (SELECT C.courseId FROM lgb_course C LEFT JOIN (SELECT SC.courseId, COUNT(SC.studentCourseId) AS NUM FROM lgb_studentCourse SC GROUP BY SC.courseId) AS TMP ON TMP.courseId = C.courseId WHERE C.deleteFlag = 0 AND NUM < courseLimitNum) AND LEFT(C.courseNum, 6) NOT IN (SELECT LEFT(courseNum, 6) AS courseNum FROM lgb_studentCourse SC LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE studentId = ?)");
 
         List<Object> list = new ArrayList<>();
         if (course.getStudentId() > 0) {
