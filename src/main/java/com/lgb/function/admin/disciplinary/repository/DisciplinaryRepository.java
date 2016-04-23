@@ -1,6 +1,7 @@
 package com.lgb.function.admin.disciplinary.repository;
 
 import com.google.common.base.Optional;
+import com.lgb.function.admin.disciplinary.DisciStudentInfo;
 import com.lgb.function.admin.disciplinary.Disciplinary;
 import com.lgb.function.support.utils.RepositoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,6 +111,32 @@ public class DisciplinaryRepository implements DisciplinaryRepositoryI{
             return jdbcTemplate.update(sql, args) == 1 ? true : false;
         } catch (Exception e) {
             return false;
+        }
+    }
+    @Override
+    public DisciStudentInfo selectStudent(String studentCardNum) {
+        String sql = "SELECT stuName, stuId, stuCardNum FROM lgb_student WHERE deleteFlag = 0 AND stuCardNum = ?";
+        Object[] args = {
+                studentCardNum
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, new SelectStudentRowMapper());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    private class SelectStudentRowMapper implements RowMapper<DisciStudentInfo> {
+
+        @Override
+        public DisciStudentInfo mapRow(ResultSet rs, int rowNum) throws SQLException {
+            DisciStudentInfo info = new DisciStudentInfo();
+
+            info.setStuId(rs.getInt("stuId"));
+            info.setStuName(rs.getString("stuName"));
+            info.setStuCardNum(rs.getString("stuCardNum"));
+
+            return info;
         }
     }
 

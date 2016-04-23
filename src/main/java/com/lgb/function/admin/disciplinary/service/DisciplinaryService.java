@@ -1,5 +1,6 @@
 package com.lgb.function.admin.disciplinary.service;
 
+import com.lgb.function.admin.disciplinary.DisciStudentInfo;
 import com.lgb.function.admin.disciplinary.Disciplinary;
 import com.lgb.function.admin.disciplinary.repository.DisciplinaryRepositoryI;
 import com.lgb.function.support.log.LogContent;
@@ -47,5 +48,10 @@ public class DisciplinaryService implements DisciplinaryServiceI {
     @Override
     public boolean existCardNum(Disciplinary disciplinary) {
         return disciplinaryRepository.query(disciplinary) == 0 ? true : false;
+    }
+
+    @Override
+    public DisciStudentInfo student(String studentCardNum) {
+        return disciplinaryRepository.selectStudent(studentCardNum);
     }
 }
