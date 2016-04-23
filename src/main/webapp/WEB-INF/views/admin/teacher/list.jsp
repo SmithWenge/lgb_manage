@@ -41,43 +41,43 @@
 
                     <div class="row">
                         <div class="col-md-4 form-group">
-                            <label for="teacherName" class="col-md-3 control-label">教师姓名</label>
+                            <label for="teacherName" class="col-md-4 control-label">教师姓名</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherName" name="teacherName">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherCardNum" class="col-md-3 control-label">卡号</label>
+                            <label for="teacherCardNum" class="col-md-4 control-label">卡号</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherCardNum" name="teacherCardNum">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherGender" class="col-md-3 control-label">性别</label>
+                            <label for="teacherGender" class="col-md-4 control-label">性别</label>
                             <div class="col-md-8">
                                 <tags:dicselect name="teacherGender" key="gender" value="-1" id="teacherGender" />
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherWorkDate" class="col-md-3 control-label">聘用时间</label>
+                            <label for="teacherWorkDate" class="col-md-4 control-label">聘用时间</label>
                             <div class="col-md-8">
                                 <input type="date" class="form-control" id="teacherWorkDate" name="teacherWorkDate" placeholder="2016-04-05">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherState" class="col-md-3 control-label">状态</label>
+                            <label for="teacherState" class="col-md-4 control-label">状态</label>
                             <div class="col-md-8">
                                 <tags:dicselect name="teacherState" key="teacherState" value="1" id="teacherState" />
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherBirthday" class="col-md-3 control-label">出生日期</label>
+                            <label for="teacherBirthday" class="col-md-4 control-label">出生日期</label>
                             <div class="col-md-8">
                                 <input type="date" class="form-control" id="teacherBirthday" placeholder="2016-04-05" name="teacherBirthday">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="departmentId" class="col-md-3 control-label">所属系</label>
+                            <label for="departmentId" class="col-md-4 control-label">所属系</label>
                             <div class="col-md-8">
                                 <select class="form-control" id="departmentId" name="departmentId">
                                     <c:forEach items="${departments}" var="department">
@@ -87,72 +87,72 @@
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherIdentifiedCardNum" class="col-md-3 control-label">身份证号</label>
+                            <label for="teacherIdentifiedCardNum" class="col-md-4 control-label">身份证号</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherIdentifiedCardNum" placeholder="11111111111111111111" name="teacherIdentifiedCardNum">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherOldWorkplace" class="col-md-3 control-label">原工作单位</label>
+                            <label for="teacherOldWorkplace" class="col-md-4 control-label">原工作单位</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherOldWorkplace" placeholder="大连市" name="teacherOldWorkplace">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherTitle" class="col-md-3 control-label">职称</label>
+                            <label for="teacherTitle" class="col-md-4 control-label">职称</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherTitle" placeholder="教授" name="teacherTitle">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherSchool" class="col-md-3 control-label">毕业院校</label>
+                            <label for="teacherSchool" class="col-md-4 control-label">毕业院校</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherSchool" placeholder="大连理工大学" name="teacherSchool">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherEducational" class="col-md-3 control-label">学历</label>
+                            <label for="teacherEducational" class="col-md-4 control-label">学历</label>
                             <div class="col-md-8">
                                 <tags:dicselect name="teacherEducational" key="educational" value="2" id="teacherEducational" />
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherMajor" class="col-md-3 control-label">专业</label>
+                            <label for="teacherMajor" class="col-md-4 control-label">专业</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherMajor" placeholder="计算机" name="teacherMajor">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherFamilyName" class="col-md-3 control-label">家属姓名</label>
+                            <label for="teacherFamilyName" class="col-md-4 control-label">家属姓名</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherFamilyName" placeholder="家属姓名" name="teacherFamilyName">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherFamilyTel" class="col-md-3 control-label">家属电话</label>
+                            <label for="teacherFamilyTel" class="col-md-4 control-label">家属电话</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherFamilyTel" placeholder="家属电话" name="teacherFamilyTel">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherSubject" class="col-md-3 control-label">拟任教学科</label>
+                            <label for="teacherSubject" class="col-md-4 control-label">拟任教学科</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherSubject" placeholder="声乐,钢琴" name="teacherSubject">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherTel" class="col-md-3 control-label">电话号</label>
+                            <label for="teacherTel" class="col-md-4 control-label">电话号</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherTel" placeholder="12345678901" name="teacherTel">
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="teacherHealth" class="col-md-3 control-label">身体状况</label>
+                            <label for="teacherHealth" class="col-md-4 control-label">身体状况</label>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="teacherHealth" placeholder="健康" name="teacherHealth">
                             </div>
                         </div>
-                        <div class="col-md-3 form-group">
+                        <div class="col-md-offset-4 col-md-4 form-group">
                             <div class="col-sm-offset-1 col-sm-20">
                                 <button type="reset" class="btn btn-danger" >重置</button>
                                 <button type="submit" class="btn btn-success" style="float: right">检索</button>
