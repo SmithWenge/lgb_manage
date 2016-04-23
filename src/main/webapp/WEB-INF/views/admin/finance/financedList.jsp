@@ -86,6 +86,7 @@
             <th>实际缴费</th>
             <th>操作用户</th>
             <th>操作时间</th>
+            <th>操作</th>
           </tr>
           <c:forEach items="${page.content}" var="finance" varStatus="status">
             <tr>
@@ -101,6 +102,11 @@
               <td>${finance.actualTuition}</td>
               <td>${finance.financeUser}</td>
               <td>${finance.financeTime}</td>
+              <td>
+                <a href="${contextPath}/admin/finance/routePrint/${finance.studentCourseId}.action" style="text-decoration: none;">
+                  <button type="button" class="btn btn-warning">打印</button>
+                </a>
+              </td>
             </tr>
           </c:forEach>
         </table>

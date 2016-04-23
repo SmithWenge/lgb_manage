@@ -40,6 +40,15 @@ public class Finance extends Entry {
     private Date queryFinanceDateTwo;
     private String excelYear;
     private String excelMonth;
+    private String billNumber;
+
+    public String getBillNumber() {
+        return billNumber;
+    }
+
+    public void setBillNumber(String billNumber) {
+        this.billNumber = billNumber;
+    }
 
     public String getExcelYear() {
         return excelYear;

@@ -117,6 +117,7 @@ public class FinanceController {
             mav.addObject("finances", finances);
 
             return mav;
+
         }
         return new ModelAndView("redirect:/admin/department/page.action");
     }
