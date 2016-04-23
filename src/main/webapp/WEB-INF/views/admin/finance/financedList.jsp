@@ -10,19 +10,36 @@
         <form class="form-inline" action="${contextPath}/admin/finance/routeDayCount.action" method="post">
           <div class="form-group">
             <label for="queryFinanceDate" class="control-label">操作时间</label>
-            <input type="date" class="form-control" id="queryFinanceDate" name="queryFinanceDate">
+            <input type="date" class="form-control" id="queryFinanceDate" name="queryFinanceDate" style="height:33px;width:140px">
           </div>
           <button type="submit" class="btn btn-default">检索</button>
         </form>
       </li>
-      <li role="presentation" style="float: right">
+      <li role="presentation">
+        <form class="form-inline" action="${contextPath}/admin/finance/routeTwoDayCount.action" method="post">
+          <div class="form-group">
+            <label for="queryFinanceDateOne" class="control-label">&nbsp;&nbsp;&nbsp;操作时间</label>
+            <input type="date" class="form-control" id="queryFinanceDateOne" name="queryFinanceDateOne" style="height:33px;width:140px">
+          </div>
+          <div class="form-group">
+            <label for="queryFinanceDateTwo" class="control-label">至</label>
+            <input type="date" class="form-control" id="queryFinanceDateTwo" name="queryFinanceDateTwo" style="height:33px;width:140px">
+          </div>
+          <button type="submit" class="btn btn-default">检索</button>
+        </form>
+      </li>
+      <li role="presentation" >
         <a>总收费: ${infoCount.sumActualTuition}</a>
       </li>
-      <li role="presentation" style="float: right">
+      <li role="presentation" >
         <a>今天收费: ${infoCount.daySumActualTuition}</a>
       </li>
-      <li role="presentation" style="float: right">
+      <li role="presentation" >
         <a href="${contextPath}/admin/finance/routeEcharts.action">查看财务统计</a>
+      </li>
+
+      <li role="presentation" >
+        <a href="${contextPath}/admin/finance/routeExcel.action">导出</a>
       </li>
     </ul>
   </div>

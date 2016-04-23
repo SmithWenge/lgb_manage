@@ -37,7 +37,7 @@ public class StudentExcelImportController {
     public String add(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         File importFile = save(file, request);
 
-        if (null == importFile) return "redirect:/admin/excel/routeImport.action";
+        if (null == importFile) return "redirect:/admin/export/routeImport.action";
 
         ExcelConverter<StudentUser> converter = new ExcelConverter<StudentUser>();
         List<StudentUser> studentUsers = converter.readFromExcel(importFile, 1, new StudentExcelMapper());
@@ -46,7 +46,7 @@ public class StudentExcelImportController {
             return "redirect:/admin/student/page.action";
         }
 
-        return "redirect:/admin/excel/routeImport.action";
+        return "redirect:/admin/export/routeImport.action";
     }
 
     @RequestMapping("/template")
@@ -57,7 +57,7 @@ public class StudentExcelImportController {
 
             String name = URLEncoder.encode(file.getName(), "utf-8");
 
-            response.setContentType("application/x-excel");
+            response.setContentType("application/x-export");
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Disposition", "attachment; filename=" + name);
             response.setHeader("Content-Length", String.valueOf(file.length()));
@@ -87,7 +87,7 @@ public class StudentExcelImportController {
     }
 
     private File save(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-        String targetPath = request.getSession().getServletContext().getRealPath("/WEB-INF/data/excel/");
+        String targetPath = request.getSession().getServletContext().getRealPath("/WEB-INF/data/export/");
         String sourceFileName = file.getOriginalFilename();
 
         String dateString = new DateTime().toString("MM-dd-yyyy-HH-mm-ss-SSS");

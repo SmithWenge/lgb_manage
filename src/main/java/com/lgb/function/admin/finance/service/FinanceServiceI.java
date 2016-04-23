@@ -18,4 +18,5 @@ public interface FinanceServiceI {
     List<Finance> selectFinanceCourse(int studentCourseId);
     boolean edit(Finance finance, String logUser);
     Page<Finance> selectFinance4Page(Finance finance, Pageable pageable);
+    Page<Finance> selectTwoDayFinance4Page(Finance finance, Pageable pageable);
 }

@@ -224,7 +224,7 @@ public class StudentController {
             workbook.write();
             workbook.close();
 
-            response.setContentType("application/x-excel");
+            response.setContentType("application/x-export");
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
             response.setHeader("Content-Length", String.valueOf(file.length()));
