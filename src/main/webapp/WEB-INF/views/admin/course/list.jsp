@@ -26,7 +26,16 @@
                     <button type="submit" class="btn btn-default">查询</button>
                 </form>
             </li>
-            <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/course/routeAdd.action">添加课程</a></li>
+            <li role="presentation" class="active" style="float: right"><a href="${contextPath}/admin/course/routeAdd.action">添加课程</a></li>
+            <li role="presentation" style="float: right">
+                <button type="button" class="btn btn-danger navbar-btn" id="batchUpgrade" style="margin-top: 0px; margin-bottom: 0px;">批量毕业</button>
+                <%--<a id="batchUpgrade">批量升级</a>--%>
+            </li>
+            <li role="presentation" style="float: right">
+                <button type="button" class="btn btn-danger navbar-btn" id="batchGraduate" style="margin-top: 0px; margin-bottom: 0px;">批量毕业</button>
+                <%--<a id="batchGraduate">批量毕业</a>--%>
+            </li>
+
         </ul>
     </div>
     <div class="panel-body">
@@ -60,6 +69,7 @@
             <div class="col-md-12">
                 <table class="table" id="paginationTable" align="center">
                     <tr style="background-color: #2aabd2;">
+                        <th>选择</th>
                         <th>序号</th>
                         <th>专业</th>
                         <th>课程号</th>
@@ -73,15 +83,21 @@
                         <th>报名限制</th>
                         <th>操作</th>
                     </tr>
+                    <form method="post" id="batchForm">
                     <c:forEach items="${page.content}" var="course" varStatus="status">
                         <tr>
+                            <td>
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" value="${course.courseId}" name="batchId">
+                                </label>
+                            </td>
                             <td>${status.index + 1}</td>
                             <td>${course.majorName}</td>
                             <td>${course.courseNum}</td>
                             <td>${course.courseName}</td>
                             <td>${course.teacherOneName} ${course.teacherTwoName}</td>
                             <tags:dictd groupValue="courseRoom" itemKey="${course.courseRoom}" />
-                            <td style="font-size: 5px;">
+                            <td>
                             <c:forEach items="${course.times}" var="time">
                                 <tags:diclabel groupValue="timeWeek" itemKey="${time.timeWeek}"/>
                                  <tags:diclabel groupValue="timeSpecific" itemKey="${time.timeSpecificInt}"/>,
@@ -102,11 +118,15 @@
                                     <button type="button" class="btn btn-info">排座</button>
                                 </a>
                                 <a href="${contextPath}/admin/course/route/make/leader/${course.courseId}.action" style="text-decoration: none;" >
-                                    <button type="button" class="btn btn-info">设置班长</button>
+                                    <button type="button" class="btn btn-info">班长</button>
+                                </a>
+                                <a href="${contextPath}/admin/course/upgrade/${course.courseId}.action" style="text-decoration: none;" >
+                                    <button type="button" class="btn btn-info">升级</button>
                                 </a>
                             </td>
                         </tr>
                     </c:forEach>
+                    </form>
                 </table>
             </div>
         </div>
@@ -181,6 +201,16 @@
                     });
                 }
             });
+        });
+
+        $('#batchUpgrade').on('click', function () {
+            var actionPath = "${contextPath}/admin/course/batch/upgrade.action";
+            $('#batchForm').attr('action', actionPath).submit();
+        });
+
+        $('#batchGraduate').on('click', function () {
+            var actionPath = "${contextPath}/admin/course/batch/graduate.action";
+            $('#batchForm').attr('action', actionPath).submit();
         });
     });
 </script>

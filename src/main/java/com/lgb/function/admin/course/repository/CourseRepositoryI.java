@@ -33,4 +33,7 @@ public interface CourseRepositoryI {
     List<StudentUser> selectStudents(int courseId);
     Course selectName(int courseId);
     boolean updateLeader(Course course);
+    boolean canUpdateCourseGrade(int courseId);
+    int updateUpgradeCourse(int courseId);
+    int deleteGraduateCourse(int courseId);
 }

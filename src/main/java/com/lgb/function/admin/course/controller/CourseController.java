@@ -1,6 +1,7 @@
 package com.lgb.function.admin.course.controller;
 
 import com.google.common.base.Optional;
+import com.lgb.arc.exception.BatchRollbackException;
 import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.course.CourseSite;
@@ -243,5 +244,71 @@ public class CourseController {
 
         redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/course/route/make/leader/" + course.getCourseId() + ".action";
+    }
+
+    @RequestMapping(value = "/upgrade/{courseId}")
+    public String courseUpgrade(@PathVariable("courseId") int courseId, HttpSession session, RedirectAttributes redirectAttributes) {
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminLoginName();
+
+        if (courseService.courseUpgrade(courseId, logUser)) {
+            if (LOG.isInfoEnabled())
+                LOG.info("[LGB MANAGE] [OK] {} upgrade Course's ID {}.", logUser, courseId);
+
+            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+
+            return "redirect:/admin/course/routePage.action";
+        }
+
+        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        return "redirect:/admin/course/routePage.action";
+    }
+
+    @RequestMapping(value = "/batch/upgrade")
+    public String batchUpgrade(@RequestParam("batchId") String batchIds, HttpSession session, RedirectAttributes redirectAttributes) {
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminLoginName();
+
+        try {
+            if (courseService.batchUpgrade(batchIds, logUser)) {
+                if (LOG.isInfoEnabled())
+                    LOG.info("[LGB MANAGE] [OK] {} upgrade Course's IDs {}.", logUser, batchIds);
+
+                redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+
+                return "redirect:/admin/course/routePage.action";
+            }
+        } catch (BatchRollbackException e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+            return "redirect:/admin/course/routePage.action";
+        }
+
+        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        return "redirect:/admin/course/routePage.action";
+    }
+
+    @RequestMapping(value = "/batch/graduate")
+    public String batchGraduate(@RequestParam("batchId") String batchIds, HttpSession session, RedirectAttributes redirectAttributes) {
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminLoginName();
+
+        try {
+            if (courseService.batchGraduate(batchIds, logUser)) {
+                if (LOG.isInfoEnabled())
+                    LOG.info("[LGB MANAGE] [OK] {} graduate Course's IDs {}.", logUser, batchIds);
+
+                redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+
+                return "redirect:/admin/course/routePage.action";
+            }
+        } catch (BatchRollbackException e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+            return "redirect:/admin/course/routePage.action";
+        }
+
+        redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+        return "redirect:/admin/course/routePage.action";
     }
 }

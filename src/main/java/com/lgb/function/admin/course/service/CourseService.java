@@ -1,6 +1,7 @@
 package com.lgb.function.admin.course.service;
 
 import com.google.common.base.Optional;
+import com.lgb.arc.exception.BatchRollbackException;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.course.CourseSite;
 import com.lgb.function.admin.course.time.CourseTime;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -146,7 +148,7 @@ public class CourseService implements CourseServiceI {
             boolean tmp = courseRepository.delete(courseId);
 
             if (tmp) {
-                LogContent logContent = new LogContent(logUser, "删除系ID为" + courseId, 1, 2);
+                LogContent logContent = new LogContent(logUser, "删除课程ID为" + courseId, 1, 2);
                 logRepository.insertLog(logContent);
             }
 
@@ -181,7 +183,7 @@ public class CourseService implements CourseServiceI {
             boolean tmp = courseRepository.updateLeader(course);
 
             if (tmp) {
-                LogContent logContent = new LogContent(logUser, "修改班级班长,班级ID为" + course.getCourseId(), 1, 2);
+                LogContent logContent = new LogContent(logUser, "修改班级班长,班级ID为" + course.getCourseId(), 1, 4);
                 logRepository.insertLog(logContent);
             }
 
@@ -201,6 +203,105 @@ public class CourseService implements CourseServiceI {
 
             CourseTime time = new CourseTime(week, timeSpecific, courseRoom, courseTeacher.getCourseId());
             courseTimeRepository.insert(time);
+        }
+    }
+
+    @Override
+    public boolean courseUpgrade(int courseId, String logUser) {
+//        Optional<Course> optional = Optional.fromNullable(courseRepository.selectById(courseId));
+//        if (!optional.isPresent()) return false;
+
+        boolean beUpgrade = courseRepository.canUpdateCourseGrade(courseId);
+
+        if (beUpgrade) {
+            try {
+                boolean tmp =  courseRepository.updateUpgradeCourse(courseId) == 1 ? true : false;
+
+                if (tmp) {
+                    LogContent logContent = new LogContent(logUser, "升级课程,课程ID为{}" + courseId, 1, 4);
+                    logRepository.insertLog(logContent);
+                }
+
+                return tmp;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = BatchRollbackException.class)
+    @Override
+    public boolean batchUpgrade(String batchIds, String logUser) throws BatchRollbackException {
+        String[] courseIds = batchIds.split(",");
+        int successSum = 0;
+
+        for (String courseId : courseIds) {
+            successSum += batchOneUpgrade(Integer.valueOf(courseId), logUser);
+        }
+
+        if (courseIds.length != successSum) {
+            throw new BatchRollbackException();
+        }
+
+        return true;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = BatchRollbackException.class)
+    @Override
+    public boolean batchGraduate(String batchIds, String logUser) throws BatchRollbackException {
+        String[] courseIds = batchIds.split(",");
+        int successSum = 0;
+
+        for (String courseId : courseIds) {
+            successSum += batchOneDelete(Integer.valueOf(courseId), logUser);
+        }
+
+        if (courseIds.length != successSum) {
+            throw new BatchRollbackException();
+        }
+
+        return true;
+    }
+
+    private int batchOneUpgrade(int courseId, String logUser) {
+
+        boolean beUpgrade = courseRepository.canUpdateCourseGrade(courseId);
+
+        if (beUpgrade) {
+            try {
+                int tmp =  courseRepository.updateUpgradeCourse(courseId);
+
+                if (tmp == 1) {
+                    LogContent logContent = new LogContent(logUser, "升级课程,课程ID为{}" + courseId, 1, 4);
+                    logRepository.insertLog(logContent);
+                }
+
+                return tmp;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }
+
+        return 0;
+    }
+
+    private int batchOneDelete(int courseId, String logUser) {
+        try {
+            int tmp =  courseRepository.deleteGraduateCourse(courseId);
+
+            if (tmp == 1) {
+                LogContent logContent = new LogContent(logUser, "毕业课程,课程ID为{}" + courseId, 1, 2);
+                logRepository.insertLog(logContent);
+            }
+
+            return tmp;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
         }
     }
 }
