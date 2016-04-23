@@ -34,6 +34,44 @@ public class Finance extends Entry {
     private Date queryFinanceDate;
     private String countFinanceYear;
     private String financeUser;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date queryFinanceDateOne;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date queryFinanceDateTwo;
+    private String excelYear;
+    private String excelMonth;
+
+    public String getExcelYear() {
+        return excelYear;
+    }
+
+    public void setExcelYear(String excelYear) {
+        this.excelYear = excelYear;
+    }
+
+    public String getExcelMonth() {
+        return excelMonth;
+    }
+
+    public void setExcelMonth(String excelMonth) {
+        this.excelMonth = excelMonth;
+    }
+
+    public Date getQueryFinanceDateOne() {
+        return queryFinanceDateOne;
+    }
+
+    public void setQueryFinanceDateOne(Date queryFinanceDateOne) {
+        this.queryFinanceDateOne = queryFinanceDateOne;
+    }
+
+    public Date getQueryFinanceDateTwo() {
+        return queryFinanceDateTwo;
+    }
+
+    public void setQueryFinanceDateTwo(Date queryFinanceDateTwo) {
+        this.queryFinanceDateTwo = queryFinanceDateTwo;
+    }
 
     public void setFinanceUser(String financeUser) {
         this.financeUser = financeUser;

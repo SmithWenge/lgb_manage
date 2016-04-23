@@ -1,8 +1,6 @@
 package com.lgb.arc.excel;
 
-/**
- * Created by Samuel on 16/4/8.
- */
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
