@@ -35,6 +35,7 @@ public class StudentLoginRepository implements StudentLoginRepositoryI {
         List<Object> list = new ArrayList<>();
         if (course.getStudentId() > 0) {
             list.add(course.getStudentId());
+            list.add(course.getStudentId());
         }
 
         if (course.getDepartmentId() > 0) {

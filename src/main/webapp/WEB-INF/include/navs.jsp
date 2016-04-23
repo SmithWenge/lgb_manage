@@ -17,6 +17,7 @@
             <li role="presentation"><a href="${contextPath}/admin/count/index.action">统计</a></li>
             <li role="presentation"><a href="${contextPath}/admin/room/routeRoom.action">教室</a></li>
             <li role="presentation"><a href="${contextPath}/admin/finance/routePage.action">财务</a></li>
+            <li role="presentation"><a href="${contextPath}/admin/offline/sign.action">报名</a></li>
             <li role="presentation"><a href="${contextPath}/admin/user/helpRouter.action">帮助</a></li>
             <li class="dropdown" style="float: right;">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${adminLogin.adminLoginName} <span class="caret"></span></a>

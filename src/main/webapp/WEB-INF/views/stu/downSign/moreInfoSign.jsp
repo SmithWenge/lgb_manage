@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/include/header.jsp"%>
+<%@ include file="/WEB-INF/include/navs.jsp"%>
 
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
   <div class="col-md-12">
@@ -19,8 +19,8 @@
   <div class="panel-heading">
     <ul class="nav nav-pills">
       <li role="presentation" ><a>课程详细信息</a></li>
-      <li role="presentation"class="active" style="float: right"><a href="${contextPath}/stu/queryDownSign.action">返回上一页</a></li>
-      <li role="presentation"class="active" style="float: right"><a href="${contextPath}/stu/downSign.action?stuCardNum=${stuCardNum}">返回首页</a></li>
+      <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/offline/queryDownSign.action">返回上一页</a></li>
+      <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/offline/downSign.action?stuCardNum=${stuCardNum}">返回首页</a></li>
     </ul>
   </div>
 
@@ -59,7 +59,7 @@
             <td>${course.courseTuition}</td>
 
             <td>
-              <a href="${contextPath}/stu/delete/${course.courseId}.action" style="text-decoration: none;">
+              <a href="${contextPath}/admin/offline/delete/${course.courseId}.action" style="text-decoration: none;">
                 <button type="button" class="btn btn-danger">退订</button>
               </a>
             </td>

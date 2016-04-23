@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/include/header.jsp"%>
+<%@ include file="/WEB-INF/include/navs.jsp"%>
 
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
   <div class="col-md-12">
@@ -19,7 +19,7 @@
   <div class="panel-heading">
     <ul class="nav nav-pills">
       <li role="presentation" ><a>您已报名的课程</a></li>
-      <li role="presentation"class="active" style="float: right"><a href="${contextPath}/stu/downSign.action?stuCardNum=${stuCardNum}">返回上一页</a></li>
+      <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/offline/downSign.action?stuCardNum=${stuCardNum}">返回上一页</a></li>
     </ul>
   </div>
 
@@ -43,7 +43,7 @@
               <td>${course.departmentName}</td>
               <td>${course.courseLimitNum}</td>
               <td>
-                <a href="${contextPath}/stu/downCourseInfoSign/${course.courseId}.action" style="text-decoration: none;">
+                <a href="${contextPath}/admin/offline/downCourseInfoSign/${course.courseId}.action" style="text-decoration: none;">
                   <button type="button" class="btn btn-warning" >查看课程信息</button>
                 </a>
               </td>
@@ -59,7 +59,7 @@
           <ul class="pager">
             <c:if test="${page.number > 0 }">
               <li class="previous">
-                <a href="${contextPath}/stu/queryDownSign.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
+                <a href="${contextPath}/admin/offline/queryDownSign.action?page=${page.number - 1}"><span aria-hidden="true">&larr;</span> 上一页</a>
               </li>
             </c:if>
             <c:if test="${page.number <= 0 }">
@@ -69,7 +69,7 @@
             </c:if>
             <c:if test="${page.number + 1 < page.totalPages }">
               <li class="next">
-                <a href="${contextPath}/stu/queryDownSign.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
+                <a href="${contextPath}/admin/offline/queryDownSign.action?page=${page.number + 1}">下一页 <span aria-hidden="true">&rarr;</span></a>
               </li>
             </c:if>
             <c:if test="${page.number + 1 >= page.totalPages }">

@@ -26,25 +26,24 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/stu")
+@RequestMapping("/admin/offline")
 public class StudentLoginController {
 
     @Autowired
     private StudentLoginServiceI studentLoginService;
 
     @RequestMapping("/sign")
-    public String test() {
+    public String index() {
         return "stu/downSign/sign";
     }
 
-    @RequestMapping(value = "/downSign",method = RequestMethod.GET)
+    @RequestMapping(value = "/downSign")
     public ModelAndView sign(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
                              Pageable pageable, StudentUser studentUser, Course course, HttpSession session, RedirectAttributes redirectAttributes) {
         StudentUser loginUser = studentLoginService.login(studentUser);
         if (loginUser == null) {
-            // modelandview ?????????
             redirectAttributes.addFlashAttribute(ConstantFields.DELETE_STU_FAILURE_KEY, ConstantFields.DELETE_STU_FAILURE_MESSAGE);
-            return new ModelAndView("redirect:/stu/sign.action");
+            return new ModelAndView("redirect:/admin/offline/sign.action");
         }
         session.setAttribute(ConstantFields.STU_CARD_NUM,loginUser.getStuCardNum());
         ModelAndView mav = new ModelAndView();
@@ -67,7 +66,7 @@ public class StudentLoginController {
             mav.addObject("departments", departments);
         }
         else {
-            mav.setViewName("redirect:/stu/sign.action");
+            mav.setViewName("redirect:/admin/offline/sign.action");
         }
         return mav;
     }
@@ -78,7 +77,7 @@ public class StudentLoginController {
 
         StudentUser loginUser = studentLoginService.login(studentUser);
         if (loginUser == null) {
-            return new ModelAndView("redirect:/stu/routeLogin.action");
+            return new ModelAndView("redirect:/admin/offline/routeLogin.action");
         }
         ModelAndView mav = new ModelAndView();
         Optional<Course> courseOptional = Optional.fromNullable(course);
@@ -98,7 +97,7 @@ public class StudentLoginController {
             mav.addObject("departments", departments);
         }
         else {
-            mav.setViewName("redirect:/stu/routeLogin.action");
+            mav.setViewName("redirect:/admin/offline/routeLogin.action");
         }
         return mav;
     }
@@ -119,10 +118,10 @@ public class StudentLoginController {
                 mav.setViewName("stu/login/list");
             }
             else {
-                mav.setViewName("redirect:/stu/routeLogin.action");
+                mav.setViewName("redirect:/admin/offline/routeLogin.action");
             }
         } else {
-            mav.setViewName("redirect:/stu/routeLogin.action");
+            mav.setViewName("redirect:/admin/offline/routeLogin.action");
         }
         return mav;
     }
@@ -158,7 +157,7 @@ public class StudentLoginController {
     public String routeLogin(HttpSession session) {
         if (session.getAttribute(ConstantFields.SESSION_STU_KEY) != null){
             ModelAndView mav = new ModelAndView();
-            mav.setViewName("redirect:/stu/login.action");
+            mav.setViewName("redirect:/admin/offline/login.action");
             return null;
         }else {
             return "stu/login/stuLogin";
@@ -176,7 +175,7 @@ public class StudentLoginController {
             mav.setViewName("stu/login/querySign");
         }
         else {
-            mav.setViewName("redirect:/stu/login.action");
+            mav.setViewName("redirect:/admin/offline/login.action");
         }
         return mav;
     }
@@ -186,7 +185,7 @@ public class StudentLoginController {
                                       Pageable pageable, StudentUser studentUser, Course course, HttpSession session) {
         ModelAndView mav = new ModelAndView();
         if (session.getAttribute(ConstantFields.SESSION_STU_ID_KEY) == null){
-            mav.setViewName("redirect:/stu/downSign.action");
+            mav.setViewName("redirect:/admin/offline/downSign.action");
             return mav;
         }
         course.setStudentId((Integer)session.getAttribute(ConstantFields.SESSION_STU_ID_KEY));
@@ -198,7 +197,7 @@ public class StudentLoginController {
             mav.setViewName("stu/downSign/querySign");
         }
         else {
-            mav.setViewName("redirect:/stu/downSign.action");
+            mav.setViewName("redirect:/admin/offline/downSign.action");
         }
         return mav;
     }
@@ -208,7 +207,7 @@ public class StudentLoginController {
     public String logout(HttpSession session) {
         session.removeAttribute(ConstantFields.SESSION_STU_KEY);
 
-        return "redirect:/stu/routeLogin.action";
+        return "redirect:/admin/offline/routeLogin.action";
     }
 
     @RequestMapping(value = "/courseInfo/{courseId}", method = RequestMethod.GET)
@@ -219,7 +218,7 @@ public class StudentLoginController {
             mav.addObject(ConstantFields.COURSE_INFO_KEY, course);
             return mav;
         }
-        return new ModelAndView("redirect:/stu/login.action");
+        return new ModelAndView("redirect:/admin/offline/login.action");
     }
     @RequestMapping(value = "/courseInfoSign/{courseId}", method = RequestMethod.GET)
     public ModelAndView moreCourseInfoSign(@PathVariable("courseId") int courseId ) {
@@ -229,7 +228,7 @@ public class StudentLoginController {
             mav.addObject(ConstantFields.COURSE_INFO_KEY, course);
             return mav;
         }
-        return new ModelAndView("redirect:/stu/login.action");
+        return new ModelAndView("redirect:/admin/offline/login.action");
     }
 
     @RequestMapping(value = "/downCourseInfo/{courseId}", method = RequestMethod.GET)
@@ -242,7 +241,7 @@ public class StudentLoginController {
             mav.addObject(ConstantFields.STU_CARD_NUM,stuCardNum);
             return mav;
         }
-        return new ModelAndView("redirect:/stu/downSign.action");
+        return new ModelAndView("redirect:/admin/offline/downSign.action");
     }
 
     @RequestMapping(value = "/downCourseInfoSign/{courseId}", method = RequestMethod.GET)
@@ -255,7 +254,7 @@ public class StudentLoginController {
             mav.addObject(ConstantFields.STU_CARD_NUM,stuCardNum);
             return mav;
         }
-        return new ModelAndView("redirect:/stu/downSign.action");
+        return new ModelAndView("redirect:/admin/offline/downSign.action");
     }
 
     @RequestMapping(value = "/signUp/{courseId}", method = RequestMethod.GET)
@@ -268,13 +267,13 @@ public class StudentLoginController {
         if (studentLoginService.add(studentCourse) == true && session.getAttribute(ConstantFields.SESSION_STU_KEY) != null) {
 
             redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
-            return "redirect:/stu/login.action";
+            return "redirect:/admin/offline/login.action";
         } else if (session.getAttribute(ConstantFields.SESSION_STU_KEY) == null){
             redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
-            return "redirect:/stu/downSign.action?stuCardNum="+session.getAttribute(ConstantFields.STU_CARD_NUM);
+            return "redirect:/admin/offline/downSign.action?stuCardNum="+session.getAttribute(ConstantFields.STU_CARD_NUM);
         }
         redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
-        return "redirect:/stu/routeSignUp.action";
+        return "redirect:/admin/offline/routeSignUp.action";
     }
 
     @RequestMapping(value = "/routeSignUp", method = RequestMethod.GET)
@@ -290,14 +289,14 @@ public class StudentLoginController {
         studentCourse.setCourseId(courseId);
         if (studentLoginService.delete(studentCourse) == true  && session.getAttribute(ConstantFields.SESSION_STU_KEY) != null) {
             redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
-            return "redirect:/stu/login.action";
+            return "redirect:/admin/offline/login.action";
         } else if (session.getAttribute(ConstantFields.SESSION_STU_KEY) == null){
             redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
-            return "redirect:/stu/downSign.action?stuCardNum="+session.getAttribute(ConstantFields.STU_CARD_NUM);
+            return "redirect:/admin/offline/downSign.action?stuCardNum="+session.getAttribute(ConstantFields.STU_CARD_NUM);
         }
 
         redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
-        return "redirect:/stu/login.action";
+        return "redirect:/admin/offline/login.action";
 
     }
 }
