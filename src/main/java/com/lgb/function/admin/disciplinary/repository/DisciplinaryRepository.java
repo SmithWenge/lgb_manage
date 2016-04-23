@@ -25,19 +25,19 @@ public class DisciplinaryRepository implements DisciplinaryRepositoryI{
 
     @Override
     public Page<Disciplinary> query4Page(Disciplinary disciplinary,Pageable pageable) {
-        StringBuilder sql = new StringBuilder("SELECT stuId, disciplinaryId, lgb_disciplinary.stuCardNum, lgb_disciplinary.stuName, stuTelOne, count(disciCount) as SUM FROM lgb_disciplinary LEFT JOIN lgb_student on lgb_disciplinary.stuCardNum = lgb_student.stuCardNum ");
+        StringBuilder sql = new StringBuilder("SELECT S.stuId, S.stuName, TMP.stuCardNum, S.stuTelOne, TMP.num FROM (SELECT stuCardNum, COUNT(stuCardNum) AS num FROM lgb_disciplinary GROUP BY stuCardNum) AS TMP LEFT JOIN lgb_student S ON TMP.stuCardNum = S.stuCardNum");
         List<Object> list = new ArrayList<Object>();
 
         Optional<Disciplinary> optional = Optional.fromNullable(disciplinary);
         if (optional.isPresent()) {
             if (disciplinary.getStuCardNum() != null && disciplinary.getStuCardNum().length() > 0) {
-                sql.append(" WHERE lgb_disciplinary.stuCardNum = ?");
+                sql.append(" WHERE TMP.stuCardNum = ?");
                 list.add(disciplinary.getStuCardNum());
             }
         }
         Object[] args = list.toArray();
 
-        sql.append(" GROUP BY stuId ORDER BY disciplinaryId DESC");
+        sql.append(" ORDER BY TMP.num DESC");
         try {
             return repositoryUtils.select4Page(sql.toString(), pageable, args, new Query4PageRowMapper());
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class DisciplinaryRepository implements DisciplinaryRepositoryI{
 
     @Override
     public Page<Disciplinary> query4Count(Disciplinary disciplinary, Pageable pageable) {
-        String sql = "SELECT disciplinaryId,lgb_disciplinary.stuCardNum, lgb_disciplinary.stuName, disciTime, stuTelOne FROM lgb_disciplinary LEFT JOIN lgb_student on lgb_disciplinary.stuCardNum = lgb_student.stuCardNum WHERE lgb_student.disciCount = ?";
+        String sql = "SELECT S.stuId, S.stuName, TMP.stuCardNum, S.stuTelOne, TMP.num FROM (SELECT stuCardNum, COUNT(stuCardNum) AS num FROM lgb_disciplinary GROUP BY stuCardNum) AS TMP LEFT JOIN lgb_student S ON TMP.stuCardNum = S.stuCardNum WHERE TMP.num = ?";
         Object[] args = {
                 disciplinary.getDisciCount()
         };
@@ -60,7 +60,7 @@ public class DisciplinaryRepository implements DisciplinaryRepositoryI{
     }
     @Override
     public List<Disciplinary> queryMore(int stuId) {
-        String sql = "SELECT stuId, disciplinaryId,lgb_disciplinary.stuCardNum, lgb_disciplinary.stuName, disciTime, disciCause FROM lgb_disciplinary LEFT JOIN lgb_student ON lgb_disciplinary.stuCardNum = lgb_student.stuCardNum WHERE stuId = ?";
+        String sql = "SELECT stuId, disciplinaryId,D.stuCardNum, D.stuName, disciTime, disciCause FROM lgb_disciplinary D LEFT JOIN lgb_student S ON D.stuCardNum = S.stuCardNum WHERE stuId = ?";
         Object[] args = {
                 stuId
         };
@@ -147,11 +147,11 @@ public class DisciplinaryRepository implements DisciplinaryRepositoryI{
             Disciplinary disciplinary = new Disciplinary();
 
             disciplinary.setStuId(resultSet.getInt("stuId"));
-            disciplinary.setDisciplinaryId(resultSet.getInt("disciplinaryId"));
+//            disciplinary.setDisciplinaryId(resultSet.getInt("disciplinaryId"));
             disciplinary.setStuName(resultSet.getString("stuName"));
             disciplinary.setStuCardNum(resultSet.getString("stuCardNum"));
             disciplinary.setStuTelOne(resultSet.getString("stuTelOne"));
-            disciplinary.setDisciSum(resultSet.getInt("SUM"));
+            disciplinary.setDisciSum(resultSet.getInt("num"));
 
             return disciplinary;
         }

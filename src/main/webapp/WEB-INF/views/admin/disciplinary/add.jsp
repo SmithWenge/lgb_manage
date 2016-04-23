@@ -35,15 +35,19 @@
               <input type="text" class="form-control" id="stuName" name="stuName" value="${$studentName}">
             </div>
           </div>
+        </div>
+        <div class="row">
           <div class="col-md-4 form-group">
             <label for="disciTime" class="col-md-4 control-label">违纪时间</label>
             <div class="col-sm-8">
               <input type="date" class="form-control" id="disciTime" name="disciTime">
             </div>
           </div>
-          <div class="col-md-4 form-group">
-            <label for="disciCause" class="col-md-4 control-label">违纪原因</label>
-            <div class="col-md-8">
+        </div>
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <label for="disciCause" class="col-md-1 control-label">违纪原因</label>
+            <div class="col-md-11">
               <textarea class="form-control" id="disciCause" name="disciCause"></textarea>
             </div>
           </div>
@@ -54,9 +58,6 @@
           </div>
         </div>
       </form>
-
-      <%--<div id="informationTable" class="col-md-10 col-md-offset-1"></div>--%>
-
     </div>
   </div>
 
@@ -68,10 +69,6 @@
     $('#myModal').css('display');
     $('#stuCardNumTwo').on('input', function () {
       var $stuCardNum = $('#stuCardNumTwo').val();
-
-//      if ($stuCardNum.length == 0) {
-//        $('#informationTable').empty();
-//      }
 
       if ($stuCardNum.length < 6) return;
 
@@ -85,24 +82,6 @@
         data: JSON.stringify(data),
         success: function (result) {
           $("#stuName").val(result.info.stuName);
-
-//          $('#informationTable').empty();
-//          if (result.info == null) {
-//            $('#stuCardNum').val('');
-//            return;
-//          }
-//          var $studentName = result.info.stuName;
-//          var $stuCardNum = result.info.stuCardNum;
-//          var $table = $('<table class="table">');
-//          $table.appendTo($('#informationTable'));
-//          var $tableHeader = $('<tr><th>学员名</th><th>学员卡号</th></tr>')
-//
-//          var $tr = $('<tr><td>' + $studentName + '</td><td>' + $stuCardNum + '</td></tr>');
-//          $tr.appendTo($table);
-//
-//          $('#informationTable').append("</table");
-//
-//          $('#stuCardNum').val('');
         }
       });
     });
@@ -113,8 +92,7 @@
   $(function () {
     $('#stuAddForm').validate({
       rules: {
-
-        stuCardNum: {
+        stuCardNumTwo: {
           required: true,
           minlength: 2,
           maxlength: 50,
@@ -128,7 +106,7 @@
               }
             }
           },
-          equalTo: '#stuCardNumTwo'
+          equalTo: '#stuCardNum'
         },
         stuName: {
           required: true
@@ -143,7 +121,7 @@
         }
       },
       messages: {
-        stuCardNum: {
+        stuCardNumTwo: {
           required: "请填写卡号.",
           minlength: "卡号的长度为2到50.",
           maxlength: "卡号的长度为2到50.",

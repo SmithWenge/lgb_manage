@@ -24,7 +24,7 @@ public class ExportRepository implements ExportRepositoryI{
         StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1");
 
         List<Object> list = new ArrayList<>();
-        if (finance.getExcelMonth().equals("")) {
+        if (finance.getExcelMonth().equals("00")) {
             sql.append(" AND YEAR(SC.financeTime) = ?");
             list.add(finance.getExcelYear());
         } else {

@@ -22,8 +22,8 @@ public class FinanceExcelMapper implements ExcelMapper<Finance>{
             sheet.addCell(new Label(6, rowNum, finance.getCourseName()));
             sheet.addCell(new Label(7, rowNum, String.valueOf(finance.getCourseTuition())));
             sheet.addCell(new Label(8, rowNum, manager.dictionary(finance.getCourseDiscount(), "courseDiscount").getItemValue()));
-            sheet.addCell(new Label(9, rowNum, finance.getFinanceUser()));
-            sheet.addCell(new Label(10, rowNum, String.valueOf(finance.getActualTuition())));
+            sheet.addCell(new Label(9, rowNum, String.valueOf(finance.getActualTuition())));
+            sheet.addCell(new Label(10, rowNum, finance.getFinanceUser()));
             sheet.addCell(new Label(11, rowNum, finance.getFinanceTime().toString()));
 
 
