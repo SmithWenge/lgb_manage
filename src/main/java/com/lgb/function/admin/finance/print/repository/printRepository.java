@@ -17,7 +17,7 @@ public class printRepository implements printRepositoryI{
     private JdbcTemplate jdbcTemplate;
     @Override
     public Finance selectById(int studentCourseId) {
-        String sql = "SELECT SC.billNumber,SC.studentCourseId,S.stuName,D.departmentName,M.majorName,C.courseName,SC.actualTuition,SC.financeTime FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND SC.billFlag = 0 AND SC.studentCourseId = ?";
+        String sql = "SELECT SC.billNumber,S.stuCardNum,S.stuName,D.departmentName,M.majorName,C.courseName,SC.actualTuition,SC.financeTime FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND SC.billFlag = 0 AND SC.studentCourseId = ?";
         Object[] args = {
                 studentCourseId
         };
@@ -35,7 +35,7 @@ public class printRepository implements printRepositoryI{
         public Finance mapRow(ResultSet resultSet, int i) throws SQLException {
             Finance finance = new Finance();
             finance.setBillNumber(resultSet.getString("billNumber"));
-            finance.setStudentCourseId(resultSet.getInt("studentCourseId"));
+            finance.setStuCardNum(resultSet.getString("stuCardNum"));
             finance.setStuName(resultSet.getString("stuName"));
             finance.setDepartmentName(resultSet.getString("departmentName"));
             finance.setMajorName(resultSet.getString("majorName"));

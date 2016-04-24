@@ -41,6 +41,15 @@ public class Finance extends Entry {
     private String excelYear;
     private String excelMonth;
     private String billNumber;
+    private String stuCardNum;
+
+    public String getStuCardNum() {
+        return stuCardNum;
+    }
+
+    public void setStuCardNum(String stuCardNum) {
+        this.stuCardNum = stuCardNum;
+    }
 
     public String getBillNumber() {
         return billNumber;
