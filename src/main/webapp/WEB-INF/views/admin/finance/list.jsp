@@ -41,6 +41,7 @@
                 </form>
             </li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/finance/routeCount.action">财务分析</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/finance/printPage.action">打印发票</a></li>
         </ul>
     </div>
     <div class="panel-body">

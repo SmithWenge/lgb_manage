@@ -5,41 +5,15 @@
 <div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
   <div class="panel-heading">
     <ul class="nav nav-pills">
-      <li role="presentation" ><a href="${contextPath}/admin/finance/routeCount.action">财务分析</a></li>
+      <li role="presentation" ><a href="${contextPath}/admin/finance/printPage.action">打印发票</a></li>
       <li role="presentation">
-        <form class="form-inline" action="${contextPath}/admin/finance/routeDayCount.action" method="post">
+        <form class="form-inline" action="${contextPath}/admin/finance/routePrintBill.action" method="post">
           <div class="form-group">
-            <label for="queryFinanceDate" class="control-label">操作时间</label>
-            <input type="date" class="form-control" id="queryFinanceDate" name="queryFinanceDate" style="height:33px;width:140px">
+            <label for="stuCardNum" class="control-label"></label>
+            <input type="text" class="form-control" id="stuCardNum" name="stuCardNum">
           </div>
-          <button type="submit" class="btn btn-default">检索</button>
+          <button type="submit" class="btn btn-default">输入卡号检索</button>
         </form>
-      </li>
-      <li role="presentation">
-        <form class="form-inline" action="${contextPath}/admin/finance/routeTwoDayCount.action" method="post">
-          <div class="form-group">
-            <label for="queryFinanceDateOne" class="control-label">&nbsp;&nbsp;&nbsp;操作时间</label>
-            <input type="date" class="form-control" id="queryFinanceDateOne" name="queryFinanceDateOne" style="height:33px;width:140px">
-          </div>
-          <div class="form-group">
-            <label for="queryFinanceDateTwo" class="control-label">至</label>
-            <input type="date" class="form-control" id="queryFinanceDateTwo" name="queryFinanceDateTwo" style="height:33px;width:140px">
-          </div>
-          <button type="submit" class="btn btn-default">检索</button>
-        </form>
-      </li>
-      <li role="presentation" >
-        <a>总收费: ${infoCount.sumActualTuition}</a>
-      </li>
-      <li role="presentation" >
-        <a>今天收费: ${infoCount.daySumActualTuition}</a>
-      </li>
-      <li role="presentation" >
-        <a href="${contextPath}/admin/finance/routeEcharts.action">查看财务统计</a>
-      </li>
-
-      <li role="presentation" >
-        <a href="${contextPath}/admin/finance/routeExcel.action">导出</a>
       </li>
     </ul>
   </div>
@@ -86,6 +60,7 @@
             <th>实际缴费</th>
             <th>操作用户</th>
             <th>操作时间</th>
+            <th>操作</th>
           </tr>
           <c:forEach items="${page.content}" var="finance" varStatus="status">
             <tr>
@@ -101,6 +76,11 @@
               <td>${finance.actualTuition}</td>
               <td>${finance.financeUser}</td>
               <td>${finance.financeTime}</td>
+              <td>
+                <a href="${contextPath}/admin/finance/routePrint/${finance.studentCourseId}.action" style="text-decoration: none;">
+                  <button type="button" class="btn btn-warning">打印</button>
+                </a>
+              </td>
             </tr>
           </c:forEach>
         </table>

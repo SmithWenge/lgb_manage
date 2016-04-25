@@ -155,16 +155,6 @@ public class FinanceController {
         return mav;
     }
 
-    @RequestMapping(value = "/countPage")
-    public ModelAndView showCountLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
-                                Pageable pageable, Finance finance) {
-
-        ModelAndView mav = new ModelAndView("admin/finance/financedList");
-        Page<Finance> page = financeService.selectFinance4Page(finance, pageable);
-        mav.addObject(ConstantFields.PAGE_KEY, page);
-
-        return mav;
-    }
     @RequestMapping(value = "/routeDayCount",method = RequestMethod.POST)
      public ModelAndView showDayCount(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
                                       Finance finance) {

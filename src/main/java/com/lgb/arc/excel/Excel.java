@@ -1,8 +1,5 @@
 package com.lgb.arc.excel;
 
-/**
- * Created by Samuel on 16/4/8.
- */
 public class Excel {
     private String sheetName;
     private int sheetNum;
