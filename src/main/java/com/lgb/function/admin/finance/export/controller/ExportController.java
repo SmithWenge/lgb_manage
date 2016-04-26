@@ -42,7 +42,7 @@ public class ExportController {
             int length = 0;
             byte[] buffer = new byte[1024];
             FileInputStream fis = new FileInputStream(file);
-            OutputStream os = response.getOutputStream();
+                OutputStream os = response.getOutputStream();
             while (-1 != (length = fis.read(buffer, 0, buffer.length))) {
                 os.write(buffer, 0, length);
             }

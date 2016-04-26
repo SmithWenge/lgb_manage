@@ -45,6 +45,15 @@ public class printRepository implements printRepositoryI{
 
     }
 
+    @Override
+    public Page<Finance> selectPrintBillNum(Finance finance, Pageable pageable) {
+        String sql = "SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND SC.billNumber = ? ORDER BY SC.financeTime DESC";
+        Object[] args = {
+                finance.getBillNumber()
+        };
+        return repositoryUtils.select4Page(sql, pageable, args, new SelectPrintAllRowMapper());
+    }
+
     private class SelectByIdRowMapper implements RowMapper<Finance> {
 
         @Override

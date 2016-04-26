@@ -21,4 +21,9 @@ public class printService implements printServiceI{
     public Page<Finance> selectPrintAll(Finance finance, Pageable pageable) {
         return printRepository.selectPrintAll(finance,pageable);
     }
+
+    @Override
+    public Page<Finance> selectPrintBillNum(Finance finance, Pageable pageable) {
+        return printRepository.selectPrintBillNum(finance,pageable);
+    }
 }

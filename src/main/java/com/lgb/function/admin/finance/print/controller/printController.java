@@ -55,6 +55,15 @@ public class printController {
         return mav;
     }
 
+    @RequestMapping(value = "/routeSelectBillNum",method = RequestMethod.POST)
+    public ModelAndView routeSelectBillNum(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
+                                               Pageable pageable,Finance finance) {
 
+        ModelAndView mav = new ModelAndView("admin/finance/printList");
+        Page<Finance> page = printService.selectPrintBillNum(finance,pageable);
+        mav.addObject(ConstantFields.PAGE_KEY, page);
+
+        return mav;
+    }
 }
 

@@ -7,4 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface printRepositoryI {
      Finance selectById(int id);
      Page<Finance> selectPrintAll(Finance finance, Pageable pageable);
+     Page<Finance> selectPrintBillNum(Finance finance, Pageable pageable);
 }

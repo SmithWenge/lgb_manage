@@ -15,6 +15,15 @@
           <button type="submit" class="btn btn-default">输入卡号检索</button>
         </form>
       </li>
+      <li role="presentation" style="margin-left: 20px">
+        <form class="form-inline" action="${contextPath}/admin/finance/routeSelectBillNum.action" method="post">
+          <div class="form-group">
+            <label for="billNumber" class="control-label"></label>
+            <input type="text" class="form-control" id="billNumber" name="billNumber">
+          </div>
+          <button type="submit" class="btn btn-default">输入发票号检索</button>
+        </form>
+      </li>
     </ul>
   </div>
   <div class="panel-body">
