@@ -1,9 +1,5 @@
 package com.lgb.arc.excel;
 
-/**
- * Created by Samuel on 16/4/8.
- */
-
 import jxl.format.Colour;
 
 public class CellStyle {

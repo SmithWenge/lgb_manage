@@ -327,11 +327,12 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public boolean update(Finance finance, String logUser) {
-        String sql = "UPDATE lgb_studentCourse SET actualTuition = ?, tuitionFlag = 1, financeTime = NOW(), financeUser = ?, courseDiscount = ? WHERE studentCourseId = ?";
+        String sql = "UPDATE lgb_studentCourse SET actualTuition = ?, tuitionFlag = 1, financeTime = NOW(), financeUser = ?, courseDiscount = ?, billNumber = ? WHERE studentCourseId = ?";
         Object[] args = {
                 finance.getActualTuition(),
                 logUser,
                 finance.getCourseDiscount(),
+                finance.getBillNumber(),
                 finance.getStudentCourseId()
         };
 

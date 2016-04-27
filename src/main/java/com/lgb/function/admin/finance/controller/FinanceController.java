@@ -1,6 +1,7 @@
 package com.lgb.function.admin.finance.controller;
 
 import com.google.common.base.Optional;
+import com.lgb.arc.utils.BillNumUtils;
 import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
@@ -35,6 +36,8 @@ public class FinanceController {
     private FinanceServiceI financeService;
     @Autowired
     private FCServiceI fcService;
+
+    private BillNumUtils billNumUtils;
 
     @RequestMapping(value = "/page")
     public ModelAndView showLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
@@ -117,6 +120,7 @@ public class FinanceController {
             mav.addObject("finances", finances);
 
             return mav;
+
         }
         return new ModelAndView("redirect:/admin/department/page.action");
     }
@@ -126,6 +130,7 @@ public class FinanceController {
         AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
         String logUser = user.getAdminLoginName();
 
+        finance.setBillNumber(billNumUtils.creatBillNum());
         if (financeService.edit(finance, logUser)) {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} edit finance with course name is {} and studentCourseId is {}.", logUser, finance.getCourseName(), finance.getStudentCourseId());
@@ -154,16 +159,6 @@ public class FinanceController {
         return mav;
     }
 
-    @RequestMapping(value = "/countPage")
-    public ModelAndView showCountLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
-                                Pageable pageable, Finance finance) {
-
-        ModelAndView mav = new ModelAndView("admin/finance/financedList");
-        Page<Finance> page = financeService.selectFinance4Page(finance, pageable);
-        mav.addObject(ConstantFields.PAGE_KEY, page);
-
-        return mav;
-    }
     @RequestMapping(value = "/routeDayCount",method = RequestMethod.POST)
      public ModelAndView showDayCount(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
                                       Finance finance) {
