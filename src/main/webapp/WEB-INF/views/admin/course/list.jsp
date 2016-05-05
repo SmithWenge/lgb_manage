@@ -2,10 +2,19 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">
+<%--课程管理--%>
+<style>
+    #course{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
         <ul class="nav nav-pills">
-            <li role="presentation" ><a href="${contextPath}/admin/course/routePage.action">课程管理</a></li>
+            <li role="presentation" ><a href="${contextPath}/admin/course/routePage.action"><span class="glyphicon glyphicon-map-marker"></span>课程管理</a></li>
             <li role="presentation" >
                 <form class="form-inline" action="${contextPath}/admin/course/pageSearch.action" method="post">
                     <div class="form-group">
@@ -64,11 +73,19 @@
                     <p class="bg-danger">${editFailureMessage}</p>
                 </div>
             </c:if>
+        <style>
+            table th{
+                min-width: 64px;
+                line-height: 40px;
+                /*max-width: 80px;*/
 
+            }
+
+        </style>
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <table class="table" id="paginationTable" align="center">
-                    <tr style="background-color: #2aabd2;">
+                    <tr style="background-color: #3767b1; color: #dbdbdb;">
                         <th>选择</th>
                         <th>序号</th>
                         <th>专业</th>
@@ -83,10 +100,10 @@
                         <th>报名限制</th>
                         <th>操作</th>
                     </tr>
-                    <form method="post" id="batchForm">
+                    <form method="post" id="batchForm" border="1px black solid;">
                     <c:forEach items="${page.content}" var="course" varStatus="status">
-                        <tr>
-                            <td>
+                        <tr style="line-height: 38px;">
+                            <td >
                                 <label class="checkbox-inline">
                                     <input type="checkbox" value="${course.courseId}" name="batchId">
                                 </label>
@@ -107,7 +124,7 @@
                             <td>${course.courseStuNum}</td>
                             <td>${course.courseTuition}</td>
                             <td>${course.courseLimitNum}</td>
-                            <td>
+                            <td style="height: 30px;line-height: 38px">
                                 <a href="${contextPath}/admin/course/routeEdit/${course.courseId}.action" style="text-decoration: none;">
                                     <button type="button" class="btn btn-warning">编辑</button>
                                 </a>
