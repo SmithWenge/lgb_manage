@@ -13,9 +13,19 @@
             margin-top: 5px;
         }
     </style>
-        <div class="panel panel-default">
+
+    <%--学生管理--%>
+    <style>
+        #student{
+            background: whitesmoke;
+            border-left: 4px solid #fed350;
+            border-right: 4px solid #fed350;
+            color: #444;
+        }
+    </style>
+        <div class="panel panel-default" style="float: left;width: 85%;">
             <div class="panel-body">
-            <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/edit.action" method="post" id="stuEditForm">
+            <form action="${contextPath}/admin/student/edit.action" method="post" id="stuEditForm">
                 <input type="hidden" name="stuId" value="${edit.stuId}">
                 <div class="row">
                     <div class="col-md-4 form-group">

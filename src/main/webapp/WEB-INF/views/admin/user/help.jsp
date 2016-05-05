@@ -2,8 +2,8 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 <br>
-<div id="content" style="margin-left: 3%; margin-right: 2%; margin-top: 1%;">
-    <div class="main_left">
+<div id="content" style="float: left;width: 85%;">
+    <div class="main_left" style="padding-left: 50px;">
         <h2>帮助</h2>
         <br>
         <h3>关于报名</h3>

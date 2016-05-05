@@ -5,12 +5,21 @@
 
 <link href="${contextPath}/static/plugins/bootstrap/css/docs.min.css" rel="stylesheet" type="text/css">
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">
+<%--教室--%>
+<style>
+    #room{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
         <ul class="nav nav-pills">
-            <li role="presentation"><a href="${contextPath}/admin/room/routeRoom.action">教室</a></li>
-            <li role="presentation"><a href="${contextPath}/admin/room/routeTime.action">详细</a></li>
-            <li role="presentation"><a href="${contextPath}/admin/room/manage/routePage.action">教室管理</a></li>
+            <li role="presentation"><a href="${contextPath}/admin/room/routeRoom.action"><span class="glyphicon glyphicon-map-marker"></span>教室</a></li>
+            <li role="presentation" style="float: right;"><a href="${contextPath}/admin/room/manage/routePage.action">教室管理</a></li>
+            <li role="presentation" style="float: right;"><a href="${contextPath}/admin/room/routeTime.action">详细</a></li>
         </ul>
     </div>
     <div class="panel-body">

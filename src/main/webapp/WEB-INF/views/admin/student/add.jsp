@@ -2,7 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 5px;">
+<div class="row" style="float: left;width: 85%;">
     <c:if test="${not empty addFailureMessage}">
     <div class="col-md-12" id="message">
         <p class="bg-danger">${addFailureMessage}</p>
@@ -13,9 +13,20 @@
             margin-top: 5px;
         }
     </style>
-        <div class="panel panel-default">
+
+    <%--学生管理--%>
+    <style>
+        #student{
+            background: whitesmoke;
+            border-left: 4px solid #fed350;
+            border-right: 4px solid #fed350;
+            color: #444;
+        }
+    </style>
+        <div class="panel panel-default" style="float: left;width: 85%;">
+            <div class="panel-heading" style="height: 45px;padding-top: 5px;"><a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> 学生管理</a> > 添加学员</div>
             <div class="panel-body">
-    <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/add.action" method="post" id="stuAddForm">
+    <form action="${contextPath}/admin/student/add.action" method="post" id="stuAddForm">
         <div class="row">
             <div class="col-md-4 form-group">
                 <label for="stuCardNumTwo" class="col-md-4 control-label">卡号</label>

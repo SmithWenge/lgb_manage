@@ -17,8 +17,18 @@
         });
     });
 </script>
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">系添加</div>
+
+<%--系管理>系添加--%>
+<style>
+    #department{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/department/page.action"><span class="glyphicon glyphicon-map-marker"></span>系管理</a> > 系添加</div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">
             <c:if test="${not empty addFailureMessage}">

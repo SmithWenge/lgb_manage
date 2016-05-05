@@ -17,8 +17,17 @@
         }
     </style>
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">编辑课程</div>
+<%--课程管理--%>
+    <style>
+        #course{
+            background: whitesmoke;
+            border-left: 4px solid #fed350;
+            border-right: 4px solid #fed350;
+            color: #444;
+        }
+    </style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/course/routePage.action"><span class="glyphicon glyphicon-map-marker"></span>课程管理</a> > 编辑课程</div>
     <div class="panel-body">
         <form id="courseEditForm" action="${contextPath}/admin/course/edit.action" method="post">
             <input type="hidden" value="${course.courseId}" name="courseId">

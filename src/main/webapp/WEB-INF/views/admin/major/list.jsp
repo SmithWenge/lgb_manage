@@ -2,10 +2,19 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">
+<%--专业管理 > 专业添加--%>
+<style>
+    #major{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
         <ul class="nav nav-pills">
-            <li role="presentation" ><a href="${contextPath}/admin/major/page.action">专业管理</a></li>
+            <li role="presentation" ><a href="${contextPath}/admin/major/page.action"><span class="glyphicon glyphicon-map-marker"></span>专业管理</a></li>
             <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/major/routeAdd.action">添加专业</a></li>
         </ul>
     </div>
@@ -41,7 +50,7 @@
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <table class="table" id="paginationTable" align="center">
-                    <tr style="background-color: #2aabd2;">
+                    <tr style="background-color: #3767b1; color: #dbdbdb;">
                         <th>序号</th>
                         <th>系名</th>
                         <th>专业名</th>

@@ -5,7 +5,17 @@
 
 <link href="${contextPath}/static/plugins/bootstrap/css/docs.min.css" rel="stylesheet" type="text/css">
 
-<div style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
+<%--教室--%>
+<style>
+    #room{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel-heading" style="height: 45px;padding: 10px;"><span class="glyphicon glyphicon-map-marker"></span>教室 > 详细信息</div>
+<div style="float: left;width: 85%;">
         <table class="table table-bordered table-striped responsive-utilities">
             <thead>
             <tr>
