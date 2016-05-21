@@ -75,7 +75,7 @@
             </c:if>
         <style>
             table th{
-                min-width: 64px;
+                min-width: 60px;;
                 line-height: 40px;
                 /*max-width: 80px;*/
 
@@ -91,13 +91,13 @@
                         <th>专业</th>
                         <th>课程号</th>
                         <th>课程名</th>
-                        <th>任课教师</th>
+                        <th style="width: 90px;">任课教师</th>
                         <th>教室</th>
-                        <th>上课时间</th>
-                        <th>计划人数</th>
-                        <th>实际人数</th>
+                        <th style="width: 90px;">上课时间</th>
+                        <th style="width: 90px;">计划人数</th>
+                        <th style="width: 90px;">实际人数</th>
                         <th>学费</th>
-                        <th>报名限制</th>
+                        <th style="width: 90px;">报名限制</th>
                         <th>操作</th>
                     </tr>
                     <form method="post" id="batchForm" border="1px black solid;">
