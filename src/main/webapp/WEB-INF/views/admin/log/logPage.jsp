@@ -12,7 +12,7 @@
     }
 </style>
 <div class="panel panel-default" style="float: left;width: 85%;">
-    <div class="panel-heading" style="height: 45px;"><span class="glyphicon glyphicon-map-marker"></span>日志管理</div>
+    <div class="panel-heading" style="height: 45px;"><a href="${contextPath}/admin/log/routePage.action"> <span class="glyphicon glyphicon-map-marker"></span>日志管理</a></div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
