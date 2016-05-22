@@ -13,7 +13,13 @@ public class DateUtils {
 
         cal.setTime(DateTime.now().toDate());
 
-        int week = cal.get(Calendar.DAY_OF_WEEK) - 1;
+        int week = cal.get(Calendar.DAY_OF_WEEK);
+
+        if (week == 1) {
+            week = 7;
+        } else {
+            week = week - 1;
+        }
 
         return week;
     }

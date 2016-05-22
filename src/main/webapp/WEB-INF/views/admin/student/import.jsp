@@ -2,8 +2,17 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-<div class="panel panel-info" style="margin-left: 2%; margin-right: 2%; margin-top: 5px;">
-    <div class="panel-heading">
+<%--学生管理--%>
+<style>
+    #student{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-info" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="${contextPath}/admin/excel/routeImport.action">学员导入</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/excel/template.action">下载模版</a></li>

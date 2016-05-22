@@ -8,10 +8,20 @@
         margin-top: 5px;
     }
 </style>
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">
+
+<%--学生管理--%>
+<style>
+    #student{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
         <ul class="nav nav-pills">
-            <li role="presentation" ><a href="${contextPath}/admin/student/page.action">学生管理</a></li>
+            <li role="presentation" ><a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> 学生管理</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/routeAdd.action">添加学员</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/disciplinary/page.action">违纪学员管理</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/export.action">学员导出Excel</a></li>
@@ -21,7 +31,7 @@
 
     <div class="panel-body">
 
-        <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/student/pageSearch.action" method="post" id="stuAddForm">
+        <form action="${contextPath}/admin/student/pageSearch.action" method="post" id="stuAddForm">
             <div class="row">
                 <div class="col-md-4 form-group">
                     <label for="stuCardNum" class="col-md-4 control-label">卡号</label>
@@ -155,7 +165,7 @@
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <table class="table" id="paginationTable">
-                    <tr style="background-color: #2aabd2;">
+                    <tr style="background-color: #3767b1; color: #dbdbdb;">
                         <th>卡号</th>
                         <th>学员名</th>
                         <th>性别</th>

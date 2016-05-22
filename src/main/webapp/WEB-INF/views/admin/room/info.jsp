@@ -6,8 +6,17 @@
 <link href="${contextPath}/static/plugins/bootstrap/css/docs.min.css" rel="stylesheet" type="text/css">
 <link href="${contextPath}/static/plugins/webui-popover/jquery.webui-popover.min.css">
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">${room.roomName} ${room.roomFloor}层 ${room.roomCapacity}人</div>
+<%--教室--%>
+<style>
+    #room{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 10px;">${room.roomName} ${room.roomFloor}层 ${room.roomCapacity}人</div>
     <div class="panel-body">
         <input type="hidden" id="roomId" value="${room.roomId}">
         <table class="table table-bordered table-striped responsive-utilities">

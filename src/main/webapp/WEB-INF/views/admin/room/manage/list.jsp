@@ -2,8 +2,17 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">教室管理</div>
+<%--教室--%>
+<style>
+    #room{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;"><span class="glyphicon glyphicon-map-marker"></span>教室 > 教室管理</div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">

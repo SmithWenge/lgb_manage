@@ -2,8 +2,17 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">编辑用户</div>
+<%--用户管理>编辑用户--%>
+<style>
+    #user_manage{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/user/page.action"><span class="glyphicon glyphicon-map-marker"></span>用户管理</a> > 编辑用户</div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">
             <c:if test="${not empty editFailureMessage}">

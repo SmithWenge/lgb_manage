@@ -14,8 +14,17 @@
         }
     </style>
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">教师编辑</div>
+<%--教师管理--%>
+<style>
+    #teacher{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/teacher/page.action"><span class="glyphicon glyphicon-map-marker"></span>教师管理</a> > 教师编辑</div>
     <div class="panel-body">
         <form id="teacherEditForm" action="${contextPath}/admin/teacher/edit.action" method="post">
             <input type="hidden" name="teacherId" value="${edit.teacherId}">

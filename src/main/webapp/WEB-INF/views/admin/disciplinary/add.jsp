@@ -13,9 +13,16 @@
       margin-top: 5px;
     }
   </style>
-  <div class="panel panel-default">
+  <div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
+      <ul class="nav nav-pills">
+        <li role="presentation" ><a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span>学生管理 </a></li>
+        <li role="presentation" ><a href="${contextPath}/admin/disciplinary/page.action" style="margin-left:-30px;">>违纪管理 </a></li>
+        <li role="presentation" ><a href="${contextPath}/admin/disciplinary/page.action" style="margin-left:-30px;color: black"> >添加违纪学员</a></li>
+      </ul>
+    </div>
     <div class="panel-body">
-      <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/disciplinary/add.action" method="post" id="stuAddForm">
+      <form action="${contextPath}/admin/disciplinary/add.action" method="post" id="stuAddForm">
         <div class="row">
           <div class="col-md-4 form-group">
             <label for="stuCardNum" class="col-md-4 control-label">请刷卡</label>

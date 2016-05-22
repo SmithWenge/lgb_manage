@@ -5,11 +5,20 @@
 <link href="${contextPath}/static/plugins/bootstrap/css/docs.min.css" rel="stylesheet" type="text/css">
 <link href="${contextPath}/static/plugins/webui-popover/jquery.webui-popover.min.css">
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">详细信息</div>
+<%--教室--%>
+<style>
+    #room{
+        background: whitesmoke;
+        border-left: 4px solid #fed350;
+        border-right: 4px solid #fed350;
+        color: #444;
+    }
+</style>
+<div class="panel panel-default" style="float: left;width: 85%;">
+    <div class="panel-heading" style="height: 45px;padding-top: 5px;"><span class="glyphicon glyphicon-map-marker"></span>教室 > 详细信息</div>
     <div class="panel-body">
         <table class="table table-bordered table-striped responsive-utilities">
-            <tr>
+            <tr style="background-color: #3767b1; color: #dbdbdb;">
                 <th>课程名</th>
                 <th>系名</th>
                 <th>专业名</th>
