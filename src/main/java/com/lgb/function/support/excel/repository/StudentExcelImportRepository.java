@@ -12,7 +12,8 @@ public class StudentExcelImportRepository implements StudentExcelImportRepositor
 
     @Override
     public int insert(StudentUser user) {
-        String sql = "INSERT INTO lgb_student (stuCardNum, StuName, stuTelOne, stuIdentifiedNum, stuOldWorkPlaceName, stuBirthday, stuLastEightNum, stuLocation, studentStartDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO lgb_student (stuCardNum, StuName, stuTelOne, stuIdentifiedNum, stuOldWorkPlaceName, stuBirthday, stuLastEightNum, stuLocation, studentStartDate) " +
+                " (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] args = {
                 user.getStuCardNum(),
                 user.getStuName(),

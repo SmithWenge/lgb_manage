@@ -4,6 +4,9 @@ public class ConstantFields {
     /* 管理员登陆的KEY */
     public static final String SESSION_ADMIN_KEY = "adminLogin";
 
+    /* 成绩管理老师登录的KEY*/
+    public static final String SESSION_TEACHER_SCORE_KEY = "teacherScore";
+
     /* 分页中每页数据数 */
     public static final int DEFAULT_PAGE_SIZE = 20;
     /* ajax分页中数据的KEY */
@@ -62,6 +65,8 @@ public class ConstantFields {
     public static final String TURN_CARD_FAILURE_MESSAGE = "换卡失败";
     /* 课程查询Key */
     public static final String SESSION_COURSE_SEARCH_KEY = "courseSearch";
+    /* 成绩查询Key */
+    public static final String SESSION_SCORE_SEARCH_KEY = "scoreSearch";
     /* 收费查询Key */
     public static final String SESSION_FINANCE_SEARCH_KEY = "financeSearch";
     /* 教室查询的Key */

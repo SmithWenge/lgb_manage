@@ -144,6 +144,7 @@
                 </beans:property>
             </beans:bean>
         </mvc:interceptor>
+        <!--caiwu interceptor-->
         <mvc:interceptor>
             <mvc:mapping path="/admin/finance/**" />
             <beans:bean class="com.lgb.arc.interceptor.FinanceInterceptor">
@@ -152,6 +153,18 @@
                         <beans:value>/admin/routeLogin.action</beans:value>
                         <beans:value>/admin/login.action</beans:value>
                         <beans:value>/admin/resetPass.action</beans:value>
+                    </beans:list>
+                </beans:property>
+            </beans:bean>
+        </mvc:interceptor>
+        <!--teacher interceptor-->
+        <mvc:interceptor>
+            <mvc:mapping path="/teaScore/**" />
+            <beans:bean class="com.lgb.arc.interceptor.TeacherScoreInterceptor">
+                <beans:property name="excludedUris">
+                    <beans:list>
+                        <beans:value>/teaScore/routerLogin.action</beans:value>
+                        <beans:value>/teaScore/login.action</beans:value>
                     </beans:list>
                 </beans:property>
             </beans:bean>

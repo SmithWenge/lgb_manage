@@ -2,7 +2,7 @@ package com.lgb.arc.interceptor;
 
 import com.google.common.base.Optional;
 import com.lgb.arc.utils.ConstantFields;
-import com.lgb.function.admin.login.AdminUser;
+import com.lgb.function.teaScore.ScoreModel;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class FinanceInterceptor implements HandlerInterceptor {
+public class TeacherScoreInterceptor implements HandlerInterceptor{
     private List<String> excludedUris;
 
     public void setExcludedUris(List<String> excludedUris) {
@@ -35,26 +35,18 @@ public class FinanceInterceptor implements HandlerInterceptor {
         }
 
         HttpSession session = httpServletRequest.getSession();
-        AdminUser adminUser = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
-        Optional<AdminUser> optional = Optional.fromNullable(adminUser);
-        /* 判断用户是不是财务，只有财务才可以*/
-        if (optional.isPresent()) {
-            if (adminUser.getAdminRole() != 4) {
-                session.removeAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        ScoreModel score = (ScoreModel) session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
+        Optional<ScoreModel> optional = Optional.fromNullable(score);
 
-                String redirectLocation = httpServletRequest.getContextPath() + "/admin/routeLogin.action";
-                httpServletResponse.sendRedirect(redirectLocation);
-                return false;
-            } else {
-                return true;
-            }
+        if (!optional.isPresent()) {
+            String redirectLocation = httpServletRequest.getContextPath() + "/teaScore/routerLogin.action";
+            httpServletResponse.sendRedirect(redirectLocation);
+            return false;
             /* 用exceptionMapping中确定重定向 */
 //            throw new LoginException("管理员没有登陆,请登录管理员.");
+        } else {
+            return true;
         }
-
-        String redirectLocation = httpServletRequest.getContextPath() + "/admin/routeLogin.action";
-        httpServletResponse.sendRedirect(redirectLocation);
-        return false;
     }
 
     @Override
