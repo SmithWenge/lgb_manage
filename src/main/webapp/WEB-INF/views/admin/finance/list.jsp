@@ -2,8 +2,9 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <div class="panel-heading">
+<!-- style="margin-left: 16%-->
+<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%;">
+    <div class="panel-heading" style="float: left;width: 85%;">
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="${contextPath}/admin/finance/routePage.action">财务</a></li>
             <li role="presentation" >
@@ -42,9 +43,19 @@
             </li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/finance/routeCount.action">财务分析</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/finance/printPage.action">打印发票</a></li>
+
+            <li role="presentation" style="margin: 10px; margin-left: 2px;">
+                <form class="form-inline" action="${contextPath}/admin/finance/searchByCardNum.action" method="post">
+                    <div class="form-group">
+                        <label for="stuCardNum">卡号</label>
+                        <input type="text" class="form-control" id="stuCardNum" name="stuCardNum" placeholder="请刷卡">
+                    </div>
+                    <button type="submit" class="btn btn-default">查询</button>
+                </form>
+            </li>
         </ul>
     </div>
-    <div class="panel-body">
+    <div class="panel-body" style="float: right;width: 85%;">
             <c:if test="${not empty addMessage}">
                 <div class="col-md-12" id="addMessage">
                     <p class="bg-success">${addMessage}</p>
