@@ -88,13 +88,13 @@
                     <tr style="background-color: #3767b1; color: #dbdbdb;">
                         <th>选择</th>
                         <th>序号</th>
-                        <th>专业</th>
-                        <th>课程号</th>
+                        <%--<th>专业</th>--%>
+                        <%--<th>课程号</th>--%>
                         <th>课程名</th>
-                        <th style="width: 90px;">任课教师</th>
+                        <%--<th style="width: 90px;">任课教师</th>--%>
                         <th>教室</th>
-                        <th style="width: 90px;">上课时间</th>
-                        <th style="width: 90px;">计划人数</th>
+                        <%--<th style="width: 90px;">上课时间</th>--%>
+                        <%--<th style="width: 90px;">计划人数</th>--%>
                         <th style="width: 90px;">实际人数</th>
                         <th>学费</th>
                         <th style="width: 90px;">报名限制</th>
@@ -109,19 +109,19 @@
                                 </label>
                             </td>
                             <td>${status.index + 1}</td>
-                            <td>${course.majorName}</td>
-                            <td>${course.courseNum}</td>
+                            <%--<td>${course.majorName}</td>--%>
+                            <%--<td>${course.courseNum}</td>--%>
                             <td>${course.courseName}</td>
-                            <td>${course.teacherOneName} ${course.teacherTwoName}</td>
+                            <%--<td>${course.teacherOneName} ${course.teacherTwoName}</td>--%>
                             <tags:dictd groupValue="courseRoom" itemKey="${course.courseRoom}" />
-                            <td>
-                            <c:forEach items="${course.times}" var="time">
-                                <tags:diclabel groupValue="timeWeek" itemKey="${time.timeWeek}"/>
-                                 <tags:diclabel groupValue="timeSpecific" itemKey="${time.timeSpecificInt}"/>,
-                            </c:forEach>
-                            </td>
+                            <%--<td>--%>
+                            <%--<c:forEach items="${course.times}" var="time">--%>
+                                <%--<tags:diclabel groupValue="timeWeek" itemKey="${time.timeWeek}"/>--%>
+                                 <%--<tags:diclabel groupValue="timeSpecific" itemKey="${time.timeSpecificInt}"/>,--%>
+                            <%--</c:forEach>--%>
+                            <%--</td>--%>
                             <td>${course.courseEnrollmentNum}</td>
-                            <td>${course.courseStuNum}</td>
+                            <%--<td>${course.courseStuNum}</td>--%>
                             <td>${course.courseTuition}</td>
                             <td>${course.courseLimitNum}</td>
                             <td style="height: 30px;line-height: 38px">
