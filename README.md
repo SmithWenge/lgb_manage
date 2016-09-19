@@ -22,3 +22,8 @@ CCDDMMYYBB(课程2位系2位专业2位年级2位班级2位) 前六位座位判�
 ```
 http://localhost:8080/lgbmanage/student/card/routeIndex.action
 ```
+
+### 成绩录入
+```
+http://localhost:8080/lgbmanage/teaScore/routerLogin.action
+```
