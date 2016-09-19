@@ -42,7 +42,7 @@ public class FinanceInterceptor implements HandlerInterceptor {
             if (adminUser.getAdminRole() != 4) {
                 session.removeAttribute(ConstantFields.SESSION_ADMIN_KEY);
 
-                String redirectLocation = httpServletRequest.getContextPath() + "/admin/routeLogin.action";
+                String redirectLocation = httpServletRequest.getContextPath() + "/admin/routeFinanceLogin.action";
                 httpServletResponse.sendRedirect(redirectLocation);
                 return false;
             } else {

@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap-theme.css" />
-    <title>老干部大学学籍管理</title>
     <style>
         body{
             background: url(${contextPath}/static/images/bg.jpg);

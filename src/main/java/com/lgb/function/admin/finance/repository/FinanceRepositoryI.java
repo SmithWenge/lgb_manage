@@ -20,4 +20,5 @@ public interface FinanceRepositoryI {
     boolean update(Finance finance, String logUser);
     Page<Finance> selectFinance4Page(Finance finance, Pageable pageable);
     Page<Finance> selectTwoDayFinance4Page(Finance finance, Pageable pageable);
+    Page<Finance> selectUnFinanceByCard(Finance finance,Pageable pageable);
 }

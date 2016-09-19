@@ -39,6 +39,19 @@ public class FinanceController {
 
     private BillNumUtils billNumUtils;
 
+    @RequestMapping(value = "/searchByCardNum")
+    public ModelAndView searchByCardNum(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
+                                  Finance finance) {
+        ModelAndView mav = new ModelAndView("admin/finance/list");
+        Page<Finance> page = financeService.selectUnFinanceByCard(finance, pageable);
+        mav.addObject(ConstantFields.PAGE_KEY, page);
+
+        List<Department> departments = financeService.departments();
+        mav.addObject("departments", departments);
+
+        return mav;
+    }
+
     @RequestMapping(value = "/page")
     public ModelAndView showLog(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE)
                                         Pageable pageable, Finance finance, HttpSession session) {

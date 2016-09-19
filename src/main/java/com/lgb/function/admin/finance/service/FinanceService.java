@@ -84,4 +84,9 @@ public class FinanceService implements FinanceServiceI {
         return financeRepository.selectTwoDayFinance4Page(finance,pageable);
     }
 
+    @Override
+    public Page<Finance> selectUnFinanceByCard(Finance finance, Pageable pageable) {
+        return financeRepository.selectUnFinanceByCard(finance,pageable);
+    }
+
 }

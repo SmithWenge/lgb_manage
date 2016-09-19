@@ -42,6 +42,15 @@ public class Finance extends Entry {
     private String excelMonth;
     private String billNumber;
     private String stuCardNum;
+    private int pageSearchFlag;
+
+    public int getPageSearchFlag() {
+        return pageSearchFlag;
+    }
+
+    public void setPageSearchFlag(int pageSearchFlag) {
+        this.pageSearchFlag = pageSearchFlag;
+    }
 
     public String getStuCardNum() {
         return stuCardNum;

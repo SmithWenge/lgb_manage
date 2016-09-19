@@ -137,6 +137,7 @@
             <beans:bean class="com.lgb.arc.interceptor.AdminLoginInterceptor">
                 <beans:property name="excludedUris">
                     <beans:list>
+                        <beans:value>/admin/routeFinanceLogin.action</beans:value>
                         <beans:value>/admin/routeLogin.action</beans:value>
                         <beans:value>/admin/login.action</beans:value>
                         <beans:value>/admin/resetPass.action</beans:value>
@@ -150,6 +151,7 @@
             <beans:bean class="com.lgb.arc.interceptor.FinanceInterceptor">
                 <beans:property name="excludedUris">
                     <beans:list>
+                        <beans:value>/admin/routeFinanceLogin.action</beans:value>
                         <beans:value>/admin/routeLogin.action</beans:value>
                         <beans:value>/admin/login.action</beans:value>
                         <beans:value>/admin/resetPass.action</beans:value>

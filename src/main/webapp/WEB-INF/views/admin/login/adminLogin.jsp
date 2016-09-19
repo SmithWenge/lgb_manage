@@ -14,7 +14,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap-theme.css" />
-    <title>老干部大学学籍管理</title>
     <style>
         body{
             background: url(${contextPath}/static/images/bg.jpg);
@@ -61,7 +60,7 @@
             <input type="text" id="inputAdminLoginName" name="adminLoginName" placeholder="admin" /><br />
             <label for="inputAdminLoginPass"><span class="glyphicon glyphicon-lock"></span><span>&nbsp;</span><span>&nbsp;</span></label>
             <input type="password" id="inputAdminLoginPass" name="adminLoginPass" placeholder="密码" /><br />
-            <span>&nbsp;</span><button class="btn btn-info" type="submit" id="sub">登录</button>
+            <span>&nbsp;</span><button class="btn btn-info" type="submit" id="sub">登陆</button>
             <span>&nbsp;</span><button class="btn btn-default" type="button" id="forget" data-toggle="modal" data-target="#resetPass">忘记密码</button>
         </div>
     </div>
@@ -78,7 +77,7 @@
             <div class="modal-body">
                 <form class="form-horizontal" action="${contextPath}/admin/resetPass.action" method="post">
                     <div class="form-group">
-                        <label for="adminLoginName" class="col-sm-3 control-label">管理员登录名</label>
+                        <label for="adminLoginName" class="col-sm-3 control-label">管理员登陆名</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="adminLoginName" placeholder="admin" name="adminLoginName">
                         </div>

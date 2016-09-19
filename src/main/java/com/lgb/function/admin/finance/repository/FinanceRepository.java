@@ -126,6 +126,16 @@ public class FinanceRepository implements FinanceRepositoryI {
         return repositoryUtils.select4Page(sql.toString(), pageable, args, new SelectFinance4PageRowMapper());
     }
 
+    @Override
+    public Page<Finance> selectUnFinanceByCard(Finance finance, Pageable pageable) {
+        String sql = "SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.signUpUser, DATE_FORMAT(SC.signUpTime, '%Y-%m-%d') AS signUpDate  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 0 AND C.deleteFlag = 0 AND S.stuCardNum = ?";
+        Object[] args = {
+                finance.getStuCardNum()
+        };
+
+        return repositoryUtils.select4Page(sql, pageable, args, new SelectUnFinance4PageRowMapper());
+    }
+
     private class SelectFinance4PageRowMapper implements RowMapper<Finance> {
 
         @Override

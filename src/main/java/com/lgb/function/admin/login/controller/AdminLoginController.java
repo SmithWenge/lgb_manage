@@ -28,6 +28,12 @@ public class AdminLoginController {
     @Autowired
     private MailUtils mailUtils;
 
+    @RequestMapping(value = "/routeFinanceLogin", method = RequestMethod.GET)
+    public String routeFinanceLogin() {
+        int i = 1;
+        return "admin/login/financeLogin";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(AdminUser adminUser, HttpSession session) {
         AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);

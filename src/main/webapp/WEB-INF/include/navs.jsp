@@ -62,20 +62,24 @@
 
     <div class="nav_main">
         <ul>
-            <li role="presentation" class="active"><a id="index_info" href="${contextPath}/admin/home/index.action">首页</a></li>
-            <li role="presentation"><a id="user_manage" href="${contextPath}/admin/user/page.action">用户管理</a></li>
-            <li role="presentation"><a id="department" href="${contextPath}/admin/department/page.action">系管理</a></li>
-            <li role="presentation"><a id="major" href="${contextPath}/admin/major/page.action">专业管理</a></li>
-            <li role="presentation"><a id="teacher" href="${contextPath}/admin/teacher/routePage.action">教师管理</a></li>
-            <li role="presentation"><a id="course" href="${contextPath}/admin/course/routePage.action">课程管理</a></li>
-            <li role="presentation"><a id="student" href="${contextPath}/admin/student/routePage.action">学生管理</a></li>
-            <li role="presentation"><a id="score" href="${contextPath}/admin/score/routerList.action">成绩管理</a></li>
-            <li role="presentation"><a id="leader" href="${contextPath}/admin/course/leader/page.action">班长</a></li>
-            <li role="presentation"><a id="log" href="${contextPath}/admin/log/routePage.action">查看日志</a></li>
-            <li role="presentation"><a id="count" href="${contextPath}/admin/count/index.action">统计</a></li>
-            <li role="presentation"><a id="room" href="${contextPath}/admin/room/routeRoom.action">教室</a></li>
+            <c:if test="${sessionScope.adminLogin.adminRole != 4}">
+                <li role="presentation" class="active"><a id="index_info" href="${contextPath}/admin/home/index.action">首页</a></li>
+                <li role="presentation"><a id="user_manage" href="${contextPath}/admin/user/page.action">用户管理</a></li>
+                <li role="presentation"><a id="department" href="${contextPath}/admin/department/page.action">系管理</a></li>
+                <li role="presentation"><a id="major" href="${contextPath}/admin/major/page.action">专业管理</a></li>
+                <li role="presentation"><a id="teacher" href="${contextPath}/admin/teacher/routePage.action">教师管理</a></li>
+                <li role="presentation"><a id="course" href="${contextPath}/admin/course/routePage.action">课程管理</a></li>
+                <li role="presentation"><a id="student" href="${contextPath}/admin/student/routePage.action">学生管理</a></li>
+                <li role="presentation"><a id="score" href="${contextPath}/admin/score/routerList.action">成绩管理</a></li>
+                <li role="presentation"><a id="leader" href="${contextPath}/admin/course/leader/page.action">班长</a></li>
+                <li role="presentation"><a id="log" href="${contextPath}/admin/log/routePage.action">查看日志</a></li>
+                <li role="presentation"><a id="count" href="${contextPath}/admin/count/index.action">统计</a></li>
+                <li role="presentation"><a id="room" href="${contextPath}/admin/room/routeRoom.action">教室</a></li>
+            </c:if>
             <li role="presentation"><a id="finance" href="${contextPath}/admin/finance/routePage.action">财务</a></li>
-            <li role="presentation"><a href="${contextPath}/admin/user/helpRouter.action">帮助</a></li>
+            <c:if test="${sessionScope.adminLogin.adminRole != 4}">
+                <li role="presentation"><a href="${contextPath}/admin/user/helpRouter.action">帮助</a></li>
+            </c:if>
             <%--<li class="dropdown" style="float: right;">--%>
                 <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${adminLogin.adminLoginName} <span class="caret"></span></a>--%>
                 <%--<ul class="dropdown-menu">--%>
