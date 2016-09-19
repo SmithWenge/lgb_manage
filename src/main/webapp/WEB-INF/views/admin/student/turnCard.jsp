@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="stuCardNumNewRe" class="col-sm-2 control-label">轻刷新卡</label>
+                        <label for="stuCardNumNewRe" class="col-sm-2 control-label">请刷新卡</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="stuCardNumNewRe" name="stuCardNumNewRe">
                         </div>
