@@ -23,7 +23,7 @@
             color: #444;
         }
     </style>
-        <div class="panel panel-default" style="float: left;width: 85%;">
+        <div class="panel panel-default" style="float: left;width: 100%;">
             <div class="panel-heading" style="height: 45px;padding-top: 5px;"><a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> 学生管理</a> > 添加学员</div>
             <div class="panel-body">
     <form action="${contextPath}/admin/student/add.action" method="post" id="stuAddForm">
@@ -115,9 +115,9 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="stuLastEightNum" class="col-md-4 control-label">身份证后八位</label>
+                    <label for="stuEducational" class="col-md-4 control-label">文化程度</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="stuLastEightNum" name="stuLastEightNum">
+                        <tags:dicselect name="stuEducational" key="educational" value="2" id="stuEducational" />
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
@@ -181,23 +181,17 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="stuRemarkOne" class="col-md-4 control-label">备注</label>
-                    <div class="col-md-8">
-                        <textarea class="form-control" id="stuRemarkOne" name="stuRemarkOne"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 form-group">
                     <label for="stuOldWorkType" class="col-md-4 control-label">原职务（或职业）</label>
                     <div class="col-md-8">
                         <tags:dicselect name="stuOldWorkType" key="stuOldWorkType" value="3" id="stuOldWorkType" />
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-4 form-group">
-                    <label for="stuEducational" class="col-md-4 control-label">文化程度</label>
+                    <label for="stuRemarkOne" class="col-md-4 control-label">备注</label>
                     <div class="col-md-8">
-                        <tags:dicselect name="stuEducational" key="educational" value="2" id="stuEducational" />
+                        <textarea class="form-control" id="stuRemarkOne" name="stuRemarkOne"></textarea>
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
@@ -218,6 +212,7 @@
         <div class="form-group">
             <div class="col-sm-4">
                 <button type="submit" class="btn btn-default" >添加学生</button>
+                <button type="button" id="backMark" class="btn btn-default" style="margin-left: 100px">返回</button>
             </div>
         </div>
     </form>
@@ -257,7 +252,7 @@
                 stuTelOne: {
                     required: true,
                     minlength: 6,
-                    maxlength: 11
+                    maxlength: 20
                 },
                 stuNationality: {
                     required: true
@@ -285,7 +280,7 @@
                 stuDependentsTel: {
                     required: true,
                     minlength: 6,
-                    maxlength: 11
+                    maxlength: 20
                 },
                 stuDependentsDesc: {
                     required: true

@@ -195,6 +195,7 @@
             <div class="form-group">
                 <div class="col-sm-10">
                     <button type="submit" class="btn btn-default">添加教师</button>
+                    <button type="button" id="backMark" class="btn btn-default" style="margin-left: 100px">返回</button>
                 </div>
             </div>
         </form>
@@ -244,7 +245,8 @@
                 },
                 teacherTel: {
                     required: true,
-                    phoneLength: 11
+                    minlength: 6,
+                    maxlength: 20
                 },
                 teacherWorkDate: {
                     required: true
@@ -274,8 +276,9 @@
                     identifiedNum: "请保证身份证号的长度为18."
                 },
                 teacherTel: {
-                    required: "请填写电话号.",
-                    phoneLength: "请保证电话号长度为11."
+                    required: "请填写座机号码或手机号码",
+                    minlength: "请填写正确格式的号码",
+                    maxlength: "请填写正确格式的号码"
                 },
                 teacherWorkDate: {
                     required: "请填写聘用时间."

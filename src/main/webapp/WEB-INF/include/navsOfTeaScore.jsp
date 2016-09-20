@@ -47,8 +47,10 @@
 </style>
 <div class="header">
     <ul>
+        <li style="width: 2%;"></li>
         <li style="width: 16%;">老干部学籍管理</li>
-        <li style="width: 6%;"> <span class="glyphicon glyphicon-user"> </span> ${teacher.teacherName}</li>
+        <li style="width: 72%;"> <span class="glyphicon glyphicon-user"> </span> ${teacher.teacherName}</li>
+        <li style="width: 10%;"><a href="${contextPath}/teaScore/logout.action"><span class="glyphicon glyphicon-off"></span> 退出</a></li>
     </ul>
 </div>
 

@@ -11,7 +11,7 @@
           <div class="form-group">
             <label class="sr-only" for="courseId">系别</label>
             <select class="form-control" id="courseId" name="courseId">
-              <option value="0">班级</option>
+              <option value="0">全部</option>
               <c:forEach items="${courses}" var="course">
                 <option value="${course.courseId}">${course.courseName}</option>
               </c:forEach>

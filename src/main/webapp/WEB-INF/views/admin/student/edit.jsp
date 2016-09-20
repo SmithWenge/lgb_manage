@@ -114,9 +114,9 @@
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
-                            <label for="stuLastEightNum" class="col-md-4 control-label">身份证后八位</label>
+                            <label for="stuOldWorkType" class="col-md-4 control-label">原职务(或职业)</label>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuLastEightNum" name="stuLastEightNum" value="${edit.stuLastEightNum}">
+                                <tags:dicselect name="stuOldWorkType" key="stuOldWorkType" value="${edit.stuOldWorkType}" id="stuOldWorkType" />
                             </div>
                         </div>
                         <div class="col-md-4 form-group">
@@ -179,12 +179,6 @@
                                 <input type="text" class="form-control" id="stuLocation" name="stuLocation" value="${edit.stuLocation}">
                             </div>
                         </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuOldWorkType" class="col-md-4 control-label">原职务(或职业)</label>
-                            <div class="col-md-8">
-                                <tags:dicselect name="stuOldWorkType" key="stuOldWorkType" value="${edit.stuOldWorkType}" id="stuOldWorkType" />
-                            </div>
-                        </div>
 
                     </div>
                     <div class="row">
@@ -212,6 +206,7 @@
                 <div class="form-group">
                     <div class="col-sm-4">
                         <button type="submit" class="btn btn-default" >编辑人员</button>
+                        <button type="button" id="backMark" class="btn btn-default" style="margin-left: 100px">返回</button>
                     </div>
                 </div>
             </form>
@@ -229,7 +224,7 @@
                 stuTelOne: {
                     required: true,
                     minlength: 6,
-                    maxlength: 11
+                    maxlength: 20
                 },
                 stuNationality: {
                     required: true

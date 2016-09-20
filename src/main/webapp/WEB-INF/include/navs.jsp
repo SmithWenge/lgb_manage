@@ -53,9 +53,10 @@
 </style>
 <div class="header">
     <ul>
+        <li style="width: 2%;"></li>
         <li style="width: 16%;">老干部学籍管理</li>
         <li style="width: 6%;"> <span class="glyphicon glyphicon-user"> </span> admin</li>
-        <li style="width: 68%;"><a href="${contextPath}/admin/routePass.action">更改密码</a></li>
+        <li style="width: 65%;"><a href="${contextPath}/admin/routePass.action">更改密码</a></li>
         <li style="width: 10%;"><a href="${contextPath}/admin/logout.action"><span class="glyphicon glyphicon-off"></span> 退出</a></li>
     </ul>
 </div>
@@ -76,46 +77,22 @@
                 <li role="presentation"><a id="count" href="${contextPath}/admin/count/index.action">统计</a></li>
                 <li role="presentation"><a id="room" href="${contextPath}/admin/room/routeRoom.action">教室</a></li>
             </c:if>
-            <li role="presentation"><a id="finance" href="${contextPath}/admin/finance/routePage.action">财务</a></li>
+            <li role="presentation" id="financePre"><a id="finance" href="${contextPath}/admin/finance/routePage.action">财务</a></li>
             <c:if test="${sessionScope.adminLogin.adminRole != 4}">
                 <li role="presentation"><a href="${contextPath}/admin/user/helpRouter.action">帮助</a></li>
             </c:if>
-            <%--<li class="dropdown" style="float: right;">--%>
-                <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${adminLogin.adminLoginName} <span class="caret"></span></a>--%>
-                <%--<ul class="dropdown-menu">--%>
-                    <%--<li><a href="${contextPath}/admin/routePass.action">修改密码</a></li>--%>
-                    <%--<li role="separator" class="divider"></li>--%>
-                    <%--<li><a href="${contextPath}/admin/logout.action">退出登陆</a></li>--%>
-                <%--</ul>--%>
-            <%--</li>--%>
+            <input type="hidden" id="roleId" value="${sessionScope.adminLogin.adminRole}">
         </ul>
     </div>
 
-<%--<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">--%>
-    <%--<div class="col-md-12">--%>
-        <%--<ul class="nav nav-pills">--%>
-            <%--<li role="presentation" class="active"><a href="${contextPath}/admin/home/index.action">首页</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/user/page.action">用户管理</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/department/page.action">系管理</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/major/page.action">专业管理</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/teacher/routePage.action">教师管理</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/course/routePage.action">课程管理</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/student/routePage.action">学生管理</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/course/leader/page.action">班长</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/log/routePage.action">查看日志</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/count/index.action">统计</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/room/routeRoom.action">教室</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/finance/routePage.action">财务</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/offline/sign.action">报名</a></li>--%>
-            <%--<li role="presentation"><a href="${contextPath}/admin/user/helpRouter.action">帮助</a></li>--%>
-            <%--<li class="dropdown" style="float: right;">--%>
-                <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">${adminLogin.adminLoginName} <span class="caret"></span></a>--%>
-                <%--<ul class="dropdown-menu">--%>
-                    <%--<li><a href="${contextPath}/admin/routePass.action">修改密码</a></li>--%>
-                    <%--<li role="separator" class="divider"></li>--%>
-                    <%--<li><a href="${contextPath}/admin/logout.action">退出登陆</a></li>--%>
-                <%--</ul>--%>
-            <%--</li>--%>
-        <%--</ul>--%>
-    <%--</div>--%>
-<%--</div>--%>
+<%@include file="/WEB-INF/include/javascript.jsp"%>
+<script type="text/javascript">
+    $(function () {
+        var $roleId = $('#roleId').val();
+        if($roleId != 4) {
+            $('#financePre').click(function(){
+                return confirm("是否确认退出当前登录，前往财务登录");
+            });
+        }
+    });
+</script>

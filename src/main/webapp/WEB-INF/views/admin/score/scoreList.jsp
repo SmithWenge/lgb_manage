@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
-
+<style>
+  #score{
+    background: whitesmoke;
+    border-left: 4px solid #fed350;
+    border-right: 4px solid #fed350;
+    color: #444;
+  }
+</style>
 <div class="panel panel-default" style="float: left;width: 85%;">
   <div class="panel-heading" style="height: 45px;padding-top: 5px;">
     <ul class="nav nav-pills">

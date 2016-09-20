@@ -33,7 +33,9 @@ public class StudentService implements StudentServiceI{
 
     @Override
     public boolean add(StudentUser studentUser, String logUser) {
-
+        String stuIdentifiedNum = studentUser.getStuIdentifiedNum();
+        String stuLastEightNum = stuIdentifiedNum.substring(stuIdentifiedNum.length()-8,stuIdentifiedNum.length());
+        studentUser.setStuLastEightNum(stuLastEightNum);
         boolean tmp = studentRepository.insert(studentUser);
 
         if (tmp) {
@@ -49,8 +51,11 @@ public class StudentService implements StudentServiceI{
 
     @Override
     public boolean edit(StudentUser studentUser, String logUser) {
-        StudentUser user = studentRepository.select(studentUser.getStuId());
+        String stuIdentifiedNum = studentUser.getStuIdentifiedNum();
+        String stuLastEightNum = stuIdentifiedNum.substring(stuIdentifiedNum.length()-8,stuIdentifiedNum.length());
+        studentUser.setStuLastEightNum(stuLastEightNum);
 
+        StudentUser user = studentRepository.select(studentUser.getStuId());
         Optional<StudentUser> optional = Optional.fromNullable(user);
 
         if (optional.isPresent()) {

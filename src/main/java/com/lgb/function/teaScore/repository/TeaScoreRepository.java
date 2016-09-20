@@ -97,7 +97,7 @@ public class TeaScoreRepository implements TeaScoreRepositoryI{
 
     @Override
     public int selectStudentCourseId(String studentCardNum, String courseName) {
-        String sql = "SELECT SC.studentCourseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE C.deleteFlag = 0 AND S.stuCardNum = ? AND C.courseName = ?";
+        String sql = "SELECT SC.studentCourseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE C.deleteFlag = 0 AND S.stuCardNum = ? AND C.courseNum = ?";
         Object[] args = {
                 studentCardNum,
                 courseName

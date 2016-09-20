@@ -6,7 +6,19 @@
     $(function () {
         // Invoke the plugin
         $('input, textarea').placeholder();
+
+        //id="backMark" 返回按钮
+        $('#backMark').on('click', function () {
+            window.history.back(-1);
+        });
+
+        //红色按钮提示框
+        $('button[class="btn btn-danger"]').on('click', function () {
+            return confirm("是否确认执行该操作");
+        });
+
     });
+
 </script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

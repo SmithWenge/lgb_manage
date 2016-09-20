@@ -39,6 +39,13 @@ public class TeaScoreController {
         return "teaScore/login";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(HttpSession session) {
+        session.removeAttribute("teacherIdScore");
+
+        return "redirect:/teaScore/routerLogin.action";
+    }
+
     @RequestMapping(value = "login",method = RequestMethod.POST)
     public String login(ScoreModel scoreModel,HttpSession session) {
         ScoreModel score = teaScoreService.select(scoreModel);
@@ -225,7 +232,7 @@ public class TeaScoreController {
     public String add(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         File importFile = save(file, request);
 
-        if (null == importFile) return "redirect:/teaScore/routeImport.action";
+        if (null == importFile) return "redirect:/teaScore/routerImport.action";
 
         ExcelConverter<ScoreModel> converter = new ExcelConverter<ScoreModel>();
         List<ScoreModel> scoreModels = converter.readFromExcel(importFile, 1, new ScoreModelExcelMapper());
@@ -234,6 +241,6 @@ public class TeaScoreController {
             return "redirect:/teaScore/routerList.action";
         }
 
-        return "redirect:/teaScore/routeImport.action";
+        return "redirect:/teaScore/routerImport.action";
     }
 }
