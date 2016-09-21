@@ -9,7 +9,7 @@ public class ScoreModel {
     private String majorName;
     private String departmentName;
     private String teacherName;
-    private int teacherCardNum;
+    private String teacherCardNum;
     private int courseId;
     private int teacherId;
     private int studentCourseId;
@@ -39,11 +39,11 @@ public class ScoreModel {
         this.teacherId = teacherId;
     }
 
-    public int getTeacherCardNum() {
+    public String getTeacherCardNum() {
         return teacherCardNum;
     }
 
-    public void setTeacherCardNum(int teacherCardNum) {
+    public void setTeacherCardNum(String teacherCardNum) {
         this.teacherCardNum = teacherCardNum;
     }
 

@@ -34,7 +34,7 @@ public class TeaScoreController {
     @Autowired
     private TeaScoreServiceI teaScoreService;
 
-    @RequestMapping(value = "routerLogin")
+    @RequestMapping(value = "/routerLogin")
     public String routerLogin() {
         return "teaScore/login";
     }
@@ -46,7 +46,7 @@ public class TeaScoreController {
         return "redirect:/teaScore/routerLogin.action";
     }
 
-    @RequestMapping(value = "login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(ScoreModel scoreModel,HttpSession session) {
         ScoreModel score = teaScoreService.select(scoreModel);
 
@@ -61,7 +61,7 @@ public class TeaScoreController {
 
     }
 
-    @RequestMapping(value = "routerHelp")
+    @RequestMapping(value = "/routerHelp")
     public ModelAndView routerHelp(HttpSession session) {
         ModelAndView mav = new ModelAndView("teaScore/help");
         ScoreModel idModel = (ScoreModel)session.getAttribute("teacherIdScore");
@@ -74,7 +74,7 @@ public class TeaScoreController {
         return mav;
     }
 
-    @RequestMapping(value = "routerList",method = RequestMethod.GET)
+    @RequestMapping(value = "/routerList",method = RequestMethod.GET)
     public ModelAndView routerList(HttpSession session) {
         ScoreModel idModel = (ScoreModel)session.getAttribute("teacherIdScore");
         ModelAndView mav = new ModelAndView("teaScore/list");
@@ -96,7 +96,7 @@ public class TeaScoreController {
         return mav;
     }
 
-    @RequestMapping(value = "Search",method = RequestMethod.POST)
+    @RequestMapping(value = "/Search",method = RequestMethod.POST)
     public ModelAndView Search(HttpSession session,ScoreModel scoreModel) {
         Optional<ScoreModel> optional = Optional.fromNullable(scoreModel);
         if(optional.isPresent()) {
@@ -118,7 +118,7 @@ public class TeaScoreController {
         return mav;
     }
 
-    @RequestMapping(value = "routeEdit/{studentCourseId}",method = RequestMethod.GET)
+    @RequestMapping(value = "/routeEdit/{studentCourseId}",method = RequestMethod.GET)
     public ModelAndView routeEdit(@PathVariable("studentCourseId") int studentCourseId, HttpSession session) {
         ScoreModel score = teaScoreService.seleciById(studentCourseId);
         Optional<ScoreModel> optional = Optional.fromNullable(score);
@@ -134,7 +134,7 @@ public class TeaScoreController {
         return new ModelAndView("teaScore/list");
     }
 
-    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String scoreEdit(HttpSession session, ScoreModel score, RedirectAttributes redirectAttributes) {
 
         if(teaScoreService.edit(score)) {
@@ -148,7 +148,7 @@ public class TeaScoreController {
         return "redirect:/teaScore/routeEdit/" + score.getStudentCourseId() + ".action";
     }
 
-    @RequestMapping(value = "routerImport",method = RequestMethod.GET)
+    @RequestMapping(value = "/routerImport",method = RequestMethod.GET)
     public ModelAndView routerImport(HttpSession session) {
         ScoreModel scoreModel = (ScoreModel)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
         Optional<ScoreModel> optional = Optional.fromNullable(scoreModel);

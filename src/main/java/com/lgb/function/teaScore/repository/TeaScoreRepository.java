@@ -34,7 +34,7 @@ public class TeaScoreRepository implements TeaScoreRepositoryI{
 
     @Override
     public List<ScoreModel> selectCourses(int teacherId) {
-        String sql = "SELECT TC.courseId, courseName FROM lgb_teachercourse TC LEFT JOIN lgb_course C ON TC.courseId = C.courseId WHERE C.deleteFlag = 0 AND TC.teacherId = ?";
+        String sql = "SELECT DISTINCT TC.courseId, courseName FROM lgb_teachercourse TC LEFT JOIN lgb_course C ON TC.courseId = C.courseId WHERE C.deleteFlag = 0 AND TC.teacherId = ?";
         Object[] args = {
                 teacherId
         };

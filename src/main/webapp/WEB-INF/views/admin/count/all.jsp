@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=8" />
     <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="${contextPath}/static/images/lgb.ico" />
 </head>
 <body>
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">

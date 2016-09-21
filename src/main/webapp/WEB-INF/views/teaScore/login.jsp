@@ -1,9 +1,10 @@
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -13,7 +14,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" />
-  <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap-theme.css" />
+  <link rel="shortcut icon" href="${contextPath}/static/images/lgb.ico" />
+
   <title>老干部大学学籍管理</title>
   <style>
     body{
@@ -54,14 +56,23 @@
 
 
 <body>
-<form action="${contextPath}/teaScore/login.action" method="post" id="adminLoginForm">
+<form action="${contextPath}/teaScore/login.action" method="post">
   <div class="content">
     <div class="right_div">
-      <label for="teacherName"><span class="glyphicon glyphicon-user"></span><span>&nbsp;</span><span>&nbsp;</span></label>
+      <label for="teacherName">
+        <span class="glyphicon glyphicon-user"></span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+      </label>
       <input type="text" id="teacherName" name="teacherName" placeholder="教师姓名" /><br />
-      <label for="teacherCardNum"><span class="glyphicon glyphicon-lock"></span><span>&nbsp;</span><span>&nbsp;</span></label>
+      <label for="teacherCardNum">
+        <span class="glyphicon glyphicon-lock"></span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+      </label>
       <input type="password" id="teacherCardNum" name="teacherCardNum" placeholder="教师卡号" /><br />
-      <span>&nbsp;</span><button class="btn btn-info" type="submit" id="sub">登陆</button>
+      <span>&nbsp;</span>
+      <button class="btn btn-info" type="submit" id="sub">登陆</button>
     </div>
   </div>
 </form>
