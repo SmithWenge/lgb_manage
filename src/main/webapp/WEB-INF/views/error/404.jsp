@@ -12,27 +12,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
     <style>
-        p{
-            font-size:150px;
+        body{
+            background: whitesmoke;
+        }
+        #errorInfo{
+            width: 700px;
+            height: 250px;
+            margin: 160px auto;
+            /*float: left;*/
         }
         img{
-            display: block;
-            margin: 150px auto;
-            margin-bottom: 20px;
+            display: inline-block;
+            margin: 0px auto;
+            margin-bottom: 0px;
+            float: left;
             /*margin-left: auto;*/
         }
-        h3{
+        span{
             color: #444444;
             font-family: "微软雅黑";
-            text-align: center;
+            /*text-align: center;*/
+            display: inline-block;
+            font-size: 20px;
+            line-height: 40px;
+            /*vertical-align: bottom;*/
+            float: left;
+            margin-top: 44px;
+        }
+        b{
+            color: red;
         }
     </style>
 </head>
 <body>
-
-<img src="${contextPath}/static/images/404.png" />
-<h3>页面没有找到,检查下输入的网址是否正确</h3>
-<h3></h3>
-<h3>或者过会儿再试试吧</h3>
+<div id="errorInfo">
+    <img src="${contextPath}/static/images/404.png" />
+    <span>很抱歉！您访问的页面不存在。<br>可能原因：网络信号弱；<br>输入网址不正确。<br>您可以<b>检验网址</b>输入是否正确或者<b>稍后再试试.</b></span>
+</div>
 </body>
 </html>
