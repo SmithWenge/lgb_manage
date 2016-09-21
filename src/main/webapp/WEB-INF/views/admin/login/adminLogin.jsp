@@ -57,7 +57,7 @@
     <div class="content">
         <div class="right_div">
             <label for="inputAdminLoginName"><span class="glyphicon glyphicon-user"></span><span>&nbsp;</span><span>&nbsp;</span></label>
-            <input type="text" id="inputAdminLoginName" name="adminLoginName" placeholder="admin" /><br />
+            <input type="text" id="inputAdminLoginName" name="adminLoginName" placeholder="管理员登录名" /><br />
             <label for="inputAdminLoginPass"><span class="glyphicon glyphicon-lock"></span><span>&nbsp;</span><span>&nbsp;</span></label>
             <input type="password" id="inputAdminLoginPass" name="adminLoginPass" placeholder="密码" /><br />
             <span>&nbsp;</span><button class="btn btn-info" type="submit" id="sub">登陆</button>
@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <label for="adminLoginName" class="col-sm-3 control-label">管理员登陆名</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="adminLoginName" placeholder="admin" name="adminLoginName">
+                            <input type="text" class="form-control" id="adminLoginName" placeholder="管理员登录名" name="adminLoginName">
                         </div>
                     </div>
                     <div class="form-group">
