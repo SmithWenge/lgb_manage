@@ -13,8 +13,35 @@
         });
 
         //红色按钮提示框
-        $('button[class="btn btn-danger"]').on('click', function () {
-            return confirm("是否确认执行该操作");
+//        $('button[class="btn btn-danger"]').on('click', function () {
+//            return confirm("是否确认执行该操作");
+////            $.confirm({
+////                text: "您确定要毕业这些课程么?",
+////                confirm: function() {
+////                    console.log("确认");
+////                },
+////                cancel: function() {
+////                    console.log("取消");
+////                }
+////            });
+//        });
+
+        $('button[class="btn btn-danger"]').confirm({
+            text: "您确认执行这个操作么?",
+            title: "消息提示",
+            confirm: function(button) {
+                $($(button).parent())[0].click();
+            },
+            cancel: function(button) {
+                // nothing to do
+            },
+            confirmButton: "确认",
+            cancelButton: "取消",
+            post: false,
+            submitForm: true,
+            confirmButtonClass: "btn-danger",
+            cancelButtonClass: "btn-default",
+            dialogClass: "modal-dialog" // Bootstrap classes for large modal
         });
 
     });

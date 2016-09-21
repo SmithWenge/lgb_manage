@@ -3,3 +3,4 @@
 <%--<script type="text/javascript" src="${contextPath}/static/plugins/jquery/jquery-2.1.3.js" ></script>--%>
 <script type="text/javascript" src="${contextPath}/static/plugins/jquery/jquery-1.9.1.min.js" ></script>
 <script type="text/javascript" src="${contextPath}/static/plugins/jquery-validate/jquery.validate.js" ></script>
+<script type="text/javascript" src="${contextPath}/static/plugins/confirm/jquery.confirm.js" ></script>

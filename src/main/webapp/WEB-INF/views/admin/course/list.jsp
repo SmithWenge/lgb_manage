@@ -35,13 +35,13 @@
                     <button type="submit" class="btn btn-default">查询</button>
                 </form>
             </li>
-            <li role="presentation" class="active" style="float: right"><a href="${contextPath}/admin/course/routeAdd.action">添加课程</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/course/routeAdd.action">添加课程</a></li>
             <li role="presentation" style="float: right">
-                <button type="button" class="btn btn-danger navbar-btn" id="batchUpgrade" style="margin-top: 0px; margin-bottom: 0px;">批量毕业</button>
+                <button type="button" class="btn btn-warning navbar-btn" id="batchUpgrade" style="margin-top: 0px; margin-bottom: 0px;">批量升级</button>
                 <%--<a id="batchUpgrade">批量升级</a>--%>
             </li>
             <li role="presentation" style="float: right">
-                <button type="button" class="btn btn-danger navbar-btn" id="batchGraduate" style="margin-top: 0px; margin-bottom: 0px;">批量毕业</button>
+                <button type="button" class="btn btn-warning navbar-btn" id="batchGraduate" style="margin-top: 0px; margin-bottom: 0px;">批量毕业</button>
                 <%--<a id="batchGraduate">批量毕业</a>--%>
             </li>
 
@@ -138,7 +138,7 @@
                                     <button type="button" class="btn btn-info">班长</button>
                                 </a>
                                 <a href="${contextPath}/admin/course/upgrade/${course.courseId}.action" style="text-decoration: none;" >
-                                    <button type="button" class="btn btn-info">升级</button>
+                                    <button type="button" class="btn btn-danger">升级</button>
                                 </a>
                             </td>
                         </tr>
@@ -220,14 +220,54 @@
             });
         });
 
+        // 确认提示框设置
+        $.confirm.options = {
+//            text: "Are you sure?",
+            title: "消息提示",
+            confirmButton: "确认",
+            cancelButton: "取消",
+            post: false,
+            submitForm: false,
+            confirmButtonClass: "btn-danger",
+            cancelButtonClass: "btn-default",
+            dialogClass: "modal-dialog"
+        }
+
         $('#batchUpgrade').on('click', function () {
             var actionPath = "${contextPath}/admin/course/batch/upgrade.action";
-            $('#batchForm').attr('action', actionPath).submit();
+            var $checkLength = $("[name = batchId]:checkbox").filter(":checked").length;
+            if ($checkLength > 0 ) {
+                $.confirm({
+                    text: "您确定要升级这些课程么?",
+                    confirm: function() {
+                        $('#batchForm').attr('action', actionPath).submit();
+                    },
+                    cancel: function() {
+
+                    }
+                });
+            } else {
+
+            }
         });
 
         $('#batchGraduate').on('click', function () {
             var actionPath = "${contextPath}/admin/course/batch/graduate.action";
-            $('#batchForm').attr('action', actionPath).submit();
+            var $checkLength = $("[name = batchId]:checkbox").filter(":checked").length;
+
+            if ($checkLength > 0 ) {
+                $.confirm({
+                    text: "您确定要毕业这些课程么?",
+                    confirm: function() {
+                        $('#batchForm').attr('action', actionPath).submit();
+                    },
+                    cancel: function() {
+
+                    }
+                });
+            } else {
+
+            }
         });
     });
 </script>
