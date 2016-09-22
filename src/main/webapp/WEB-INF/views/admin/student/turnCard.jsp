@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <%--学生管理--%>
 <style>
@@ -15,11 +16,6 @@
     <div class="panel-heading" style="height: 45px;padding-top: 5px;">学生换卡</div>
     <div class="panel-body">
         <div class="row">
-            <c:if test="${not empty turnCardFailureMessage}">
-                <div class="col-md-12" id="message">
-                    <p class="bg-danger">${turnCardFailureMessage}</p>
-                </div>
-            </c:if>
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/student/turnCard.action" method="post" id="studentTurnCard">
                     <input type="hidden" name="stuId" value="${studentUser.stuId}">

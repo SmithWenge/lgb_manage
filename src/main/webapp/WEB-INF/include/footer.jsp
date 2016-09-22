@@ -44,6 +44,10 @@
             dialogClass: "modal-dialog" // Bootstrap classes for large modal
         });
 
+        // 消息提示
+        setTimeout(function() {
+            $("#message").hide();
+        }, 2000);
     });
 
 </script>

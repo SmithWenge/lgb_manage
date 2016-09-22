@@ -121,12 +121,12 @@ public class StudentController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} update admin student {}.", logUser, studentUser.getStuName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
             return "redirect:/admin/student/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/student/routeEdit/" + studentUser.getStuId() + ".action";
     }
 
@@ -139,12 +139,12 @@ public class StudentController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} delete student's ID {}.", logUser, stuId);
 
-            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
             return "redirect:/admin/student/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
 
         return "redirect:/admin/student/page.action";
     }
@@ -163,11 +163,11 @@ public class StudentController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} add new student user {}.", logUser, studentUser.getStuName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_SUCCESS_MESSAGE);
             return "redirect:/admin/student/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_FAILURE_MESSAGE);
         return "redirect:/admin/student/routeAdd.action";
     }
 
@@ -196,12 +196,12 @@ public class StudentController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} turn {}'s card.", logUser, studentUser.getStuName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.TURN_CARD_SUCCESS_KEY, ConstantFields.TURN_CARD_SUCCESS_MESSAGE + studentUser.getStuName());
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.TURN_CARD_SUCCESS_MESSAGE + studentUser.getStuName());
 
             return "redirect:/admin/student/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.TURN_CARD_FAILURE_KEY, ConstantFields.TURN_CARD_FAILURE_MESSAGE + studentUser.getStuName());
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.TURN_CARD_FAILURE_MESSAGE + studentUser.getStuName());
         return "redirect:/admin/student/routeTurnCard/" + studentUser.getStuId() + ".action";
     }
 

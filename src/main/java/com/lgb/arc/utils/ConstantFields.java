@@ -86,4 +86,11 @@ public class ConstantFields {
     /* 违纪信息key */
     public static final String DISCIPLINARY_INFO_KEY = "disciplinary";
 
+    /* 消息操作key*/
+    public static final String OPERATION_MESSAGE = "message";
+    /* 操作成功消息 */
+    public static final String OPERATION_SUCCESS_MESSAGE = "操作成功";
+    /* 操作失败消息 */
+    public static final String OPERATION_FAILURE_MESSAGE = "操作失败";
+
 }
