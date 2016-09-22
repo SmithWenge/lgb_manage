@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <%--教师管理--%>
 <style>
@@ -21,31 +22,6 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <c:if test="${not empty addMessage}">
-                    <div class="col-md-12" id="addMessage">
-                        <p class="bg-success">${addMessage}</p>
-                    </div>
-                </c:if>
-                <c:if test="${not empty editMessage}">
-                    <div class="col-md-12" id="editMessage">
-                        <p class="bg-success">${editMessage}</p>
-                    </div>
-                </c:if>
-                <c:if test="${not empty deleteMessage}">
-                    <div class="col-md-12" id="deleteMessage">
-                        <p class="bg-success">${deleteMessage}</p>
-                    </div>
-                </c:if>
-                <c:if test="${not empty deleteFailureMessage}">
-                    <div class="col-md-12" id="deleteFailureMessage">
-                        <p class="bg-danger">${deleteFailureMessage}</p>
-                    </div>
-                </c:if>
-                <c:if test="${not empty turnCardMessage}">
-                    <div class="col-md-12" id="turnCardMessage">
-                        <p class="bg-success">${turnCardMessage}</p>
-                    </div>
-                </c:if>
                 <form style="margin-left: 2%; margin-right: 2%; margin-top: 1%;" action="${contextPath}/admin/teacher/pageSearch.action" method="post">
 
                     <div class="row">
@@ -250,22 +226,6 @@
         // 设置table表格中的行高
         var $height = $('#paginationTable td').height() + 'px';
         $('#paginationTable td').css('line-height', $height);
-
-        setTimeout(function() {
-            $("#addMessage").hide();
-        }, 2000);
-        setTimeout(function() {
-            $("#editMessage").hide();
-        }, 2000);
-        setTimeout(function() {
-            $("#deleteMessage").hide();
-        }, 2000);
-        setTimeout(function() {
-            $("#deleteFailureMessage").hide();
-        }, 2000);
-        setTimeout(function() {
-            $("#turnCardMessage").hide();
-        }, 2000);
     });
 </script>
 

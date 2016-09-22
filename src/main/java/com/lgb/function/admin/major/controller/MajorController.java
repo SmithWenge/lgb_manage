@@ -58,11 +58,11 @@ public class MajorController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} add new major {}.", logUser, major.getMajorName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_SUCCESS_MESSAGE);
             return "redirect:/admin/major/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_FAILURE_MESSAGE);
         return "redirect:/admin/major/routeAdd.action";
     }
 
@@ -98,12 +98,12 @@ public class MajorController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} edit major {}.", logUser, major.getMajorName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
             return "redirect:/admin/major/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/major/routeEdit/" + major.getMajorId() + ".action";
     }
 
@@ -116,12 +116,12 @@ public class MajorController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} delete major's ID {}.", logUser, majorId);
 
-            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
             return "redirect:/admin/major/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
 
         return "redirect:/admin/major/page.action";
     }

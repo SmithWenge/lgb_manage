@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <%--专业管理 > 专业添加--%>
 <style>
@@ -15,11 +16,6 @@
     <div class="panel-heading" style="height: 45px;padding-top: 5px;"><span class="glyphicon glyphicon-map-marker"></span>专业管理 > 专业添加</div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">
-            <c:if test="${not empty addFailureMessage}">
-                <div class="col-md-12" id="message">
-                    <p class="bg-danger">${addFailureMessage}</p>
-                </div>
-            </c:if>
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/major/add.action" method="post" id="majorAddForm">
                     <div class="form-group">
@@ -81,10 +77,6 @@
                 }
             }
         });
-
-        setTimeout(function() {
-            $("#message").hide();
-        }, 2000);
     });
 </script>
 

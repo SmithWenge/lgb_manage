@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <style>
   #major{
@@ -14,11 +15,6 @@
   <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/score/routerList.action"><span class="glyphicon glyphicon-map-marker"></span>成绩管理</a> > 成绩修改</div>
   <div class="panel-body">
     <div class="row" >
-      <c:if test="${not empty addFailureMessage}">
-        <div class="col-md-12" id="message">
-          <p class="bg-danger">${addFailureMessage}</p>
-        </div>
-      </c:if>
       <div class="col-md-12">
         <form class="form-horizontal" action="${contextPath}/admin/score/edit.action" method="post" id="scoreEditForm">
           <input type="hidden" name="studentCourseId" value="${score.studentCourseId}">
@@ -59,14 +55,5 @@
 </div>
 
 <%@include file="/WEB-INF/include/javascript.jsp"%>
-
-<script type="text/javascript">
-  $(function () {
-
-    setTimeout(function() {
-      $("#message").hide();
-    }, 2000);
-  });
-</script>
 
 <%@include file="/WEB-INF/include/footer.jsp"%>

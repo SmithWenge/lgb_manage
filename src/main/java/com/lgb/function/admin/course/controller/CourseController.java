@@ -104,11 +104,11 @@ public class CourseController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} add new course {}.", logUser, course.getCourseName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_SUCCESS_MESSAGE);
             return "redirect:/admin/course/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_FAILURE_MESSAGE);
         return "redirect:/admin/course/routeAdd.action";
     }
 
@@ -169,12 +169,12 @@ public class CourseController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} edit Course Id is  {}.", logUser, course.getCourseId());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
             return "redirect:/admin/course/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/course/routeEdit/" + course.getCourseId() + ".action";
     }
 
@@ -187,12 +187,12 @@ public class CourseController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} delete course's ID {}.", logUser, courseId);
 
-            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
             return "redirect:/admin/course/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
 
         return "redirect:/admin/course/routePage.action";
     }
@@ -237,12 +237,12 @@ public class CourseController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} edit Course's ID {} add leader's ID is  {}.", logUser, course.getCourseId(), course.getCourseMaster());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
             return "redirect:/admin/course/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/course/route/make/leader/" + course.getCourseId() + ".action";
     }
 
@@ -255,12 +255,12 @@ public class CourseController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} upgrade Course's ID {}.", logUser, courseId);
 
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
             return "redirect:/admin/course/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/course/routePage.action";
     }
 
@@ -280,11 +280,11 @@ public class CourseController {
             }
         } catch (BatchRollbackException e) {
             e.printStackTrace();
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
             return "redirect:/admin/course/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/course/routePage.action";
     }
 
@@ -298,17 +298,17 @@ public class CourseController {
                 if (LOG.isInfoEnabled())
                     LOG.info("[LGB MANAGE] [OK] {} graduate Course's IDs {}.", logUser, batchIds);
 
-                redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+                redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
                 return "redirect:/admin/course/routePage.action";
             }
         } catch (BatchRollbackException e) {
             e.printStackTrace();
-            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
             return "redirect:/admin/course/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
         return "redirect:/admin/course/routePage.action";
     }
 }

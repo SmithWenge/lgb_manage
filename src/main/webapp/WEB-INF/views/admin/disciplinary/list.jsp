@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
-
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <style type="text/css">
   form label {
@@ -15,28 +15,6 @@
       <li role="presentation" ><a href="${contextPath}/admin/disciplinary/page.action" style="margin-left:-30px;color: black">违纪管理</a></li>
       <li role="presentation" style="float: right"><a href="${contextPath}/admin/disciplinary/routeAdd.action">添加违纪学员</a></li>
     </ul>
-  </div>
-  <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-    <c:if test="${not empty addMessage}">
-      <div class="col-md-12" id="addMessage">
-        <p class="bg-success">${addMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty editMessage}">
-      <div class="col-md-12" id="editMessage">
-        <p class="bg-success">${editMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty deleteMessage}">
-      <div class="col-md-12" id="deleteMessage">
-        <p class="bg-success">${deleteMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty deleteFailureMessage}">
-      <div class="col-md-12" id="deleteFailureMessage">
-        <p class="bg-danger">${deleteFailureMessage}</p>
-      </div>
-    </c:if>
   </div>
   <div class="panel-body">
     <div class="row">

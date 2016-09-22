@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <%--教师管理--%>
 <style>
@@ -15,11 +16,6 @@
     <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/teacher/page.action"><span class="glyphicon glyphicon-map-marker"></span>教师管理</a> > 教师换卡</div>
     <div class="panel-body">
         <div class="row">
-            <c:if test="${not empty turnCardFailureMessage}">
-                <div class="col-md-12" id="message">
-                    <p class="bg-danger">${turnCardFailureMessage}</p>
-                </div>
-            </c:if>
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/teacher/turnCard.action" method="post" id="teacherTurnCard">
                     <input type="hidden" name="teacherId" value="${teacher.teacherId}">
@@ -89,10 +85,6 @@
                 }
             }
         });
-
-        setTimeout(function() {
-            $("#message").hide();
-        }, 2000);
     });
 </script>
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navsOfTeaScore.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <div class="panel panel-default" style="float: left;width: 100%;">
   <div class="panel-heading" style="height: 45px;padding-top: 5px;">
@@ -24,31 +25,6 @@
     </ul>
   </div>
   <div class="panel-body">
-    <c:if test="${not empty addMessage}">
-      <div class="col-md-12" id="addMessage">
-        <p class="bg-success">${addMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty editMessage}">
-      <div class="col-md-12" id="editMessage">
-        <p class="bg-success">${editMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty deleteMessage}">
-      <div class="col-md-12" id="deleteMessage">
-        <p class="bg-success">${deleteMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty deleteFailureMessage}">
-      <div class="col-md-12" id="deleteFailureMessage">
-        <p class="bg-danger">${deleteFailureMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty editFailureMessage}">
-      <div class="col-md-12" id="editFailureMessage">
-        <p class="bg-danger">${editFailureMessage}</p>
-      </div>
-    </c:if>
     <style>
       table th{
         min-width: 60px;;
@@ -96,22 +72,6 @@
       // 设置table表格中的行高
       var $height = $('#paginationTable td').height() + 'px';
       $('#paginationTable td').css('line-height', $height);
-
-      setTimeout(function() {
-        $("#addMessage").hide();
-      }, 2000);
-      setTimeout(function() {
-        $("#editMessage").hide();
-      }, 2000);
-      setTimeout(function() {
-        $("#deleteMessage").hide();
-      }, 2000);
-      setTimeout(function() {
-        $("#deleteFailureMessage").hide();
-      }, 2000);
-      setTimeout(function() {
-        $("#editFailureMessage").hide();
-      }, 2000);
     });
   </script>
 

@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
-
-    <c:if test="${not empty editFailureMessage}">
-    <div class="col-md-12" id="message">
-        <p class="bg-danger">${editFailureMessage}</p>
-    </div>
-    </c:if>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
     <style type="text/css">
         form label {
@@ -409,11 +404,7 @@
                     $time.attr('checked', true);
                 }
             });
-        })
-
-        setTimeout(function() {
-            $("#message").hide();
-        }, 2000);
+        });
     });
 </script>
 

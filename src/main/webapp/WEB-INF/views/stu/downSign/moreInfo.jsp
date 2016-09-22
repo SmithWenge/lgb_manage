@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/include/navs.jsp"%>
+<%@ include file="/WEB-INF/include/message.jsp"%>
 
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
   <div class="col-md-12">
@@ -24,12 +25,6 @@
   </div>
 
   <div class="panel-body">
-    <c:if test="${not empty addFailureMessage}">
-      <div class="col-md-12" id="message">
-        <p class="bg-danger">${addFailureMessage}</p>
-      </div>
-    </c:if>
-
     <div class="row" style="margin-top: 5px;">
       <div class="col-md-12">
         <table class="table" id="paginationTable">

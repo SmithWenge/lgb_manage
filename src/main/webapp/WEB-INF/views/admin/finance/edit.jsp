@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <%--财务管理--%>
 <style>
@@ -49,11 +50,6 @@
             </div>
         </div>
         <div class="row" >
-            <c:if test="${not empty addFailureMessage}">
-                <div class="col-md-12" id="message">
-                    <p class="bg-danger">${addFailureMessage}</p>
-                </div>
-            </c:if>
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/finance/edit.action" method="post" id="financeEditForm">
                     <input type="hidden" name="studentCourseId" value="${edit.studentCourseId}">
@@ -138,10 +134,6 @@
                 }
             }
         });
-
-        setTimeout(function() {
-            $("#message").hide();
-        }, 2000);
     });
 </script>
 

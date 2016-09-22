@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <link href="${contextPath}/static/plugins/jquery-datetimepicker/jquery.datetimepicker.css" rel="stylesheet" type="text/css">
 
@@ -32,11 +33,6 @@
     <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/department/page.action"><span class="glyphicon glyphicon-map-marker"></span>系管理</a> > 系修改</div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">
-            <c:if test="${not empty addFailureMessage}">
-                <div class="col-md-12" id="message">
-                    <p class="bg-danger">${addFailureMessage}</p>
-                </div>
-            </c:if>
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/department/edit.action" method="post" id="departmentEditForm">
                     <input type="hidden" name="departmentId" value="${edit.departmentId}">
@@ -119,10 +115,6 @@
                 }
             }
         });
-
-        setTimeout(function() {
-            $("#message").hide();
-        }, 2000);
     });
 </script>
 

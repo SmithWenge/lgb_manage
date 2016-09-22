@@ -139,11 +139,11 @@ public class TeaScoreController {
 
         if(teaScoreService.edit(score)) {
 
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
             return "redirect:/teaScore/routerList.action";
         }
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
 
         return "redirect:/teaScore/routeEdit/" + score.getStudentCourseId() + ".action";
     }

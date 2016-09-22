@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <%--教师管理--%>
 <style>
@@ -15,11 +16,6 @@
     <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/teacher/page.action"><span class="glyphicon glyphicon-map-marker"></span>教师管理</a> > 教师解聘</div>
     <div class="panel-body">
         <div class="row">
-            <c:if test="${not empty deleteFailureMessage}">
-                <div class="col-md-12" id="message">
-                    <p class="bg-danger">${deleteFailureMessage}</p>
-                </div>
-            </c:if>
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/teacher/delete.action" method="post" id="teacherDelete">
                     <input type="hidden" name="teacherId" value="${delete.teacherId}">
@@ -47,13 +43,5 @@
 </div>
 
 <%@include file="/WEB-INF/include/javascript.jsp"%>
-
-<script type="text/javascript">
-    $(function () {
-        setTimeout(function() {
-            $("#message").hide();
-        }, 2000);
-    });
-</script>
 
 <%@include file="/WEB-INF/include/footer.jsp"%>

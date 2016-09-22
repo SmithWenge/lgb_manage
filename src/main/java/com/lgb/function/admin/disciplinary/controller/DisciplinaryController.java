@@ -91,7 +91,7 @@ public class DisciplinaryController {
         List<Disciplinary> disciplinary = disciplinaryService.queryMore(stuId);
         if (disciplinary != null){
             ModelAndView mav = new ModelAndView("admin/disciplinary/more");
-            mav.addObject(ConstantFields.DISCIPLINARY_INFO_KEY,disciplinary);
+            mav.addObject(ConstantFields.DISCIPLINARY_INFO_KEY, disciplinary);
             return mav;
         }
 
@@ -112,11 +112,11 @@ public class DisciplinaryController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} add new disciplinary user {}.", logUser, disciplinary.getStuName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_SUCCESS_MESSAGE);
             return "redirect:/admin/disciplinary/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_FAILURE_MESSAGE);
         return "redirect:/admin/disciplinary/routeAdd.action";
     }
 

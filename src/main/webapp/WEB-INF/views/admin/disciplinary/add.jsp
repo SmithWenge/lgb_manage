@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
+<%@include file="/WEB-INF/include/message.jsp"%>
 
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 5px;">
-  <c:if test="${not empty addFailureMessage}">
-    <div class="col-md-12" id="message">
-      <p class="bg-danger">${addFailureMessage}</p>
-    </div>
-  </c:if>
   <style type="text/css">
     form label {
       margin-top: 5px;
@@ -149,10 +145,6 @@
         }
       }
     });
-
-    setTimeout(function() {
-      $("#message").hide();
-    }, 2000);
   });
 </script>
 

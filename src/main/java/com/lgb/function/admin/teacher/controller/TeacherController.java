@@ -98,11 +98,11 @@ public class TeacherController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} add new teacher {}.", logUser, teacher.getTeacherName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_SUCCESS_MESSAGE);
             return "redirect:/admin/teacher/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_FAILURE_MESSAGE);
         return "redirect:/admin/teacher/routeAdd.action";
     }
 
@@ -131,12 +131,12 @@ public class TeacherController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} turn {}'s card.", logUser, teacher.getTeacherName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.TURN_CARD_SUCCESS_KEY, ConstantFields.TURN_CARD_SUCCESS_MESSAGE + teacher.getTeacherName());
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.TURN_CARD_SUCCESS_MESSAGE + teacher.getTeacherName());
 
             return "redirect:/admin/teacher/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.TURN_CARD_FAILURE_KEY, ConstantFields.TURN_CARD_FAILURE_MESSAGE + teacher.getTeacherName());
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.TURN_CARD_FAILURE_MESSAGE + teacher.getTeacherName());
         return "redirect:/admin/teacher/routeTurnCard/" + teacher.getTeacherId() + ".action";
     }
 
@@ -164,12 +164,12 @@ public class TeacherController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} edit department {}.", logUser, teacher.getTeacherName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
             return "redirect:/admin/teacher/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/teacher/routeEdit/" + teacher.getTeacherId() + ".action";
     }
 
@@ -196,12 +196,12 @@ public class TeacherController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} delete teacher {}.", logUser, teacher.getTeacherName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
             return "redirect:/admin/teacher/page.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
 
         return "redirect:/admin/teacher/routeDelete/" + teacher.getTeacherId() + ".action";
     }

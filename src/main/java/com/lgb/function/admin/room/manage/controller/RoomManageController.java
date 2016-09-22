@@ -98,12 +98,12 @@ public class RoomManageController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} update room {}.", logUser, roomInfo.getRoomName());
 
-            redirectAttributes.addFlashAttribute(ConstantFields.EDIT_SUCCESS_KEY, ConstantFields.EDIT_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
             return "redirect:/admin/room/manage/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.EDIT_FAILURE_KEY, ConstantFields.EDIT_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
         return "redirect:/admin/room/manage/routeEdit/" + roomInfo.getRoomId() + ".action";
     }
 
@@ -116,12 +116,12 @@ public class RoomManageController {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} delete room's ID {}.", logUser, roomId);
 
-            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
 
             return "redirect:/admin/room/manage/routePage.action";
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
 
         return "redirect:/admin/room/manage/routePage.action";
     }

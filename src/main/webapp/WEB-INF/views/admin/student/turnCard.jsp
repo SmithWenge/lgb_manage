@@ -85,10 +85,6 @@
                 }
             }
         });
-
-        setTimeout(function() {
-            $("#message").hide();
-        }, 2000);
     });
 </script>
 

@@ -2,7 +2,6 @@
          pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/include/navs.jsp"%>
 
-
 <style type="text/css">
   form label {
     margin-top: 5px;

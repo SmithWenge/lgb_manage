@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/include/navs.jsp"%>
+<%@ include file="/WEB-INF/include/message.jsp"%>
 
 <div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
   <div class="col-md-12">
@@ -41,21 +42,6 @@
   </form>
 
   <div class="panel-body">
-    <c:if test="${not empty addMessage}">
-      <div class="col-md-12" id="addMessage">
-        <p class="bg-success">${addMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty deleteMessage}">
-      <div class="col-md-12" id="deleteMessage">
-        <p class="bg-success">${deleteMessage}</p>
-      </div>
-    </c:if>
-    <c:if test="${not empty deleteFailureMessage}">
-      <div class="col-md-12" id="deleteFailureMessage">
-        <p class="bg-danger">${deleteFailureMessage}</p>
-      </div>
-    </c:if>
     <div class="row" style="margin-top: 5px;">
       <div class="col-md-12">
         <table class="table" id="paginationTable">

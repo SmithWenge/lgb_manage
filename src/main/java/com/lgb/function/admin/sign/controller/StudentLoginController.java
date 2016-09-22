@@ -266,13 +266,13 @@ public class StudentLoginController {
         studentCourse.setCourseId(courseId);
         if (studentLoginService.add(studentCourse) == true && session.getAttribute(ConstantFields.SESSION_STU_KEY) != null) {
 
-            redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_SUCCESS_MESSAGE);
             return "redirect:/admin/offline/login.action";
         } else if (session.getAttribute(ConstantFields.SESSION_STU_KEY) == null){
-            redirectAttributes.addFlashAttribute(ConstantFields.ADD_SUCCESS_KEY, ConstantFields.ADD_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_SUCCESS_MESSAGE);
             return "redirect:/admin/offline/downSign.action?stuCardNum="+session.getAttribute(ConstantFields.STU_CARD_NUM);
         }
-        redirectAttributes.addFlashAttribute(ConstantFields.ADD_FAILURE_KEY, ConstantFields.ADD_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_FAILURE_MESSAGE);
         return "redirect:/admin/offline/routeSignUp.action";
     }
 
@@ -288,14 +288,14 @@ public class StudentLoginController {
         studentCourse.setStudentId(studentId);
         studentCourse.setCourseId(courseId);
         if (studentLoginService.delete(studentCourse) == true  && session.getAttribute(ConstantFields.SESSION_STU_KEY) != null) {
-            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
             return "redirect:/admin/offline/login.action";
         } else if (session.getAttribute(ConstantFields.SESSION_STU_KEY) == null){
-            redirectAttributes.addFlashAttribute(ConstantFields.DELETE_SUCCESS_KEY, ConstantFields.DELETE_SUCCESS_MESSAGE);
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
             return "redirect:/admin/offline/downSign.action?stuCardNum="+session.getAttribute(ConstantFields.STU_CARD_NUM);
         }
 
-        redirectAttributes.addFlashAttribute(ConstantFields.DELETE_FAILURE_KEY, ConstantFields.DELETE_FAILURE_MESSAGE);
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
         return "redirect:/admin/offline/login.action";
 
     }
