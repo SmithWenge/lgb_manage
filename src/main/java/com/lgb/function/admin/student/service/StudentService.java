@@ -1,6 +1,7 @@
 package com.lgb.function.admin.student.service;
 
 import com.google.common.base.Optional;
+import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.student.repository.StudentRepositoryI;
 import com.lgb.function.admin.teacher.Teacher;
@@ -115,5 +116,10 @@ public class StudentService implements StudentServiceI{
     @Override
     public List<StudentUser> exportAllStu() {
         return studentRepository.selectForExport();
+    }
+
+    @Override
+    public List<Course> selectCourses(int stuId) {
+        return studentRepository.select4Courses(stuId);
     }
 }

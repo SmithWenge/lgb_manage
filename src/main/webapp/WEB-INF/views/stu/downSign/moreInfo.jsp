@@ -3,12 +3,12 @@
 <%@ include file="/WEB-INF/include/navs.jsp"%>
 <%@ include file="/WEB-INF/include/message.jsp"%>
 
-<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
-  <div class="col-md-12">
-    <ul class="nav nav-pills">
-    </ul>
-  </div>
-</div>
+<%--<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">--%>
+  <%--<div class="col-md-12">--%>
+    <%--<ul class="nav nav-pills">--%>
+    <%--</ul>--%>
+  <%--</div>--%>
+<%--</div>--%>
 
 
 <style type="text/css">
@@ -16,7 +16,7 @@
     margin-top: 5px;
   }
 </style>
-<div class="panel panel-default" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">
+<div class="panel panel-default" style="float: left; width: 85%;">
   <div class="panel-heading">
     <ul class="nav nav-pills">
       <li role="presentation" ><a>课程详细信息</a></li>

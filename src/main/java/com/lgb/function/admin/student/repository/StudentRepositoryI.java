@@ -1,5 +1,6 @@
 package com.lgb.function.admin.student.repository;
 
+import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.student.StudentUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,5 +18,6 @@ public interface StudentRepositoryI {
     boolean selectIdAndCard(StudentUser studentUser);
     boolean updateCard(StudentUser studentUser);
     int selectCardNum(StudentUser studentUser);
-    public List<StudentUser> selectForExport();
+    List<StudentUser> selectForExport();
+    List<Course> select4Courses(int stuId);
 }

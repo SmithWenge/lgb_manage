@@ -1,6 +1,7 @@
 package com.lgb.function.admin.student.repository;
 
 import com.google.common.base.Optional;
+import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.teacher.Teacher;
 import com.lgb.function.support.dictionary.impl.DefaultDictionaryManager;
@@ -188,6 +189,7 @@ public class StudentRepository implements StudentRepositoryI {
 
 
     }
+
     @Override
     public boolean update(StudentUser studentUser) {
         String sql = "UPDATE lgb_student SET stuId = ?, stuCardNum = ?, stuName = ?, stuGender = ?, stuTelOne = ?, stuTelTwo = ?, stuType = ?, stuIdentifiedType = ?, stuIdentifiedNum = ?, stuOldWorkPlaceType = ?,stuOldWorkPlaceName = ?, stuPolitical = ?, stuOldWorkType = ?, stuNationality = ?, stuBirthday = ?, stuLastEightNum = ?, stuCheck = ?, stuHealth = ?, stuLocation = ?, stuEducational = ?, stuLevel = ?, stuSpeciality = ?, stuPreferential = ?, stuDependentsTel = ?, stuDependentsDesc = ?, stuRemarkOne = ?, stuRemarkTwo = ?, studentStartDate = ? WHERE deleteFlag = 0 AND stuId = ?";
@@ -376,6 +378,33 @@ public class StudentRepository implements StudentRepositoryI {
             return jdbcTemplate.queryForObject(sql, Integer.class, args);
         } catch (Exception e) {
             return 0;
+        }
+    }
+
+    @Override
+    public List<Course> select4Courses(int stuId) {
+        String sql = "SELECT C.courseName, D.departmentName FROM lgb_studentCourse SC LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId WHERE SC.studentId = ?";
+        Object[] args = {
+                stuId
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new Select4CoursesRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    private class Select4CoursesRowMapper implements RowMapper<Course> {
+
+        @Override
+        public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Course course = new Course();
+
+            course.setCourseName(rs.getString("courseName"));
+            course.setDepartmentName(rs.getString("departmentName"));
+
+            return course;
         }
     }
 }

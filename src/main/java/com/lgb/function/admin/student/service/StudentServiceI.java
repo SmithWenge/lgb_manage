@@ -1,5 +1,6 @@
 package com.lgb.function.admin.student.service;
 
+import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.teacher.Teacher;
@@ -18,4 +19,5 @@ public interface StudentServiceI {
     boolean turnCard(StudentUser studentUser, String logUser);
     boolean existCardNum(StudentUser studentUser);
     List<StudentUser> exportAllStu();
+    List<Course> selectCourses(int stuId);
 }

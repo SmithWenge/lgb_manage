@@ -101,6 +101,9 @@
                             <td>${course.courseTuition}</td>
                             <td>${course.courseLimitNum}</td>
                             <td style="height: 30px;line-height: 38px">
+                                <a href="${contextPath}/admin/course/student/${course.courseId}.action" style="text-decoration: none;">
+                                    <button type="button" class="btn btn-success">查看学生</button>
+                                </a>
                                 <a href="${contextPath}/admin/course/routeEdit/${course.courseId}.action" style="text-decoration: none;">
                                     <button type="button" class="btn btn-warning">编辑</button>
                                 </a>

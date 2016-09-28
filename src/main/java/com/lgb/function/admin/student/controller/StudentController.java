@@ -5,6 +5,7 @@ import com.lgb.arc.excel.Excel;
 import com.lgb.arc.excel.ExcelFactory;
 import com.lgb.arc.excel.mapper.StudentExcelMapper;
 import com.lgb.arc.utils.ConstantFields;
+import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.student.service.StudentServiceI;
@@ -250,5 +251,16 @@ public class StudentController {
         } finally {
             file.delete();
         }
+    }
+
+    // 查看学生所选择的课程
+    @RequestMapping("/courses/{stuId}")
+    public ModelAndView studentCourses(@PathVariable int stuId) {
+        List<Course> courses = studentService.selectCourses(stuId);
+
+        ModelAndView mav = new ModelAndView("admin/student/studentCourses");
+        mav.addObject("courses", courses);
+
+        return mav;
     }
 }

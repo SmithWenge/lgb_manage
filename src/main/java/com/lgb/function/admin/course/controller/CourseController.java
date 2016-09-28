@@ -311,4 +311,15 @@ public class CourseController {
         redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
         return "redirect:/admin/course/routePage.action";
     }
+
+    // 查看选择这门课程的人员
+    @RequestMapping(value = "/student/{courseId}")
+    public ModelAndView courseStudents(@PathVariable int courseId, HttpSession session) {
+        List<StudentUser> studentUsers = courseService.courseStudent(courseId);
+
+        ModelAndView mav = new ModelAndView("admin/course/students");
+        mav.addObject("students", studentUsers);
+
+        return mav;
+    }
 }
