@@ -77,6 +77,7 @@
                 <li role="presentation"><a id="count" href="${contextPath}/admin/count/index.action">统计</a></li>
                 <li role="presentation"><a id="room" href="${contextPath}/admin/room/routeRoom.action">教室</a></li>
                 <li role="presentation"><a id="signUp" href="${contextPath}/admin/offline/sign.action">线下报名</a></li>
+                <li role="presentation"><a id="setting" href="${contextPath}/admin/setting/route.action">颜色配置</a></li>
             </c:if>
             <li role="presentation" id="financePre"><a id="finance" href="${contextPath}/admin/finance/routePage.action">财务</a></li>
             <c:if test="${sessionScope.adminLogin.adminRole != 4}">

@@ -7,4 +7,5 @@ public interface AdminLoginRepositoryI {
     AdminUser selectUniqueEmail(AdminUser adminUser);
     boolean updatePassword(AdminUser adminUser);
     boolean resetPassword(AdminUser adminUser);
+    String select4ConfigColor();
 }

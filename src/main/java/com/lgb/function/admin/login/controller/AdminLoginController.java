@@ -53,6 +53,9 @@ public class AdminLoginController {
             mav.setViewName("redirect:/admin/home/index.action");
             session.setAttribute(ConstantFields.SESSION_ADMIN_KEY, loginUser);
 
+            String backgroundColor = adminLoginService.configColor();
+            session.setAttribute(ConstantFields.SESSION_BG_COLOR, backgroundColor);
+
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] {} login system at {} .", loginUser.getAdminLoginName(), DateTime.now());
         } else {

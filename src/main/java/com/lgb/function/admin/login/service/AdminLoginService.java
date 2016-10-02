@@ -76,4 +76,9 @@ public class AdminLoginService implements AdminLoginServiceI {
 
         return null;
     }
+
+    @Override
+    public String configColor() {
+        return adminLoginRepository.select4ConfigColor();
+    }
 }

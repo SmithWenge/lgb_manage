@@ -1,5 +1,6 @@
 package com.lgb.function.admin.login.repository;
 
+import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.login.AdminUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -100,6 +101,22 @@ public class AdminLoginRepository implements AdminLoginRepositoryI {
             adminUser.setAdminEmail(resultSet.getString("adminEmail"));
 
             return adminUser;
+        }
+    }
+
+    /**
+     * 获取用户登录后的配置背景色
+     *
+     * @return 16进制背景色
+     */
+    @Override
+    public String select4ConfigColor() {
+        String sql = "SELECT background_color_setting FROM lgb_config";
+
+        try {
+            return jdbcTemplate.queryForObject(sql, String.class);
+        } catch (Exception e) {
+            return ConstantFields.DEFAULT_BACKGROUND_COLOR_SETTING;
         }
     }
 }

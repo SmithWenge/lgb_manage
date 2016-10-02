@@ -93,5 +93,11 @@ public class ConstantFields {
     /* 操作失败消息 */
     public static final String OPERATION_FAILURE_MESSAGE = "操作失败";
 
-    public static final String UPLOAD_TMP_STUDENT_PHOTO_FILE_NAME = "studentPhoto";
+    /* 默认配置的背景色 */
+    public static final String DEFAULT_BACKGROUND_COLOR_SETTING = " FFFECE";
+    public static final String CONFIG_SUCCESS_MESSAGE = "配置成功";
+    /* 配置表的默认主键 */
+    public static final int DEFAULT_CONFIG_ID = 1;
+    /* 背景色配置Key */
+    public static final String SESSION_BG_COLOR = "backgroundColor";
 }
