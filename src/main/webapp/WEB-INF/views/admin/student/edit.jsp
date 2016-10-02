@@ -3,212 +3,213 @@
 <%@include file="/WEB-INF/include/navs.jsp"%>
 <%@include file="/WEB-INF/include/message.jsp"%>
 
-<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 5px;">
-
-    <style type="text/css">
-        form label {
-            margin-top: 5px;
-        }
-    </style>
-
-    <%--学生管理--%>
-    <style>
-        #student{
-            background: whitesmoke;
-            border-left: 4px solid #fed350;
-            border-right: 4px solid #fed350;
-            color: #444;
-        }
-    </style>
-        <div class="panel panel-default" style="float: left;width: 85%;">
-            <div class="panel-body">
-            <form action="${contextPath}/admin/student/edit.action" method="post" id="stuEditForm">
-                <input type="hidden" name="stuId" value="${edit.stuId}">
-                <div class="row">
-                    <div class="col-md-4 form-group">
-                        <label for="stuCardNum" class="col-md-4 control-label">卡号</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="stuCardNum" placeholder="111111" name="stuCardNum" value="${edit.stuCardNum}">
-                        </div>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <label for="stuName" class="col-md-4 control-label">姓名</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" id="stuName" name="stuName" value="${edit.stuName}">
-                        </div>
-                    </div>
-                    <div class="col-md-4 form-group">
-                        <label for="stuGender" class="col-md-4 control-label">性别</label>
-                        <div class="col-md-8">
-                            <tags:dicselect name="stuGender" key="gender" value="${edit.stuGender}" id="stuGender" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="stuTelOne" class="col-md-4 control-label">联系电话1</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuTelOne" name="stuTelOne" value="${edit.stuTelOne}">
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuTelTwo" class="col-md-4 control-label">联系电话2</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuTelTwo" name="stuTelTwo" value="${edit.stuTelTwo}">
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="studentStartDate" class="col-md-4 control-label">入学时间</label>
-                            <div class="col-sm-8">
-                                <input type="date" class="form-control" id="studentStartDate" name="studentStartDate" value="${edit.studentStartDate}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="stuType" class="col-md-4 control-label">人员类型</label>
-                            <div class="col-md-8">
-                                <tags:dicselect name="stuType" key="stuType" value="${edit.stuType}" id="stuType" />
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuNationality" class="col-md-4 control-label">民族</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuNationality" name="stuNationality" placeholder="汉族" value="${edit.stuNationality}">
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuLevel" class="col-md-4 control-label">级别</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuLevel" name="stuLevel" value="${edit.stuLevel}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="stuIdentifiedType" class="col-md-4 control-label">证件</label>
-                            <div class="col-md-8">
-                                <tags:dicselect name="stuIdentifiedType" key="stuIdentifiedType" value="${edit.stuIdentifiedType}" id="stuIdentifiedType" />
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuBirthday" class="col-md-4 control-label">出生日期</label>
-                            <div class="col-sm-8">
-                                <input type="date" class="form-control" id="stuBirthday" name="stuBirthday" value="${edit.stuBirthday}"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuSpeciality" class="col-md-4 control-label">特长</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuSpeciality" name="stuSpeciality" value="${edit.stuSpeciality}">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="stuIdentifiedNum" class="col-md-4 control-label">证件号码</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuIdentifiedNum" name="stuIdentifiedNum" value="${edit.stuIdentifiedNum}">
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuOldWorkType" class="col-md-4 control-label">原职务(或职业)</label>
-                            <div class="col-md-8">
-                                <tags:dicselect name="stuOldWorkType" key="stuOldWorkType" value="${edit.stuOldWorkType}" id="stuOldWorkType" />
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuPreferential" class="col-md-4 control-label">优惠</label>
-                            <div class="col-md-8">
-                                <tags:dicselect name="stuPreferential" key="courseDiscount" value="${edit.stuPreferential}" id="stuPreferential" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="stuOldWorkPlaceType" class="col-md-4 control-label">原单位类别</label>
-                            <div class="col-md-8">
-                                <tags:dicselect name="stuOldWorkPlaceType" key="stuOldWorkPlaceType" value="${edit.stuOldWorkPlaceType}" id="stuOldWorkPlaceType" />
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuEducational" class="col-md-4 control-label">文化程度</label>
-                            <div class="col-md-8">
-                                <tags:dicselect name="stuEducational" key="educational" value="${edit.stuEducational}" id="stuEducational" />
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuDependentsTel" class="col-md-4 control-label">家属电话</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuDependentsTel" name="stuDependentsTel" value="${edit.stuDependentsTel}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="stuOldWorkPlaceName" class="col-md-4 control-label">原工作单位</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuOldWorkPlaceName" name="stuOldWorkPlaceName" value="${edit.stuOldWorkPlaceName}"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuHealth" class="col-md-4 control-label">身体状况</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuHealth" name="stuHealth" value="${edit.stuHealth}"/>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuDependentsDesc" class="col-md-4 control-label">家属关系</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuDependentsDesc" name="stuDependentsDesc" value="${edit.stuDependentsDesc}"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="stuPolitical" class="col-md-4 control-label">政治面貌</label>
-                            <div class="col-md-8">
-                                <tags:dicselect name="stuPolitical" key="stuPolitical" value="${edit.stuPolitical}" id="stuPolitical" />
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuLocation" class="col-md-4 control-label">现住址</label>
-                            <div class="col-md-8">
-                                <input type="text" class="form-control" id="stuLocation" name="stuLocation" value="${edit.stuLocation}">
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4 form-group">
-                            <label for="stuCheck" class="col-md-4 control-label">审验情况</label>
-                            <div class="col-md-8">
-                                <textarea class="form-control" id="stuCheck" name="stuCheck">${edit.stuCheck}</textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuRemarkOne" class="col-md-4 control-label">备注</label>
-                            <div class="col-md-8">
-                                <textarea class="form-control" id="stuRemarkOne" name="stuRemarkOne">${edit.stuRemarkOne}</textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-4 form-group">
-                            <label for="stuRemarkTwo" class="col-md-4 control-label">备注2</label>
-                            <div class="col-md-8">
-                                <textarea class="form-control" id="stuRemarkTwo" name="stuRemarkTwo">${edit.stuRemarkTwo}</textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4">
-                        <button type="submit" class="btn btn-default" >编辑人员</button>
-                        <button type="button" id="backMark" class="btn btn-default" style="margin-left: 100px">返回</button>
-                    </div>
-                </div>
-            </form>
-            </div>
+<div class="row" style="margin-left: 0.1%; float: left; width: 85%;">
+    <div class="panel panel-default" style="float: left; width: 100%;">
+        <div class="panel-heading" style="height: 45px;padding-top: 5px;">
+            <a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> 学生管理</a> > 编辑学员
         </div>
+        <div class="panel-body">
+        <form action="${contextPath}/admin/student/edit.action" method="post" id="stuEditForm">
+            <input type="hidden" name="stuId" value="${edit.stuId}">
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuCardNum" class="col-md-4 control-label">卡号</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuCardNum" name="stuCardNum" value="${edit.stuCardNum}">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuName" class="col-md-4 control-label">姓名</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuName" name="stuName" value="${edit.stuName}">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuGender" class="col-md-4 control-label">性别</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuGender" key="gender" value="${edit.stuGender}" id="stuGender" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuTelOne" class="col-md-4 control-label">联系电话1</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuTelOne" name="stuTelOne" value="${edit.stuTelOne}">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuTelTwo" class="col-md-4 control-label">联系电话2</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuTelTwo" name="stuTelTwo" value="${edit.stuTelTwo}">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="studentStartDate" class="col-md-4 control-label">入学时间</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" id="studentStartDate" name="studentStartDate" value="${edit.studentStartDate}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuType" class="col-md-4 control-label">人员类型</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuType" key="stuType" value="${edit.stuType}" id="stuType" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuNationality" class="col-md-4 control-label">民族</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuNationality" name="stuNationality" placeholder="汉族" value="${edit.stuNationality}">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuLevel" class="col-md-4 control-label">级别</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuLevel" key="memberLevel" value="${edit.stuLevel}" />
+                        <%--<input type="text" class="form-control" id="stuLevel" name="stuLevel" value="${edit.stuLevel}">--%>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuIdentifiedType" class="col-md-4 control-label">证件</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuIdentifiedType" key="stuIdentifiedType" value="${edit.stuIdentifiedType}" id="stuIdentifiedType" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuBirthday" class="col-md-4 control-label">出生日期</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control" id="stuBirthday" name="stuBirthday" value="${edit.stuBirthday}"/>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuSpeciality" class="col-md-4 control-label">特长</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuSpeciality" name="stuSpeciality" value="${edit.stuSpeciality}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuIdentifiedNum" class="col-md-4 control-label">证件号码</label>
+                    <div class="col-md-8">
+                        <input type="password" class="form-control" id="stuIdentifiedNum" name="stuIdentifiedNum" value="${edit.stuIdentifiedNum}">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuOldWorkType" class="col-md-4 control-label">原职务</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuOldWorkType" key="stuOldWorkType" value="${edit.stuOldWorkType}" id="stuOldWorkType" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuPreferential" class="col-md-4 control-label">优惠</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuPreferential" key="courseDiscount" value="${edit.stuPreferential}" id="stuPreferential" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuOldWorkPlaceType" class="col-md-4 control-label">原单位类别</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuOldWorkPlaceType" key="stuOldWorkPlaceType" value="${edit.stuOldWorkPlaceType}" id="stuOldWorkPlaceType" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuEducational" class="col-md-4 control-label">文化程度</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuEducational" key="educational" value="${edit.stuEducational}" id="stuEducational" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuDependentsTel" class="col-md-4 control-label">家属电话</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuDependentsTel" name="stuDependentsTel" value="${edit.stuDependentsTel}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuOldWorkPlaceName" class="col-md-4 control-label">原工作单位</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuOldWorkPlaceName" name="stuOldWorkPlaceName" value="${edit.stuOldWorkPlaceName}"/>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuHealth" class="col-md-4 control-label">身体状况</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuHealth" name="stuHealth" value="${edit.stuHealth}"/>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuDependentsDesc" class="col-md-4 control-label">家属关系</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuDependentsDesc" name="stuDependentsDesc" value="${edit.stuDependentsDesc}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label for="stuPolitical" class="col-md-4 control-label">政治面貌</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuPolitical" key="stuPolitical" value="${edit.stuPolitical}" id="stuPolitical" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuLocation" class="col-md-4 control-label">现住址</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="stuLocation" name="stuLocation" value="${edit.stuLocation}">
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="stuCheck" class="col-md-4 control-label">审验情况</label>
+                    <div class="col-md-8">
+                        <tags:dicselect name="stuCheck" key="memberCheck" value="${edit.stuCheck}" />
+                        <%--<textarea class="form-control" id="stuCheck" name="stuCheck">${edit.stuCheck}</textarea>--%>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <%--<div class="col-md-4 form-group">--%>
+                    <%--<label for="stuCheck" class="col-md-4 control-label">审验情况</label>--%>
+                    <%--<div class="col-md-8">--%>
+                        <%--<textarea class="form-control" id="stuCheck" name="stuCheck">${edit.stuCheck}</textarea>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <div class="col-md-12 form-group">
+                    <label for="stuRemarkOne" class="col-md-1 control-label">备注1</label>
+                    <div class="col-md-11">
+                        <textarea class="form-control" id="stuRemarkOne" name="stuRemarkOne">${edit.stuRemarkOne}</textarea>
+                    </div>
+                </div>
+                <%--<div class="col-md-4 form-group">--%>
+                    <%--<label for="stuRemarkTwo" class="col-md-4 control-label">备注2</label>--%>
+                    <%--<div class="col-md-8">--%>
+                        <%--<textarea class="form-control" id="stuRemarkTwo" name="stuRemarkTwo">${edit.stuRemarkTwo}</textarea>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label for="stuRemarkTwo" class="col-md-1 control-label">备注2</label>
+                    <div class="col-md-11">
+                        <textarea class="form-control" id="stuRemarkTwo" name="stuRemarkTwo">${edit.stuRemarkTwo}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-warning" >编辑人员</button>
+                    <button type="button" id="backMark" class="btn btn-default" style="margin-left: 100px">返回</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
 
 </div>
 

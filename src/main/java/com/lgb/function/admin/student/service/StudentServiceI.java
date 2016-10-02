@@ -20,4 +20,5 @@ public interface StudentServiceI {
     boolean existCardNum(StudentUser studentUser);
     List<StudentUser> exportAllStu();
     List<Course> selectCourses(int stuId);
+    StudentUser detail(int stuId);
 }

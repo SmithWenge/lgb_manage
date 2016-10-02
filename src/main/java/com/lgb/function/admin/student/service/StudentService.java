@@ -1,6 +1,7 @@
 package com.lgb.function.admin.student.service;
 
 import com.google.common.base.Optional;
+import com.lgb.arc.utils.EncryptAnDecrypt;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.student.repository.StudentRepositoryI;
@@ -35,8 +36,21 @@ public class StudentService implements StudentServiceI{
     @Override
     public boolean add(StudentUser studentUser, String logUser) {
         String stuIdentifiedNum = studentUser.getStuIdentifiedNum();
-        String stuLastEightNum = stuIdentifiedNum.substring(stuIdentifiedNum.length()-8,stuIdentifiedNum.length());
+        String stuLastEightNum = stuIdentifiedNum.substring(stuIdentifiedNum.length() - 8, stuIdentifiedNum.length());
         studentUser.setStuLastEightNum(stuLastEightNum);
+
+        String stuTelOne = studentUser.getStuTelOne();
+        Optional<String> optional = Optional.fromNullable(stuTelOne);
+        if (optional.isPresent()) {
+            studentUser.setStuTelOne(EncryptAnDecrypt.encrypt(stuTelOne));
+        }
+
+        String stuTelTwo = studentUser.getStuTelTwo();
+        Optional<String> optional2 = Optional.fromNullable(stuTelTwo);
+        if (optional2.isPresent()) {
+            studentUser.setStuTelTwo(EncryptAnDecrypt.encrypt(stuTelTwo));
+        }
+
         boolean tmp = studentRepository.insert(studentUser);
 
         if (tmp) {
@@ -121,5 +135,10 @@ public class StudentService implements StudentServiceI{
     @Override
     public List<Course> selectCourses(int stuId) {
         return studentRepository.select4Courses(stuId);
+    }
+
+    @Override
+    public StudentUser detail(int stuId) {
+        return studentRepository.select(stuId);
     }
 }

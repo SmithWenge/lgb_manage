@@ -42,6 +42,8 @@ public class StudentUser extends Entry{
     private int deleteFlag;
     private String pieStudentStartDate;
     private String yearStuBirthday;
+    private String stuPicture;
+
 
     public String getYearStuBirthday() {
         return yearStuBirthday;
@@ -306,5 +308,14 @@ public class StudentUser extends Entry{
 
     public void setStuRemarkTwo(String stuRemarkTwo) {
         this.stuRemarkTwo = stuRemarkTwo;
+    }
+
+    public void setStuPicture(String stuPicture) {
+        this.stuPicture = stuPicture;
+    }
+
+    public String getStuPicture() {
+
+        return stuPicture;
     }
 }

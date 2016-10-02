@@ -182,6 +182,9 @@
                             <td>${user.stuTelOne}</td>
                             <td>${user.stuTelTwo}</td>
                             <td>
+                                <a href="${contextPath}/admin/student/detail/${user.stuId}.action" style="text-decoration: none;">
+                                    <button type="button" class="btn btn-success">查看人员</button>
+                                </a>
                                 <a href="${contextPath}/admin/student/courses/${user.stuId}.action" style="text-decoration: none;">
                                     <button type="button" class="btn btn-success">查看课程</button>
                                 </a>

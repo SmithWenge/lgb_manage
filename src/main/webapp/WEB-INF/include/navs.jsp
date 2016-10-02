@@ -55,7 +55,7 @@
     <ul>
         <li style="width: 2%;"></li>
         <li style="width: 16%;">老干部学籍管理</li>
-        <li style="width: 6%;"> <span class="glyphicon glyphicon-user"> </span> admin</li>
+        <li style="width: 6%;"> <span class="glyphicon glyphicon-user"> </span> ${adminLogin.adminLoginName}</li>
         <li style="width: 65%;"><a href="${contextPath}/admin/routePass.action">更改密码</a></li>
         <li style="width: 10%;"><a href="${contextPath}/admin/logout.action"><span class="glyphicon glyphicon-off"></span> 退出</a></li>
     </ul>

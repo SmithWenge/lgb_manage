@@ -263,4 +263,15 @@ public class StudentController {
 
         return mav;
     }
+
+    // 查看学生详细信息
+    @RequestMapping("/detail/{stuId}")
+    public ModelAndView studentDetail(@PathVariable int stuId) {
+        StudentUser studentUser = studentService.detail(stuId);
+
+        ModelAndView mav = new ModelAndView("admin/student/detail");
+        mav.addObject("student", studentUser);
+
+        return mav;
+    }
 }

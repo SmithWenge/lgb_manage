@@ -1,6 +1,7 @@
 package com.lgb.function.admin.student.repository;
 
 import com.google.common.base.Optional;
+import com.lgb.arc.utils.EncryptAnDecrypt;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.admin.teacher.Teacher;
@@ -131,7 +132,7 @@ public class StudentRepository implements StudentRepositoryI {
     }
     @Override
     public boolean insert(StudentUser studentUser) {
-        String sql = "INSERT INTO lgb_student (stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO lgb_student (stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate, stuPicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] args = {
                 studentUser.getStuId(),
                 studentUser.getStuCardNum(),
@@ -160,7 +161,8 @@ public class StudentRepository implements StudentRepositoryI {
                 studentUser.getStuDependentsDesc(),
                 studentUser.getStuRemarkOne(),
                 studentUser.getStuRemarkTwo(),
-                studentUser.getStudentStartDate()
+                studentUser.getStudentStartDate(),
+                studentUser.getStuPicture()
         };
 
         return jdbcTemplate.update(sql, args) == 1 ? true : false;
@@ -168,7 +170,7 @@ public class StudentRepository implements StudentRepositoryI {
 
     @Override
     public StudentUser select(int stuId) {
-        String sql = "SELECT stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate FROM lgb_student WHERE deleteFlag = 0 AND stuId = ?";
+        String sql = "SELECT stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate, stuPicture FROM lgb_student WHERE deleteFlag = 0 AND stuId = ?";
         Object[] args = {
                 stuId
         };
@@ -249,8 +251,14 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuGender(resultSet.getInt("stuGender"));
             studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
             studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
-            studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
-            studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
+            studentUser.setStuTelOne(EncryptAnDecrypt.decrypt(resultSet.getString("stuTelOne")));
+            String stuTelTwo = resultSet.getString("stuTelTwo");
+            Optional<String> optional = Optional.fromNullable(stuTelTwo);
+            if (optional.isPresent()) {
+                studentUser.setStuTelTwo(EncryptAnDecrypt.decrypt(stuTelTwo));
+            } else {
+                studentUser.setStuTelTwo("");
+            }
 
             return studentUser;
         }
@@ -266,8 +274,14 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuName(resultSet.getString("stuName"));
             studentUser.setStuGender(resultSet.getInt("stuGender"));
             studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
-            studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
-            studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
+            studentUser.setStuTelOne(EncryptAnDecrypt.decrypt(resultSet.getString("stuTelOne")));
+            String stuTelTwo = resultSet.getString("stuTelTwo");
+            Optional<String> optional = Optional.fromNullable(stuTelTwo);
+            if (optional.isPresent()) {
+                studentUser.setStuTelTwo(EncryptAnDecrypt.decrypt(stuTelTwo));
+            } else {
+                studentUser.setStuTelTwo("");
+            }
             studentUser.setStuOldWorkPlaceName(resultSet.getString("stuOldWorkPlaceName"));
             studentUser.setStuLocation(resultSet.getString("stuLocation"));
 
@@ -283,8 +297,15 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuId(resultSet.getInt("stuId"));
             studentUser.setStuName(resultSet.getString("stuName"));
             studentUser.setStuGender(resultSet.getInt("stuGender"));
-            studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
-            studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
+            studentUser.setStuTelOne(EncryptAnDecrypt.decrypt(resultSet.getString("stuTelOne")));
+
+            String stuTelTwo = resultSet.getString("stuTelTwo");
+            Optional<String> optional = Optional.fromNullable(stuTelTwo);
+            if (optional.isPresent()) {
+                studentUser.setStuTelTwo(EncryptAnDecrypt.decrypt(stuTelTwo));
+            } else {
+                studentUser.setStuTelTwo("");
+            }
             studentUser.setStuIdentifiedType(resultSet.getInt("stuIdentifiedType"));
             studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
             studentUser.setStuOldWorkPlaceType(resultSet.getInt("stuOldWorkPlaceType"));
@@ -308,6 +329,7 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuEducational(resultSet.getInt("stuEducational"));
             studentUser.setStuIdentifiedNum(resultSet.getString("stuIdentifiedNum"));
             studentUser.setStudentStartDate(resultSet.getDate("studentStartDate"));
+            studentUser.setStuPicture(resultSet.getString("stuPicture"));
 
             return studentUser;
         }

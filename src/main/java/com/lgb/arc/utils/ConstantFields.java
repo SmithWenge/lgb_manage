@@ -93,4 +93,5 @@ public class ConstantFields {
     /* 操作失败消息 */
     public static final String OPERATION_FAILURE_MESSAGE = "操作失败";
 
+    public static final String UPLOAD_TMP_STUDENT_PHOTO_FILE_NAME = "studentPhoto";
 }

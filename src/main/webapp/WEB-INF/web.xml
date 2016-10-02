@@ -63,6 +63,16 @@
     <url-pattern>*.action</url-pattern>
   </servlet-mapping>
 
+  <!-- Webcam photo upload servlet -->
+  <servlet>
+    <servlet-name>webcam</servlet-name>
+    <servlet-class>com.lgb.function.admin.student.photo.controller.WebcamPhotoUploadServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>webcam</servlet-name>
+    <url-pattern>/admin/webcam.svt</url-pattern>
+  </servlet-mapping>
+
   <!-- To see Logback status, optionally add the following Logback Status servlet. -->
   <servlet>
     <servlet-name>ViewStatusMessages</servlet-name>
