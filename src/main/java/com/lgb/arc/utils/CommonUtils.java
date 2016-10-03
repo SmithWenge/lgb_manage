@@ -10,8 +10,6 @@ public class CommonUtils {
             return 3;
         } else if (specific.equals("d")) {
             return 4;
-        } else if (specific.equals("e")) {
-            return 5;
         }
 
         return 0;

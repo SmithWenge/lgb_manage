@@ -78,8 +78,8 @@
                     </tr>
                     <form method="post" id="batchForm" border="1px black solid;">
                     <c:forEach items="${page.content}" var="course" varStatus="status">
-                        <tr style="line-height: 38px;">
-                            <td >
+                        <tr id="batchCheck">
+                            <td id="batchCheckBoxId">
                                 <label class="checkbox-inline">
                                     <input type="checkbox" value="${course.courseId}" name="batchId">
                                 </label>
@@ -100,7 +100,7 @@
                             <%--<td>${course.courseStuNum}</td>--%>
                             <td>${course.courseTuition}</td>
                             <td>${course.courseLimitNum}</td>
-                            <td style="height: 30px;line-height: 38px">
+                            <td style="height: 30px;">
                                 <a href="${contextPath}/admin/course/student/${course.courseId}.action" style="text-decoration: none;">
                                     <button type="button" class="btn btn-success">查看学生</button>
                                 </a>
@@ -165,6 +165,7 @@
         // 设置table表格中的行高
         var $height = $('#paginationTable td').height() + 'px';
         $('#paginationTable td').css('line-height', $height);
+        $('#batchCheck #batchCheckBoxId').css('line-height', '13px');
 
         $('#departmentId').on('change', function () {
             var $departmentId = $('#departmentId').val();

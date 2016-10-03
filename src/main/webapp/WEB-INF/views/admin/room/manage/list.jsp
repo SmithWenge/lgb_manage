@@ -12,7 +12,9 @@
     }
 </style>
 <div class="panel panel-default" style="float: left;width: 85%;">
-    <div class="panel-heading" style="height: 45px;"><span class="glyphicon glyphicon-map-marker"></span>教室 > 教室管理</div>
+    <div class="panel-heading" style="height: 45px;">
+        <span class="glyphicon glyphicon-map-marker"></span>教室 > 教室管理
+    </div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
@@ -58,7 +60,7 @@
                             <td>${room.roomCapacity} 人</td>
                             <td>
                                 <a href="${contextPath}/admin/room/manage/routeEdit/${room.roomId}.action" style="text-decoration: none;" >
-                                    <button type="button" class="btn btn-danger">编辑</button>
+                                    <button type="button" class="btn btn-warning">编辑</button>
                                 </a>
                                 <a href="${contextPath}/admin/room/manage/delete/${room.roomId}.action" style="text-decoration: none;" >
                                     <button type="button" class="btn btn-danger">删除</button>
