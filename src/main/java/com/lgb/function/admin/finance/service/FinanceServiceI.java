@@ -4,6 +4,7 @@ import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.finance.Finance;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.student.StudentUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,5 +20,9 @@ public interface FinanceServiceI {
     boolean edit(Finance finance, String logUser);
     Page<Finance> selectFinance4Page(Finance finance, Pageable pageable);
     Page<Finance> selectTwoDayFinance4Page(Finance finance, Pageable pageable);
-    Page<Finance> selectUnFinanceByCard(Finance finance,Pageable pageable);
+    List<Finance> selectUnFinanceByCard(Finance finance);
+    List<StudentUser> unpaymentStudentUser(Course course);
+    List<Course> getAllCourses();
+    List<StudentUser> paymentStudentUser(Course course);
+    boolean delete(int studentCourseId, String logUser);
 }

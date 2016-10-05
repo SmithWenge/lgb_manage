@@ -43,6 +43,9 @@ public class StudentUser extends Entry{
     private String pieStudentStartDate;
     private String yearStuBirthday;
     private String stuPicture;
+    private int tuitionFlag; // 缴费状态
+    private String courseName; // 选课的课程名
+    private int studentCourseId; // 学生选课的ID
 
 
     public String getYearStuBirthday() {
@@ -317,5 +320,31 @@ public class StudentUser extends Entry{
     public String getStuPicture() {
 
         return stuPicture;
+    }
+
+    public void setTuitionFlag(int tuitionFlag) {
+        this.tuitionFlag = tuitionFlag;
+    }
+
+    public int getTuitionFlag() {
+
+        return tuitionFlag;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public String getCourseName() {
+
+        return courseName;
+    }
+
+    public int getStudentCourseId() {
+        return studentCourseId;
+    }
+
+    public void setStudentCourseId(int studentCourseId) {
+        this.studentCourseId = studentCourseId;
     }
 }

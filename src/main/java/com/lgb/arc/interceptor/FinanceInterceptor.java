@@ -39,7 +39,7 @@ public class FinanceInterceptor implements HandlerInterceptor {
         Optional<AdminUser> optional = Optional.fromNullable(adminUser);
         /* 判断用户是不是财务，只有财务才可以*/
         if (optional.isPresent()) {
-            if (adminUser.getAdminRole() != 4) {
+            if (adminUser.getAdminRole() != ConstantFields.ADMIN_LOGIN_CAIWU_ROLE) {
                 session.removeAttribute(ConstantFields.SESSION_ADMIN_KEY);
 
                 String redirectLocation = httpServletRequest.getContextPath() + "/admin/routeFinanceLogin.action";

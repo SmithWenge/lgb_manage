@@ -78,7 +78,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">收款</button>
+                            <button type="submit" class="btn btn-success">收款</button>
                             <button type="button" id="backMark" class="btn btn-default" style="margin-left: 100px">返回</button>
                         </div>
                     </div>

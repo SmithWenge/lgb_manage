@@ -14,6 +14,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" />
   <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap-theme.css" />
+  <link rel="shortcut icon" href="${contextPath}/static/images/lgb.ico" />
+
   <style>
     body{
       background: url(${contextPath}/static/images/bg.jpg);
@@ -57,12 +59,22 @@
   <div class="content">
     <div><h3 style="text-align: center">财务登录</h3></div>
     <div class="right_div">
-      <label for="inputAdminLoginName"><span class="glyphicon glyphicon-user"></span><span>&nbsp;</span><span>&nbsp;</span></label>
-      <input type="text" id="inputAdminLoginName" name="adminLoginName" placeholder="admin" /><br />
-      <label for="inputAdminLoginPass"><span class="glyphicon glyphicon-lock"></span><span>&nbsp;</span><span>&nbsp;</span></label>
+      <label for="inputAdminLoginName">
+        <span class="glyphicon glyphicon-user"></span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+      </label>
+      <input type="text" id="inputAdminLoginName" name="adminLoginName" placeholder="财务人员登录名" /><br />
+      <label for="inputAdminLoginPass">
+        <span class="glyphicon glyphicon-lock"></span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+      </label>
       <input type="password" id="inputAdminLoginPass" name="adminLoginPass" placeholder="密码" /><br />
-      <span>&nbsp;</span><button class="btn btn-info" type="submit" id="sub">登录</button>
-      <span>&nbsp;</span><button class="btn btn-default" type="button" id="forget" data-toggle="modal" data-target="#resetPass">忘记密码</button>
+      <span>&nbsp;</span>
+      <button class="btn btn-info" type="submit" id="sub">登录</button>
+      <span>&nbsp;</span>
+      <button class="btn btn-default" type="button" id="forget" data-toggle="modal" data-target="#resetPass">忘记密码</button>
     </div>
   </div>
 </form>

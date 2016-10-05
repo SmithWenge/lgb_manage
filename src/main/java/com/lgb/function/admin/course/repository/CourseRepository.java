@@ -457,7 +457,7 @@ public class CourseRepository implements CourseRepositoryI {
 
     @Override
     public List<CourseSite> selectSiteNum(int courseId) {
-        String sql = "SELECT CO.studentId, CO.stuBirthday, CO.stuName, (@num:=@num + 1) AS siteNum, CO.courseRoom, CO.majorName, CO.departmentName, CO.courseName FROM (SELECT SC.studentId, S.stuBirthday, S.stuName, C.courseRoom, M.majorName, D.departmentName, C.courseName FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId WHERE SC.courseId = ? ORDER BY S.stuBirthday ASC) AS CO, (SELECT @num:=0) AS IT";
+        String sql = "SELECT CO.studentId, CO.stuBirthday, CO.stuName, (@num:=@num + 1) AS siteNum, CO.courseRoom, CO.majorName, CO.departmentName, CO.courseName FROM (SELECT SC.studentId, S.stuBirthday, S.stuName, C.courseRoom, M.majorName, D.departmentName, C.courseName FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_major M ON C.majorId = M.majorId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId WHERE SC.courseId = ? ORDER BY S.stuBirthday ASC AND SC.deleteFlag = 0) AS CO, (SELECT @num:=0) AS IT";
         Object[] args = {
                 courseId
         };
@@ -491,7 +491,7 @@ public class CourseRepository implements CourseRepositoryI {
 
     @Override
     public List<StudentUser> selectStudents(int courseId) {
-        String sql = "SELECT S.stuId, S.stuName FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.courseId = ?";
+        String sql = "SELECT S.stuId, S.stuName, SC.tuitionFlag FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.courseId = ? AND SC.deleteFlag = 0";
         Object[] args = {
                 courseId
         };
@@ -511,6 +511,7 @@ public class CourseRepository implements CourseRepositoryI {
 
             studentUser.setStuId(rs.getInt("stuId"));
             studentUser.setStuName(rs.getString("stuName"));
+            studentUser.setTuitionFlag(rs.getInt("tuitionFlag"));
 
             return studentUser;
         }

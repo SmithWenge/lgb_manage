@@ -37,6 +37,10 @@ public class Course extends Entry {
     private String timeSpecific;
     private int studentId;
     private String adminName;
+    private int financeYear; // 收费年
+
+    private int tuitionFlag; // 缴费状态
+    private int billFlag; // 发票状态
 
     public void setAdminName(String adminName) {
         this.adminName = adminName;
@@ -279,5 +283,32 @@ public class Course extends Entry {
 
     public String getCourseRemark() {
         return courseRemark;
+    }
+
+    public void setTuitionFlag(int tuitionFlag) {
+        this.tuitionFlag = tuitionFlag;
+    }
+
+    public int getTuitionFlag() {
+
+        return tuitionFlag;
+    }
+
+    public void setFinanceYear(int financeYear) {
+        this.financeYear = financeYear;
+    }
+
+    public int getFinanceYear() {
+
+        return financeYear;
+    }
+
+    public void setBillFlag(int billFlag) {
+        this.billFlag = billFlag;
+    }
+
+    public int getBillFlag() {
+
+        return billFlag;
     }
 }

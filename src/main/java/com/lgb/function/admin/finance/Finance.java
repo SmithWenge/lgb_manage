@@ -43,6 +43,8 @@ public class Finance extends Entry {
     private String billNumber;
     private String stuCardNum;
     private int pageSearchFlag;
+    private int studentId;
+    private int billFlag;
 
     public int getPageSearchFlag() {
         return pageSearchFlag;
@@ -299,5 +301,23 @@ public class Finance extends Entry {
 
     public String getTelTwo() {
         return telTwo;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public int getStudentId() {
+
+        return studentId;
+    }
+
+    public void setBillFlag(int billFlag) {
+        this.billFlag = billFlag;
+    }
+
+    public int getBillFlag() {
+
+        return billFlag;
     }
 }

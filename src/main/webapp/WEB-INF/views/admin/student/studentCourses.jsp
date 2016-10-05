@@ -26,11 +26,13 @@
                     <tr style="background-color: #3767b1; color: #dbdbdb;">
                         <th>专业名</th>
                         <th>课程名</th>
+                        <th>付费状态</th>
                     </tr>
                     <c:forEach items="${courses}" var="course">
                         <tr>
                             <th>${course.departmentName}</th>
                             <th>${course.courseName}</th>
+                            <tags:dictd groupValue="tuitionFlag" itemKey="${course.tuitionFlag}" />
                         </tr>
                     </c:forEach>
                 </table>

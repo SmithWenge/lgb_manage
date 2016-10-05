@@ -4,8 +4,10 @@ import com.google.common.base.Optional;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.finance.Finance;
+import com.lgb.function.admin.finance.StudentCourse;
 import com.lgb.function.admin.finance.repository.FinanceRepositoryI;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.support.log.LogContent;
 import com.lgb.function.support.log.repository.LogRepositoryI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,8 +87,43 @@ public class FinanceService implements FinanceServiceI {
     }
 
     @Override
-    public Page<Finance> selectUnFinanceByCard(Finance finance, Pageable pageable) {
-        return financeRepository.selectUnFinanceByCard(finance,pageable);
+    public List<Finance> selectUnFinanceByCard(Finance finance) {
+        return financeRepository.selectUnFinanceByCard(finance);
+    }
+
+    @Override
+    public List<StudentUser> unpaymentStudentUser(Course course) {
+        return financeRepository.select4UnpaymentStudent(course);
+    }
+
+    @Override
+    public List<Course> getAllCourses() {
+        return financeRepository.selectUndeleteCourses();
+    }
+
+    @Override
+    public List<StudentUser> paymentStudentUser(Course course) {
+        return financeRepository.select4paymentStudent(course);
+    }
+
+    @Override
+    public boolean delete(int studentCourseId, String logUser) {
+        StudentCourse existStudentCourse = financeRepository.selectByStudentCourseId(studentCourseId);
+
+        Optional<StudentCourse> optional = Optional.fromNullable(existStudentCourse);
+
+        if (optional.isPresent()) {
+            boolean tmp = financeRepository.delete(studentCourseId);
+
+            if (tmp) {
+                LogContent logContent = new LogContent(logUser, "删除用户选择课程ID为" + studentCourseId, 1, 2);
+                logRepository.insertLog(logContent);
+            }
+
+            return tmp;
+        }
+
+        return false;
     }
 
 }

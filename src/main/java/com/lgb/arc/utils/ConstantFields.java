@@ -100,4 +100,13 @@ public class ConstantFields {
     public static final int DEFAULT_CONFIG_ID = 1;
     /* 背景色配置Key */
     public static final String SESSION_BG_COLOR = "backgroundColor";
+
+    /* 财务角色的常量值 */
+    public static final int ADMIN_LOGIN_CAIWU_ROLE =4;
+
+    /* 退课路由信息 */
+    public static final String ROUTE_REFUND_SUCCESS_MESSAGE = "不能到达退课页面";
+    /* 退课信息 */
+    public static final String REFUND_SUCCESS_MESSAGE = "退课成功";
+    public static final String REFUND_FAILURE_MESSAGE = "退课失败";
 }

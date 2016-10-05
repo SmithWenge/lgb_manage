@@ -79,9 +79,16 @@
                 <li role="presentation"><a id="signUp" href="${contextPath}/admin/offline/sign.action">线下报名</a></li>
                 <li role="presentation"><a id="setting" href="${contextPath}/admin/setting/route.action">颜色配置</a></li>
             </c:if>
-            <li role="presentation" id="financePre"><a id="finance" href="${contextPath}/admin/finance/routePage.action">财务</a></li>
+
             <c:if test="${sessionScope.adminLogin.adminRole != 4}">
                 <li role="presentation"><a href="${contextPath}/admin/user/helpRouter.action">帮助</a></li>
+            </c:if>
+            <c:if test="${sessionScope.adminLogin.adminRole == 4}">
+                <li role="presentation"><a id="finance" href="${contextPath}/admin/finance/routePage.action">收费</a></li>
+                <li role="presentation"><a href="${contextPath}/admin/finance/unpayment.action">未缴费查询</a></li>
+                <li role="presentation"><a href="${contextPath}/admin/finance/payment.action">已缴费查询</a></li>
+                <li role="presentation"><a href="${contextPath}/admin/finance/query/all.action">缴费信息</a></li>
+                <li role="presentation"><a href="${contextPath}/admin/finance/refund/route.action">退款</a></li>
             </c:if>
             <input type="hidden" id="roleId" value="${sessionScope.adminLogin.adminRole}">
         </ul>
@@ -90,11 +97,11 @@
 <%@include file="/WEB-INF/include/javascript.jsp"%>
 <script type="text/javascript">
     $(function () {
-        var $roleId = $('#roleId').val();
-        if($roleId != 4) {
-            $('#financePre').click(function(){
-                return confirm("是否确认退出当前登录，前往财务登录");
-            });
-        }
+//        var $roleId = $('#roleId').val();
+//        if($roleId != 4) {
+//            $('#financePre').click(function(){
+//                return confirm("是否确认退出当前登录，前往财务登录");
+//            });
+//        }
     });
 </script>

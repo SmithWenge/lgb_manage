@@ -12,6 +12,7 @@ import com.lgb.function.admin.finance.count.service.FCServiceI;
 import com.lgb.function.admin.finance.service.FinanceServiceI;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.student.StudentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,11 +40,16 @@ public class FinanceController {
 
     private BillNumUtils billNumUtils;
 
+    /**
+     * 根据学号查看未缴费情况
+     *
+     * @param finance
+     * @return
+     */
     @RequestMapping(value = "/searchByCardNum")
-    public ModelAndView searchByCardNum(@PageableDefault(value = ConstantFields.DEFAULT_PAGE_SIZE) Pageable pageable,
-                                  Finance finance) {
+    public ModelAndView searchByCardNum(Finance finance) {
         ModelAndView mav = new ModelAndView("admin/finance/list");
-        Page<Finance> page = financeService.selectUnFinanceByCard(finance, pageable);
+        List<Finance> page = financeService.selectUnFinanceByCard(finance);
         mav.addObject(ConstantFields.PAGE_KEY, page);
 
         List<Department> departments = financeService.departments();
@@ -143,7 +149,7 @@ public class FinanceController {
         AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
         String logUser = user.getAdminLoginName();
 
-        finance.setBillNumber(billNumUtils.creatBillNum());
+        finance.setBillNumber(billNumUtils.createBillNum());
         if (financeService.edit(finance, logUser)) {
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] [OK] {} edit finance with course name is {} and studentCourseId is {}.", logUser, finance.getCourseName(), finance.getStudentCourseId());
@@ -221,6 +227,55 @@ public class FinanceController {
         return "admin/finance/financeExcel";
     }
 
+    /**
+     * 查看未缴费名单
+     */
+    @RequestMapping("/unpayment")
+    public ModelAndView unpayment(Course course) {
+        List<StudentUser> unPayStudent = financeService.unpaymentStudentUser(course);
+        List<Course> courses = financeService.getAllCourses();
 
+        ModelAndView mav = new ModelAndView("admin/finance/unpayStudent");
+        mav.addObject("students", unPayStudent);
+        mav.addObject("courses", courses);
 
+        return mav;
+    }
+
+    /**
+     * 查看已缴费名单
+     */
+    @RequestMapping("/payment")
+    public ModelAndView payment(Course course) {
+        List<StudentUser> unPayStudent = financeService.paymentStudentUser(course);
+        List<Course> courses = financeService.getAllCourses();
+
+        ModelAndView mav = new ModelAndView("admin/finance/payStudent");
+        mav.addObject("students", unPayStudent);
+        mav.addObject("courses", courses);
+
+        return mav;
+    }
+
+    /**
+     * 删除未缴费用户
+     */
+    @RequestMapping("/delete/stucourse/{studentCourseId}")
+    public String deleteStudentSelectCourse(@PathVariable int studentCourseId, HttpSession session, RedirectAttributes redirectAttributes) {
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminLoginName();
+
+        if (financeService.delete(studentCourseId, logUser)) {
+            if (LOG.isInfoEnabled())
+                LOG.info("[LGB MANAGE] [OK] {} delete student select course's ID {}.", logUser, studentCourseId);
+
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_SUCCESS_MESSAGE);
+
+            return "redirect:/admin/finance/unpayment.action";
+        }
+
+        redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.DELETE_FAILURE_MESSAGE);
+
+        return "redirect:/admin/finance/unpayment.action";
+    }
 }

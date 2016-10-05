@@ -4,7 +4,9 @@ import com.google.common.base.Optional;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.finance.Finance;
+import com.lgb.function.admin.finance.StudentCourse;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.support.utils.RepositoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +29,7 @@ public class FinanceRepository implements FinanceRepositoryI {
     private RepositoryUtils<Finance> repositoryUtils;
 
     public Page<Finance> selectUnFinance4Page(Finance finance, Pageable pageable) {
-        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.signUpUser, DATE_FORMAT(SC.signUpTime, '%Y-%m-%d') AS signUpDate  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 0 AND C.deleteFlag = 0");
+        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.signUpUser, DATE_FORMAT(SC.signUpTime, '%Y-%m-%d') AS signUpDate  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 0 AND C.deleteFlag = 0 AND SC.deleteFlag = 0");
 
         List<Object> list = new ArrayList<>();
         Optional<Finance> optional = Optional.fromNullable(finance);
@@ -89,7 +91,7 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public Page<Finance> selectFinance4Page(Finance finance, Pageable pageable) {
-        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1");
+        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND SC.deleteFlag = 0");
 
         List<Object> list = new ArrayList<>();
         Optional<Date> optional = Optional.fromNullable(finance.getQueryFinanceDate());
@@ -107,7 +109,7 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public Page<Finance> selectTwoDayFinance4Page(Finance finance, Pageable pageable) {
-        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1");
+        StringBuilder sql = new StringBuilder("SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.signUpUser, SC.financeUser, SC.financeTime, SC.actualTuition  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND SC.deleteFlag = 0");
 
         List<Object> list = new ArrayList<>();
         Date dateOne = finance.getQueryFinanceDateOne();
@@ -127,13 +129,13 @@ public class FinanceRepository implements FinanceRepositoryI {
     }
 
     @Override
-    public Page<Finance> selectUnFinanceByCard(Finance finance, Pageable pageable) {
-        String sql = "SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.signUpUser, DATE_FORMAT(SC.signUpTime, '%Y-%m-%d') AS signUpDate  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 0 AND C.deleteFlag = 0 AND S.stuCardNum = ?";
+    public List<Finance> selectUnFinanceByCard(Finance finance) {
+        String sql = "SELECT SC.studentCourseId, S.stuCardNum, S.stuName, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential, SC.signUpUser, DATE_FORMAT(SC.signUpTime, '%Y-%m-%d') AS signUpDate  FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 0 AND C.deleteFlag = 0 AND S.stuCardNum = ? AND SC.deleteFlag = 0";
         Object[] args = {
                 finance.getStuCardNum()
         };
 
-        return repositoryUtils.select4Page(sql, pageable, args, new SelectUnFinance4PageRowMapper());
+        return jdbcTemplate.query(sql, args, new SelectUnFinance4PageRowMapper());
     }
 
     private class SelectFinance4PageRowMapper implements RowMapper<Finance> {
@@ -240,7 +242,7 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public Finance select(int studentCourseId) {
-        String sql = "SELECT SC.studentCourseId, S.stuName, S.stuGender, S.stuTelOne, S.stuTelTwo, S.stuBirthday, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 0 AND C.deleteFlag = 0 AND SC.studentCourseId = ?";
+        String sql = "SELECT SC.studentCourseId, S.stuName, S.stuGender, S.stuTelOne, S.stuTelTwo, S.stuBirthday, SC.signUpComeFrom, D.departmentName, M.majorName, C.courseName, C.courseTuition, S.stuPreferential FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 0 AND C.deleteFlag = 0 AND SC.studentCourseId = ? AND SC.deleteFlag = 0";
         Object[] args = {
                 studentCourseId
         };
@@ -278,7 +280,7 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public List<Finance> selectFinanceCourse(int studentCourseId) {
-        String sql = "SELECT S.stuName, SC.actualTuition, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.financeTime FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND SC.studentId IN (SELECT studentId FROM lgb_studentCourse WHERE studentCourseId = ?)";
+        String sql = "SELECT S.stuName, SC.actualTuition, D.departmentName, M.majorName, C.courseName, C.courseTuition, SC.courseDiscount, SC.financeTime FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE SC.tuitionFlag = 1 AND SC.deleteFlag = 0 AND SC.studentId IN (SELECT studentId FROM lgb_studentCourse WHERE studentCourseId = ? AND SC.deleteFlag = 0)";
         Object[] args = {
                 studentCourseId
         };
@@ -337,7 +339,7 @@ public class FinanceRepository implements FinanceRepositoryI {
 
     @Override
     public boolean update(Finance finance, String logUser) {
-        String sql = "UPDATE lgb_studentCourse SET actualTuition = ?, tuitionFlag = 1, financeTime = NOW(), financeUser = ?, courseDiscount = ?, billNumber = ? WHERE studentCourseId = ?";
+        String sql = "UPDATE lgb_studentCourse SET actualTuition = ?, tuitionFlag = 1, financeTime = NOW(), financeUser = ?, courseDiscount = ?, billNumber = ? WHERE studentCourseId = ? AND deleteFlag = 0";
         Object[] args = {
                 finance.getActualTuition(),
                 logUser,
@@ -354,4 +356,133 @@ public class FinanceRepository implements FinanceRepositoryI {
         }
     }
 
+    /**
+     * 查询所有未缴费学员的信息
+     *
+     * @return
+     */
+    @Override
+    public List<StudentUser> select4UnpaymentStudent(Course course) {
+        StringBuilder sqlBuilder = new StringBuilder("SELECT S.stuId, S.stuName, S.stuLevel, S.stuTelOne, S.stuCardNum, SC.tuitionFlag, C.courseName, SC.studentCourseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE tuitionFlag = 0 AND C.deleteFlag = 0 AND SC.deleteFlag = 0");
+
+        List<Object> arguments = new ArrayList<>();
+        if (course.getCourseId() > 0 ) {
+            sqlBuilder.append(" AND C.courseId = ?");
+            arguments.add(course.getCourseId());
+        }
+        try {
+            return jdbcTemplate.query(sqlBuilder.toString(), arguments.toArray(), new Select4UnpaymentStudentRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    private class Select4UnpaymentStudentRowMapper implements RowMapper<StudentUser> {
+
+        @Override
+        public StudentUser mapRow(ResultSet rs, int rowNum) throws SQLException {
+            StudentUser studentUser = new StudentUser();
+
+            studentUser.setStuId(rs.getInt("stuId"));
+            studentUser.setStuName(rs.getString("stuName"));
+            studentUser.setStuCardNum(rs.getString("stuCardNum"));
+            studentUser.setStuTelOne(rs.getString("stuTelOne"));
+            studentUser.setTuitionFlag(rs.getInt("tuitionFlag"));
+            studentUser.setCourseName(rs.getString("courseName"));
+            studentUser.setStudentCourseId(rs.getInt("studentCourseId"));
+
+            return studentUser;
+        }
+    }
+
+    /**
+     * 查看所有未删除课程,用户选择查询未缴费的课程
+     *
+     * @return
+     */
+    @Override
+    public List<Course> selectUndeleteCourses() {
+        String sql = "SELECT courseId, courseName FROM lgb_course WHERE deleteFlag = 0";
+
+        try {
+            return jdbcTemplate.query(sql, new Object[] {}, new SelectUndeleteCoursesRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    /**
+     * 查询已付费的学员信息
+     *
+     * @param course
+     * @return
+     */
+    @Override
+    public List<StudentUser> select4paymentStudent(Course course) {
+        StringBuilder sqlBuilder = new StringBuilder("SELECT S.stuId, S.stuName, S.stuLevel, S.stuTelOne, S.stuCardNum, SC.tuitionFlag, C.courseName, SC.studentCourseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE tuitionFlag = 1 AND C.deleteFlag = 0 AND SC.deleteFlag = 0");
+
+        List<Object> arguments = new ArrayList<>();
+        if (course.getCourseId() > 0 ) {
+            sqlBuilder.append(" AND C.courseId = ?");
+            arguments.add(course.getCourseId());
+        }
+        try {
+            return jdbcTemplate.query(sqlBuilder.toString(), arguments.toArray(), new Select4UnpaymentStudentRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    private class SelectUndeleteCoursesRowMapper implements RowMapper<Course> {
+
+        @Override
+        public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Course course = new Course();
+
+            course.setCourseId(rs.getInt("courseId"));
+            course.setCourseName(rs.getString("courseName"));
+
+            return course;
+        }
+    }
+
+    @Override
+    public StudentCourse selectByStudentCourseId(int studentCourseId) {
+        String sql = "SELECT studentCourseId FROM lgb_studentCourse WHERE deleteFlag = 0 AND studentCourseId = ?";
+        Object[] args = {
+                studentCourseId
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, new SelectByStudentCourseIdRowMapper());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private class SelectByStudentCourseIdRowMapper implements RowMapper<StudentCourse> {
+
+        @Override
+        public StudentCourse mapRow(ResultSet rs, int rowNum) throws SQLException {
+            StudentCourse studentCourse = new StudentCourse();
+
+            studentCourse.setStudentCourseId(rs.getInt("studentCourseId"));
+
+            return studentCourse;
+        }
+    }
+
+    @Override
+    public boolean delete(int studentCourseId) {
+        String sql = "UPDATE lgb_studentCourse SET deleteFlag = 1 WHERE studentCourseId = ? AND deleteFlag = 0";
+        Object[] args = {
+                studentCourseId
+        };
+
+        try {
+            return jdbcTemplate.update(sql, args) == 1;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

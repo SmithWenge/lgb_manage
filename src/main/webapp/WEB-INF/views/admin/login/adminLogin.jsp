@@ -14,6 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="${contextPath}/static/plugins/bootstrap/css/bootstrap-theme.css" />
+    <link rel="shortcut icon" href="${contextPath}/static/images/lgb.ico" />
+
     <style>
         body{
             background: url(${contextPath}/static/images/bg.jpg);

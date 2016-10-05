@@ -50,11 +50,19 @@ public class AdminLoginController {
         Optional<AdminUser> optional = Optional.fromNullable(loginUser);
         if (optional.isPresent()) {
 //            mav.addObject("loginUser", loginUser);
-            mav.setViewName("redirect:/admin/home/index.action");
-            session.setAttribute(ConstantFields.SESSION_ADMIN_KEY, loginUser);
+            if (loginUser.getAdminRole() == ConstantFields.ADMIN_LOGIN_CAIWU_ROLE) {
+                mav.setViewName("redirect:/admin/finance/page.action");
+                session.setAttribute(ConstantFields.SESSION_ADMIN_KEY, loginUser);
 
-            String backgroundColor = adminLoginService.configColor();
-            session.setAttribute(ConstantFields.SESSION_BG_COLOR, backgroundColor);
+                String backgroundColor = adminLoginService.configColor();
+                session.setAttribute(ConstantFields.SESSION_BG_COLOR, backgroundColor);
+            } else {
+                mav.setViewName("redirect:/admin/home/index.action");
+                session.setAttribute(ConstantFields.SESSION_ADMIN_KEY, loginUser);
+
+                String backgroundColor = adminLoginService.configColor();
+                session.setAttribute(ConstantFields.SESSION_BG_COLOR, backgroundColor);
+            }
 
             if (LOG.isInfoEnabled())
                 LOG.info("[LGB MANAGE] {} login system at {} .", loginUser.getAdminLoginName(), DateTime.now());

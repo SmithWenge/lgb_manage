@@ -28,10 +28,12 @@
                 <table class="table" id="paginationTable" align="center">
                     <tr style="background-color: #3767b1; color: #dbdbdb;">
                         <th>学生姓名</th>
+                        <th>缴费状态</th>
                     </tr>
                     <c:forEach items="${students}" var="student">
                         <tr>
                             <td>${student.stuName}</td>
+                            <tags:dictd groupValue="tuitionFlag" itemKey="${student.tuitionFlag}" />
                         </tr>
                     </c:forEach>
                 </table>

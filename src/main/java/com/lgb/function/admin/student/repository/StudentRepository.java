@@ -405,7 +405,7 @@ public class StudentRepository implements StudentRepositoryI {
 
     @Override
     public List<Course> select4Courses(int stuId) {
-        String sql = "SELECT C.courseName, D.departmentName FROM lgb_studentCourse SC LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId WHERE SC.studentId = ?";
+        String sql = "SELECT C.courseName, D.departmentName, SC.tuitionFlag FROM lgb_studentCourse SC LEFT JOIN lgb_course C ON SC.courseId = C.courseId LEFT JOIN lgb_department D ON C.departmentId = D.departmentId WHERE SC.studentId = ?";
         Object[] args = {
                 stuId
         };
@@ -425,6 +425,7 @@ public class StudentRepository implements StudentRepositoryI {
 
             course.setCourseName(rs.getString("courseName"));
             course.setDepartmentName(rs.getString("departmentName"));
+            course.setTuitionFlag(rs.getInt("tuitionFlag"));
 
             return course;
         }
