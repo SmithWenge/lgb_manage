@@ -1,5 +1,6 @@
 package com.lgb.function.admin.setting.service;
 
+import com.lgb.function.admin.setting.LGBConfig;
 import com.lgb.function.admin.setting.repository.SettingRepositoryI;
 import com.lgb.function.support.log.LogContent;
 import com.lgb.function.support.log.repository.LogRepositoryI;
@@ -24,6 +25,23 @@ public class SettingService implements SettingServiceI {
 
         if (tmp) {
             LogContent logContent = new LogContent(logUser, "修改背景颜色为" + configColor, 1, 3);
+            logRepository.insertLog(logContent);
+        }
+
+        return tmp;
+    }
+
+    @Override
+    public LGBConfig basicConfig(int defaultConfigId) {
+        return settingRepository.selectBasicConfig(defaultConfigId);
+    }
+
+    @Override
+    public boolean updateBasicConfig(LGBConfig config, String logUser) {
+        boolean tmp = settingRepository.updateBasicConfig(config);
+
+        if (tmp) {
+            LogContent logContent = new LogContent(logUser, "修改基本配置", 1, 3);
             logRepository.insertLog(logContent);
         }
 

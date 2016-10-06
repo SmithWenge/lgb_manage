@@ -2,6 +2,7 @@ package com.lgb.function.admin.setting.controller;
 
 import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.login.AdminUser;
+import com.lgb.function.admin.setting.LGBConfig;
 import com.lgb.function.admin.setting.service.SettingServiceI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,11 @@ public class SettingController {
     @Autowired
     private SettingServiceI settingService;
 
+    /**
+     * 路由到颜色配置页面
+     *
+     * @return
+     */
     @RequestMapping("/route")
     public ModelAndView routeSetting() {
         String nowColorConfig = settingService.nowSettingColor();
@@ -33,6 +39,14 @@ public class SettingController {
         return mav;
     }
 
+    /**
+     * 颜色配置
+     *
+     * @param configColor
+     * @param session
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping("/config")
     public String newConfig(@RequestParam("configColor") String configColor, HttpSession session, RedirectAttributes redirectAttributes) {
         AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
@@ -48,5 +62,38 @@ public class SettingController {
         }
 
         return "redirect:/admin/setting/route.action";
+    }
+
+    /**
+     * 路由到基本配置页面
+     */
+    @RequestMapping("/routeBasic")
+    public ModelAndView routeBasic() {
+        LGBConfig config = settingService.basicConfig(ConstantFields.DEFAULT_CONFIG_ID);
+
+        ModelAndView mav = new ModelAndView("admin/setting/basicConfig");
+
+        mav.addObject("config", config);
+
+        return mav;
+    }
+
+    /**
+     * 更新配置信息
+     */
+    @RequestMapping("/basicConfig")
+    public String updateBasicConfig(LGBConfig config, HttpSession session, RedirectAttributes redirectAttributes) {
+        AdminUser user = (AdminUser) session.getAttribute(ConstantFields.SESSION_ADMIN_KEY);
+        String logUser = user.getAdminLoginName();
+
+        if (settingService.updateBasicConfig(config, logUser)) {
+
+            if (LOG.isInfoEnabled())
+                LOG.info("[LGB MANAGE] [OK] {} update basic config.", logUser);
+
+            redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.CONFIG_SUCCESS_MESSAGE);
+        }
+
+        return "redirect:/admin/setting/routeBasic.action";
     }
 }

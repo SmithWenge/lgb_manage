@@ -3,6 +3,7 @@ package com.lgb.function.admin.finance.refund.service;
 import com.lgb.function.admin.finance.Finance;
 import com.lgb.function.admin.finance.refund.RefundStudentCourse;
 import com.lgb.function.admin.finance.refund.repository.FinanceRefundRepositoryI;
+import com.lgb.function.admin.setting.LGBConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,5 +41,10 @@ public class FinanceRefundService implements FinanceRefundServiceI {
     @Override
     public List<RefundStudentCourse> queryOldRefund() {
         return financeRefundRepository.select4OldRefund();
+    }
+
+    @Override
+    public LGBConfig nowConfig() {
+        return financeRefundRepository.select4NowConfig();
     }
 }

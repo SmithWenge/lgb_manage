@@ -12,6 +12,7 @@ import com.lgb.function.admin.finance.count.service.FCServiceI;
 import com.lgb.function.admin.finance.service.FinanceServiceI;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.setting.LGBConfig;
 import com.lgb.function.admin.student.StudentUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -133,10 +134,12 @@ public class FinanceController {
         Optional<Finance> optional = Optional.fromNullable(finance);
         if (optional.isPresent()) {
             List<Finance> finances = financeService.selectFinanceCourse(studentCourseId);
+            LGBConfig config = financeService.nowConfig();
 
             ModelAndView mav = new ModelAndView("admin/finance/edit");
             mav.addObject(ConstantFields.EDIT_OBJECT_KEY, finance);
             mav.addObject("finances", finances);
+            mav.addObject("config", config);
 
             return mav;
 

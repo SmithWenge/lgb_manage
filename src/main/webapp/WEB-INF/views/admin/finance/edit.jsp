@@ -85,6 +85,11 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert">${config.financeMessage}</div>
+            </div>
+        </div>
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <table class="table" id="paginationTable" align="center">

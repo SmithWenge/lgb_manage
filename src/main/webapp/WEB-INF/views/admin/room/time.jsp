@@ -1,20 +1,37 @@
 <%--suppress ALL --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/include/navs.jsp"%>
+<%--<%@ page language="java" contentType="text/html; charset=UTF-8"--%>
+         <%--pageEncoding="UTF-8"%>--%>
+<%--<%@include file="/WEB-INF/include/navs.jsp"%>--%>
 
-<link href="${contextPath}/static/plugins/bootstrap/css/docs.min.css" rel="stylesheet" type="text/css">
+<%--<link href="${contextPath}/static/plugins/bootstrap/css/docs.min.css" rel="stylesheet" type="text/css">--%>
 
-<%--教室--%>
-<style>
-    #room{
-        background: whitesmoke;
-        border-left: 4px solid #fed350;
-        border-right: 4px solid #fed350;
-        color: #444;
-    }
-</style>
-<div class="panel-heading" style="height: 45px;padding: 10px;"><span class="glyphicon glyphicon-map-marker"></span>教室 > 详细信息</div>
+<%--&lt;%&ndash;教室&ndash;%&gt;--%>
+<%--<style>--%>
+    <%--#room{--%>
+        <%--background: whitesmoke;--%>
+        <%--border-left: 4px solid #fed350;--%>
+        <%--border-right: 4px solid #fed350;--%>
+        <%--color: #444;--%>
+    <%--}--%>
+<%--</style>--%>
+<%--<div class="panel-heading" style="height: 45px;padding: 10px;"><span class="glyphicon glyphicon-map-marker"></span>教室 > 详细信息</div>--%>
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="tags" tagdir="/WEB-INF/tags" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<html>
+<head>
+    <title>老干部大学学籍管理</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <%--<meta http-equiv="X-UA-Compatible" content="IE=8" />--%>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="${contextPath}/static/images/lgb.ico" />
+</head>
+<body>
 <div style="float: left;width: 85%;">
         <table class="table table-bordered table-striped responsive-utilities">
             <thead>
@@ -89,7 +106,7 @@
                 <td class="is-hidden" id="12b"></td>
                 <td class="is-hidden" id="12c"></td>
                 <td class="is-hidden" id="12d"></td>
-                <td class="is-hidden" id="12e"></td>
+                <%--<td class="is-hidden" id="12e"></td>--%>
                 <td class="is-hidden" id="13a"></td>
                 <td class="is-hidden" id="13b"></td>
                 <td class="is-hidden" id="13c"></td>

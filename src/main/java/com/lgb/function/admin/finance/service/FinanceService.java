@@ -7,6 +7,7 @@ import com.lgb.function.admin.finance.Finance;
 import com.lgb.function.admin.finance.StudentCourse;
 import com.lgb.function.admin.finance.repository.FinanceRepositoryI;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.setting.LGBConfig;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.support.log.LogContent;
 import com.lgb.function.support.log.repository.LogRepositoryI;
@@ -124,6 +125,11 @@ public class FinanceService implements FinanceServiceI {
         }
 
         return false;
+    }
+
+    @Override
+    public LGBConfig nowConfig() {
+        return financeRepository.select4NowConfig();
     }
 
 }

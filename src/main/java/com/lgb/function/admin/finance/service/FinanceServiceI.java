@@ -4,6 +4,7 @@ import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.finance.Finance;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.setting.LGBConfig;
 import com.lgb.function.admin.student.StudentUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,4 +26,5 @@ public interface FinanceServiceI {
     List<Course> getAllCourses();
     List<StudentUser> paymentStudentUser(Course course);
     boolean delete(int studentCourseId, String logUser);
+    LGBConfig nowConfig();
 }

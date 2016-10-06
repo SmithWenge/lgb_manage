@@ -1,11 +1,13 @@
 package com.lgb.function.admin.finance.repository;
 
 import com.google.common.base.Optional;
+import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.finance.Finance;
 import com.lgb.function.admin.finance.StudentCourse;
 import com.lgb.function.admin.major.Major;
+import com.lgb.function.admin.setting.LGBConfig;
 import com.lgb.function.admin.student.StudentUser;
 import com.lgb.function.support.utils.RepositoryUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -483,6 +485,40 @@ public class FinanceRepository implements FinanceRepositoryI {
             return jdbcTemplate.update(sql, args) == 1;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    /**
+     * 查询当前收费规则
+     *
+     * @return
+     */
+    @Override
+    public LGBConfig select4NowConfig() {
+        String sql = "SELECT financeMessage FROM lgb_config WHERE configId = ?";
+        Object[] args = {
+                ConstantFields.DEFAULT_CONFIG_ID
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, new Select4NowConfigRowMapper());
+        } catch (Exception e) {
+            LGBConfig config = new LGBConfig();
+            config.setFinanceMessage("还没有定义规则");
+
+            return config;
+        }
+    }
+
+    private class Select4NowConfigRowMapper implements RowMapper<LGBConfig> {
+
+        @Override
+        public LGBConfig mapRow(ResultSet rs, int rowNum) throws SQLException {
+            LGBConfig config = new LGBConfig();
+
+            config.setFinanceMessage(rs.getString("financeMessage"));
+
+            return config;
         }
     }
 }

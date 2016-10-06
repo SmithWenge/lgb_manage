@@ -2,6 +2,7 @@ package com.lgb.function.admin.finance.refund.service;
 
 import com.lgb.function.admin.finance.Finance;
 import com.lgb.function.admin.finance.refund.RefundStudentCourse;
+import com.lgb.function.admin.setting.LGBConfig;
 
 import java.util.List;
 
@@ -11,4 +12,5 @@ public interface FinanceRefundServiceI {
     String getStudentCardNum(int studentCourseId);
     boolean updateRefund(RefundStudentCourse refundStudentCourse);
     List<RefundStudentCourse> queryOldRefund();
+    LGBConfig nowConfig();
 }

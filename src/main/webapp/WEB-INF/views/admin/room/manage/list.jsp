@@ -14,6 +14,7 @@
 <div class="panel panel-default" style="float: left;width: 85%;">
     <div class="panel-heading" style="height: 45px;">
         <span class="glyphicon glyphicon-map-marker"></span>教室 > 教室管理
+        <a onclick="window.history.back(-1);" style="float: right;">返回</a>
     </div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">

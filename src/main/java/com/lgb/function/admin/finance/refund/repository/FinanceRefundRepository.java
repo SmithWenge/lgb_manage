@@ -1,7 +1,9 @@
 package com.lgb.function.admin.finance.refund.repository;
 
+import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.finance.Finance;
 import com.lgb.function.admin.finance.refund.RefundStudentCourse;
+import com.lgb.function.admin.setting.LGBConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -175,6 +177,40 @@ public class FinanceRefundRepository implements FinanceRefundRepositoryI {
             course.setCourseName(rs.getString("courseName"));
 
             return course;
+        }
+    }
+
+    /**
+     * 查询退费规则
+     *
+     * @return
+     */
+    @Override
+    public LGBConfig select4NowConfig() {
+        String sql = "SELECT refundMessage FROM lgb_config WHERE configId = ?";
+        Object[] args = {
+                ConstantFields.DEFAULT_CONFIG_ID
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, new Select4NowConfigRowMapper());
+        } catch (Exception e) {
+            LGBConfig config = new LGBConfig();
+            config.setRefundMessage("还没有配置退费规则");
+
+            return config;
+        }
+    }
+
+    private class Select4NowConfigRowMapper implements RowMapper<LGBConfig> {
+
+        @Override
+        public LGBConfig mapRow(ResultSet rs, int rowNum) throws SQLException {
+            LGBConfig config = new LGBConfig();
+
+            config.setRefundMessage(rs.getString("refundMessage"));
+
+            return config;
         }
     }
 }

@@ -6,6 +6,7 @@ import com.lgb.function.admin.finance.Finance;
 import com.lgb.function.admin.finance.refund.RefundStudentCourse;
 import com.lgb.function.admin.finance.refund.service.FinanceRefundServiceI;
 import com.lgb.function.admin.login.AdminUser;
+import com.lgb.function.admin.setting.LGBConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,8 +65,10 @@ public class FinanceRefundController {
         Optional<Finance> optional = Optional.fromNullable(finance);
         if (optional.isPresent()) {
             ModelAndView mav = new ModelAndView("admin/finance/refund/refundInfo");
+            LGBConfig config = financeRefundService.nowConfig();
 
             mav.addObject("finance", finance);
+            mav.addObject("config", config);
 
             return mav;
         } else {

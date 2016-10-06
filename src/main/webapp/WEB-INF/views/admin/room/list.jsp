@@ -19,7 +19,7 @@
         <ul class="nav nav-pills">
             <li role="presentation"><a href="${contextPath}/admin/room/routeRoom.action"><span class="glyphicon glyphicon-map-marker"></span>教室</a></li>
             <li role="presentation" style="float: right;"><a href="${contextPath}/admin/room/manage/routePage.action">教室管理</a></li>
-            <li role="presentation" style="float: right;"><a href="${contextPath}/admin/room/routeTime.action">详细</a></li>
+            <li role="presentation" style="float: right;"><a href="${contextPath}/admin/room/routeTime.action" target="_blank">详细</a></li>
         </ul>
     </div>
     <div class="panel-body">

@@ -77,6 +77,11 @@
                 </form>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning" role="alert">${config.refundMessage}</div>
+            </div>
+        </div>
     </div>
 </div>
 

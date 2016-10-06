@@ -78,6 +78,7 @@
                 <li role="presentation"><a id="room" href="${contextPath}/admin/room/routeRoom.action">教室</a></li>
                 <li role="presentation"><a id="signUp" href="${contextPath}/admin/offline/sign.action">线下报名</a></li>
                 <li role="presentation"><a id="setting" href="${contextPath}/admin/setting/route.action">颜色配置</a></li>
+                <li role="presentation"><a id="basic" href="${contextPath}/admin/setting/routeBasic.action">基本配置</a></li>
             </c:if>
 
             <c:if test="${sessionScope.adminLogin.adminRole != 4}">
