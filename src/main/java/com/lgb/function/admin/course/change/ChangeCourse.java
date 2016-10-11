@@ -31,6 +31,9 @@ public class ChangeCourse {
     private int studentCourseId;   // 选择课程Id
     private String majorName;   // 专业名
     private int courseYears;   // 课程几年制
+    private int stuType;   //  学生类型
+    private String operationUser;   // 操作用户
+    private int financeFlag;   // 是否费用操作
 
     public void setStuCardNum(String stuCardNum) {
         this.stuCardNum = stuCardNum;
@@ -261,5 +264,32 @@ public class ChangeCourse {
     public int getCourseYears() {
 
         return courseYears;
+    }
+
+    public void setStuType(int stuType) {
+        this.stuType = stuType;
+    }
+
+    public int getStuType() {
+
+        return stuType;
+    }
+
+    public void setOperationUser(String operationUser) {
+        this.operationUser = operationUser;
+    }
+
+    public String getOperationUser() {
+
+        return operationUser;
+    }
+
+    public void setFinanceFlag(int financeFlag) {
+        this.financeFlag = financeFlag;
+    }
+
+    public int getFinanceFlag() {
+
+        return financeFlag;
     }
 }

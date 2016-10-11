@@ -1,5 +1,6 @@
 package com.lgb.function.admin.course.change.repository;
 
+import com.lgb.arc.utils.ConstantFields;
 import com.lgb.function.admin.course.change.ChangeCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -184,7 +185,7 @@ public class ChangeCourseRepository implements ChangeCourseRepositoryI {
      */
     @Override
     public ChangeCourse select4StudentInfo(int studentCourseId) {
-        String sql = "SELECT SC.studentId, S.stuCardNum FROM lgb_studentcourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.studentCourseId = ?";
+        String sql = "SELECT SC.studentId, S.stuCardNum, S.stuType, S.stuName FROM lgb_studentcourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId WHERE SC.studentCourseId = ?";
         Object[] args = {
                 studentCourseId
         };
@@ -204,6 +205,8 @@ public class ChangeCourseRepository implements ChangeCourseRepositoryI {
 
             changeCourse.setStudentId(resultSet.getInt("studentId"));
             changeCourse.setStuCardNum(resultSet.getString("stuCardNum"));
+            changeCourse.setStuType(resultSet.getInt("stuType"));
+            changeCourse.setStuName(resultSet.getString("stuName"));
 
             return changeCourse;
         }
@@ -241,4 +244,74 @@ public class ChangeCourseRepository implements ChangeCourseRepositoryI {
             return changeCourse;
         }
     }
+
+    /**
+     * 添加新的换课记录
+     *
+     * @param changeCourse
+     * @return
+     */
+    @Override
+    public boolean insertNewChangeCourseRecord(ChangeCourse changeCourse) {
+        String sql = "INSERT INTO lgb_changecourse (courseId, studentId, operationUser, financeFlag, oldCourseTuition, oldCourseId, studentCourseId) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        Object[] args = {
+                changeCourse.getCourseId(),
+                changeCourse.getStudentId(),
+                changeCourse.getOperationUser(),
+                changeCourse.getFinanceFlag(),
+                changeCourse.getFinanceFlag(),
+                changeCourse.getOldCourseTuition(),
+                changeCourse.getOldCourseId(),
+                changeCourse.getStudentCourseId()
+        };
+
+        try {
+            return jdbcTemplate.update(sql, args) == 1;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /**
+     * 更新学生的选课状态的换课
+     *
+     * @param changeCourse
+     */
+    @Override
+    public void updateStudentCourse(ChangeCourse changeCourse) {
+        String sql = "UPDATE lgb_studentcourse SET deleteFlag = 2, courseId = ? WHERE studentCourseId = ?";
+        Object[] args = {
+                changeCourse.getCourseId(),
+                changeCourse.getStudentCourseId()
+        };
+
+        try {
+            jdbcTemplate.update(sql, args);
+        } catch (Exception e) {
+            return;
+        }
+    }
+
+    /**
+     * 添加新的学生选课记录
+     *
+     * @param changeCourse
+     */
+//    @Override
+//    public void insertNewStudentCourse(ChangeCourse changeCourse) {
+//        String sql = "INSERT INTO lgb_studentcourse (studentId, courseId, courseDiscount, signUpComeForm, signUpUser) VALUES (?, ?, ?, ?, ?)";
+//        Object[] args = {
+//                changeCourse.getStudentId(),
+//                changeCourse.getCourseId(),
+//                changeCourse.getStuType(),
+//                ConstantFields.SIGN_UP_COME_FROM_TURN_COURSE,
+//                changeCourse.getOperationUser()
+//        };
+//
+//        try {
+//            jdbcTemplate.update(sql, args);
+//        } catch (Exception e) {
+//            return;
+//        }
+//    }
 }

@@ -10,4 +10,5 @@ public interface ChangeCourseServiceI {
     ChangeCourse getTurnCourse(int studentCourseId);
     ChangeCourse getStudentInfo(int studentCourseId);
     List<ChangeCourse> getOtherCourses(int studentId);
+    boolean addNewTurnCourse(ChangeCourse changeCourse);
 }

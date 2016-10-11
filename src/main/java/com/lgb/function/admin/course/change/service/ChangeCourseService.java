@@ -5,6 +5,7 @@ import com.lgb.function.admin.course.change.repository.ChangeCourseRepositoryI;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -44,5 +45,13 @@ public class ChangeCourseService implements ChangeCourseServiceI {
     @Override
     public List<ChangeCourse> getOtherCourses(int studentId) {
         return changeCourseRepository.select4OtherCourses(studentId);
+    }
+
+    @Transactional
+    @Override
+    public boolean addNewTurnCourse(ChangeCourse changeCourse) {
+        changeCourseRepository.updateStudentCourse(changeCourse);
+
+        return changeCourseRepository.insertNewChangeCourseRecord(changeCourse);
     }
 }

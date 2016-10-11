@@ -51,21 +51,54 @@
                 <table class="table" id="paginationTable" align="center">
                     <tr style="background-color: #2aabd2;">
                         <th>学员名</th>
+                        <th>学员类型</th>
                         <th>学员卡号</th>
-                        <th>新课程名</th>
-                        <th>原课程名</th>
-                        <th>换课时间</th>
                     </tr>
-                    <c:forEach items="${hasCourses}" var="course">
-                        <tr>
-                            <td>${course.stuName}</td>
-                            <td>${course.stuCardNum}</td>
-                            <td>${course.courseName}</td>
-                            <td>${course.oldCourseName}</td>
-                            <td>${course.changeTime}</td>
-                        </tr>
-                    </c:forEach>
+                    <tr>
+                        <td>${student.stuName}</td>
+                        <tags:dictd groupValue="stuType" itemKey="${student.stuType}" />
+                        <td>${student.stuCardNum}</td>
+                    </tr>
                 </table>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-md-12">
+                <form class="form-horizontal" action="${contextPath}/admin/course/change/turn.action" method="post">
+                    <input type="hidden" name="oldCourseId" value="${changeCourse.courseId}" />
+                    <input type="hidden" name="studentId" value="${changeCourse.studentId}">
+                    <input type="hidden" name="oldCourseTuition" value="${changeCourse.actualTuition}">
+                    <input type="hidden" name="studentCourseId" value="${studentCourseId}">
+                    <input type="hidden" name="stuType" value="${changeCourse.stuType}">
+                    <input type="hidden" name="stuCardNum" value="${student.stuCardNum}">
+                    <input >
+                    <div class="form-group">
+                        <label for="courseId" class="col-sm-2 control-label">新的课程</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="courseId" id="courseId">
+                                <c:forEach items="${otherCourses}" var="course">
+                                    <option value="${course.courseId}">${course.courseName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="financeFlag" class="col-sm-2 control-label">是否缴费</label>
+                        <div class="col-sm-10">
+                            <label class="radio-inline">
+                                <input type="radio" name="financeFlag" id="financeFlag" value="0"> 不需要费用
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="financeFlag" id="inlineRadio2" value="1"> 需要费用
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-danger">更改课程</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

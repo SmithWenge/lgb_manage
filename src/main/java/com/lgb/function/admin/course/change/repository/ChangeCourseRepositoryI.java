@@ -12,4 +12,7 @@ public interface ChangeCourseRepositoryI {
     int selectStudentId(int studentCourseId);
     ChangeCourse select4StudentInfo(int studentCourseId);
     List<ChangeCourse> select4OtherCourses(int studentId);
+    boolean insertNewChangeCourseRecord(ChangeCourse changeCourse);
+    void updateStudentCourse(ChangeCourse changeCourse);
+//    void insertNewStudentCourse(ChangeCourse changeCourse);
 }

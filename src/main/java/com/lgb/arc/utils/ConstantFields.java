@@ -109,4 +109,7 @@ public class ConstantFields {
     /* 退课信息 */
     public static final String REFUND_SUCCESS_MESSAGE = "退课成功";
     public static final String REFUND_FAILURE_MESSAGE = "退课失败";
+
+    /* 学院选课表中的课程来源换课标识 */
+    public static final int SIGN_UP_COME_FROM_TURN_COURSE = 3;
 }
