@@ -1,6 +1,9 @@
 package com.lgb.function.admin.course.change;
 
+import com.lgb.function.admin.course.time.CourseTime;
+
 import java.sql.Timestamp;
+import java.util.List;
 
 public class ChangeCourse {
     private String stuCardNum;   // 学生卡号
@@ -34,6 +37,7 @@ public class ChangeCourse {
     private int stuType;   //  学生类型
     private String operationUser;   // 操作用户
     private int financeFlag;   // 是否费用操作
+    private List<CourseTime> courseTimes; // 上课时间
 
     public void setStuCardNum(String stuCardNum) {
         this.stuCardNum = stuCardNum;
@@ -291,5 +295,14 @@ public class ChangeCourse {
     public int getFinanceFlag() {
 
         return financeFlag;
+    }
+
+    public void setCourseTimes(List<CourseTime> courseTimes) {
+        this.courseTimes = courseTimes;
+    }
+
+    public List<CourseTime> getCourseTimes() {
+
+        return courseTimes;
     }
 }

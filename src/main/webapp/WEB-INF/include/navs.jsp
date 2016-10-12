@@ -70,6 +70,7 @@
                 <li role="presentation"><a id="major" href="${contextPath}/admin/major/page.action">专业管理</a></li>
                 <li role="presentation"><a id="teacher" href="${contextPath}/admin/teacher/routePage.action">教师管理</a></li>
                 <li role="presentation"><a id="course" href="${contextPath}/admin/course/routePage.action">课程管理</a></li>
+                <li role="presentation"><a id="courseChange" href="${contextPath}/admin/course/change/route.action">换课</a></li>
                 <li role="presentation"><a id="student" href="${contextPath}/admin/student/routePage.action">学生管理</a></li>
                 <li role="presentation"><a id="score" href="${contextPath}/admin/score/routerList.action">成绩管理</a></li>
                 <li role="presentation"><a id="leader" href="${contextPath}/admin/course/leader/page.action">班长</a></li>

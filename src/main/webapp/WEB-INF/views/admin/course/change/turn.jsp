@@ -18,10 +18,7 @@
                         <th>教室</th>
                         <th>教师1</th>
                         <th>教师2</th>
-                        <th>报名限制人数</th>
-                        <th>毕业人数限制</th>
-                        <th>计划招生人数</th>
-                        <th>实际招生人数</th>
+
                         <th>课程学费</th>
                         <th>实际缴费</th>
                         <th>课程ID</th>
@@ -34,13 +31,30 @@
                         <tags:dictd groupValue="courseRoom" itemKey="${changeCourse.courseRoom}" />
                         <td>${changeCourse.teacherOneName}</td>
                         <td>${changeCourse.teacherTwoName}</td>
+                        <td>${changeCourse.courseTuition}</td>
+                        <td>${changeCourse.actualTuition}</td>
+                        <td>${changeCourse.courseId}</td>
+                    </tr>
+                </table>
+                <table class="table" align="center">
+                    <tr>
+                        <th>报名限制人数</th>
+                        <th>毕业人数限制</th>
+                        <th>计划招生人数</th>
+                        <th>实际招生人数</th>
+                        <th>上课时间</th>
+                    </tr>
+                    <tr>
                         <td>${changeCourse.courseLimitNum}</td>
                         <td>${changeCourse.courseGraLimitNum}</td>
                         <td>${changeCourse.courseEnrollmentNum}</td>
                         <td>${changeCourse.courseStuNum}</td>
-                        <td>${changeCourse.courseTuition}</td>
-                        <td>${changeCourse.actualTuition}</td>
-                        <td>${changeCourse.courseId}</td>
+                        <td>
+                            <c:forEach items="${changeCourse.courseTimes}" var="time">
+                                <tags:diclabel groupValue="timeWeek" itemKey="${time.timeWeek}"/>
+                                <tags:diclabel groupValue="timeSpecific" itemKey="${time.timeSpecificInt}"/>,
+                            </c:forEach>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -66,15 +80,14 @@
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/course/change/turn.action" method="post">
                     <input type="hidden" name="oldCourseId" value="${changeCourse.courseId}" />
-                    <input type="hidden" name="studentId" value="${changeCourse.studentId}">
+                    <input type="hidden" name="studentId" value="${student.studentId}">
                     <input type="hidden" name="oldCourseTuition" value="${changeCourse.actualTuition}">
                     <input type="hidden" name="studentCourseId" value="${studentCourseId}">
-                    <input type="hidden" name="stuType" value="${changeCourse.stuType}">
+                    <input type="hidden" name="stuType" value="${student.stuType}">
                     <input type="hidden" name="stuCardNum" value="${student.stuCardNum}">
-                    <input >
                     <div class="form-group">
                         <label for="courseId" class="col-sm-2 control-label">新的课程</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-8">
                             <select class="form-control" name="courseId" id="courseId">
                                 <c:forEach items="${otherCourses}" var="course">
                                     <option value="${course.courseId}">${course.courseName}</option>
@@ -86,7 +99,7 @@
                         <label for="financeFlag" class="col-sm-2 control-label">是否缴费</label>
                         <div class="col-sm-10">
                             <label class="radio-inline">
-                                <input type="radio" name="financeFlag" id="financeFlag" value="0"> 不需要费用
+                                <input type="radio" name="financeFlag" id="financeFlag" value="0" checked> 不需要费用
                             </label>
                             <label class="radio-inline">
                                 <input type="radio" name="financeFlag" id="inlineRadio2" value="1"> 需要费用
@@ -95,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-danger">更改课程</button>
+                            <button type="submit" class="btn btn-danger">更换课程</button>
                         </div>
                     </div>
                 </form>
@@ -105,5 +118,23 @@
 </div>
 
 <%@include file="/WEB-INF/include/javascript.jsp"%>
+
+<script type="text/javascript">
+    $(function () {
+       $("#courseId").on('change', function () {
+           $.ajax({
+               type: 'post',
+               contentType: 'application/json',
+               dataType: 'json',
+               url: '${contextPath}/admin/course/change/new/' + $("#courseId").val() + '.action',
+               success: function (result) {
+                   console.log(result.newCourse);
+               }
+           });
+       });
+
+        $("#courseId").trigger("change");
+    });
+</script>
 
 <%@include file="/WEB-INF/include/footer.jsp"%>

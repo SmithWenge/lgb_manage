@@ -34,7 +34,10 @@ public class ChangeCourseService implements ChangeCourseServiceI {
 
     @Override
     public ChangeCourse getTurnCourse(int studentCourseId) {
-        return changeCourseRepository.select4TurnCourse(studentCourseId);
+        ChangeCourse changeCourse = changeCourseRepository.select4TurnCourse(studentCourseId);
+        changeCourse.setCourseTimes(changeCourseRepository.selectTime(changeCourse.getCourseId()));
+
+        return changeCourse;
     }
 
     @Override
@@ -53,5 +56,13 @@ public class ChangeCourseService implements ChangeCourseServiceI {
         changeCourseRepository.updateStudentCourse(changeCourse);
 
         return changeCourseRepository.insertNewChangeCourseRecord(changeCourse);
+    }
+
+    @Override
+    public ChangeCourse newTurnCourseInfo(int courseId) {
+        ChangeCourse changeCourse = changeCourseRepository.select4NewTurnCourseInfo(courseId);
+        changeCourse.setCourseTimes(changeCourseRepository.selectTime(courseId));
+
+        return changeCourse;
     }
 }

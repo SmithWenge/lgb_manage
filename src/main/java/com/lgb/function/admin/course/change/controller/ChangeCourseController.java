@@ -2,6 +2,7 @@ package com.lgb.function.admin.course.change.controller;
 
 import com.google.common.base.Optional;
 import com.lgb.arc.utils.ConstantFields;
+import com.lgb.function.admin.course.Course;
 import com.lgb.function.admin.course.change.ChangeCourse;
 import com.lgb.function.admin.course.change.service.ChangeCourseServiceI;
 import com.lgb.function.admin.login.AdminUser;
@@ -12,11 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/course/change")
@@ -106,5 +110,19 @@ public class ChangeCourseController {
 
         redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.ADD_FAILURE_MESSAGE);
         return "redirect:/admin/course/change/route/turn/" + changeCourse.getStudentCourseId() + ".action";
+    }
+
+    /**
+     * 选中课程的二级联动查询课程信息
+     */
+    @ResponseBody
+    @RequestMapping("/new/{courseId}")
+    public Map<String, ChangeCourse> newTurnCourseInfo(@PathVariable int courseId) {
+        ChangeCourse changeCourse = changeCourseService.newTurnCourseInfo(courseId);
+
+        Map<String, ChangeCourse> map = new HashMap<String, ChangeCourse>();
+        map.put("newCourse", changeCourse);
+
+        return map;
     }
 }
