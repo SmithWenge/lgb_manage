@@ -81,7 +81,7 @@
                 <form class="form-horizontal" action="${contextPath}/admin/course/change/turn.action" method="post">
                     <input type="hidden" name="oldCourseId" value="${changeCourse.courseId}" />
                     <input type="hidden" name="studentId" value="${student.studentId}">
-                    <input type="hidden" name="oldCourseTuition" value="${changeCourse.actualTuition}">
+                    <input type="hidden" name="oldCourseActualTuition" value="${changeCourse.actualTuition}">
                     <input type="hidden" name="studentCourseId" value="${studentCourseId}">
                     <input type="hidden" name="stuType" value="${student.stuType}">
                     <input type="hidden" name="stuCardNum" value="${student.stuCardNum}">
@@ -96,14 +96,20 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="financeFlag" class="col-sm-2 control-label">是否缴费</label>
+                        <label for="financeRadio1" class="col-sm-2 control-label">是否缴费</label>
                         <div class="col-sm-10">
                             <label class="radio-inline">
-                                <input type="radio" name="financeFlag" id="financeFlag" value="0" checked> 不需要费用
+                                <input type="radio" name="financeFlag" id="financeRadio1" value="0" checked> 不需要费用
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="financeFlag" id="inlineRadio2" value="1"> 需要费用
+                                <input type="radio" name="financeFlag" id="financeRadio2" value="1"> 需要费用
                             </label>
+                        </div>
+                        <div class="form-group" id="financeDiv" style="display: none;">
+                            <label for="finance" class="col-sm-2 control-label">费用金额</label>
+                            <div class="col-sm-6">
+                                <input type="number" class="form-control" id="finance" value="0" name="finance">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -112,6 +118,45 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <%-- 可以换课的课程 --%>
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-md-12">
+                <table class="table" align="center">
+                    <tr style="background-color: #3767b1; color: #dbdbdb;">
+                        <th>系</th>
+                        <th>专业</th>
+                        <th>课程名</th>
+                        <th>课程年制</th>
+                        <%--<th>教室</th>--%>
+                        <th>教师1</th>
+                        <th>教师2</th>
+                        <th>课程学费</th>
+                        <%--<th>实际缴费</th>--%>
+                        <%--<th>课程ID</th>--%>
+                        <th>报名限制人数</th>
+                        <th>毕业人数限制</th>
+                        <th>计划招生人数</th>
+                        <th>实际招生人数</th>
+                    </tr>
+                    <tr>
+                        <td id="newDepartmentName"></td>
+                        <td id="newMajorName"></td>
+                        <td id="newCourseName"></td>
+                        <td id="newCourseYears"></td>
+                        <%--<tags:dictd groupValue="courseRoom" itemKey="${changeCourse.courseRoom}" />--%>
+                        <td id="newTeacherOneName"></td>
+                        <td id="newTeacherTwoName"></td>
+                        <td id="newCourseTuition"></td>
+                        <%--<td>${changeCourse.actualTuition}</td>--%>
+                        <%--<td>${changeCourse.courseId}</td>--%>
+                        <td id="newCourseLimitNum"></td>
+                        <td id="newCourseGraLimitNum"></td>
+                        <td id="newCourseEnrollmentNum"></td>
+                        <td id="newCourseStuNum"></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
@@ -129,11 +174,38 @@
                url: '${contextPath}/admin/course/change/new/' + $("#courseId").val() + '.action',
                success: function (result) {
                    console.log(result.newCourse);
+                   var course = result.newCourse;
+                   $("#newDepartmentName").html(course.departmentName);
+                   $("#newMajorName").html(course.majorName);
+                   $("#newCourseName").html(course.courseName);
+                   $("#newCourseYears").html(course.courseYears);
+                   $("#newTeacherOneName").html(course.teacherOneName);
+                   $("#newTeacherTwoName").html(course.teacherTwoName);
+                   $("#newCourseTuition").html(course.courseTuition);
+                   $("#newCourseLimitNum").html(course.courseLimitNum);
+                   $("#newCourseGraLimitNum").html(course.courseGraLimitNum);
+                   $("#newCourseEnrollmentNum").html(course.courseEnrollmentNum);
+                   $("#newCourseStuNum").html(course.courseStuNum);
                }
            });
        });
 
         $("#courseId").trigger("change");
+
+        /**
+         * 当选中缴费时显示缴费div
+         */
+        $("#financeRadio2").on("checked", function () {
+           $("#financeDiv").css("display", "block");
+        });
+
+        /**
+         * 当选中不缴费时隐藏不缴费div,把费用div的value更改为0
+         */
+        $("#financeRadio2").on("checked", function () {
+            $("#financeDiv").css("display", "none");
+            $("#finance").val(0);
+        });
     });
 </script>
 

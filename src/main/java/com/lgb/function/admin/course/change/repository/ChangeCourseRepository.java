@@ -255,16 +255,17 @@ public class ChangeCourseRepository implements ChangeCourseRepositoryI {
      */
     @Override
     public boolean insertNewChangeCourseRecord(ChangeCourse changeCourse) {
-        String sql = "INSERT INTO lgb_changecourse (courseId, studentId, operationUser, financeFlag, oldCourseTuition, oldCourseId, studentCourseId) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO lgb_changecourse (courseId, studentId, operationUser, financeFlag, oldCourseActualTuition, oldCourseId, studentCourseId, finance) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] args = {
                 changeCourse.getCourseId(),
                 changeCourse.getStudentId(),
                 changeCourse.getOperationUser(),
                 changeCourse.getFinanceFlag(),
                 changeCourse.getFinanceFlag(),
-                changeCourse.getOldCourseTuition(),
+                changeCourse.getOldCourseActualTuition(),
                 changeCourse.getOldCourseId(),
-                changeCourse.getStudentCourseId()
+                changeCourse.getStudentCourseId(),
+                changeCourse.getFinance()
         };
 
         try {

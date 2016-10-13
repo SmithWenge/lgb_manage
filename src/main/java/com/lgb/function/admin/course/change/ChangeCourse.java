@@ -22,9 +22,8 @@ public class ChangeCourse {
     private int courseEnrollmentNum;   // 课程计划招生人数
     private int courseStuNum;   // 课程实际人数
     private int courseTuition;   // 课程费用
-    private int refundMoney;   // 换课退费数目
-    private int financeMoney;   // 换课后缴费数目
-    private int oldCourseTuition;   // 换课前的实际收取费用
+    private int finance;   // 换课费用数目
+    private int oldCourseActualTuition;   // 换课前的实际收取费用
     private int actualTuition;   // 课程的真实缴费
     private int tuitionFlag;   // 课程缴费标识
     private int billFlag;   // 是否开发票标识
@@ -103,18 +102,6 @@ public class ChangeCourse {
         this.courseTuition = courseTuition;
     }
 
-    public void setRefundMoney(int refundMoney) {
-        this.refundMoney = refundMoney;
-    }
-
-    public void setFinanceMoney(int financeMoney) {
-        this.financeMoney = financeMoney;
-    }
-
-    public void setOldCourseTuition(int oldCourseTuition) {
-        this.oldCourseTuition = oldCourseTuition;
-    }
-
     public String getStuCardNum() {
 
         return stuCardNum;
@@ -178,18 +165,6 @@ public class ChangeCourse {
 
     public int getCourseTuition() {
         return courseTuition;
-    }
-
-    public int getRefundMoney() {
-        return refundMoney;
-    }
-
-    public int getFinanceMoney() {
-        return financeMoney;
-    }
-
-    public int getOldCourseTuition() {
-        return oldCourseTuition;
     }
 
     public void setActualTuition(int actualTuition) {
@@ -304,5 +279,23 @@ public class ChangeCourse {
     public List<CourseTime> getCourseTimes() {
 
         return courseTimes;
+    }
+
+    public void setOldCourseActualTuition(int oldCourseActualTuition) {
+        this.oldCourseActualTuition = oldCourseActualTuition;
+    }
+
+    public int getOldCourseActualTuition() {
+
+        return oldCourseActualTuition;
+    }
+
+    public void setFinance(int finance) {
+        this.finance = finance;
+    }
+
+    public int getFinance() {
+
+        return finance;
     }
 }
