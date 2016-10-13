@@ -78,7 +78,7 @@
         </div>
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
-                <form class="form-horizontal" action="${contextPath}/admin/course/change/turn.action" method="post">
+                <form class="form-horizontal" action="${contextPath}/admin/course/change/turn.action" method="post" id="submitForm">
                     <input type="hidden" name="oldCourseId" value="${changeCourse.courseId}" />
                     <input type="hidden" name="studentId" value="${student.studentId}">
                     <input type="hidden" name="oldCourseActualTuition" value="${changeCourse.actualTuition}">
@@ -87,7 +87,7 @@
                     <input type="hidden" name="stuCardNum" value="${student.stuCardNum}">
                     <div class="form-group">
                         <label for="courseId" class="col-sm-2 control-label">新的课程</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6">
                             <select class="form-control" name="courseId" id="courseId">
                                 <c:forEach items="${otherCourses}" var="course">
                                     <option value="${course.courseId}">${course.courseName}</option>
@@ -105,16 +105,16 @@
                                 <input type="radio" name="financeFlag" id="financeRadio2" value="1"> 需要费用
                             </label>
                         </div>
-                        <div class="form-group" id="financeDiv" style="display: none;">
-                            <label for="finance" class="col-sm-2 control-label">费用金额</label>
-                            <div class="col-sm-6">
-                                <input type="number" class="form-control" id="finance" value="0" name="finance">
-                            </div>
+                    </div>
+                    <div class="form-group" id="financeDiv" style="display: none;">
+                        <label for="finance" class="col-sm-2 control-label">费用金额</label>
+                        <div class="col-sm-6">
+                            <input type="number" class="form-control" id="finance" value="0" name="finance">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-danger">更换课程</button>
+                            <button type="submit" class="btn btn-danger" id="submitButton">更换课程</button>
                         </div>
                     </div>
                 </form>
@@ -173,7 +173,7 @@
                dataType: 'json',
                url: '${contextPath}/admin/course/change/new/' + $("#courseId").val() + '.action',
                success: function (result) {
-                   console.log(result.newCourse);
+//                   console.log(result.newCourse);
                    var course = result.newCourse;
                    $("#newDepartmentName").html(course.departmentName);
                    $("#newMajorName").html(course.majorName);
@@ -195,14 +195,16 @@
         /**
          * 当选中缴费时显示缴费div
          */
-        $("#financeRadio2").on("checked", function () {
-           $("#financeDiv").css("display", "block");
+        $("#financeRadio2").on("change", function () {
+//            if ($(this).attr('checked')) {
+                $("#financeDiv").css("display", "block");
+//            }
         });
 
         /**
          * 当选中不缴费时隐藏不缴费div,把费用div的value更改为0
          */
-        $("#financeRadio2").on("checked", function () {
+        $("#financeRadio1").on("change", function () {
             $("#financeDiv").css("display", "none");
             $("#finance").val(0);
         });

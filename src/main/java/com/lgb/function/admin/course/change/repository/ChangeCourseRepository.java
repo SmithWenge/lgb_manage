@@ -261,7 +261,6 @@ public class ChangeCourseRepository implements ChangeCourseRepositoryI {
                 changeCourse.getStudentId(),
                 changeCourse.getOperationUser(),
                 changeCourse.getFinanceFlag(),
-                changeCourse.getFinanceFlag(),
                 changeCourse.getOldCourseActualTuition(),
                 changeCourse.getOldCourseId(),
                 changeCourse.getStudentCourseId(),

@@ -91,6 +91,7 @@
                 <li role="presentation"><a href="${contextPath}/admin/finance/payment.action">已缴费查询</a></li>
                 <li role="presentation"><a href="${contextPath}/admin/finance/query/all.action">缴费信息</a></li>
                 <li role="presentation"><a href="${contextPath}/admin/finance/refund/route.action">退款</a></li>
+                <li role="presentation"><a href="${contextPath}/admin/finance/course/change/list.action">换课费用</a></li>
             </c:if>
             <input type="hidden" id="roleId" value="${sessionScope.adminLogin.adminRole}">
         </ul>

@@ -30,7 +30,11 @@
             text: "您确认执行这个操作么?",
             title: "消息提示",
             confirm: function(button) {
-                $($(button).parent())[0].click();
+                if ($(button)[0].type === 'submit') {
+                    $("#submitForm").submit();
+                } else {
+                    $($(button).parent())[0].click();
+                }
             },
             cancel: function(button) {
                 // nothing to do
