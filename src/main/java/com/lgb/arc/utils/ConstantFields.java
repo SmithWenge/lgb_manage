@@ -112,4 +112,6 @@ public class ConstantFields {
 
     /* 学院选课表中的课程来源换课标识 */
     public static final int SIGN_UP_COME_FROM_TURN_COURSE = 3;
+    public static final String CHANGE_COURSE_TUITION_SUCCESS_MESSAGE = "换课缴费成功";
+    public static final String CHANGE_COURSE_TUITION_FAILURE_MESSAGE = "换课缴费失败";
 }

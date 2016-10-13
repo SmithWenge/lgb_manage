@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class ChangeCourse {
+    private int changeCourseId;   // 表主键
     private String stuCardNum;   // 学生卡号
     private int studentId;   // 学生主键ID
     private int courseId;   // 课程主键ID
@@ -37,6 +38,15 @@ public class ChangeCourse {
     private String operationUser;   // 操作用户
     private int financeFlag;   // 是否费用操作
     private List<CourseTime> courseTimes; // 上课时间
+
+    public void setChangeCourseId(int changeCourseId) {
+        this.changeCourseId = changeCourseId;
+    }
+
+    public int getChangeCourseId() {
+
+        return changeCourseId;
+    }
 
     public void setStuCardNum(String stuCardNum) {
         this.stuCardNum = stuCardNum;
