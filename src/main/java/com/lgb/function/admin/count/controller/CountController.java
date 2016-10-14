@@ -34,6 +34,7 @@ public class CountController {
         map.put("stuPreferential",countService.queryNumOfStuPreferential());
         map.put("stuType",countService.queryNumOfStuType());
         map.put("yearOfStuBirthday",countService.queryNumOfStuBirthday());
+        map.put("stuLevel",countService.queryNumOfStuLevel());
         return map;
     }
 

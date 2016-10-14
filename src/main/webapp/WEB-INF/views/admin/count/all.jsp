@@ -90,6 +90,12 @@
         </div>
     </div>
 </div>
+<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;" id="removeTwo">
+    <div class="panel panel-default col-md-4">
+        <div class="panel-body" id="stuLevel" style="height: 400px;">
+        </div>
+    </div>
+</div>
 
 <%--<script type="text/javascript" src="${contextPath}/static/plugins/json2/json2.js" />--%>
 <%@include file="/WEB-INF/include/javascript.jsp"%>
@@ -105,6 +111,8 @@
     var myChart7 = echarts.init(document.getElementById('stuPreferential'));
     var myChart8 = echarts.init(document.getElementById('stuType'));
     var myChart9 = echarts.init(document.getElementById('yearOfStuBirthday'));
+    // 按级别统计
+    var myChart10 = echarts.init(document.getElementById("stuLevel"));
 
     var optionYearStuEduStart = {
                 title : {
@@ -411,7 +419,40 @@
             }
         ]
     };
-
+    // 学员级别统计
+    var optionStuLevel = {
+        title : {
+            text: '学员级别',
+            subtext: '对比',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: []
+        },
+        series : [
+            {
+                name: '人员比例',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
 
     $(function () {
         $.ajax({
@@ -463,6 +504,12 @@
                 $.each(result.yearOfStuBirthday, function (i, item) {
                     optionYearOfStuBirthday.legend.data.push(item.name);
                     optionYearOfStuBirthday.series[0].data.push(item);
+                });
+
+                // 学员级别
+                $.each(result.stuLevel, function (i, item) {
+                    optionStuLevel.legend.data.push(item.name);
+                    optionStuLevel.series[0].data.push(item);
                 });
 
                 function eConsole1(param) {
@@ -708,6 +755,34 @@
                     }
                 }
 
+                // 学员级别
+                function eConsole10(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/stuLevel.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
+
+                                tableContent += "</table>";
+
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                console.log(result);
+                            }
+                        })
+                    }
+                }
+
                 myChart.setOption(optionYearStuEduStart);
                 myChart.on('click', eConsole1);
                 myChart2.setOption(optionStuGender);
@@ -726,6 +801,9 @@
                 myChart8.on('click', eConsole8);
                 myChart9.setOption(optionYearOfStuBirthday);
                 myChart9.on('click', eConsole9);
+                // 学员级别
+                myChart10.setOption(optionStuLevel);
+                myChart10.on('click', eConsole10);
             }
         });
     })

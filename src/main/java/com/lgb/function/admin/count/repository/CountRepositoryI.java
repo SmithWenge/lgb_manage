@@ -17,4 +17,5 @@ public interface CountRepositoryI {
     InfoCount queryNumOfTeacher();
     InfoCount queryNumOfCourse();
     List<JsonModel> queryNumOfStuEduStart();
+    List<JsonModel> queryNumOfStuLevel();
 }
