@@ -214,4 +214,28 @@ public class CountRepository implements CountRepositoryI {
         }
     }
 
+    /**
+     * 查询学员级别统计分类
+     *
+     * @return
+     */
+    @Override
+    public List<JsonModel> queryNumOfStuLevel() {
+        String sql = "SELECT stuLevel, COUNT(stuId) AS num FROM lgb_student GROUP BY stuLevel";
+        return jdbcTemplate.query(sql, new QueryNumOfStuLevelRowMapper());
+    }
+
+    private class QueryNumOfStuLevelRowMapper implements RowMapper<JsonModel> {
+
+        @Override
+        public JsonModel mapRow(ResultSet resultSet, int i) throws SQLException {
+            JsonModel stuLevel = new JsonModel();
+
+            stuLevel.setName(resultSet.getString("stuLevel"));
+            stuLevel.setValue(resultSet.getInt("num"));
+
+            return stuLevel;
+        }
+    }
+
 }

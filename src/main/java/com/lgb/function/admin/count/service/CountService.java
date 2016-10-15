@@ -67,6 +67,11 @@ public class CountService implements CountServiceI {
     }
 
     @Override
+    public List<JsonModel> queryNumOfStuLevel() {
+        return countRepository.queryNumOfStuLevel();
+    }
+
+    @Override
     public List<JsonModel> queryNumOfStuEduStart() {
         return countRepository.queryNumOfStuEduStart();
     }
