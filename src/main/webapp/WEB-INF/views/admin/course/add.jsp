@@ -60,8 +60,8 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="courseEnrollmentNum" class="col-md-4 control-label">计划招生人数</label>
-                    <div class="col-md-8">
+                    <label for="courseEnrollmentNum" class="col-md-5 control-label">计划招生人数</label>
+                    <div class="col-md-7">
                         <input type="number" class="form-control" id="courseEnrollmentNum" placeholder="50" name="courseEnrollmentNum">
                     </div>
                 </div>
@@ -84,22 +84,22 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="courseRoom" class="col-md-4 control-label">教室</label>
-                    <div class="col-md-8">
+                    <label for="courseRoom" class="col-md-5 control-label">教室</label>
+                    <div class="col-md-7">
                         <tags:dicselect name="courseRoom" key="courseRoom" value="1" id="courseRoom" />
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="courseTuition" class="col-md-3 control-label">学费</label>
-                    <div class="col-md-9">
+                    <label for="courseTuition" class="col-md-4 control-label">学费</label>
+                    <div class="col-md-8">
                         <input type="number" class="form-control" id="courseTuition" placeholder="300" name="courseTuition">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 form-group">
-                    <label for="courseYears" class="col-md-3 control-label">学制</label>
-                    <div class="col-md-9">
+                    <label for="courseYears" class="col-md-4 control-label">学制</label>
+                    <div class="col-md-8">
                         <select class="form-control" id="courseYears" name="courseYears">
                             <option value="1" selected>1</option>
                             <option value="2">2</option>
@@ -110,26 +110,32 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="courseGraLimitNum" class="col-md-4 control-label">毕业报名限制</label>
-                    <div class="col-md-8">
+                    <label for="courseGraLimitNum" class="col-md-5 control-label">毕业报名限制</label>
+                    <div class="col-md-7">
                         <input type="number" class="form-control" id="courseGraLimitNum" placeholder="50" name="courseGraLimitNum">
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="courseLimitNum" class="col-md-3 control-label">报名限制</label>
-                    <div class="col-md-9">
+                    <label for="courseLimitNum" class="col-md-4 control-label">报名限制</label>
+                    <div class="col-md-8">
                         <input type="number" class="form-control" id="courseLimitNum" placeholder="50" name="courseLimitNum">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 form-group">
-                    <label for="courseSumFlag" class="col-md-3 control-label">统计标示</label>
-                    <div class="col-md-9">
+                    <label for="courseSumFlag" class="col-md-4 control-label">统计标示</label>
+                    <div class="col-md-8">
                         <select class="form-control" id="courseSumFlag" name="courseSumFlag">
                             <option value="1" selected>是</option>
                             <option value="0">否</option>
                         </select>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="courseAgeLimit" class="col-md-5 control-label">课程年龄限制</label>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" name="courseAgeLimit" value="100" id="courseAgeLimit">
                     </div>
                 </div>
             </div>
@@ -269,7 +275,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-default">添加课程</button>
+                    <button type="submit" class="btn btn-success">添加课程</button>
                     <button type="button" id="backMark" class="btn btn-default" style="margin-left: 100px">返回</button>
                 </div>
             </div>

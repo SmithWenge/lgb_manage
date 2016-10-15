@@ -105,6 +105,7 @@ public class CourseService implements CourseServiceI {
         return courseRepository.selectTimes(courseId);
     }
 
+    @Transactional
     @Override
     public boolean edit(Course course, String logUser) {
         int courseTeacherOne = course.getCourseTeacherOne();

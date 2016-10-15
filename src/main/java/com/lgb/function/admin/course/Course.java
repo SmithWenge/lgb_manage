@@ -30,6 +30,7 @@ public class Course extends Entry {
     private String majorName;
     private int courseMaster;
     private List<CourseTime> times;
+    private int courseAgeLimit; // 课程年龄限制
 
     private int deleteFlag;
     private String departmentName;
@@ -310,5 +311,14 @@ public class Course extends Entry {
     public int getBillFlag() {
 
         return billFlag;
+    }
+
+    public void setCourseAgeLimit(int courseAgeLimit) {
+        this.courseAgeLimit = courseAgeLimit;
+    }
+
+    public int getCourseAgeLimit() {
+
+        return courseAgeLimit;
     }
 }

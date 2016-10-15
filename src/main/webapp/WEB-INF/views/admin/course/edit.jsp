@@ -44,16 +44,16 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="majorId" class="col-md-3 control-label">专业</label>
-                    <div class="col-md-9">
+                    <label for="majorId" class="col-md-5 control-label">专业</label>
+                    <div class="col-md-7">
                         <select class="form-control" id="majorId" name="majorId">
                             <option value="${course.majorId}">${course.majorName}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="courseNum" class="col-md-3 control-label">课程编码</label>
-                    <div class="col-md-9">
+                    <label for="courseNum" class="col-md-4 control-label">课程编码</label>
+                    <div class="col-md-8">
                         <input type="text" class="form-control" id="courseNum" value="${course.courseNum}" name="courseNum">
                     </div>
                 </div>
@@ -90,22 +90,22 @@
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="courseRoom" class="col-md-4 control-label">教室</label>
-                    <div class="col-md-8">
+                    <label for="courseRoom" class="col-md-5 control-label">教室</label>
+                    <div class="col-md-7">
                         <tags:dicselect name="courseRoom" key="courseRoom" value="${course.courseRoom}" id="courseRoom" />
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
-                    <label for="courseTuition" class="col-md-3 control-label">学费</label>
-                    <div class="col-md-9">
+                    <label for="courseTuition" class="col-md-4 control-label">学费</label>
+                    <div class="col-md-8">
                         <input type="number" class="form-control" id="courseTuition" value="${course.courseTuition}" name="courseTuition">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-4 form-group">
-                    <label for="courseYears" class="col-md-3 control-label">学制</label>
-                    <div class="col-md-9">
+                    <label for="courseYears" class="col-md-4 control-label">学制</label>
+                    <div class="col-md-8">
                         <tags:dicselect name="courseYears" key="courseYears" value="${course.courseYears}" id="courseYears" />
                     </div>
                 </div>
@@ -127,6 +127,12 @@
                     <label for="courseSumFlag" class="col-md-4 control-label">统计标示</label>
                     <div class="col-md-8">
                         <tags:dicselect name="courseSumFlag" key="courseSumFlag" value="${course.courseSumFlag}" id="courseSumFlag" />
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label for="courseAgeLimit" class="col-md-5 control-label">课程年龄限制</label>
+                    <div class="col-md-7">
+                        <input type="number" class="form-control" name="courseAgeLimit" value="${course.courseAgeLimit}" id="courseAgeLimit">
                     </div>
                 </div>
             </div>

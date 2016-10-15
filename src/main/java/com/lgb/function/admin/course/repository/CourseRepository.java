@@ -137,7 +137,7 @@ public class CourseRepository implements CourseRepositoryI {
 
     @Override
     public int insert(Course course) {
-        String sql = "INSERT INTO lgb_course (departmentId, majorId, courseNum, courseName, courseEnrollmentNum, courseTeacherOne, courseTeacherTwo, courseTuition, courseLimitNum, courseYears, courseGraLimitNum, courseSumFlag, courseRemark, courseRoom, teacherOneName, teacherTwoName) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO lgb_course (departmentId, majorId, courseNum, courseName, courseEnrollmentNum, courseTeacherOne, courseTeacherTwo, courseTuition, courseLimitNum, courseYears, courseGraLimitNum, courseSumFlag, courseRemark, courseRoom, teacherOneName, teacherTwoName, courseAgeLimit) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] args = {
                 course.getDepartmentId(),
                 course.getMajorId(),
@@ -154,7 +154,8 @@ public class CourseRepository implements CourseRepositoryI {
                 course.getCourseRemark(),
                 course.getCourseRoom(),
                 course.getTeacherOneName(),
-                course.getTeacherTwoName()
+                course.getTeacherTwoName(),
+                course.getCourseAgeLimit()
         };
 
         return jdbcTemplate.update(sql, args);
@@ -302,7 +303,7 @@ public class CourseRepository implements CourseRepositoryI {
 
     @Override
     public Course select(int courseId) {
-        String sql = "SELECT courseId, C.departmentId, C.majorId, M.majorName, courseNum, courseName, courseEnrollmentNum, courseTeacherOne,courseTeacherTwo, courseTuition, courseLimitNum, courseYears, courseGraLimitNum, courseSumFlag, courseRemark, courseRoom, teacherOneName, teacherTwoName FROM lgb_course C LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE C.deleteFlag = 0 AND courseId = ?";
+        String sql = "SELECT courseId, C.departmentId, C.majorId, M.majorName, courseNum, courseName, courseEnrollmentNum, courseTeacherOne,courseTeacherTwo, courseTuition, courseLimitNum, courseYears, courseGraLimitNum, courseSumFlag, courseRemark, courseRoom, teacherOneName, teacherTwoName, courseAgeLimit FROM lgb_course C LEFT JOIN lgb_major M ON C.majorId = M.majorId WHERE C.deleteFlag = 0 AND courseId = ?";
         Object[] args = {
                 courseId
         };
@@ -338,6 +339,7 @@ public class CourseRepository implements CourseRepositoryI {
             course.setTeacherTwoName(rs.getString("teacherTwoName"));
             course.setTeacherOneName(rs.getString("teacherOneName"));
             course.setCourseNum(rs.getString("courseNum"));
+            course.setCourseAgeLimit(rs.getInt("courseAgeLimit"));
 
             return course;
         }
@@ -359,7 +361,7 @@ public class CourseRepository implements CourseRepositoryI {
 
     @Override
     public int update(Course course) {
-        String sql = "UPDATE lgb_course SET departmentId = ?, majorId = ?, courseNum = ?, courseName = ?, courseEnrollmentNum = ?, courseTeacherOne = ?, courseTeacherTwo = ?, courseTuition = ?, courseLimitNum = ?, courseYears = ?, courseGraLimitNum = ?, courseSumFlag =?, courseRemark = ?, courseRoom = ?, teacherOneName = ?, teacherTwoName = ? WHERE deleteFlag = 0 AND courseId = ?";
+        String sql = "UPDATE lgb_course SET departmentId = ?, majorId = ?, courseNum = ?, courseName = ?, courseEnrollmentNum = ?, courseTeacherOne = ?, courseTeacherTwo = ?, courseTuition = ?, courseLimitNum = ?, courseYears = ?, courseGraLimitNum = ?, courseSumFlag =?, courseRemark = ?, courseRoom = ?, teacherOneName = ?, teacherTwoName = ?, courseAgeLimit = ? WHERE deleteFlag = 0 AND courseId = ?";
         Object[] args = {
                 course.getDepartmentId(),
                 course.getMajorId(),
@@ -377,6 +379,7 @@ public class CourseRepository implements CourseRepositoryI {
                 course.getCourseRoom(),
                 course.getTeacherOneName(),
                 course.getTeacherTwoName(),
+                course.getCourseAgeLimit(),
                 course.getCourseId()
         };
 
@@ -408,7 +411,7 @@ public class CourseRepository implements CourseRepositoryI {
         };
 
         try {
-            return jdbcTemplate.update(sql, args) > 0 ? true : false;
+            return jdbcTemplate.update(sql, args) >= 0 ? true : false;
         } catch (Exception e) {
             return false;
         }
