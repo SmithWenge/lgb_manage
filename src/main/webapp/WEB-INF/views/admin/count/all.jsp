@@ -85,13 +85,13 @@
         <div class="panel-body" id="stuType" style="height: 400px;">
         </div>
     </div>
-    <div class="panel panel-default col-md-4">
+</div>
+<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;" id="removeThree">
+    <div class="panel panel-default col-md-6">
         <div class="panel-body" id="yearOfStuBirthday" style="height: 400px;">
         </div>
     </div>
-</div>
-<div class="row" style="margin-top: 1%; margin-right: 2%; margin-left: 2%;" id="removeTwo">
-    <div class="panel panel-default col-md-4">
+    <div class="panel panel-default col-md-6">
         <div class="panel-body" id="stuLevel" style="height: 400px;">
         </div>
     </div>
@@ -533,7 +533,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -560,7 +560,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -587,7 +587,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -614,7 +614,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -641,7 +641,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -668,7 +668,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -695,7 +695,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -722,7 +722,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -749,7 +749,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }
@@ -777,7 +777,7 @@
                                 $('#contentDetail').html(tableContent);
                                 $('#removeOne').html('');
                                 $('#removeTwo').html('');
-                                console.log(result);
+                                $('#removeThree').html('');
                             }
                         })
                     }

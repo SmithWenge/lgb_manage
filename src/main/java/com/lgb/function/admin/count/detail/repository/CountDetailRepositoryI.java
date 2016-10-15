@@ -14,4 +14,5 @@ public interface CountDetailRepositoryI {
     List<StudentUser> selectStuPreferential(int value);
     List<StudentUser> selectStuType(int value);
     List<StudentUser> selectStuBirthday(String value);
+    List<StudentUser> selectStuLevel(int key);
 }

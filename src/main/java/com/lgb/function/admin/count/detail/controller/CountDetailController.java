@@ -127,4 +127,19 @@ public class CountDetailController {
 
         return map;
     }
+
+    /**
+     * 人员级别统计分析
+     */
+    @ResponseBody
+    @RequestMapping("/stuLevel")
+    public Map<String, List<StudentUser>> detailStuLevel(@RequestBody CountDetail countDetail) {
+        Map<String, List<StudentUser>> map = new HashMap<>();
+
+        List<StudentUser> studentUsers = countDetailService.stuLevel(countDetail.getKey());
+
+        map.put("students", studentUsers);
+
+        return map;
+    }
 }

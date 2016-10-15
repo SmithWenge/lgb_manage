@@ -75,4 +75,11 @@ public class CountDetailService implements CountDetailServiceI {
     public List<StudentUser> yearStuBirthday(String value) {
         return detailRepository.selectStuBirthday(value);
     }
+
+    @Override
+    public List<StudentUser> stuLevel(String key) {
+        int dataValue = manager.dictionaryChange("memberLevel", key).getItemKey();
+
+        return detailRepository.selectStuLevel(dataValue);
+    }
 }

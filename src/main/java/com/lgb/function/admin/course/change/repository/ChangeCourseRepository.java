@@ -281,7 +281,7 @@ public class ChangeCourseRepository implements ChangeCourseRepositoryI {
      */
     @Override
     public void updateStudentCourse(ChangeCourse changeCourse) {
-        String sql = "UPDATE lgb_studentcourse SET deleteFlag = 2, courseId = ? WHERE studentCourseId = ?";
+        String sql = "UPDATE lgb_studentcourse SET deleteFlag = 3, courseId = ? WHERE studentCourseId = ?";
         Object[] args = {
                 changeCourse.getCourseId(),
                 changeCourse.getStudentCourseId()

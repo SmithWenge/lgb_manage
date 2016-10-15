@@ -14,4 +14,5 @@ public interface CountDetailServiceI {
     List<StudentUser> stuPreferential(String value);
     List<StudentUser> stuType(String value);
     List<StudentUser> yearStuBirthday(String value);
+    List<StudentUser> stuLevel(String key);
 }

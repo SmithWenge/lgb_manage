@@ -226,12 +226,13 @@ public class CountRepository implements CountRepositoryI {
     }
 
     private class QueryNumOfStuLevelRowMapper implements RowMapper<JsonModel> {
+        private IDictionaryManager dictionaryManager = DefaultDictionaryManager.getInstance();
 
         @Override
         public JsonModel mapRow(ResultSet resultSet, int i) throws SQLException {
             JsonModel stuLevel = new JsonModel();
 
-            stuLevel.setName(resultSet.getString("stuLevel"));
+            stuLevel.setName(dictionaryManager.dictionary(resultSet.getInt("stuLevel"), "memberLevel").getItemValue());
             stuLevel.setValue(resultSet.getInt("num"));
 
             return stuLevel;

@@ -155,10 +155,31 @@ public class CountDetailRepository implements CountDetailRepositoryI {
             studentUser.setStuGenderValue(manager.dictionary(resultSet.getInt("stuGender"), "gender").getItemValue());
             studentUser.setStuBirthday(resultSet.getDate("stuBirthday"));
             studentUser.setStuCardNum(resultSet.getString("stuCardNum"));
+            // TODO 电话号的加密
             studentUser.setStuTelOne(resultSet.getString("stuTelOne"));
             studentUser.setStuTelTwo(resultSet.getString("stuTelTwo"));
 
             return studentUser;
+        }
+    }
+
+    /**
+     * 学员级别统计详细信息
+     *
+     * @param key
+     * @return
+     */
+    @Override
+    public List<StudentUser> selectStuLevel(int key) {
+        String sql= "SELECT stuId, stuCardNum,stuName,stuGender,stuBirthday,stuTelOne,stuTelTwo FROM lgb_student WHERE deleteFlag = 0 AND stuLevel = ?";
+        Object[] args = {
+                key
+        };
+
+        try {
+            return jdbcTemplate.query(sql, args, new SelectRowMapper());
+        } catch (Exception e) {
+            return new ArrayList<>();
         }
     }
 }
