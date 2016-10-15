@@ -4,6 +4,7 @@ import com.lgb.arc.utils.CommonUtils;
 import com.lgb.function.support.dictionary.IDictionaryManager;
 import com.lgb.function.support.dictionary.impl.DefaultDictionaryManager;
 import com.lgb.function.support.student.StudentNowCourseInfo;
+import com.lgb.function.support.student.card.StudentCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -75,6 +76,53 @@ public class StudentCardRepository implements StudentCardRepositoryI {
             info.setStudentCardNum(rs.getString("stuCardNum"));
 
             return info;
+        }
+    }
+
+    /**
+     * 添加学员考勤纪录
+     *
+     * @param check
+     */
+    @Override
+    public void addStudentCheck(StudentCheck check) {
+        String sql = "INSERT INTO lgb_studentcheck (checkUserName, checkCardNum, checkFlag) VALUES (?, ?, ?)";
+        Object[] args = {
+                check.getCheckUserName(),
+                check.getCheckCardNum(),
+                check.getCheckFlag()
+        };
+
+        try {
+            jdbcTemplate.update(sql, args);
+        } catch (Exception e) {
+            return;
+        }
+    }
+
+    /**
+     * 查询学员今天是否打卡
+     *
+     * @param studentCardNum
+     * @param year
+     * @param month
+     * @param day
+     * @return
+     */
+    @Override
+    public boolean hasCarded(String studentCardNum, int year, int month, int day) {
+        String sql = "SELECT count(checkId) as num FROM lgb_studentcheck WHERE checkCardNum = ? AND YEAR(checkTime) = ? AND MONTH(checkTime) = ? AND DAY(checkTime) = ?";
+        Object[] args = {
+                studentCardNum,
+                year,
+                month,
+                day
+        };
+
+        try {
+            return jdbcTemplate.queryForObject(sql, args, Integer.class) >= 1;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

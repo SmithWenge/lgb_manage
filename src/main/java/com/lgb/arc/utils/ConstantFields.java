@@ -114,4 +114,8 @@ public class ConstantFields {
     public static final int SIGN_UP_COME_FROM_TURN_COURSE = 3;
     public static final String CHANGE_COURSE_TUITION_SUCCESS_MESSAGE = "换课缴费成功";
     public static final String CHANGE_COURSE_TUITION_FAILURE_MESSAGE = "换课缴费失败";
+
+    /* 学员考勤是否有课打卡标示 0表示有课 1表示没有课 */
+    public static final int STUDENT_CHECK_HAS_COURSE_FLAG = 0;
+    public static final int STUDENT_CHECK_NOT_COURSE_FLAG = 1;
 }

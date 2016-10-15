@@ -18,7 +18,7 @@ public class StudentCardController {
     @Autowired
     private StudentCardServiceI studentCardService;
 
-    @RequestMapping("/routeIndex")
+    @RequestMapping("/index")
     public String test() {
         return "student/card/index";
     }
