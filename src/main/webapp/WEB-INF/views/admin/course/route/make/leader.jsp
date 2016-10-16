@@ -30,7 +30,13 @@
                         <div class="col-sm-10">
                             <select class="form-control" id="inputCourseMaster" name="courseMaster">
                                 <c:forEach items="${studentUsers}" var="student">
-                                    <option value="${student.stuId}" selected>${student.stuName}</option>
+                                    <%--<option value="${student.stuId}" selected>${student.stuName}</option>--%>
+                                    <c:if test="${course.courseMaster == student.stuId}">
+                                        <option value="${student.stuId}" selected>${student.stuName}</option>
+                                    </c:if>
+                                    <c:if test="${course.courseMaster != student.stuId}">
+                                        <option value="${student.stuId}">${student.stuName}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>

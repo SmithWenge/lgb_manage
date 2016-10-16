@@ -35,4 +35,10 @@ public class DateUtils {
 
         return null;
     }
+
+    public static int nowYear() {
+        DateTime time = new DateTime();
+
+        return time.year().get();
+    }
 }

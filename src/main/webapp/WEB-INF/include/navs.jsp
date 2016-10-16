@@ -76,6 +76,7 @@
                 <li role="presentation"><a id="leader" href="${contextPath}/admin/course/leader/page.action">班长</a></li>
                 <li role="presentation"><a id="log" href="${contextPath}/admin/log/routePage.action">查看日志</a></li>
                 <li role="presentation"><a id="count" href="${contextPath}/admin/count/index.action">统计</a></li>
+                <li role="presentation"><a id="card" href="${contextPath}/admin/student/count/index.action">考勤</a></li>
                 <li role="presentation"><a id="room" href="${contextPath}/admin/room/routeRoom.action">教室</a></li>
                 <li role="presentation"><a id="signUp" href="${contextPath}/admin/offline/sign.action">线下报名</a></li>
                 <li role="presentation"><a id="setting" href="${contextPath}/admin/setting/route.action">颜色配置</a></li>
