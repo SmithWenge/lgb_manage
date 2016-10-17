@@ -27,9 +27,10 @@
         </ul>
     </div>
 </div>
-<script src="${contextPath}/static/plugins/echarts/echarts.min.js"></script>
+<script src="${contextPath}/static/plugins/echarts/echarts-2.min.js"></script>
 <div class="row" style="margin-top: 5px; margin-right: 2%; margin-left: 2%;" id="contentDetail">
     <div class="panel panel-default col-md-6">
+        <div class="panel-heading">按月统计</div>
         <div class="panel-body" id="studentCardReport" style="height: 400px;">
         </div>
     </div>
@@ -37,16 +38,16 @@
 
 <script type="text/javascript" src="${contextPath}/static/plugins/jquery/jquery-1.9.1.min.js" ></script>
 
-<script>
+<script type="text/javascript">
     // 考勤报表
     var myChart = echarts.init(document.getElementById('studentCardReport'));
 
-    var optionStudentCardReport = {
+    var option = {
         color: ['#3398DB'],
         tooltip : {
             trigger: 'axis',
-            axisPointer : {
-                type : 'shadow'
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
             }
         },
         grid: {
@@ -79,6 +80,8 @@
         ]
     };
 
+    myChart.setOption(option);
+
     $(function () {
         $.ajax({
             type: 'post',
@@ -87,54 +90,42 @@
             url: '${contextPath}/admin/student/count/data.action',
             success: function (result) {
                 $.each(result.studentCardReport, function (i, item) {
-                    optionStudentCardReport.xAxis[0].data.push(item.name);
-                    optionStudentCardReport.series[0].data.push(item);
+                    option.xAxis[0].data.push(item.name);
+                    option.series[0].data.push(item);
                 });
 
-//                function eConsole1(param) {
-//                    if (typeof param.seriesIndex != 'undefined') {
-                        <%--$.ajax({--%>
-                            <%--type: 'post',--%>
-                            <%--contentType: 'application/json',--%>
-                            <%--dataType: 'json',--%>
-                            <%--url: '${contextPath}/admin/count/detail/studentCardReport.action',--%>
-                            <%--data: JSON.stringify({--%>
-                                <%--'key': param.name--%>
-                            <%--}),--%>
-                            <%--success: function (result) {--%>
-                                <%--var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';--%>
-                                <%--$.each(result.students, function (i, item) {--%>
-                                    <%--tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";--%>
-                                <%--});--%>
+                function eConsole1(param) {
+                    if (typeof param.seriesIndex != 'undefined') {
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            url: '${contextPath}/admin/count/detail/studentCardReport.action',
+                            data: JSON.stringify({
+                                'key': param.name
+                            }),
+                            success: function (result) {
+                                var tableContent = '<table class="table"><tr><td>学生名</td><td>性别</td><td>出生日期</td><td>卡号</td><td>电话1</td><td>电话2</td></tr>';
+                                $.each(result.students, function (i, item) {
+                                    tableContent += "<tr><td>" + item.stuName + "</td><td>" + item.stuGenderValue + "</td><td>" + item.stuBirthday + "</td><td>" + item.stuCardNum + "</td><td>" + item.stuTelOne + "</td><td>" + item.stuTelTwo + "</td></tr>";
+                                });
 
-                                <%--tableContent += "</table>";--%>
+                                tableContent += "</table>";
 
-                                <%--$('#contentDetail').html(tableContent);--%>
-                                <%--$('#removeOne').html('');--%>
-                                <%--$('#removeTwo').html('');--%>
-                                <%--$('#removeThree').html('');--%>
-                            <%--}--%>
-                        <%--})--%>
-//                    }
-//                }
+                                $('#contentDetail').html(tableContent);
+                                $('#removeOne').html('');
+                                $('#removeTwo').html('');
+                                $('#removeThree').html('');
+                            }
+                        })
+                    }
+                }
 
-                myChart.setOption(optionStudentCardReport);
+                myChart.setOption(option);
 //                myChart.on('click', eConsole1);
             }
         });
-    })
+    });
 </script>
-<%--<script type="text/javascript" src="${contextPath}/static/plugins/bootstrap/js/bootstrap.js" ></script>--%>
-<%--<script type="text/javascript" src="${contextPath}/static/support/jquery.placeholder.js" ></script>--%>
-<%--<script type="text/javascript">--%>
-    <%--$(function () {--%>
-        <%--// Invoke the plugin--%>
-        <%--$('input, textarea').placeholder();--%>
-    <%--});--%>
-<%--</script>--%>
-<%--<script type="text/javascript" src="${contextPath}/static/support/html5shiv.min.js" />--%>
-<%--<script type="text/javascript" src="${contextPath}/static/support/respond.min.js" />--%>
-
-<%--<%@include file="/WEB-INF/include/footer.jsp"%>--%>
 </body>
 </html>
