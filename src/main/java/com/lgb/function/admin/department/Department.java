@@ -3,7 +3,8 @@ package com.lgb.function.admin.department;
 import com.lgb.arc.Entry;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Department extends Entry {
     private int departmentId;
@@ -11,9 +12,9 @@ public class Department extends Entry {
     private int departmentCourseNum;
     private int departmentStuNum;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date departmentStartDate;
+    private String departmentStartDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date departmentStopDate;
+    private String departmentStopDate;
     private int adminId;
     private String adminName;
     private int courseNum;
@@ -69,11 +70,11 @@ public class Department extends Entry {
         this.departmentStuNum = departmentStuNum;
     }
 
-    public void setDepartmentStartDate(Date departmentStartDate) {
+    public void setDepartmentStartDate(String departmentStartDate) {
         this.departmentStartDate = departmentStartDate;
     }
 
-    public void setDepartmentStopDate(Date departmentStopDate) {
+    public void setDepartmentStopDate(String departmentStopDate) {
         this.departmentStopDate = departmentStopDate;
     }
 
@@ -94,11 +95,11 @@ public class Department extends Entry {
         return departmentStuNum;
     }
 
-    public Date getDepartmentStartDate() {
+    public String getDepartmentStartDate() {
         return departmentStartDate;
     }
 
-    public Date getDepartmentStopDate() {
+    public String getDepartmentStopDate() {
         return departmentStopDate;
     }
 }

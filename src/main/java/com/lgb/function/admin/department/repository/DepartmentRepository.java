@@ -1,5 +1,6 @@
 package com.lgb.function.admin.department.repository;
 
+import com.lgb.arc.utils.DateUtils;
 import com.lgb.function.admin.department.Department;
 import com.lgb.function.admin.login.AdminUser;
 import com.lgb.function.support.utils.RepositoryUtils;
@@ -10,8 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,8 +133,8 @@ public class DepartmentRepository implements DepartmentRepositoryI {
 
             department.setDepartmentId(rs.getInt("departmentId"));
             department.setDepartmentName(rs.getString("departmentName"));
-            department.setDepartmentStartDate(rs.getDate("departmentStartDate"));
-            department.setDepartmentStopDate(rs.getDate("departmentStopDate"));
+            department.setDepartmentStartDate(DateUtils.timeSplitMs(rs.getTimestamp("departmentStartDate")));
+            department.setDepartmentStopDate(DateUtils.timeSplitMs(rs.getTimestamp("departmentStopDate")));
 
             return department;
         }
@@ -145,8 +148,8 @@ public class DepartmentRepository implements DepartmentRepositoryI {
 
             department.setDepartmentId(rs.getInt("departmentId"));
             department.setDepartmentName(rs.getString("departmentName"));
-            department.setDepartmentStartDate(rs.getTimestamp("departmentStartDate"));
-            department.setDepartmentStopDate(rs.getTimestamp("departmentStopDate"));
+            department.setDepartmentStartDate(DateUtils.timeSplitMs(rs.getTimestamp("departmentStartDate")));
+            department.setDepartmentStopDate(DateUtils.timeSplitMs(rs.getTimestamp("departmentStopDate")));
             department.setAdminId(rs.getInt("adminId"));
 
             return department;

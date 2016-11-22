@@ -2,6 +2,8 @@ package com.lgb.arc.utils;
 
 import org.joda.time.DateTime;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,5 +42,18 @@ public class DateUtils {
         DateTime time = new DateTime();
 
         return time.year().get();
+    }
+
+    public static String timeSplitMs(Timestamp ts) {
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            if (null != ts) {
+                return sdf.format(ts);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
