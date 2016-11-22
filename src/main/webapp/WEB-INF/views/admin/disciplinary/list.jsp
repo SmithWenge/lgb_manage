@@ -38,7 +38,7 @@
           <div class="col-md-9 form-group">
             <label for="disciCount" class="col-md-4 control-label">违纪次数</label>
             <div class="col-md-8">
-              <input type="text" class="form-control" id="disciCount" name="disciCount">
+              <input type="text" class="form-control" id="disciCount" name="disciCount" value="1">
             </div>
           </div>
           <div class="col-md-3 form-group">

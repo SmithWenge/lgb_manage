@@ -25,6 +25,7 @@
                 <input type="file" id="studentFile" name="file">
                 <p class="help-block">学员基本信息表</p>
             </div>
+            <p><b>请先下载模版,根据模版规则添加对应的学员信息,在导入模版.</b></p>
             <button type="submit" class="btn btn-default">导入</button>
         </form>
     </div>

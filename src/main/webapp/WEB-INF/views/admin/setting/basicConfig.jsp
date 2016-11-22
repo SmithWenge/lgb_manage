@@ -6,7 +6,7 @@
 <div class="row" style="margin-left: 0.1%; float: left;width: 85%;">
     <div class="panel panel-default" style="float: left; width: 100%;">
         <div class="panel-heading" style="height: 45px;padding-top: 5px;">
-            <a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span>基本配置</a>
+            <a href="${contextPath}/admin/setting/basicConfig.action"><span class="glyphicon glyphicon-map-marker"></span>基本配置</a>
         </div>
         <div class="panel-body">
             <div class="row">
