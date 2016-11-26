@@ -139,7 +139,7 @@
                         </div>
                         <div class="col-md-offset-4 col-md-4 form-group">
                             <div class="col-sm-offset-1 col-sm-20">
-                                <button type="reset" class="btn btn-danger" >重置</button>
+                                <input type="reset" class="btn btn-warning" >
                                 <button type="submit" class="btn btn-success" style="float: right">检索</button>
 
                             </div>

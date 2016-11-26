@@ -155,7 +155,7 @@
                 </div>
                 <div class="col-md-4 form-group">
                     <div class="col-sm-offset-1 col-sm-8">
-                        <button type="reset" class="btn btn-danger" style="float: left">重置</button>
+                        <input type="reset" class="btn btn-warning" style="float: left">
                         <button type="submit" class="btn btn-success" style="float: right">检索</button>
                     </div>
                 </div>
