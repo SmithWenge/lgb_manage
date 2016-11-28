@@ -3,23 +3,16 @@
 <%@ include file="/WEB-INF/include/navs.jsp"%>
 <%@ include file="/WEB-INF/include/message.jsp"%>
 
-<%--<div class="row" style="margin-left: 2%; margin-right: 2%; margin-top: 1%;">--%>
-  <%--<div class="col-md-10">--%>
-    <%--<ul class="nav nav-pills">--%>
-    <%--</ul>--%>
-  <%--</div>--%>
-<%--</div>--%>
-
 <style type="text/css">
   form label {
     margin-top: 5px;
   }
 </style>
-<div class="panel panel-default" style="float: left; width: 85%;">
-  <div class="panel-heading">
+<div class="panel panel-default" style="float: left; width: 90%;">
+  <div class="panel-heading" style="padding: 0px;">
     <ul class="nav nav-pills">
-      <li role="presentation" ><a>线下报名系统</a></li>
-      <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/offline/queryDownSign.action">查看已报名课程</a></li>
+      <li role="presentation"><a>线下报名系统</a></li>
+      <li role="presentation" style="float: right;"><a href="${contextPath}/admin/offline/queryDownSign.action">查看已报名课程</a></li>
     </ul>
   </div>
 

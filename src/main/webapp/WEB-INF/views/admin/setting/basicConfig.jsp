@@ -3,12 +3,12 @@
 <%@include file="/WEB-INF/include/navs.jsp"%>
 <%@include file="/WEB-INF/include/message.jsp"%>
 
-<div class="row" style="margin-left: 0.1%; float: left;width: 85%;">
+<div class="row" style="margin-left: 0.1%; float: left;width: 90%;">
     <div class="panel panel-default" style="float: left; width: 100%;">
         <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
             <ul class="nav nav-pills">
                 <li role="presentation">
-                    <a href="${contextPath}/admin/setting/basicConfig.action"><span class="glyphicon glyphicon-map-marker"></span>基本配置</a>
+                    <a href="${contextPath}/admin/setting/basicConfig.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp;基本配置</a>
                 </li>
             </ul>
         </div>

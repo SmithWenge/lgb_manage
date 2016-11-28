@@ -6,7 +6,7 @@
 <%-- 未缴费学员查看 --%>
 <!-- style="margin-left: 16%-->
 <div class="panel panel-default" style="margin-left: 2%; margin-right: 2%;">
-    <div class="panel-heading" style="float: left;width: 85%;">
+    <div class="panel-heading" style="float: left;width: 90%;">
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="${contextPath}/admin/finance/unpayment.action">未缴费信息</a></li>
             <li role="presentation" >
@@ -25,7 +25,7 @@
             </li>
         </ul>
     </div>
-    <div class="panel-body" style="float: right;width: 85%;">
+    <div class="panel-body" style="float: right;width: 90%;">
 
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">

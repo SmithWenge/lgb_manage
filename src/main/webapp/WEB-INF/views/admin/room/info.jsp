@@ -15,7 +15,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="height: 45px;padding-top: 10px;">${room.roomName} ${room.roomFloor}层 ${room.roomCapacity}人</div>
     <div class="panel-body">
         <input type="hidden" id="roomId" value="${room.roomId}">

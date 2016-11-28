@@ -14,7 +14,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
         <ul class="nav nav-pills">
             <li role="presentation"><a href="${contextPath}/admin/room/routeRoom.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp;教室</a></li>

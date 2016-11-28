@@ -12,7 +12,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left; width: 90%;">
     <div class="panel-heading" style="height: 45px;padding-top: 5px;">
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="${contextPath}/admin/home/index.action"><span class="glyphicon glyphicon-map-marker"></span>课程信息</a></li>

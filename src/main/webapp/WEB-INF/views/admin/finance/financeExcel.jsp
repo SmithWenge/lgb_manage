@@ -11,8 +11,8 @@
     color: #444;
   }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
-  <div class="panel-heading" style="float: left;width: 85%;">
+<div class="panel panel-default">
+  <div class="panel-heading" style="float: left;width: 90%;">
     <ul class="nav nav-pills">
       <li role="presentation" ><a href="${contextPath}/admin/finance/routeCount.action"><span class="glyphicon glyphicon-map-marker"></span>财务分析</a></li>
       <li role="presentation">

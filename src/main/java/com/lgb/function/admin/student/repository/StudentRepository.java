@@ -132,10 +132,11 @@ public class StudentRepository implements StudentRepositoryI {
     }
     @Override
     public boolean insert(StudentUser studentUser) {
-        String sql = "INSERT INTO lgb_student (stuId, stuCardNum, stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate, stuPicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO lgb_student (stuId, stuCardNum, innerCardNum stuName, stuGender, stuTelOne, stuTelTwo, stuType, stuIdentifiedType, stuIdentifiedNum, stuOldWorkPlaceType, stuOldWorkPlaceName, stuPolitical, stuOldWorkType, stuNationality, stuBirthday, stuLastEightNum, stuCheck, stuHealth, stuLocation, stuEducational, stuLevel, stuSpeciality, stuPreferential, stuDependentsTel, stuDependentsDesc, stuRemarkOne, stuRemarkTwo, studentStartDate, stuPicture) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         Object[] args = {
                 studentUser.getStuId(),
                 studentUser.getStuCardNum(),
+                studentUser.getStuCardNumTwo(),
                 studentUser.getStuName(),
                 studentUser.getStuGender(),
                 studentUser.getStuTelOne(),
@@ -327,7 +328,8 @@ public class StudentRepository implements StudentRepositoryI {
             studentUser.setStuCheck(resultSet.getString("stuCheck"));
             studentUser.setStuOldWorkType(resultSet.getInt("stuOldWorkType"));
             studentUser.setStuEducational(resultSet.getInt("stuEducational"));
-            studentUser.setStuIdentifiedNum(resultSet.getString("stuIdentifiedNum"));
+            String stuIdentifiedNum = resultSet.getString("stuIdentifiedNum");
+            studentUser.setStuIdentifiedNum(stuIdentifiedNum.substring(0, 14) + "****");
             studentUser.setStudentStartDate(resultSet.getDate("studentStartDate"));
             studentUser.setStuPicture(resultSet.getString("stuPicture"));
 

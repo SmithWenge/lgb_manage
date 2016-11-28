@@ -21,7 +21,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading"  style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/course/routePage.action"><span class="glyphicon glyphicon-map-marker"></span>课程管理</a> > 添加课程</div>
     <div class="panel-body">
         <form id="courseAddForm" action="${contextPath}/admin/course/add.action" method="post">

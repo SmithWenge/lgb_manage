@@ -12,7 +12,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="height: 45px;padding-top: 5px;">
         <a href="${contextPath}/admin/finance/refund/route.action"><span class="glyphicon glyphicon-map-marker"></span>退课</a> &nbsp; <b>></b> &nbsp; 退款
         <%--<span class="glyphicon glyphicon-map-marker"></span>收费--%>

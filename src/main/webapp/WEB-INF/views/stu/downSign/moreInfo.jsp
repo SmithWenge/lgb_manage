@@ -16,7 +16,7 @@
     margin-top: 5px;
   }
 </style>
-<div class="panel panel-default" style="float: left; width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
   <div class="panel-heading">
     <ul class="nav nav-pills">
       <li role="presentation" ><a>课程详细信息</a></li>

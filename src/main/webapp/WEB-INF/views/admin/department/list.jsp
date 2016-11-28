@@ -12,11 +12,16 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
         <ul class="nav nav-pills">
             <li role="presentation" ><a href="${contextPath}/admin/department/page.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp;系管理</a></li>
-            <li role="presentation" style="float: right"><a href="${contextPath}/admin/department/routeAdd.action">添加系</a></li>
+            <li role="presentation" style="float: right">
+                <a href="${contextPath}/admin/department/routeAdd.action">
+                    <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+                    <%--添加系--%>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="panel-body">

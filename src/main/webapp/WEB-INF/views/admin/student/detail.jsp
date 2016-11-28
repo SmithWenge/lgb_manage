@@ -3,13 +3,13 @@
 <%@include file="/WEB-INF/include/navs.jsp"%>
 <%@include file="/WEB-INF/include/message.jsp"%>
 
-<div class="row" style="margin-left: 0.1%; float: left; width: 85%;">
+<div class="row" style="margin-left: 0.1%; float: left; width: 90%;">
     <div class="panel panel-default" style="float: left; width: 100%;">
-        <div class="panel-heading" style="height: 45px;padding-top: 5px;">
-            <a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> 学生管理</a> > 学员信息
+        <div class="panel-heading">
+            <a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp;学生管理</a> / 学员信息
         </div>
         <div class="panel-body">
-            <table class="table table-hover">
+            <table class="table">
                 <tr>
                     <td rowspan="5">
                         <img id="photo" src="${contextPath}/admin/photo/route/${student.stuPicture}.action">

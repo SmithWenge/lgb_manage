@@ -29,7 +29,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/department/page.action"><span class="glyphicon glyphicon-map-marker"></span>系管理</a> > 系添加</div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">

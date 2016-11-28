@@ -11,7 +11,7 @@
     color: #444;
   }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
   <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/score/routerList.action"><span class="glyphicon glyphicon-map-marker"></span>成绩管理</a> > 成绩修改</div>
   <div class="panel-body">
     <div class="row" >

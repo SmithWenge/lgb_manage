@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="${contextPath}/static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="${contextPath}/static/images/lgb.ico" />
+    <link href="${contextPath}/static/plugins/icon/css/font-awesome.css" rel="stylesheet" type="text/css">
 
     <style type="text/css">
         label.error {

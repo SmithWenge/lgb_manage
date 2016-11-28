@@ -6,11 +6,11 @@
 <%-- 已缴费学员查看 --%>
 <!-- style="margin-left: 16%-->
 <div class="panel panel-default" style="margin-left: 2%; margin-right: 2%;">
-    <div class="panel-heading" style="float: left;width: 85%;">
+    <div class="panel-heading" style="float: left;width: 90%;">
         <a href="${contextPath}/admin/finance/refund/route.action"><span class="glyphicon glyphicon-map-marker"></span>退课</a> &nbsp; <b>></b> &nbsp; 查询退款学员
         <a href="${contextPath}/admin/finance/refund/oldRefund.action" style="float: right;">查看退课</a>
     </div>
-    <div class="panel-body" style="float: right;width: 85%;">
+    <div class="panel-body" style="float: right;width: 90%;">
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <form class="form-horizontal" action="${contextPath}/admin/finance/refund/query.action" method="post" id="refundQueryForm">

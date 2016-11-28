@@ -12,7 +12,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="height: 45px;"><span class="glyphicon glyphicon-map-marker"></span>教室 > 编辑教室</div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">

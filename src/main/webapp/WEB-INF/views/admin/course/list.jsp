@@ -11,8 +11,15 @@
         border-right: 4px solid #fed350;
         color: #444;
     }
+
+    table th{
+        min-width: 60px;;
+        line-height: 40px;
+        /*max-width: 80px;*/
+
+    }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
         <ul class="nav nav-pills">
             <li role="presentation"><a href="${contextPath}/admin/course/routePage.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp;课程管理</a></li>
@@ -36,7 +43,12 @@
                     <button type="submit" class="btn btn-default">查询</button>
                 </form>
             </li>
-            <li role="presentation" style="float: right"><a href="${contextPath}/admin/course/routeAdd.action">添加课程</a></li>
+            <li role="presentation" style="float: right">
+                <a href="${contextPath}/admin/course/routeAdd.action">
+                    <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+                    <%--添加课程--%>
+                </a>
+            </li>
             <li role="presentation" style="float: right">
                 <button type="button" class="btn btn-warning navbar-btn" id="batchUpgrade" style="margin-top: 0px; margin-bottom: 0px;">批量升级</button>
                 <%--<a id="batchUpgrade">批量升级</a>--%>
@@ -49,15 +61,6 @@
         </ul>
     </div>
     <div class="panel-body">
-        <style>
-            table th{
-                min-width: 60px;;
-                line-height: 40px;
-                /*max-width: 80px;*/
-
-            }
-
-        </style>
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <table class="table" id="paginationTable" align="center">

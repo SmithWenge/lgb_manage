@@ -3,7 +3,7 @@
 <%@include file="/WEB-INF/include/navs.jsp"%>
 <%@include file="/WEB-INF/include/message.jsp"%>
 
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default">
   <div class="panel-heading" style="float: left;width: 100%;">
     <ul class="nav nav-pills">
       <li role="presentation" ><a href="${contextPath}/admin/finance/printPage.action">打印发票</a></li>

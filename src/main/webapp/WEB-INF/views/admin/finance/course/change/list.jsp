@@ -5,8 +5,8 @@
 
 <!-- style="margin-left: 16%-->
 <div class="panel panel-default" style="margin-left: 2%; margin-right: 2%;">
-    <div class="panel-heading" style="float: left;width: 85%;">换课费用</div>
-    <div class="panel-body" style="float: right;width: 85%;">
+    <div class="panel-heading" style="float: left;width: 90%;">换课费用</div>
+    <div class="panel-body" style="float: right;width: 90%;">
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <table class="table" id="paginationTable" align="center">

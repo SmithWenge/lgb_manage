@@ -18,7 +18,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="height: 45px;padding-top: 10px;"><a href="${contextPath}/admin/teacher/page.action"><span class="glyphicon glyphicon-map-marker"></span>教师管理</a> > 教师编辑</div>
     <div class="panel-body">
         <form id="teacherEditForm" action="${contextPath}/admin/teacher/edit.action" method="post">

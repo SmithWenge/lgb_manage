@@ -12,7 +12,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="height: 45px;padding-top: 5px;">学生换卡</div>
     <div class="panel-body">
         <div class="row">

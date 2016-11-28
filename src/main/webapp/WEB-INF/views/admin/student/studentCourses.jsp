@@ -18,7 +18,7 @@
         color: #444;
     }
 </style>
-<div class="panel panel-default" style="float: left; width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">

@@ -5,7 +5,7 @@
 
 <%-- 查询该学生的课程,用于提供更换课程服务 --%>
 <!-- style="margin-left: 16%-->
-<div class="panel panel-default" style="float: left; width: 85%;">
+<div class="panel panel-default" style="float: left; width: 90%;">
     <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
         <ul class="nav nav-pills">
             <li role="presentation">

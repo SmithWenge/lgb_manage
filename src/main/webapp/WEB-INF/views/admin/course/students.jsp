@@ -11,18 +11,15 @@
         border-right: 4px solid #fed350;
         color: #444;
     }
+    table th{
+        min-width: 60px;;
+        line-height: 40px;
+        /*max-width: 80px;*/
+
+    }
 </style>
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-body">
-        <style>
-            table th{
-                min-width: 60px;;
-                line-height: 40px;
-                /*max-width: 80px;*/
-
-            }
-
-        </style>
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <table class="table" id="paginationTable" align="center">

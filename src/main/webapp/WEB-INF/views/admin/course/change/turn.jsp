@@ -3,7 +3,7 @@
 <%@include file="/WEB-INF/include/navs.jsp"%>
 <%@include file="/WEB-INF/include/message.jsp"%>
 
-<div class="panel panel-default" style="float: left;width: 85%;">
+<div class="panel panel-default" style="float: left;width: 90%;">
     <div class="panel-heading" style="height: 45px;padding-top: 5px;"><span class="glyphicon glyphicon-map-marker"></span>收费</div>
     <div class="panel-body">
         <%-- 可以换课的课程 --%>

@@ -3,10 +3,10 @@
 <%@include file="/WEB-INF/include/navs.jsp"%>
 <%@include file="/WEB-INF/include/message.jsp"%>
 
-<div class="row" style="margin-left: 0.1%; float: left; width: 85%;">
+<div class="row" style="margin-left: 0.1%; float: left; width: 90%;">
     <div class="panel panel-default" style="float: left; width: 100%;">
-        <div class="panel-heading" style="height: 45px;padding-top: 5px;">
-            <a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> 学生管理</a> > 编辑学员
+        <div class="panel-heading">
+            <a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp;学生管理</a> / 编辑学员
         </div>
         <div class="panel-body">
         <form action="${contextPath}/admin/student/edit.action" method="post" id="stuEditForm">
@@ -96,7 +96,7 @@
                 <div class="col-md-4 form-group">
                     <label for="stuIdentifiedNum" class="col-md-4 control-label">证件号码</label>
                     <div class="col-md-8">
-                        <input type="password" class="form-control" id="stuIdentifiedNum" name="stuIdentifiedNum" value="${edit.stuIdentifiedNum}">
+                        <input type="text" class="form-control" id="stuIdentifiedNum" name="stuIdentifiedNum" value="${edit.stuIdentifiedNum}">
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
