@@ -1,11 +1,12 @@
-package com.lgb.function.teaScore.controller;
+package com.lgb.function.admin.teacher.score.record.controller;
 
 import com.google.common.base.Optional;
 import com.lgb.arc.excel.into.ExcelConverter;
 import com.lgb.arc.excel.into.ScoreModelExcelMapper;
 import com.lgb.arc.utils.ConstantFields;
-import com.lgb.function.teaScore.ScoreModel;
-import com.lgb.function.teaScore.service.TeaScoreServiceI;
+import com.lgb.function.admin.teacher.score.record.TeacherScoreRecord;
+import com.lgb.function.admin.teacher.score.record.service.TeacherScoreRecordService;
+import com.lgb.function.admin.teacher.score.record.service.TeacherScoreRecordServiceI;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,13 +27,14 @@ import java.io.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/teaScore")
-public class TeaScoreController {
-    private static final Logger LOG = LoggerFactory.getLogger(TeaScoreController.class);
+@RequestMapping("/teacher/score")
+public class TeacherScoreRecordController {
+    private static final Logger LOG = LoggerFactory.getLogger(TeacherScoreRecordService.class);
+
     public static final String UPLOAD_EXCEL_FILE_NAME ="targetFile";
 
     @Autowired
-    private TeaScoreServiceI teaScoreService;
+    private TeacherScoreRecordServiceI teaScoreService;
 
     @RequestMapping(value = "/routerLogin")
     public String routerLogin() {
@@ -47,12 +49,12 @@ public class TeaScoreController {
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(ScoreModel scoreModel,HttpSession session) {
-        ScoreModel score = teaScoreService.select(scoreModel);
+    public String login(TeacherScoreRecord teacherScoreRecord, HttpSession session) {
+        TeacherScoreRecord score = teaScoreService.select(teacherScoreRecord);
 
-        Optional<ScoreModel> optional = Optional.fromNullable(score);
+        Optional<TeacherScoreRecord> optional = Optional.fromNullable(score);
         if(optional.isPresent()) {
-            session.setAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY,scoreModel);
+            session.setAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY, teacherScoreRecord);
             session.setAttribute("teacherIdScore", score);
 
             return "redirect:/teaScore/routerHelp.action";
@@ -64,11 +66,11 @@ public class TeaScoreController {
     @RequestMapping(value = "/routerHelp")
     public ModelAndView routerHelp(HttpSession session) {
         ModelAndView mav = new ModelAndView("teaScore/help");
-        ScoreModel idModel = (ScoreModel)session.getAttribute("teacherIdScore");
-        List<ScoreModel> courses = teaScoreService.courses(idModel.getTeacherId());
+        TeacherScoreRecord idModel = (TeacherScoreRecord)session.getAttribute("teacherIdScore");
+        List<TeacherScoreRecord> courses = teaScoreService.courses(idModel.getTeacherId());
         mav.addObject("courses", courses);
 
-        ScoreModel teacherModel = (ScoreModel)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
+        TeacherScoreRecord teacherModel = (TeacherScoreRecord)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
         mav.addObject("teacher",teacherModel);
 
         return mav;
@@ -76,19 +78,19 @@ public class TeaScoreController {
 
     @RequestMapping(value = "/routerList",method = RequestMethod.GET)
     public ModelAndView routerList(HttpSession session) {
-        ScoreModel idModel = (ScoreModel)session.getAttribute("teacherIdScore");
+        TeacherScoreRecord idModel = (TeacherScoreRecord)session.getAttribute("teacherIdScore");
         ModelAndView mav = new ModelAndView("teaScore/list");
-        List<ScoreModel> courses = teaScoreService.courses(idModel.getTeacherId());
+        List<TeacherScoreRecord> courses = teaScoreService.courses(idModel.getTeacherId());
         mav.addObject("courses", courses);
 
-        ScoreModel teacherModel = (ScoreModel)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
+        TeacherScoreRecord teacherModel = (TeacherScoreRecord)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
         mav.addObject("teacher",teacherModel);
 
-        ScoreModel searchModel = (ScoreModel)session.getAttribute("searchScore");
-        Optional<ScoreModel> optional = Optional.fromNullable(searchModel);
+        TeacherScoreRecord searchModel = (TeacherScoreRecord)session.getAttribute("searchScore");
+        Optional<TeacherScoreRecord> optional = Optional.fromNullable(searchModel);
         if(optional.isPresent()) {
-            List<ScoreModel> scoreModels = teaScoreService.selectScores(searchModel);
-            mav.addObject("scoreModels", scoreModels);
+            List<TeacherScoreRecord> teacherScoreRecords = teaScoreService.selectScores(searchModel);
+            mav.addObject("scoreModels", teacherScoreRecords);
 
             return mav;
         }
@@ -97,36 +99,36 @@ public class TeaScoreController {
     }
 
     @RequestMapping(value = "/Search",method = RequestMethod.POST)
-    public ModelAndView Search(HttpSession session,ScoreModel scoreModel) {
-        Optional<ScoreModel> optional = Optional.fromNullable(scoreModel);
+    public ModelAndView search(HttpSession session,TeacherScoreRecord teacherScoreRecord) {
+        Optional<TeacherScoreRecord> optional = Optional.fromNullable(teacherScoreRecord);
         if(optional.isPresent()) {
-            session.setAttribute("searchScore", scoreModel);
+            session.setAttribute("searchScore", teacherScoreRecord);
         }
 
         ModelAndView mav = new ModelAndView("teaScore/list");
-        ScoreModel idModel = (ScoreModel)session.getAttribute("teacherIdScore");
-        List<ScoreModel> courses = teaScoreService.courses(idModel.getTeacherId());
+        TeacherScoreRecord idModel = (TeacherScoreRecord)session.getAttribute("teacherIdScore");
+        List<TeacherScoreRecord> courses = teaScoreService.courses(idModel.getTeacherId());
         mav.addObject("courses", courses);
 
-        ScoreModel teacherModel = (ScoreModel)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
+        TeacherScoreRecord teacherModel = (TeacherScoreRecord)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
         mav.addObject("teacher",teacherModel);
 
-        ScoreModel searchScore = (ScoreModel)session.getAttribute("searchScore");
-        List<ScoreModel> scoreModels = teaScoreService.selectScores(searchScore);
-        mav.addObject("scoreModels",scoreModels);
+        TeacherScoreRecord searchScore = (TeacherScoreRecord)session.getAttribute("searchScore");
+        List<TeacherScoreRecord> teacherScoreRecords = teaScoreService.selectScores(searchScore);
+        mav.addObject("scoreModels", teacherScoreRecords);
 
         return mav;
     }
 
     @RequestMapping(value = "/routeEdit/{studentCourseId}",method = RequestMethod.GET)
     public ModelAndView routeEdit(@PathVariable("studentCourseId") int studentCourseId, HttpSession session) {
-        ScoreModel score = teaScoreService.seleciById(studentCourseId);
-        Optional<ScoreModel> optional = Optional.fromNullable(score);
+        TeacherScoreRecord score = teaScoreService.seleciById(studentCourseId);
+        Optional<TeacherScoreRecord> optional = Optional.fromNullable(score);
         if(optional.isPresent()) {
             ModelAndView mav = new ModelAndView("teaScore/edit");
             mav.addObject("score",score);
 
-            ScoreModel teacherModel = (ScoreModel)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
+            TeacherScoreRecord teacherModel = (TeacherScoreRecord)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
             mav.addObject("teacher",teacherModel);
 
             return mav;
@@ -135,7 +137,7 @@ public class TeaScoreController {
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String scoreEdit(HttpSession session, ScoreModel score, RedirectAttributes redirectAttributes) {
+    public String scoreEdit(HttpSession session, TeacherScoreRecord score, RedirectAttributes redirectAttributes) {
 
         if(teaScoreService.edit(score)) {
 
@@ -150,11 +152,11 @@ public class TeaScoreController {
 
     @RequestMapping(value = "/routerImport",method = RequestMethod.GET)
     public ModelAndView routerImport(HttpSession session) {
-        ScoreModel scoreModel = (ScoreModel)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
-        Optional<ScoreModel> optional = Optional.fromNullable(scoreModel);
+        TeacherScoreRecord teacherScoreRecord = (TeacherScoreRecord)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
+        Optional<TeacherScoreRecord> optional = Optional.fromNullable(teacherScoreRecord);
         if(optional.isPresent()) {
             ModelAndView mav = new ModelAndView("teaScore/import");
-            ScoreModel teacherModel = (ScoreModel)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
+            TeacherScoreRecord teacherModel = (TeacherScoreRecord)session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
             mav.addObject("teacher", teacherModel);
 
             return mav;
@@ -234,10 +236,10 @@ public class TeaScoreController {
 
         if (null == importFile) return "redirect:/teaScore/routerImport.action";
 
-        ExcelConverter<ScoreModel> converter = new ExcelConverter<ScoreModel>();
-        List<ScoreModel> scoreModels = converter.readFromExcel(importFile, 1, new ScoreModelExcelMapper());
+        ExcelConverter<TeacherScoreRecord> converter = new ExcelConverter<TeacherScoreRecord>();
+        List<TeacherScoreRecord> teacherScoreRecords = converter.readFromExcel(importFile, 1, new ScoreModelExcelMapper());
 
-        if (teaScoreService.save(scoreModels)) {
+        if (teaScoreService.save(teacherScoreRecords)) {
             return "redirect:/teaScore/routerList.action";
         }
 

@@ -1,6 +1,6 @@
-package com.lgb.function.teaScore.repository;
+package com.lgb.function.admin.teacher.score.record.repository;
 
-import com.lgb.function.teaScore.ScoreModel;
+import com.lgb.function.admin.teacher.score.record.TeacherScoreRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,17 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class TeaScoreRepository implements TeaScoreRepositoryI{
-
+public class TeacherScoreRecordRepository implements TeacherScoreRecordRepositoryI {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public ScoreModel select(ScoreModel scoreModel) {
+    public TeacherScoreRecord select(TeacherScoreRecord teacherScoreRecord) {
         String sql = "select teacherId from lgb_teacher where teacherName = ? and teacherCardNum = ? and deleteFlag = 0";
         Object[] args = {
-                scoreModel.getTeacherName(),
-                scoreModel.getTeacherCardNum()
+                teacherScoreRecord.getTeacherName(),
+                teacherScoreRecord.getTeacherCardNum()
         };
         try {
             return jdbcTemplate.queryForObject(sql, args, new SelectRpwMapper());
@@ -33,7 +32,7 @@ public class TeaScoreRepository implements TeaScoreRepositoryI{
     }
 
     @Override
-    public List<ScoreModel> selectCourses(int teacherId) {
+    public List<TeacherScoreRecord> selectCourses(int teacherId) {
         String sql = "SELECT DISTINCT TC.courseId, courseName FROM lgb_teachercourse TC LEFT JOIN lgb_course C ON TC.courseId = C.courseId WHERE C.deleteFlag = 0 AND TC.teacherId = ?";
         Object[] args = {
                 teacherId
@@ -42,23 +41,23 @@ public class TeaScoreRepository implements TeaScoreRepositoryI{
         try {
             return jdbcTemplate.query(sql, args, new SelectCoursesRowMapper());
         } catch (Exception e) {
-            return new ArrayList<ScoreModel>();
+            return new ArrayList<TeacherScoreRecord>();
         }
     }
 
     @Override
-    public List<ScoreModel> selectScores(ScoreModel scoreModel) {
+    public List<TeacherScoreRecord> selectScores(TeacherScoreRecord teacherScoreRecord) {
         StringBuilder sql = new StringBuilder("SELECT S.stuCardNum, S.stuName, C.courseName, SC.stuScore ,SC.studentCourseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE C.deleteFlag = 0");
 
         List<Object> list = new ArrayList<>();
-        if (scoreModel.getCourseId() > 0) {
+        if (teacherScoreRecord.getCourseId() > 0) {
             sql.append(" AND C.courseId = ?");
-            list.add(scoreModel.getCourseId());
+            list.add(teacherScoreRecord.getCourseId());
         }
 
-        if(scoreModel.getStudentCardNum() != null) {
+        if(teacherScoreRecord.getStudentCardNum() != null) {
             sql.append(" AND S.stuCardNum = ?");
-            list.add(scoreModel.getStudentCardNum());
+            list.add(teacherScoreRecord.getStudentCardNum());
         }
 
         Object[] args = list.toArray();
@@ -66,26 +65,26 @@ public class TeaScoreRepository implements TeaScoreRepositoryI{
         try {
             return jdbcTemplate.query(sql.toString(), args, new Select4PageRowMapper());
         }catch (Exception e) {
-            return new ArrayList<ScoreModel>();
+            return new ArrayList<TeacherScoreRecord>();
         }
     }
 
     @Override
-    public ScoreModel seleciById(int studentCourseId) {
+    public TeacherScoreRecord seleciById(int studentCourseId) {
         String sql = "SELECT S.stuCardNum, S.stuName, C.courseName, SC.stuScore, SC.studentCourseId FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE C.deleteFlag = 0 AND SC.studentCourseId = ?";
         Object[] args = {
                 studentCourseId
         };
 
         try {
-            return jdbcTemplate.queryForObject(sql, args, new SeleciByIdRowMapper());
+            return jdbcTemplate.queryForObject(sql, args, new SelectByIdRowMapper());
         }catch (Exception e) {
             return null;
         }
     }
 
     @Override
-    public int update(ScoreModel score) {
+    public int update(TeacherScoreRecord score) {
         String sql = "UPDATE lgb_studentcourse SET stuScore = ? WHERE studentCourseId =? ";
         Object[] args = {
                 score.getStuScore(),
@@ -115,11 +114,11 @@ public class TeaScoreRepository implements TeaScoreRepositoryI{
 
     }
 
-    private class SeleciByIdRowMapper implements  RowMapper<ScoreModel> {
+    private class SelectByIdRowMapper implements  RowMapper<TeacherScoreRecord> {
 
         @Override
-        public ScoreModel mapRow(ResultSet resultSet, int i) throws SQLException {
-            ScoreModel score = new ScoreModel();
+        public TeacherScoreRecord mapRow(ResultSet resultSet, int i) throws SQLException {
+            TeacherScoreRecord score = new TeacherScoreRecord();
             score.setStudentCardNum(resultSet.getString("stuCardNum"));
             score.setStuName(resultSet.getString("stuName"));
             score.setCourseName(resultSet.getString("courseName"));
@@ -130,11 +129,11 @@ public class TeaScoreRepository implements TeaScoreRepositoryI{
         }
     }
 
-    private class Select4PageRowMapper implements RowMapper<ScoreModel> {
+    private class Select4PageRowMapper implements RowMapper<TeacherScoreRecord> {
 
         @Override
-        public ScoreModel mapRow(ResultSet resultSet, int i) throws SQLException {
-            ScoreModel score = new ScoreModel();
+        public TeacherScoreRecord mapRow(ResultSet resultSet, int i) throws SQLException {
+            TeacherScoreRecord score = new TeacherScoreRecord();
             score.setStudentCardNum(resultSet.getString("stuCardNum"));
             score.setStuName(resultSet.getString("stuName"));
             score.setCourseName(resultSet.getString("courseName"));
@@ -145,25 +144,25 @@ public class TeaScoreRepository implements TeaScoreRepositoryI{
         }
     }
 
-    private class SelectCoursesRowMapper implements RowMapper<ScoreModel> {
+    private class SelectCoursesRowMapper implements RowMapper<TeacherScoreRecord> {
 
         @Override
-        public ScoreModel mapRow(ResultSet resultSet, int i) throws SQLException {
-            ScoreModel scoreModel = new ScoreModel();
-            scoreModel.setCourseId(resultSet.getInt("courseId"));
-            scoreModel.setCourseName(resultSet.getString("courseName"));
-            return  scoreModel;
+        public TeacherScoreRecord mapRow(ResultSet resultSet, int i) throws SQLException {
+            TeacherScoreRecord teacherScoreRecord = new TeacherScoreRecord();
+            teacherScoreRecord.setCourseId(resultSet.getInt("courseId"));
+            teacherScoreRecord.setCourseName(resultSet.getString("courseName"));
+            return teacherScoreRecord;
         }
     }
 
-    private class SelectRpwMapper implements RowMapper<ScoreModel> {
+    private class SelectRpwMapper implements RowMapper<TeacherScoreRecord> {
 
         @Override
-        public ScoreModel mapRow(ResultSet resultSet, int i) throws SQLException {
-            ScoreModel scoreModel = new ScoreModel();
-            scoreModel.setTeacherId(resultSet.getInt("teacherId"));
+        public TeacherScoreRecord mapRow(ResultSet resultSet, int i) throws SQLException {
+            TeacherScoreRecord teacherScoreRecord = new TeacherScoreRecord();
+            teacherScoreRecord.setTeacherId(resultSet.getInt("teacherId"));
 
-            return scoreModel;
+            return teacherScoreRecord;
         }
     }
 }

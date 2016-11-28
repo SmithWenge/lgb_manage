@@ -19,9 +19,9 @@
     }
 </style>
 <div class="panel panel-default" style="float: left; width: 85%;">
-    <div class="panel-heading" style="height: 45px; padding-top: 5px;">
+    <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
         <ul class="nav nav-pills">
-            <li role="presentation" ><a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> 学生管理</a></li>
+            <li role="presentation" ><a href="${contextPath}/admin/student/page.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp;学生管理</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/routeAdd.action">添加学员</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/disciplinary/page.action">违纪学员管理</a></li>
             <li role="presentation" style="float: right"><a href="${contextPath}/admin/student/export.action">学员导出Excel</a></li>

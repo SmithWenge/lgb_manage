@@ -161,12 +161,12 @@
         </mvc:interceptor>
         <!--teacher interceptor-->
         <mvc:interceptor>
-            <mvc:mapping path="/teaScore/**" />
+            <mvc:mapping path="/teacher/score/**" />
             <beans:bean class="com.lgb.arc.interceptor.TeacherScoreInterceptor">
                 <beans:property name="excludedUris">
                     <beans:list>
-                        <beans:value>/teaScore/routerLogin.action</beans:value>
-                        <beans:value>/teaScore/login.action</beans:value>
+                        <beans:value>/teacher/score/routerLogin.action</beans:value>
+                        <beans:value>/teacher/score/login.action</beans:value>
                     </beans:list>
                 </beans:property>
             </beans:bean>

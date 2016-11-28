@@ -2,7 +2,7 @@ package com.lgb.arc.interceptor;
 
 import com.google.common.base.Optional;
 import com.lgb.arc.utils.ConstantFields;
-import com.lgb.function.teaScore.ScoreModel;
+import com.lgb.function.admin.teacher.score.record.TeacherScoreRecord;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,8 +35,8 @@ public class TeacherScoreInterceptor implements HandlerInterceptor{
         }
 
         HttpSession session = httpServletRequest.getSession();
-        ScoreModel score = (ScoreModel) session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
-        Optional<ScoreModel> optional = Optional.fromNullable(score);
+        TeacherScoreRecord score = (TeacherScoreRecord) session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY);
+        Optional<TeacherScoreRecord> optional = Optional.fromNullable(score);
 
         if (!optional.isPresent()) {
             String redirectLocation = httpServletRequest.getContextPath() + "/teaScore/routerLogin.action";

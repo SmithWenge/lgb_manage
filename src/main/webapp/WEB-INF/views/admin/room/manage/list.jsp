@@ -12,9 +12,15 @@
     }
 </style>
 <div class="panel panel-default" style="float: left;width: 85%;">
-    <div class="panel-heading" style="height: 45px;">
-        <span class="glyphicon glyphicon-map-marker"></span>教室 > 教室管理
-        <a onclick="window.history.back(-1);" style="float: right;">返回</a>
+    <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
+        <ul class="nav nav-pills">
+            <li class="presentation">
+                <a><span class="glyphicon glyphicon-map-marker"></span> &nbsp; 教室 / 教室管理</a>
+            </li>
+            <li class="presentation" style="float: right;">
+                <a onclick="window.history.back(-1);" style="float: right;">返回</a>
+            </li>
+        </ul>
     </div>
     <div class="panel-body">
         <div class="row" style="margin-top: 5px;">

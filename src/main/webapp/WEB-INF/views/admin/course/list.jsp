@@ -13,10 +13,10 @@
     }
 </style>
 <div class="panel panel-default" style="float: left;width: 85%;">
-    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
+    <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
         <ul class="nav nav-pills">
-            <li role="presentation" ><a href="${contextPath}/admin/course/routePage.action"><span class="glyphicon glyphicon-map-marker"></span>课程管理</a></li>
-            <li role="presentation" >
+            <li role="presentation"><a href="${contextPath}/admin/course/routePage.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp;课程管理</a></li>
+            <li role="presentation">
                 <form class="form-inline" action="${contextPath}/admin/course/pageSearch.action" method="post">
                     <div class="form-group">
                         <label class="sr-only" for="departmentId">系别</label>

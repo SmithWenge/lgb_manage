@@ -45,15 +45,15 @@
             <th>操作</th>
           </tr>
           <form method="post" id="batchForm" border="1px black solid;">
-            <c:forEach items="${scoreModels}" var="scoreModel" varStatus="status">
+            <c:forEach items="${teacherScoreRecords}" var="teacherScoreRecord" varStatus="status">
               <tr style="line-height: 38px;">
                 <td>${status.index + 1}</td>
-                <td>${scoreModel.stuName}</td>
-                <td>${scoreModel.studentCardNum}</td>
-                <td>${scoreModel.courseName}</td>
-                <td>${scoreModel.stuScore}</td>
+                <td>${teacherScoreRecord.stuName}</td>
+                <td>${teacherScoreRecord.studentCardNum}</td>
+                <td>${teacherScoreRecord.courseName}</td>
+                <td>${teacherScoreRecord.stuScore}</td>
                 <td style="height: 30px;line-height: 38px">
-                  <a href="${contextPath}/teaScore/routeEdit/${scoreModel.studentCourseId}.action" style="text-decoration: none;">
+                  <a href="${contextPath}/teaScore/routeEdit/${teacherScoreRecord.studentCourseId}.action" style="text-decoration: none;">
                     <button type="button" class="btn btn-warning">修改成绩</button>
                   </a>
                 </td>

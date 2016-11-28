@@ -1,7 +1,6 @@
-package com.lgb.function.teaScore;
+package com.lgb.function.admin.teacher.score.record;
 
-public class ScoreModel {
-
+public class TeacherScoreRecord {
     private String studentCardNum;
     private String stuName;
     private String stuScore;

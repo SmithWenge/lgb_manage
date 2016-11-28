@@ -1,11 +1,11 @@
 package com.lgb.arc.excel.into;
 
-import com.lgb.function.teaScore.ScoreModel;
+import com.lgb.function.admin.teacher.score.record.TeacherScoreRecord;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 
-public class ScoreModelExcelMapper implements ExcelMapper<ScoreModel>{
+public class ScoreModelExcelMapper implements ExcelMapper<TeacherScoreRecord>{
     private static String[] strings = null;
 
     //把excel表格中的一行数据读出来,放到一个<code>java.lang.String[]</code>数据中
@@ -24,15 +24,15 @@ public class ScoreModelExcelMapper implements ExcelMapper<ScoreModel>{
     }
 
     @Override
-    public ScoreModel mapStringArray(HSSFRow row) {
+    public TeacherScoreRecord mapStringArray(HSSFRow row) {
         this.mapExcel(row);
-        ScoreModel scoreModel = new ScoreModel();
+        TeacherScoreRecord teacherScoreRecord = new TeacherScoreRecord();
 
-        scoreModel.setStudentCardNum(strings[0]);
-        scoreModel.setCourseName(strings[1]);
-        scoreModel.setStuScore(strings[2]);
+        teacherScoreRecord.setStudentCardNum(strings[0]);
+        teacherScoreRecord.setCourseName(strings[1]);
+        teacherScoreRecord.setStuScore(strings[2]);
 
-        return scoreModel;
+        return teacherScoreRecord;
     }
 
     private  String getTypeValue(HSSFCell cell) {

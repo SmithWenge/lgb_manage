@@ -12,34 +12,13 @@
     }
 </style>
 <div class="panel panel-default" style="float: left;width: 85%;">
-    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
+    <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
         <ul class="nav nav-pills">
-            <li role="presentation" ><a href="${contextPath}/admin/course/leader/page.action"><span class="glyphicon glyphicon-map-marker"></span>班长</a></li>
-            <li role="presentation"class="active" style="float: right"><a href="${contextPath}/admin/course/leader/export.action">导出班长</a></li>
+            <li role="presentation"><a href="${contextPath}/admin/course/leader/page.action"><span class="glyphicon glyphicon-map-marker"></span>&nbsp;班长</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/course/leader/export.action">导出班长</a></li>
         </ul>
     </div>
     <div class="panel-body">
-        <c:if test="${not empty addMessage}">
-            <div class="col-md-12" id="addMessage">
-                <p class="bg-success">${addMessage}</p>
-            </div>
-        </c:if>
-        <c:if test="${not empty editMessage}">
-            <div class="col-md-12" id="editMessage">
-                <p class="bg-success">${editMessage}</p>
-            </div>
-        </c:if>
-        <c:if test="${not empty deleteMessage}">
-            <div class="col-md-12" id="deleteMessage">
-                <p class="bg-success">${deleteMessage}</p>
-            </div>
-        </c:if>
-        <c:if test="${not empty deleteFailureMessage}">
-            <div class="col-md-12" id="deleteFailureMessage">
-                <p class="bg-danger">${deleteFailureMessage}</p>
-            </div>
-        </c:if>
-
         <div class="row" style="margin-top: 5px;">
             <div class="col-md-12">
                 <table class="table" id="paginationTable" align="center">

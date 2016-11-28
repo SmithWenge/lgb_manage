@@ -13,10 +13,10 @@
     }
 </style>
 <div class="panel panel-default" style="float: left;width: 85%;">
-    <div class="panel-heading" style="height: 45px;padding-top: 5px;">
+    <div class="panel-heading" style="padding-bottom: 0px; padding-top: 0px; padding-left: 0px;">
         <ul class="nav nav-pills">
-            <li role="presentation" ><a href="${contextPath}/admin/user/page.action"><span class="glyphicon glyphicon-map-marker"></span>用户管理</a></li>
-            <li role="presentation" class="active" style="float: right"><a href="${contextPath}/admin/user/routeAdd.action">添加用户</a></li>
+            <li role="presentation"><a href="${contextPath}/admin/user/page.action"><span class="glyphicon glyphicon-map-marker"></span> &nbsp; 用户管理</a></li>
+            <li role="presentation" style="float: right"><a href="${contextPath}/admin/user/routeAdd.action">添加用户</a></li>
         </ul>
     </div>
     <div class="panel-body">
