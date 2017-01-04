@@ -56,7 +56,7 @@
 
 
 <body>
-<form action="${contextPath}/teaScore/login.action" method="post">
+<form action="${contextPath}/teacher/score/login.action" method="post">
   <div class="content">
     <div class="right_div">
       <label for="teacherName">

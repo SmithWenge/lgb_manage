@@ -16,7 +16,7 @@
   <div class="panel-body">
     <div class="row" >
       <div class="col-md-12">
-        <form class="form-horizontal" action="${contextPath}/teaScore/edit.action" method="post" id="scoreEditForm">
+        <form class="form-horizontal" action="${contextPath}/teacher/score/edit.action" method="post" id="scoreEditForm">
           <input type="hidden" name="studentCourseId" value="${score.studentCourseId}">
           <div class="form-group">
             <label for="stuName" class="col-sm-2 control-label">学生姓名</label>

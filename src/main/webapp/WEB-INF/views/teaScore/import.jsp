@@ -5,8 +5,8 @@
 <div class="panel panel-default" style="float: left;width: 100%;">
   <div class="panel-heading" style="height: 45px;padding-top: 5px;">
     <ul class="nav nav-pills">
-      <li role="presentation" ><a href="${contextPath}/teaScore/routerImport.action"><span class="glyphicon glyphicon-map-marker"></span>导入成绩</a></li>
-      <li role="presentation" style="float: right;"><a href="${contextPath}/teaScore/download.action">获取模板</a></li>
+      <li role="presentation" ><a href="${contextPath}/teacher/score/routerImport.action"><span class="glyphicon glyphicon-map-marker"></span>导入成绩</a></li>
+      <li role="presentation" style="float: right;"><a href="${contextPath}/teacher/score/download.action">获取模板</a></li>
     </ul>
   </div>
   <div class="panel-body">
@@ -22,7 +22,7 @@
     </ul>
   </div>
   <div class="panel-footer">
-    <form class="form-inline" action="${contextPath}/teaScore/import.action" method="post"
+    <form class="form-inline" action="${contextPath}/teacher/score/import.action" method="post"
           enctype="multipart/form-data">
       <div class="form-group">
         <label for="inputFile">添加数据文件</label>

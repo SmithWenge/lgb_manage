@@ -45,7 +45,7 @@ public class TeacherScoreRecordController {
     public String logout(HttpSession session) {
         session.removeAttribute("teacherIdScore");
 
-        return "redirect:/teaScore/routerLogin.action";
+        return "redirect:/teacher/score/routerLogin.action";
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
@@ -57,9 +57,9 @@ public class TeacherScoreRecordController {
             session.setAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY, teacherScoreRecord);
             session.setAttribute("teacherIdScore", score);
 
-            return "redirect:/teaScore/routerHelp.action";
+            return "redirect:/teacher/score/routerHelp.action";
         }
-        return "redirect:/teaScore/routerLogin.action";
+        return "redirect:/teacher/score/routerLogin.action";
 
     }
 
@@ -98,7 +98,7 @@ public class TeacherScoreRecordController {
         return mav;
     }
 
-    @RequestMapping(value = "/Search",method = RequestMethod.POST)
+    @RequestMapping(value = "/search",method = RequestMethod.POST)
     public ModelAndView search(HttpSession session,TeacherScoreRecord teacherScoreRecord) {
         Optional<TeacherScoreRecord> optional = Optional.fromNullable(teacherScoreRecord);
         if(optional.isPresent()) {
@@ -115,7 +115,7 @@ public class TeacherScoreRecordController {
 
         TeacherScoreRecord searchScore = (TeacherScoreRecord)session.getAttribute("searchScore");
         List<TeacherScoreRecord> teacherScoreRecords = teaScoreService.selectScores(searchScore);
-        mav.addObject("scoreModels", teacherScoreRecords);
+        mav.addObject("teacherScoreRecords", teacherScoreRecords);
 
         return mav;
     }
@@ -143,11 +143,11 @@ public class TeacherScoreRecordController {
 
             redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_SUCCESS_MESSAGE);
 
-            return "redirect:/teaScore/routerList.action";
+            return "redirect:/teacher/score/routerList.action";
         }
         redirectAttributes.addFlashAttribute(ConstantFields.OPERATION_MESSAGE, ConstantFields.EDIT_FAILURE_MESSAGE);
 
-        return "redirect:/teaScore/routeEdit/" + score.getStudentCourseId() + ".action";
+        return "redirect:/teacher/score/routeEdit/" + score.getStudentCourseId() + ".action";
     }
 
     @RequestMapping(value = "/routerImport",method = RequestMethod.GET)
@@ -166,7 +166,7 @@ public class TeacherScoreRecordController {
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public String downloadTemplate(HttpServletResponse response, HttpSession session) {
-        if (null == session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY)) return "redirect:/teaScore/routerLogin.action";
+        if (null == session.getAttribute(ConstantFields.SESSION_TEACHER_SCORE_KEY)) return "redirect:/teacher/score/routerLogin.action";
 
         String templatePath = session.getServletContext().getRealPath("/") + "WEB-INF/data/template/score.xls";
         try {
@@ -234,15 +234,15 @@ public class TeacherScoreRecordController {
     public String add(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
         File importFile = save(file, request);
 
-        if (null == importFile) return "redirect:/teaScore/routerImport.action";
+        if (null == importFile) return "redirect:/teacher/score/routerImport.action";
 
         ExcelConverter<TeacherScoreRecord> converter = new ExcelConverter<TeacherScoreRecord>();
         List<TeacherScoreRecord> teacherScoreRecords = converter.readFromExcel(importFile, 1, new ScoreModelExcelMapper());
 
         if (teaScoreService.save(teacherScoreRecords)) {
-            return "redirect:/teaScore/routerList.action";
+            return "redirect:/teacher/score/routerList.action";
         }
 
-        return "redirect:/teaScore/routerImport.action";
+        return "redirect:/teacher/score/routerImport.action";
     }
 }

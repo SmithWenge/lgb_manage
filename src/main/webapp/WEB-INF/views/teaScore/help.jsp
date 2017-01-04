@@ -5,9 +5,9 @@
 <div class="panel panel-default" style="float: left;width: 100%;">
   <div class="panel-heading" style="height: 45px;padding-top: 5px;">
     <ul class="nav nav-pills">
-      <li role="presentation" ><a href="${contextPath}/teaScore/routerHelp.action"><span class="glyphicon glyphicon-map-marker"></span>成绩管理</a></li>
+      <li role="presentation" ><a href="${contextPath}/teacher/score/routerHelp.action"><span class="glyphicon glyphicon-map-marker"></span>成绩管理</a></li>
       <li role="presentation" >
-        <form class="form-inline" action="${contextPath}/teaScore/Search.action" method="post">
+        <form class="form-inline" action="${contextPath}/teacher/score/search.action" method="post">
           <div class="form-group">
             <label class="sr-only" for="courseId">系别</label>
             <select class="form-control" id="courseId" name="courseId">
@@ -20,7 +20,7 @@
           <button type="submit" class="btn btn-default">查询</button>
         </form>
       </li>
-      <li role="presentation" style="float: right"><a href="${contextPath}/teaScore/routerImport.action">导入成绩</a></li>
+      <li role="presentation" style="float: right"><a href="${contextPath}/teacher/score/routerImport.action">导入成绩</a></li>
     </ul>
   </div>
   <div class="panel-body">
