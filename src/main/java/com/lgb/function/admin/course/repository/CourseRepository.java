@@ -270,7 +270,7 @@ public class CourseRepository implements CourseRepositoryI {
 
     @Override
     public void insertTeacherCourse(int courseId, int courseTeacherOne) {
-        String sql = "INSERT INTO lgb_teacherCourse (teacherId, courseId) VALUES (?, ?)";
+        String sql = "INSERT INTO lgb_teacherCourse (courseId, teacherId) VALUES (?, ?)";
         Object[] args = {
                 courseId,
                 courseTeacherOne
