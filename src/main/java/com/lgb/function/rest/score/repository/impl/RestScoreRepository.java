@@ -19,7 +19,7 @@ public class RestScoreRepository implements RestScoreRepositoryI{
 
     @Override
     public List<RestStudentScoreInfo> selectStuScore(String userCardNum) {
-        String sql = "SELECT S.stuCardNum, S.stuName, C.courseName, SC.stuScore FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE C.deleteFlag = 0 AND S.stuCardNum = ?";
+        String sql = "SELECT S.stuCardNum, S.stuName, C.courseName, SC.stuScore FROM lgb_studentCourse SC LEFT JOIN lgb_student S ON SC.studentId = S.stuId LEFT JOIN lgb_course C ON SC.courseId = C.courseId WHERE C.deleteFlag = 0 AND S.stuCardNum = ? AND SC.stuScore >= 0";
         Object[] args = {
                 userCardNum
         };
