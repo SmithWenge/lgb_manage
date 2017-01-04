@@ -11,6 +11,7 @@ GRANT ALL PRIVILEGES ON lgb_manage.* TO 'lgbmanager'@'localhost' WITH GRANT OPTI
 ```
 HOME: http://localhost:8080/lgbmanage/admin/routeLogin.action
 LOG: http://localhost:8080/lgbmanage/admin/log/routePage.action
+TEACHER: http://localhost:8080/lgbmanage/teacher/score/routerLogin.action
 ```
 
 ### COURSE NUMUBER
